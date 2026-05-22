@@ -330,30 +330,6 @@ body{
 	padding-bottom:28px;
 	min-height:auto;
 }
-#calendar{
-	padding-top:0;
-	padding-bottom:96px;
-	position:relative;
-	z-index:0;
-}
-#calendar h2{
-	margin:0 0 14px;
-}
-.calendar-frame{
-	position:relative;
-	width:100%;
-	height:760px;
-	overflow:hidden;
-	background:var(--surface-foreground);
-}
-.calendar-frame iframe{
-	position:absolute;
-	inset:0;
-	display:block;
-	width:100%;
-	height:100%;
-	border:0;
-}
 
 /* Footer */
 .site-footer{
