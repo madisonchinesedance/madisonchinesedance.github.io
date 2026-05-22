@@ -34,16 +34,17 @@
 					<a class="btn btn-secondary donate-cta" href="https://www.zeffy.com/en-US/donation-form/donate-to-madison-chinese-dance-academy" target="_blank" rel="noopener noreferrer" role="button">Donate via Zeffy</a>
 				</div>
 
-				<!-- Zeffy embed: donation form (fallback iframe shown on script error) -->
-				<div class="ticket-embed" style="margin-top:18px;">
-				  <div data-zeffy-embed data-form-url="/embed/donation-form/donate-to-madison-chinese-dance-academy"></div>
-				  <div data-zeffy-embed-fallback style="display:none;">
-					<div style="position:relative;overflow:hidden;height:450px;width:100%;"><iframe title='Donation form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' src='https://www.zeffy.com/embed/donation-form/donate-to-madison-chinese-dance-academy' allowpaymentrequest allowTransparency="true"></iframe></div>
-				  </div>
-				  <script
-					src="https://www.zeffy.com/embed/v2/zeffy-embed.js"
-					onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';});">
-				  </script>
+				<div class="ticket-embed">
+					<div data-zeffy-embed data-form-url="/embed/donation-form/donate-to-madison-chinese-dance-academy"></div>
+					<div data-zeffy-embed-fallback>
+						<div class="zeffy-fallback-frame">
+							<iframe title="Donation form powered by Zeffy" src="https://www.zeffy.com/embed/donation-form/donate-to-madison-chinese-dance-academy" allowpaymentrequest allowTransparency="true"></iframe>
+						</div>
+					</div>
+					<script
+						src="https://www.zeffy.com/embed/v2/zeffy-embed.js"
+						onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';});">
+					</script>
 				</div>
 			</div>
 		</section>
