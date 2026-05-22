@@ -50,6 +50,9 @@
 	/* Header tab font size (nav links) */
 	--nav-link-font-size: 1.25rem;
 
+	/* Header tab font weight (used for nav links and header CTAs) */
+	--nav-link-font-weight: 600;
+
 	/* Page heading size/weight used on page hero and homepage */
 	--page-heading-size: clamp(2rem, 4vw, 3.2rem);
 	--page-heading-weight: 700;
@@ -169,8 +172,8 @@ body{
 
 /* Header CTA sizing */
 .header-cta{
-    padding:8px 14px;
-    font-size:0.95rem;
+	padding:8px 14px;
+	font-size: var(--nav-link-font-size);
 }
 
 /* Nav toggle (hidden by default on desktop) */
@@ -196,7 +199,7 @@ body{
 .nav-link{
 	color:var(--text-color);
 	text-decoration:none;
-	font-weight:600;
+	font-weight:var(--nav-link-font-weight);
 	padding:8px 10px;
 	border-radius:10px;
 	transition: background var(--transition-fast), transform var(--transition-fast);
@@ -214,17 +217,28 @@ body{
 /* ---------------------------
 	 Hero
 	 --------------------------- */
-.hero{
-	padding:64px 0;
-	text-align:center;
+.hero,
+.page-hero{
+	padding:72px 0 96px;
+	text-align:left;
 }
-.hero-inner{ max-width:920px; margin:0 auto; }
-.hero-title{
-	margin:0 0 12px 0;
-	font-weight:var(--page-heading-weight);
+.hero-inner,
+.page-hero .container,
+.hero-inner{ max-width:var(--content-max); margin:0 auto; }
+.hero-title,
+.page-hero h1{
+	margin:0 0 14px;
 	font-size:var(--page-heading-size);
+	font-weight:var(--page-heading-weight);
 	line-height:1.08;
 	color:var(--text-color);
+}
+.hero-tagline,
+.page-hero p{ /* hero tagline shares page paragraph styling */
+	max-width:var(--content-max);
+	margin:0 auto;
+	color:var(--body-font-color);
+	font-size:var(--body-font-size);
 }
 .hero-tagline{
 	margin:0 0 22px 0;
@@ -232,22 +246,7 @@ body{
 	font-size:var(--body-font-size);
 }
 
-.page-hero{
-	padding:72px 0 96px;
-	min-height:calc(100vh - var(--nav-height) - 88px);
-}
-.page-hero h1{
-	margin:0 0 14px;
-	font-size:var(--page-heading-size);
-	font-weight:var(--page-heading-weight);
-	line-height:1.08;
-}
-.page-hero p{
-	max-width:var(--content-max);
-	margin:0 auto;
-	color:var(--body-font-color);
-	font-size:var(--body-font-size);
-}
+.page-hero{ min-height:calc(100vh - var(--nav-height) - 88px); }
 .page-hero a{
 	color:inherit;
 }
@@ -299,8 +298,9 @@ body{
 /* Smaller header CTA buttons to fit the navigation bar */
 .btn.header-cta{
 	padding:8px 12px;
-	font-size:0.95rem;
- 	border-radius:10px;
+	font-size: var(--nav-link-font-size);
+	font-weight: var(--nav-link-font-weight);
+	border-radius:10px;
 	white-space:nowrap;
 }
 

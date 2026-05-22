@@ -1,24 +1,29 @@
 # Madison Chinese Dance Academy — Website
 
-Lightweight, responsive single-page site for the Madison Chinese Dance Academy.
+This repository contains a small, responsive static website for the Madison Chinese Dance Academy. It's authored with plain HTML, CSS, and a tiny JavaScript helper for navigation.
 
-How to preview locally:
+## Project structure
 
-```powershell
-# From the project root
-python -m http.server 8000
-# then open http://localhost:8000 in your browser
-```
+- `index.html` — site home (hero + header/footer). Keep at repo root for Pages.
+- `pages/` — secondary pages (moved from root). Files reference assets with `../` so they work from inside `pages/`.
+- `style.css` — global styles and CSS custom properties (theme variables).
+- `app.js` — small JS for mobile nav toggle and any light interactions.
 
-Deploy to GitHub Pages:
+## Customizing styles
 
-- Push the `main` branch to GitHub (this repository uses `main`).
-- In the repository Settings → Pages, set the source to the `main` branch (root) and save.
+- Edit `style.css` variables at the top (`:root`) to adjust the theme and layout:
+	- `--base-font-size` — root font size (px)
+	- `--body-font-size` and `--body-font-color` — paragraph text size and color
+	- `--nav-link-font-size` — header tab text size
+	- `--page-heading-size` and `--page-heading-weight` — page/hero heading sizing
+	- `--content-max` — maximum measure used for centered content blocks
 
-Files of interest:
+## Notes & tips
 
-- `index.html` — main markup (semantic HTML5)
-- `style.css` — styles, gradient background, responsive navigation
-- `app.js` — small vanilla JS for mobile nav and language toggle
+- The homepage hero uses the same page-hero styles so typography and alignment stay consistent across pages.
+- When adding or moving pages, keep relative paths correct: pages in the `pages/` folder link to assets using `../style.css` and `../app.js`.
 
-If you'd like, I can open a PR with these changes, or add a small deploy workflow next.
+## Contact
+
+- Website Developer and Maintainer: joshuacheng.dev@gmail.com
+- Organizational Contact: ahuan98-dance@yahoo.com
