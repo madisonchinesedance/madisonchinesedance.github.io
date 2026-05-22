@@ -183,7 +183,8 @@ body{
 	white-space:nowrap;
 }
 .nav-link:hover,
-.nav-link:focus-visible{
+.nav-link:focus-visible,
+.nav-link.active{
 	background: var(--nav-hover-bg);
 	outline:none;
 	transform:translateY(-1px);
@@ -208,6 +209,25 @@ body{
 	margin:0 0 22px 0;
 	color:var(--muted);
 	font-size:1.05rem;
+}
+
+.page-hero{
+	padding:72px 0 96px;
+	min-height:calc(100vh - var(--nav-height) - 88px);
+}
+.page-hero h1{
+	margin:0 0 14px;
+	font-size:clamp(2rem, 4vw, 3.2rem);
+	line-height:1.08;
+}
+.page-hero p{
+	max-width:720px;
+	margin:0;
+	color:var(--muted);
+	font-size:1.05rem;
+}
+.page-hero a{
+	color:inherit;
 }
 
 /* CTA buttons */
