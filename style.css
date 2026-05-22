@@ -65,6 +65,9 @@ body{
 	-moz-osx-font-smoothing:grayscale;
 	line-height:1.45;
 	font-size:16px;
+	display:flex;
+	flex-direction:column;
+	min-height:100vh;
 }
 
 /* Container keeps content centered and constrained */
@@ -135,7 +138,7 @@ body{
 	color:var(--text-color);
 	text-decoration:none;
 	font-weight:700;
-	font-size:1rem;
+	font-size:1.5rem;
 	letter-spacing:0.2px;
 	white-space:nowrap;
 }
@@ -289,8 +292,9 @@ body{
 	 Content sections & footer
 	 --------------------------- */
 .section{
-	padding:48px 0;
+    padding:48px 0;
 }
+.site-main{ flex:1 0 auto; }
 .section h2{
 	margin:0 0 12px 0;
 	font-size:1.4rem;
@@ -299,18 +303,30 @@ body{
 
 /* Footer */
 .site-footer{
-	padding:28px 0;
-	border-top:1px solid rgba(17,17,17,0.04);
+	padding:32px 0;
+	border-top:1px solid rgba(17,17,17,0.06);
+	background: linear-gradient(to top, rgba(255,255,255,0.36), rgba(255,255,255,0.10));
+	backdrop-filter: blur(6px);
+	box-shadow: 0 -6px 20px rgba(17,17,17,0.03);
 }
 .footer-inner{
 	display:flex;
-	gap:12px;
+	gap:18px;
 	justify-content:space-between;
 	align-items:center;
 	flex-wrap:wrap;
 	color:var(--muted);
 	font-size:0.95rem;
+	row-gap:10px;
 }
+
+/* Footer regions */
+.footer-left{ display:flex; flex-direction:column; gap:6px; }
+.footer-copy{ margin:0; color:var(--muted); font-size:0.95rem; }
+.footer-contact{ margin:0; color:var(--muted); font-weight:600; }
+.footer-nav{ display:flex; gap:12px; align-items:center; }
+.footer-nav a{ color:var(--text-color); text-decoration:none; padding:6px 10px; border-radius:8px; background:transparent; transition: background var(--transition-fast), transform var(--transition-fast); font-weight:600; font-size:0.95rem; }
+.footer-nav a:hover, .footer-nav a:focus{ background:var(--nav-hover-bg); transform:translateY(-1px); outline:none; }
 
 /* ---------------------------
 	 Responsive (mobile-first is not used — desktop-first approach)
