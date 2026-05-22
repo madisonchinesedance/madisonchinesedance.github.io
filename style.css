@@ -384,6 +384,22 @@ a{
 .tickets-section .ticket-actions{ display:flex; justify-content:flex-start; margin-top:22px; }
 .tickets-section .ticket-cta{ padding:12px 20px; font-size:1.05rem; }
 
+/* Ticket embed bubble */
+.ticket-embed{
+	background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,250,0.9));
+	border-radius:14px;
+	padding:18px;
+	box-shadow: 0 8px 30px rgba(17,17,17,0.06);
+}
+.ticket-embed div[data-zeffy-embed], .ticket-embed [data-zeffy-embed-fallback]{
+	width:100%;
+}
+.ticket-embed iframe{ border-radius:8px; }
+
+@media (max-width:880px){
+	.ticket-embed{ padding:12px; }
+}
+
 /* Calendar block: keep the schedule close to the classes intro */
 .classes-page .page-hero{
 	padding-bottom:28px;
