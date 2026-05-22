@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Madison Chinese Dance Academy</title>
+	<meta name="description" content="Madison Chinese Dance Academy — community classes, performances, and outreach. Purchase tickets or support our community." />
+	<!-- Link to stylesheet (keeps site lightweight for GitHub Pages) -->
+	<link rel="stylesheet" href="style.css" />
+	<!-- Defer script so DOM is available; app.js contains nav + language behavior -->
+	<script defer src="app.js"></script>
+</head>
+<body>
+	<!-- Accessible "skip" link for keyboard users -->
+	<a class="skip-link" href="#main">Skip to main content</a>
+
+	<!-- Site Header / Navigation -->
+	<header class="site-header" role="banner">
+		<div class="container header-inner">
+			<!-- Visual identity (logo as text for speed & accessibility) -->
+			<a href="#home" class="logo" aria-label="Madison Chinese Dance Academy home">Madison Chinese Dance Academy</a>
+
+			<!-- Controls: language toggle and mobile nav toggle -->
+			<div class="header-controls">
+				<!-- Language toggle: toggles English <-> Traditional Chinese -->
+				<button id="translate-btn"
+								class="btn btn-translate"
+								aria-pressed="false"
+								aria-label="Switch language">
+					繁體中文
+				</button>
+
+				<!-- Mobile navigation toggle (hidden on large screens) -->
+				<button id="nav-toggle"
+								class="nav-toggle"
+								aria-controls="primary-navigation"
+								aria-expanded="false"
+								aria-label="Open navigation">
+					<!-- Simple accessible "hamburger" icon (SVG) -->
+					<svg width="24" height="18" viewBox="0 0 24 18" aria-hidden="true" focusable="false">
+						<rect width="24" height="2" y="0" rx="1"></rect>
+						<rect width="24" height="2" y="8" rx="1"></rect>
+						<rect width="24" height="2" y="16" rx="1"></rect>
+					</svg>
+				</button>
+			</div>
+
+			<!-- Primary navigation -->
+			<nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+				<ul class="nav-list">
+					<li><a href="#home" class="nav-link" data-i18n="nav.home">Home</a></li>
+					<li><a href="#about" class="nav-link" data-i18n="nav.about">About Us</a></li>
+					<li><a href="#classes" class="nav-link" data-i18n="nav.classes">Classes &amp; Schedule</a></li>
+					<li><a href="#splendid" class="nav-link" data-i18n="nav.splendid">Splendid China</a></li>
+					<li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<!-- Main content -->
+	<main id="main" tabindex="-1" class="site-main">
+		<!-- Hero section with large title, tagline, and two CTAs -->
+		<section id="hero" class="hero" role="region" aria-labelledby="hero-title">
+			<div class="container hero-inner">
+				<h1 id="hero-title" class="hero-title" data-i18n="hero.title">Madison Chinese Dance Academy</h1>
+				<p class="hero-tagline" data-i18n="hero.tagline">
+					Connecting community through classical &amp; contemporary Chinese dance.
+				</p>
+
+				<!-- CTA buttons -->
+				<div class="hero-ctas">
+					<!-- Primary CTA (tickets) -->
+					<a href="#tickets" class="btn btn-primary" data-i18n="cta.purchase" role="button">Purchase Tickets</a>
+					<!-- Secondary CTA (donate) -->
+					<a href="#donate" class="btn btn-secondary" data-i18n="cta.donate" role="button">Donate</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- About section (semantic content placeholders) -->
+		<section id="about" class="section about" aria-labelledby="about-heading">
+			<div class="container">
+				<h2 id="about-heading" data-i18n="about.title">About Us</h2>
+				<p data-i18n="about.content">
+					Madison Chinese Dance Academy is a community-driven nonprofit offering classes and public performances that celebrate Chinese dance traditions.
+				</p>
+			</div>
+		</section>
+
+		<!-- Classes & Schedule -->
+		<section id="classes" class="section classes" aria-labelledby="classes-heading">
+			<div class="container">
+				<h2 id="classes-heading" data-i18n="classes.title">Classes &amp; Schedule</h2>
+				<p data-i18n="classes.content">
+					We offer beginner through advanced classes for all ages — discover schedules and enrollment details online.
+				</p>
+			</div>
+		</section>
+
+		<!-- Splendid China (annual performance) -->
+		<section id="splendid" class="section splendid" aria-labelledby="splendid-heading">
+			<div class="container">
+				<h2 id="splendid-heading" data-i18n="splendid.title">Splendid China</h2>
+				<p data-i18n="splendid.content">
+					Our annual performance showcases traditional and contemporary pieces performed by community dancers.
+				</p>
+			</div>
+		</section>
+
+		<!-- Contact -->
+		<section id="contact" class="section contact" aria-labelledby="contact-heading">
+			<div class="container">
+				<h2 id="contact-heading" data-i18n="contact.title">Contact</h2>
+				<p data-i18n="contact.content">
+					Email: info@madisonchinesedance.org • Madison, WI
+				</p>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer class="site-footer" role="contentinfo">
+		<div class="container footer-inner">
+			<p class="footer-copy" data-i18n="footer.copy">© 2026 Madison Chinese Dance Academy</p>
+			<p class="footer-contact" data-i18n="footer.contact">Community organization — Contact: info@madisonchinesedance.org</p>
+		</div>
+	</footer>
+</body>
+</html>
+
