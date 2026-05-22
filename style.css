@@ -325,6 +325,14 @@ body{
 }
 .section p{ margin:0 auto 0 auto; color:var(--body-font-color); font-size:var(--body-font-size); max-width:var(--content-max); }
 
+/* Donation CTA utilities */
+.donate-section .donate-actions{ display:flex; justify-content:center; margin-top:18px; }
+.donate-section .donate-cta{ padding:12px 20px; font-size:1.05rem; }
+
+/* Tickets CTA utilities (mirrors donation CTA) */
+.tickets-section .ticket-actions{ display:flex; justify-content:center; margin-top:18px; }
+.tickets-section .ticket-cta{ padding:12px 20px; font-size:1.05rem; }
+
 /* Calendar block: keep the schedule close to the classes intro */
 .classes-page .page-hero{
 	padding-bottom:28px;
