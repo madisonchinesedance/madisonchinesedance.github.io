@@ -75,7 +75,7 @@
 *::before,
 *::after{box-sizing:border-box;}
 
-html,body{height:100%;}
+html{min-height:100%;}
 html{ font-size: var(--base-font-size); }
 body{
 	margin:0;
@@ -88,6 +88,7 @@ body{
 	display:flex;
 	flex-direction:column;
 	min-height:100vh;
+	height:auto;
 }
 
 /* Container keeps content centered and constrained */
@@ -246,7 +247,11 @@ body{
 	font-size:var(--body-font-size);
 }
 
-.page-hero{ min-height:calc(100vh - var(--nav-height) - 88px); }
+.page-hero{ 
+	/* keep hero prominent but avoid forcing content to the very bottom */
+	/* further reduce the hero height so following content (calendar) appears sooner */
+	min-height: min(40vh, calc(100vh - var(--nav-height) - 88px));
+}
 .page-hero a{
 	color:inherit;
 }
@@ -318,10 +323,43 @@ body{
 	margin:0 0 12px 0;
 	font-size:1.4rem;
 }
-.section p{ margin:0 0 0 0; color:var(--body-font-color); font-size:var(--body-font-size); }
+.section p{ margin:0 auto 0 auto; color:var(--body-font-color); font-size:var(--body-font-size); max-width:var(--content-max); }
+
+/* Calendar block: keep the schedule close to the classes intro */
+.classes-page .page-hero{
+	padding-bottom:28px;
+	min-height:auto;
+}
+#calendar{
+	padding-top:0;
+	padding-bottom:96px;
+	position:relative;
+	z-index:0;
+}
+#calendar h2{
+	margin:0 0 14px;
+}
+.calendar-frame{
+	position:relative;
+	width:100%;
+	height:760px;
+	overflow:hidden;
+	background:var(--surface-foreground);
+}
+.calendar-frame iframe{
+	position:absolute;
+	inset:0;
+	display:block;
+	width:100%;
+	height:100%;
+	border:0;
+}
 
 /* Footer */
 .site-footer{
+	position:relative;
+	z-index:1;
+	flex-shrink:0;
 	padding:32px 0;
 	border-top:1px solid rgba(17,17,17,0.06);
 	background: linear-gradient(to top, rgba(255,255,255,0.36), rgba(255,255,255,0.10));
