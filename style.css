@@ -89,18 +89,6 @@ body{
 	width:auto;
 	height:auto;
 	padding:8px 12px;
-	background:#111;
-	color:#fff;
-	z-index:1000;
-	border-radius:6px;
-	text-decoration:none;
-}
-.skip-link:focus{
-	left:20px;
-	top:20px;
-	width:auto;
-	height:auto;
-	padding:8px 12px;
 	background:var(--skiplink-bg);
 	color:var(--skiplink-fg);
 	z-index:1000;
@@ -125,8 +113,22 @@ body{
 	align-items:center;
 	gap:18px;
 	height:var(--nav-height);
-	justify-content:space-between;
+	justify-content:flex-start;
+	max-width:none;
+	width:100%;
 }
+
+/* Left-side grouping so CTAs can sit flush right */
+.header-left{
+	display:flex;
+	align-items:center;
+	gap:18px;
+	flex:1 1 auto;
+	min-width:0;
+}
+
+/* Ensure navigation sits with the left group (override previous ordering) */
+.header-left .primary-nav{ order:0; }
 
 /* Logo (text-based for speed) */
 .logo{
@@ -135,13 +137,20 @@ body{
 	font-weight:700;
 	font-size:1rem;
 	letter-spacing:0.2px;
+	white-space:nowrap;
 }
 
-/* Header controls wrapper (translate + toggle) */
+/* Header controls wrapper */
 .header-controls{
-	display:flex;
+	display:none;
 	gap:10px;
 	align-items:center;
+}
+
+/* Header CTA sizing */
+.header-cta{
+    padding:8px 14px;
+    font-size:0.95rem;
 }
 
 /* Nav toggle (hidden by default on desktop) */
@@ -159,7 +168,7 @@ body{
 .primary-nav{ order:3; }
 .nav-list{
 	display:flex;
-	gap:20px;
+	gap:12px;
 	list-style:none;
 	margin:0;
 	padding:0;
@@ -168,9 +177,10 @@ body{
 	color:var(--text-color);
 	text-decoration:none;
 	font-weight:600;
-	padding:8px 12px;
+	padding:8px 10px;
 	border-radius:10px;
 	transition: background var(--transition-fast), transform var(--transition-fast);
+	white-space:nowrap;
 }
 .nav-link:hover,
 .nav-link:focus-visible{
@@ -234,17 +244,26 @@ body{
 }
 .btn-secondary:hover{ transform:translateY(-3px); }
 
-/* Small translate button in header */
-.btn-translate{
-	padding:8px 12px;
-	background:transparent;
-	color:var(--text-color);
-	border-radius:8px;
-	border:1px solid var(--surface-contrast);
-	font-weight:600;
+/* Header CTAs (moved from hero) */
+.header-ctas{
+	display:flex;
+	gap:10px;
+	align-items:center;
+	justify-content:flex-end;
+	flex:0 0 auto;
+	margin-left:auto;
 }
-.btn-translate:hover,
-.btn-translate:focus-visible{ background:rgba(17,17,17,0.04); }
+
+/* Smaller header CTA buttons to fit the navigation bar */
+.btn.header-cta{
+	padding:8px 12px;
+	font-size:0.95rem;
+ 	border-radius:10px;
+	white-space:nowrap;
+}
+
+/* Keep header CTAs visually stable on hover */
+.btn.header-cta:hover{ transform:none; }
 
 /* ---------------------------
 	 Content sections & footer
@@ -278,6 +297,7 @@ body{
 	 --------------------------- */
 @media (max-width:880px){
 	/* Show mobile nav toggle, hide inline nav */
+	.header-controls{ display:flex; }
 	.nav-toggle{ display:inline-flex; }
 	.primary-nav{
 		position:fixed;

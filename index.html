@@ -7,7 +7,7 @@
 	<meta name="description" content="Madison Chinese Dance Academy — community classes, performances, and outreach. Purchase tickets or support our community." />
 	<!-- Link to stylesheet (keeps site lightweight for GitHub Pages) -->
 	<link rel="stylesheet" href="style.css" />
-	<!-- Defer script so DOM is available; app.js contains nav + language behavior -->
+	<!-- Defer script so DOM is available; app.js contains nav behavior -->
 	<script defer src="app.js"></script>
 </head>
 <body>
@@ -16,20 +16,13 @@
 
 	<!-- Site Header / Navigation -->
 	<header class="site-header" role="banner">
-		<div class="container header-inner">
-			<!-- Visual identity (logo as text for speed & accessibility) -->
-			<a href="#home" class="logo" aria-label="Madison Chinese Dance Academy home">Madison Chinese Dance Academy</a>
+			<div class="container header-inner">
+				<div class="header-left">
+					<!-- Visual identity (logo as text for speed & accessibility) -->
+					<a href="#home" class="logo" aria-label="Madison Chinese Dance Academy home">Madison Chinese Dance Academy</a>
 
-			<!-- Controls: language toggle and mobile nav toggle -->
-			<div class="header-controls">
-				<!-- Language toggle: toggles English <-> Traditional Chinese -->
-				<button id="translate-btn"
-								class="btn btn-translate"
-								aria-pressed="false"
-								aria-label="Switch language">
-					繁體中文
-				</button>
-
+					<!-- Controls: mobile nav toggle -->
+					<div class="header-controls">
 				<!-- Mobile navigation toggle (hidden on large screens) -->
 				<button id="nav-toggle"
 								class="nav-toggle"
@@ -48,13 +41,20 @@
 			<!-- Primary navigation -->
 			<nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
 				<ul class="nav-list">
-					<li><a href="#home" class="nav-link" data-i18n="nav.home">Home</a></li>
-					<li><a href="#about" class="nav-link" data-i18n="nav.about">About Us</a></li>
-					<li><a href="#classes" class="nav-link" data-i18n="nav.classes">Classes &amp; Schedule</a></li>
-					<li><a href="#splendid" class="nav-link" data-i18n="nav.splendid">Splendid China</a></li>
-					<li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+					<li><a href="#home" class="nav-link">Home</a></li>
+					<li><a href="#about" class="nav-link">About Us</a></li>
+					<li><a href="#classes" class="nav-link">Classes &amp; Schedule</a></li>
+					<li><a href="#splendid" class="nav-link">Splendid China</a></li>
+					<li><a href="#contact" class="nav-link">Contact</a></li>
 				</ul>
-			</nav>
+				</nav>
+				</div><!-- /.header-left -->
+
+				<!-- Header CTAs (moved from hero) -->
+				<div class="header-ctas">
+					<a href="#tickets" class="btn btn-primary header-cta" role="button" aria-label="Purchase Tickets">Purchase Tickets</a>
+					<a href="#donate" class="btn btn-secondary header-cta" role="button" aria-label="Donate">Donate</a>
+				</div>
 		</div>
 	</header>
 
@@ -63,26 +63,21 @@
 		<!-- Hero section with large title, tagline, and two CTAs -->
 		<section id="hero" class="hero" role="region" aria-labelledby="hero-title">
 			<div class="container hero-inner">
-				<h1 id="hero-title" class="hero-title" data-i18n="hero.title">Madison Chinese Dance Academy</h1>
-				<p class="hero-tagline" data-i18n="hero.tagline">
+				<h1 id="hero-title" class="hero-title">Madison Chinese Dance Academy</h1>
+				<p class="hero-tagline">
 					Connecting community through classical &amp; contemporary Chinese dance.
 				</p>
 
 				<!-- CTA buttons -->
-				<div class="hero-ctas">
-					<!-- Primary CTA (tickets) -->
-					<a href="#tickets" class="btn btn-primary" data-i18n="cta.purchase" role="button">Purchase Tickets</a>
-					<!-- Secondary CTA (donate) -->
-					<a href="#donate" class="btn btn-secondary" data-i18n="cta.donate" role="button">Donate</a>
-				</div>
+				<!-- CTA buttons moved to header for easier access -->
 			</div>
 		</section>
 
 		<!-- About section (semantic content placeholders) -->
 		<section id="about" class="section about" aria-labelledby="about-heading">
 			<div class="container">
-				<h2 id="about-heading" data-i18n="about.title">About Us</h2>
-				<p data-i18n="about.content">
+				<h2 id="about-heading">About Us</h2>
+				<p>
 					Madison Chinese Dance Academy is a community-driven nonprofit offering classes and public performances that celebrate Chinese dance traditions.
 				</p>
 			</div>
@@ -91,8 +86,8 @@
 		<!-- Classes & Schedule -->
 		<section id="classes" class="section classes" aria-labelledby="classes-heading">
 			<div class="container">
-				<h2 id="classes-heading" data-i18n="classes.title">Classes &amp; Schedule</h2>
-				<p data-i18n="classes.content">
+				<h2 id="classes-heading">Classes &amp; Schedule</h2>
+				<p>
 					We offer beginner through advanced classes for all ages — discover schedules and enrollment details online.
 				</p>
 			</div>
@@ -101,8 +96,8 @@
 		<!-- Splendid China (annual performance) -->
 		<section id="splendid" class="section splendid" aria-labelledby="splendid-heading">
 			<div class="container">
-				<h2 id="splendid-heading" data-i18n="splendid.title">Splendid China</h2>
-				<p data-i18n="splendid.content">
+				<h2 id="splendid-heading">Splendid China</h2>
+				<p>
 					Our annual performance showcases traditional and contemporary pieces performed by community dancers.
 				</p>
 			</div>
@@ -111,9 +106,10 @@
 		<!-- Contact -->
 		<section id="contact" class="section contact" aria-labelledby="contact-heading">
 			<div class="container">
-				<h2 id="contact-heading" data-i18n="contact.title">Contact</h2>
-				<p data-i18n="contact.content">
+				<h2 id="contact-heading">Contact</h2>
+				<p>
 					Email: ahuan98-dance@yahoo.com • Rockville, MD
+                    
 				</p>
 			</div>
 		</section>
@@ -122,8 +118,8 @@
 	<!-- Footer -->
 	<footer class="site-footer" role="contentinfo">
 		<div class="container footer-inner">
-			<p class="footer-copy" data-i18n="footer.copy">© 2026 Madison Chinese Dance Academy</p>
-			<p class="footer-contact" data-i18n="footer.contact">Community organization — Contact: ahuan98-dance@yahoo.com</p>
+			<p class="footer-copy">© 2026 Madison Chinese Dance Academy</p>
+			<p class="footer-contact">Contact: ahuan98-dance@yahoo.com</p>
 		</div>
 	</footer>
 </body>
