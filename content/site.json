@@ -1,14 +1,124 @@
 {
-  "navHome": "Home",
-  "navAbout": "About Us",
-  "navContact": "Contact",
-  "navSplendid": "Splendid China",
-  "logoText": "Madison Chinese Dance Academy",
-  "ctaTickets": "Purchase Tickets",
-  "ctaTicketsHref": "pages/tickets.html",
-  "ctaDonate": "Donate",
-  "ctaDonateHref": "pages/donate.html",
+  "header": {
+    "logo": {
+      "text": "Madison Chinese Dance Academy",
+      "shortText": "MCDA",
+      "href": "index.html",
+      "ariaLabel": "Madison Chinese Dance Academy home"
+    },
+    "navigationLabel": "Primary navigation",
+    "menuToggleOpenLabel": "Open navigation",
+    "menuToggleCloseLabel": "Close navigation",
+    "navItems": [
+      {
+        "label": "Home",
+        "href": "index.html",
+        "page": "index.html"
+      },
+      {
+        "label": "About Us",
+        "items": [
+          {
+            "label": "About Us",
+            "href": "pages/about/about.html",
+            "page": "about/about.html"
+          },
+          {
+            "label": "Contact",
+            "href": "pages/about/contact.html",
+            "page": "about/contact.html"
+          }
+        ]
+      },
+      {
+        "label": "Community",
+        "items": [
+          {
+            "label": "Events",
+            "href": "pages/community/events.html",
+            "page": "community/events.html"
+          },
+          {
+            "label": "Services",
+            "href": "pages/classes/services.html",
+            "page": "classes/services.html"
+          }
+        ]
+      },
+      {
+        "label": "Programs",
+        "items": [
+          {
+            "label": "Dance Classes",
+            "href": "pages/classes/dance-classes.html",
+            "page": "classes/dance-classes.html"
+          }
+        ]
+      },
+      {
+        "label": "Gallery",
+        "href": "pages/community/gallery.html",
+        "page": "community/gallery.html"
+      },
+      {
+        "label": "Splendid China",
+        "items": [
+          {
+            "label": "Splendid China 2026",
+            "href": "pages/splendid-china/splendid-china-2026.html",
+            "page": "splendid-china/splendid-china-2026.html"
+          },
+          {
+            "label": "Splendid China 2025",
+            "href": "pages/splendid-china/splendid-china-2025.html",
+            "page": "splendid-china/splendid-china-2025.html"
+          },
+          {
+            "label": "Splendid China 2024",
+            "href": "pages/splendid-china/splendid-china-2024.html",
+            "page": "splendid-china/splendid-china-2024.html"
+          },
+          {
+            "label": "Splendid China 2023",
+            "href": "pages/splendid-china/splendid-china-2023.html",
+            "page": "splendid-china/splendid-china-2023.html"
+          },
+          {
+            "label": "Splendid China 2022",
+            "href": "pages/splendid-china/splendid-china-2022.html",
+            "page": "splendid-china/splendid-china-2022.html"
+          },
+          {
+            "label": "Splendid China 2021",
+            "href": "pages/splendid-china/splendid-china-2021.html",
+            "page": "splendid-china/splendid-china-2021.html"
+          },
+          {
+            "label": "Splendid China 2020",
+            "href": "pages/splendid-china/splendid-china-2020.html",
+            "page": "splendid-china/splendid-china-2020.html"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "label": "Purchase Tickets",
+        "href": "pages/tickets.html",
+        "page": "tickets.html",
+        "style": "primary",
+        "ariaLabel": "Purchase Tickets"
+      },
+      {
+        "label": "Donate",
+        "href": "pages/donate.html",
+        "page": "donate.html",
+        "style": "secondary",
+        "ariaLabel": "Donate"
+      }
+    ]
+  },
   "footerCopy": "© 2026 Madison Chinese Dance Academy",
-  "footerEmail": "ahuan98-dance@yahoo.com",
+  "footerEmail": "madison.chinese.dances@gmail.com",
   "footerPhone": "301.299.1562"
 }

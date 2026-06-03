@@ -85,6 +85,83 @@ function applyJsonContent(content) {
 	});
 }
 
+function defaultHeaderContent(content = {}) {
+	const splendidYears = ['2026', '2025', '2024', '2023', '2022', '2021', '2020'];
+
+	return {
+		logo: {
+			text: content.logoText || 'Madison Chinese Dance Academy',
+			shortText: 'MCDA',
+			href: 'index.html',
+			ariaLabel: `${content.logoText || 'Madison Chinese Dance Academy'} home`
+		},
+		navigationLabel: 'Primary navigation',
+		menuToggleOpenLabel: 'Open navigation',
+		menuToggleCloseLabel: 'Close navigation',
+		navItems: [
+			{ href: 'index.html', page: 'index.html', label: content.navHome || 'Home' },
+			{
+				label: content.navAbout || 'About Us',
+				items: [
+					{ href: 'pages/about/about.html', page: 'about/about.html', label: content.navAbout || 'About Us' },
+					{ href: 'pages/about/contact.html', page: 'about/contact.html', label: content.navContact || 'Contact' }
+				]
+			},
+			{
+				label: 'Community',
+				items: [
+					{ href: 'pages/community/events.html', page: 'community/events.html', label: 'Events' },
+					{ href: 'pages/classes/services.html', page: 'classes/services.html', label: 'Services' }
+				]
+			},
+			{
+				label: 'Programs',
+				items: [
+					{ href: 'pages/classes/dance-classes.html', page: 'classes/dance-classes.html', label: 'Dance Classes' }
+				]
+			},
+			{ href: 'pages/community/gallery.html', page: 'community/gallery.html', label: 'Gallery' },
+			{
+				label: content.navSplendid || 'Splendid China',
+				items: splendidYears.map((year) => ({
+					href: `pages/splendid-china/splendid-china-${year}.html`,
+					page: `splendid-china/splendid-china-${year}.html`,
+					label: `Splendid China ${year}`
+				}))
+			}
+		],
+		actions: [
+			{
+				label: content.ctaTickets || 'Purchase Tickets',
+				href: content.ctaTicketsHref || 'pages/tickets.html',
+				page: 'tickets.html',
+				style: 'primary',
+				ariaLabel: content.ctaTickets || 'Purchase Tickets'
+			},
+			{
+				label: content.ctaDonate || 'Donate',
+				href: content.ctaDonateHref || 'pages/donate.html',
+				page: 'donate.html',
+				style: 'secondary',
+				ariaLabel: content.ctaDonate || 'Donate'
+			}
+		]
+	};
+}
+
+function headerContent(content = {}) {
+	const fallback = defaultHeaderContent(content);
+	const header = content.header || {};
+
+	return {
+		...fallback,
+		...header,
+		logo: { ...fallback.logo, ...(header.logo || {}) },
+		navItems: Array.isArray(header.navItems) ? header.navItems : fallback.navItems,
+		actions: Array.isArray(header.actions) ? header.actions : fallback.actions
+	};
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
 	const basePath = getRootPath();
 	const currentPage = getPageId();
@@ -94,50 +171,29 @@ document.addEventListener('DOMContentLoaded', async () => {
 		pageContentFile ? loadJson(`${basePath}content/${pageContentFile}.json`) : Promise.resolve({})
 	]);
 	const content = { ...siteContent, ...pageContent };
+	const header = headerContent(content);
 
-	const splendidYearItems = ['2026', '2025', '2024', '2023', '2022', '2021', '2020'].map((year) => ({
-		href: `${basePath}pages/splendid-china/splendid-china-${year}.html`,
-		page: `splendid-china/splendid-china-${year}.html`,
-		label: `Splendid China ${year}`
-	}));
+	function resolveHref(href = '') {
+		if (!href) return '#';
+		if (/^(https?:|mailto:|tel:|#|\/)/.test(href)) return href;
+		return `${basePath}${href}`;
+	}
 
-	const navItems = [
-		{ href: `${basePath}index.html`, page: 'index.html', label: content.navHome || 'Home' },
-		{
-			label: content.navAbout || 'About Us',
-			items: [
-				{ href: `${basePath}pages/about/about.html`, page: 'about/about.html', label: content.navAbout || 'About Us' },
-				{ href: `${basePath}pages/about/contact.html`, page: 'about/contact.html', label: content.navContact || 'Contact' }
-			]
-		},
-		{
-			label: 'Community',
-			items: [
-				{ href: `${basePath}pages/community/events.html`, page: 'community/events.html', label: 'Events' },
-				{ href: `${basePath}pages/classes/services.html`, page: 'classes/services.html', label: 'Services' }
-			]
-		},
-		{
-			label: 'Programs',
-			items: [
-				{ href: `${basePath}pages/classes/dance-classes.html`, page: 'classes/dance-classes.html', label: 'Dance Classes' },
-			]
-		},
-        { href: `${basePath}pages/community/gallery.html`, page: 'community/gallery.html', label: 'Gallery' },
-		{ label: content.navSplendid || 'Splendid China', items: splendidYearItems }
-	];
+	function isActivePage(item) {
+		return item.page && currentPage === item.page;
+	}
 
 	function navLink(item) {
-		const isActive = currentPage === item.page;
+		const isActive = isActivePage(item);
 		const activeClass = isActive ? ' active' : '';
 		const currentAttr = isActive ? ' aria-current="page"' : '';
-		return `<li class="nav-item"><a href="${item.href}" class="nav-link${activeClass}"${currentAttr}>${escapeHtml(item.label)}</a></li>`;
+		return `<li class="nav-item"><a href="${resolveHref(item.href)}" class="nav-link${activeClass}"${currentAttr}>${escapeHtml(item.label)}</a></li>`;
 	}
 
 	function navMenu(item, index) {
 		if (!item.items) return navLink(item);
 
-		const isActive = item.items.some((subItem) => currentPage === subItem.page);
+		const isActive = item.items.some(isActivePage);
 		const activeClass = isActive ? ' active' : '';
 		const menuId = `nav-menu-${index}`;
 
@@ -156,35 +212,48 @@ document.addEventListener('DOMContentLoaded', async () => {
 		`;
 	}
 
+	function headerAction(action) {
+		const isActive = isActivePage(action);
+		const currentAttr = isActive ? ' aria-current="page"' : '';
+		const style = action.style === 'secondary' ? 'secondary' : 'primary';
+		const label = action.label || '';
+		const ariaLabel = action.ariaLabel || label;
+
+		return `<a href="${resolveHref(action.href)}" class="btn btn-${style} header-cta" role="button" aria-label="${escapeHtml(ariaLabel)}"${currentAttr}>${escapeHtml(label)}</a>`;
+	}
+
 	function renderHeader() {
 		const mount = $('[data-site-header]');
 		if (!mount) return;
 
-		const ticketsActive = currentPage === 'tickets.html' ? ' aria-current="page"' : '';
-		const donateActive = currentPage === 'donate.html' ? ' aria-current="page"' : '';
+		const logo = header.logo || {};
+		const logoText = logo.text || 'Madison Chinese Dance Academy';
+		const logoShortText = logo.shortText || 'MCDA';
+		const logoAriaLabel = logo.ariaLabel || `${logoText} home`;
+		const menuOpenLabel = header.menuToggleOpenLabel || 'Open navigation';
+		const actionButtons = header.actions.map(headerAction).join('');
 
 		mount.outerHTML = `
 			<header class="site-header" role="banner">
 				<div class="container header-inner">
 					<div class="header-left">
-						<a href="${basePath}index.html" class="logo" aria-label="${escapeHtml(content.logoText || 'Madison Chinese Dance Academy')} home">
-							<span class="logo-full-text">${escapeHtml(content.logoText || 'Madison Chinese Dance Academy')}</span>
-							<span class="logo-short-text">MCDA</span>
+						<a href="${resolveHref(logo.href || 'index.html')}" class="logo" aria-label="${escapeHtml(logoAriaLabel)}">
+							<span class="logo-full-text">${escapeHtml(logoText)}</span>
+							<span class="logo-short-text">${escapeHtml(logoShortText)}</span>
 						</a>
 					</div>
 
-					<nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+					<nav id="primary-navigation" class="primary-nav" aria-label="${escapeHtml(header.navigationLabel || 'Primary navigation')}">
 						<ul class="nav-list">
-							${navItems.map(navMenu).join('')}
+							${header.navItems.map(navMenu).join('')}
 							<li class="nav-cta-list">
-								<a href="${basePath}${content.ctaTicketsHref || 'pages/tickets.html'}" class="btn btn-primary header-cta" role="button" aria-label="${escapeHtml(content.ctaTickets || 'Purchase Tickets')}"${ticketsActive}>${escapeHtml(content.ctaTickets || 'Purchase Tickets')}</a>
-								<a href="${basePath}${content.ctaDonateHref || 'pages/donate.html'}" class="btn btn-secondary header-cta" role="button" aria-label="${escapeHtml(content.ctaDonate || 'Donate')}"${donateActive}>${escapeHtml(content.ctaDonate || 'Donate')}</a>
+								${actionButtons}
 							</li>
 						</ul>
 					</nav>
 
 					<div class="header-controls">
-						<button id="nav-toggle" class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
+						<button id="nav-toggle" class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="${escapeHtml(menuOpenLabel)}">
 							<svg width="24" height="18" viewBox="0 0 24 18" aria-hidden="true" focusable="false">
 								<rect width="24" height="2" y="0" rx="1"></rect>
 								<rect width="24" height="2" y="8" rx="1"></rect>
@@ -194,8 +263,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 					</div>
 
 					<div class="header-ctas">
-						<a href="${basePath}${content.ctaTicketsHref || 'pages/tickets.html'}" class="btn btn-primary header-cta" role="button" aria-label="${escapeHtml(content.ctaTickets || 'Purchase Tickets')}"${ticketsActive}>${escapeHtml(content.ctaTickets || 'Purchase Tickets')}</a>
-						<a href="${basePath}${content.ctaDonateHref || 'pages/donate.html'}" class="btn btn-secondary header-cta" role="button" aria-label="${escapeHtml(content.ctaDonate || 'Donate')}"${donateActive}>${escapeHtml(content.ctaDonate || 'Donate')}</a>
+						${actionButtons}
 					</div>
 				</div>
 			</header>
@@ -255,7 +323,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 			primaryNav.classList.toggle('open');
 
 			// Update accessible label for toggle
-			navToggle.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+			navToggle.setAttribute('aria-label', expanded ? header.menuToggleOpenLabel : header.menuToggleCloseLabel);
 		});
 
 		// Close mobile nav when any nav link is clicked (improves UX on small screens)
@@ -266,7 +334,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 				if (primaryNav.classList.contains('open')) {
 					primaryNav.classList.remove('open');
 					navToggle.setAttribute('aria-expanded', 'false');
-					navToggle.setAttribute('aria-label', 'Open navigation');
+					navToggle.setAttribute('aria-label', header.menuToggleOpenLabel);
 				}
 				closeDropdowns();
 			});
@@ -279,6 +347,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 			if (e.key === 'Escape' && primaryNav.classList.contains('open')) {
 				primaryNav.classList.remove('open');
 				navToggle.setAttribute('aria-expanded', 'false');
+				navToggle.setAttribute('aria-label', header.menuToggleOpenLabel);
 				navToggle.focus();
 			}
 		});
@@ -289,15 +358,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const galleryWrapper = galleryContainer.querySelector('.gallery-wrapper');
 		const prevButton = galleryContainer.querySelector('.prev');
 		const nextButton = galleryContainer.querySelector('.next');
-		const images = galleryWrapper.querySelectorAll('img');
+		const images = Array.from(galleryWrapper.querySelectorAll('img'));
 		let currentIndex = 0;
 		let autoScrollInterval;
 
-		function updateGallery() {
-			galleryWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+		function updateGallery({ focus = false } = {}) {
+			const image = images[currentIndex];
+			if (!image) return;
+
+			image.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+			if (focus) image.focus({ preventScroll: true });
 		}
 
 		function startAutoScroll() {
+			if (autoScrollInterval || images.length < 2) return;
+
 			autoScrollInterval = setInterval(() => {
 				currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
 				updateGallery();
@@ -306,19 +381,39 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 		function stopAutoScroll() {
 			clearInterval(autoScrollInterval);
+			autoScrollInterval = null;
 		}
+
+		images.forEach((image, index) => {
+			image.setAttribute('tabindex', '-1');
+			image.setAttribute('data-gallery-index', String(index));
+		});
 
 		if (prevButton && nextButton) {
 			prevButton.addEventListener('click', () => {
+				stopAutoScroll();
 				currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-				updateGallery();
+				updateGallery({ focus: true });
+				startAutoScroll();
 			});
 
 			nextButton.addEventListener('click', () => {
+				stopAutoScroll();
 				currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-				updateGallery();
+				updateGallery({ focus: true });
+				startAutoScroll();
 			});
 		}
+
+		galleryWrapper.addEventListener('scroll', () => {
+			const wrapperLeft = galleryWrapper.getBoundingClientRect().left;
+			const closestImage = images.reduce((closest, image, index) => {
+				const distance = Math.abs(image.getBoundingClientRect().left - wrapperLeft);
+				return distance < closest.distance ? { distance, index } : closest;
+			}, { distance: Infinity, index: currentIndex });
+
+			currentIndex = closestImage.index;
+		}, { passive: true });
 
 		galleryContainer.addEventListener('mouseenter', stopAutoScroll);
 		galleryContainer.addEventListener('mouseleave', startAutoScroll);

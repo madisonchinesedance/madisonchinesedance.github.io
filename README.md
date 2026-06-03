@@ -6,11 +6,11 @@ This repository contains a small, responsive static website for the Madison Chin
 
 Most visible site text is controlled by JSON files in `content/`. To update copy, open the matching file and edit the text value:
 
-- `content/site.json` — shared header navigation, ticket/donate buttons, footer, and site metadata.
-- `content/homepage.json` — homepage hero text.
+- `content/site.json` — shared header logo, navigation dropdowns, header buttons, footer, and site metadata. Header settings live under the `header` object.
+- `content/index.json` — homepage hero text.
 - `content/about.json` — About page title, description, heading, and body.
-- `content/classes.json` — Classes page title, description, heading, and body.
-- `content/splendid.json` — Splendid China page event text and ticket button.
+- `content/dance-classes.json` — Dance Classes page title, description, heading, and body.
+- `content/splendid-china-YYYY.json` — Splendid China archive page text for each year.
 - `content/tickets.json` — Tickets page text and Zeffy ticket link.
 - `content/donate.json` — Donate page text and Zeffy donation link.
 - `content/contact.json` — Contact page text.
