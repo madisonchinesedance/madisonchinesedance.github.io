@@ -362,7 +362,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const lightboxClose = $('.gallery-lightbox-close');
 		const prevButton = galleryContainer.querySelector('.prev');
 		const nextButton = galleryContainer.querySelector('.next');
-		const galleryImages = Array.isArray(content.galleryImages) ? content.galleryImages : [];
+		const galleryGroups = Array.isArray(content.galleryGroups) ? content.galleryGroups : [];
+		const groupedImages = galleryGroups.flatMap((group) => {
+			const events = Array.isArray(group.events) ? group.events : [];
+			return events.flatMap((event) => {
+				const images = Array.isArray(event.images) ? event.images : [];
+				return images.map((image) => ({
+					...image,
+					year: group.year,
+					event: event.event
+				}));
+			});
+		});
+		const galleryImages = groupedImages.length > 0
+			? groupedImages
+			: (Array.isArray(content.galleryImages) ? content.galleryImages : []);
 
 		if (galleryImages.length > 0) {
 			galleryWrapper.innerHTML = galleryImages.map((image, index) => `
@@ -370,11 +384,45 @@ document.addEventListener('DOMContentLoaded', async () => {
 			`).join('');
 
 			if (galleryGrid) {
-				galleryGrid.innerHTML = galleryImages.map((image, index) => `
-					<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
-						<img src="${escapeHtml(image.thumb || image.src)}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
-					</button>
-				`).join('');
+				let imageIndex = 0;
+
+				if (galleryGroups.length > 0) {
+					galleryGrid.innerHTML = galleryGroups.map((group) => {
+						const events = Array.isArray(group.events) ? group.events : [];
+						const eventMarkup = events.map((event) => {
+							const images = Array.isArray(event.images) ? event.images : [];
+							const thumbnails = images.map((image) => {
+								const index = imageIndex;
+								imageIndex += 1;
+								return `
+									<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
+										<img src="${escapeHtml(image.thumb || image.src)}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
+									</button>
+								`;
+							}).join('');
+
+							return `
+								<section class="gallery-event" aria-label="${escapeHtml(event.event || `Gallery ${group.year}`)}">
+									<h3>${escapeHtml(event.event || `Gallery ${group.year}`)}</h3>
+									<div class="gallery-event-grid">${thumbnails}</div>
+								</section>
+							`;
+						}).join('');
+
+						return `
+							<section class="gallery-year" aria-label="${escapeHtml(`${group.year} gallery images`)}">
+								<h2>${escapeHtml(group.year)}</h2>
+								${eventMarkup}
+							</section>
+						`;
+					}).join('');
+				} else {
+					galleryGrid.innerHTML = galleryImages.map((image, index) => `
+						<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
+							<img src="${escapeHtml(image.thumb || image.src)}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
+						</button>
+					`).join('');
+				}
 			}
 		}
 

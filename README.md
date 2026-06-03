@@ -22,8 +22,24 @@ After changing a JSON file, save it and refresh the page. For local preview, ser
 - `index.html` — site home (hero + header/footer). Keep at repo root for Pages.
 - `pages/` — secondary pages (moved from root). Files reference assets with `../` so they work from inside `pages/`.
 - `content/` — editable JSON files used as a lightweight CMS.
+- `images/` — image assets for the site. Gallery images live in `images/gallery/YYYY/Event Name/`.
+- `scripts/scan-gallery.js` — scans `images/gallery/` and updates `content/gallery.json`.
 - `style.css` — global styles and CSS custom properties (theme variables).
 - `app.js` — loads JSON content, renders shared header/footer, and handles the mobile nav toggle.
+
+## Updating gallery images
+
+Add images under the matching event folder, for example:
+
+`images/gallery/2026/Splendid China 2026/my-photo.jpg`
+
+Then run:
+
+```sh
+node scripts/scan-gallery.js
+```
+
+The scanner updates `content/gallery.json`, and the Gallery page renders the images grouped by year and event folder.
 
 ## Customizing styles
 

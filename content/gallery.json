@@ -2,30 +2,6 @@
   "galleryPageTitle": "Gallery | Madison Chinese Dance Academy",
   "galleryMetaDescription": "Image gallery of the Madison Chinese Dance Academy.",
   "galleryHeroHeading": "Gallery",
-  "galleryImages": [
-    {
-      "src": "https://picsum.photos/id/1015/800/600",
-      "alt": "Placeholder Image 1"
-    },
-    {
-      "src": "https://picsum.photos/id/1016/800/600",
-      "alt": "Placeholder Image 2"
-    },
-    {
-      "src": "https://picsum.photos/id/1018/800/600",
-      "alt": "Placeholder Image 3"
-    },
-    {
-      "src": "https://picsum.photos/id/1019/800/600",
-      "alt": "Placeholder Image 4"
-    },
-    {
-      "src": "https://picsum.photos/id/1020/800/600",
-      "alt": "Placeholder Image 5"
-    },
-    {
-      "src": "https://picsum.photos/id/1021/800/600",
-      "alt": "Placeholder Image 6"
-    }
-  ]
+  "galleryGroups": [],
+  "galleryImages": []
 }
