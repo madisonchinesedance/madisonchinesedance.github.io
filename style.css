@@ -686,3 +686,50 @@ a{
 	.btn, .nav-list, .primary-nav{ transition:none; animation:none; }
 }
 
+.gallery-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.gallery-wrapper {
+    display: flex;
+    animation: scroll 30s linear infinite;
+}
+
+.gallery-container:hover .gallery-wrapper {
+    animation-play-state: paused;
+}
+
+.gallery-wrapper img {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.gallery-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.gallery-controls button {
+    pointer-events: all;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
