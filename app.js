@@ -64,7 +64,7 @@ function applyJsonContent(content) {
 
 document.addEventListener('DOMContentLoaded', async () => {
 	const isPagesDirectory = window.location.pathname.includes('/pages/');
-	const basePath = isPagesDirectory ? '../' : '';
+	const basePath = isPagesDirectory ? '../../' : '';
 	const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 	const pageContentFile = document.body.getAttribute('data-content-file');
 	const [siteContent, pageContent] = await Promise.all([
@@ -84,14 +84,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 		{
 			label: content.navAbout || 'About Us',
 			items: [
-				{ href: `${basePath}pages/about.html`, page: 'about.html', label: content.navAbout || 'About Us' },
+				{ href: `${basePath}pages/about/`, page: 'index.html', label: content.navAbout || 'About Us' },
 				{ href: `${basePath}pages/contact.html`, page: 'contact.html', label: content.navContact || 'Contact' }
+			]
+		},
+		{
+			label: 'Community',
+			items: [
+				{ href: `${basePath}pages/community/gallery.html`, page: 'gallery.html', label: 'Gallery' },
+				{ href: `${basePath}pages/community/events.html`, page: 'events.html', label: 'Events' }
 			]
 		},
 		{
 			label: content.navClasses || 'Classes & Schedule',
 			items: [
-				{ href: `${basePath}pages/classes.html`, page: 'classes.html', label: content.navClasses || 'Classes & Schedule' }
+				{ href: `${basePath}pages/classes/`, page: 'index.html', label: content.navClasses || 'Classes & Schedule' },
+				{ href: `${basePath}pages/classes/services.html`, page: 'services.html', label: 'Services' }
 			]
 		},
 		{ label: content.navSplendid || 'Splendid China', items: splendidYearItems }
@@ -259,4 +267,3 @@ document.addEventListener('DOMContentLoaded', async () => {
 		});
 	}
 });
-
