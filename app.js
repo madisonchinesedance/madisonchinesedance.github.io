@@ -73,19 +73,57 @@ document.addEventListener('DOMContentLoaded', async () => {
 	]);
 	const content = { ...siteContent, ...pageContent };
 
+	const splendidYearItems = ['2026', '2025', '2024', '2023', '2022', '2021', '2020'].map((year) => ({
+		href: year === '2026' ? `${basePath}pages/splendid-china.html` : `${basePath}pages/splendid-china-${year}.html`,
+		page: year === '2026' ? 'splendid-china.html' : `splendid-china-${year}.html`,
+		label: `Splendid China ${year}`
+	}));
+
 	const navItems = [
 		{ href: `${basePath}index.html`, page: 'index.html', label: content.navHome || 'Home' },
-		{ href: `${basePath}pages/about.html`, page: 'about.html', label: content.navAbout || 'About Us' },
-		{ href: `${basePath}pages/classes.html`, page: 'classes.html', label: content.navClasses || 'Classes & Schedule' },
-		{ href: `${basePath}pages/splendid-china.html`, page: 'splendid-china.html', label: content.navSplendid || 'Splendid China' },
-		{ href: `${basePath}pages/contact.html`, page: 'contact.html', label: content.navContact || 'Contact' }
+		{
+			label: content.navAbout || 'About Us',
+			items: [
+				{ href: `${basePath}pages/about.html`, page: 'about.html', label: content.navAbout || 'About Us' },
+				{ href: `${basePath}pages/contact.html`, page: 'contact.html', label: content.navContact || 'Contact' }
+			]
+		},
+		{
+			label: content.navClasses || 'Classes & Schedule',
+			items: [
+				{ href: `${basePath}pages/classes.html`, page: 'classes.html', label: content.navClasses || 'Classes & Schedule' }
+			]
+		},
+		{ label: content.navSplendid || 'Splendid China', items: splendidYearItems }
 	];
 
 	function navLink(item) {
 		const isActive = currentPage === item.page;
 		const activeClass = isActive ? ' active' : '';
 		const currentAttr = isActive ? ' aria-current="page"' : '';
-		return `<li><a href="${item.href}" class="nav-link${activeClass}"${currentAttr}>${item.label}</a></li>`;
+		return `<li class="nav-item"><a href="${item.href}" class="nav-link${activeClass}"${currentAttr}>${escapeHtml(item.label)}</a></li>`;
+	}
+
+	function navMenu(item, index) {
+		if (!item.items) return navLink(item);
+
+		const isActive = item.items.some((subItem) => currentPage === subItem.page);
+		const activeClass = isActive ? ' active' : '';
+		const menuId = `nav-menu-${index}`;
+
+		return `
+			<li class="nav-item nav-item-dropdown">
+				<button class="nav-link nav-menu-toggle${activeClass}" type="button" aria-expanded="false" aria-controls="${menuId}">
+					${escapeHtml(item.label)}
+					<svg class="nav-caret" width="14" height="14" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+						<path d="M5.5 7.5 10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+					</svg>
+				</button>
+				<ul id="${menuId}" class="nav-dropdown" aria-label="${escapeHtml(item.label)} submenu">
+					${item.items.map(navLink).join('')}
+				</ul>
+			</li>
+		`;
 	}
 
 	function renderHeader() {
@@ -113,7 +151,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 						<nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
 							<ul class="nav-list">
-								${navItems.map(navLink).join('')}
+								${navItems.map(navMenu).join('')}
 							</ul>
 						</nav>
 					</div>
@@ -149,6 +187,28 @@ document.addEventListener('DOMContentLoaded', async () => {
 	// Elements
 	const navToggle = $('#nav-toggle');
 	const primaryNav = $('#primary-navigation');
+	const dropdownToggles = $$('.nav-menu-toggle');
+
+	function closeDropdowns(exceptToggle = null) {
+		dropdownToggles.forEach((toggle) => {
+			if (toggle === exceptToggle) return;
+			toggle.setAttribute('aria-expanded', 'false');
+			toggle.closest('.nav-item-dropdown')?.classList.remove('open');
+		});
+	}
+
+	dropdownToggles.forEach((toggle) => {
+		toggle.addEventListener('click', () => {
+			const expanded = toggle.getAttribute('aria-expanded') === 'true';
+			closeDropdowns(toggle);
+			toggle.setAttribute('aria-expanded', String(!expanded));
+			toggle.closest('.nav-item-dropdown')?.classList.toggle('open', !expanded);
+		});
+	});
+
+	document.addEventListener('click', (e) => {
+		if (!e.target.closest('.nav-item-dropdown')) closeDropdowns();
+	});
 
 	// NAVIGATION: toggle mobile menu
 	if (navToggle && primaryNav) {
@@ -164,16 +224,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 		// Close mobile nav when any nav link is clicked (improves UX on small screens)
 		$$('.nav-link').forEach(link => {
 			link.addEventListener('click', () => {
+				if (link.classList.contains('nav-menu-toggle')) return;
+
 				if (primaryNav.classList.contains('open')) {
 					primaryNav.classList.remove('open');
 					navToggle.setAttribute('aria-expanded', 'false');
 					navToggle.setAttribute('aria-label', 'Open navigation');
 				}
+				closeDropdowns();
 			});
 		});
 
 		// Close the menu with Escape key
 		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') closeDropdowns();
+
 			if (e.key === 'Escape' && primaryNav.classList.contains('open')) {
 				primaryNav.classList.remove('open');
 				navToggle.setAttribute('aria-expanded', 'false');
