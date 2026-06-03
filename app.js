@@ -163,17 +163,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 						</a>
 					</div>
 
-					<div class="header-controls">
-						<nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
-							<ul class="nav-list">
-								${navItems.map(navMenu).join('')}
-								<li class="nav-cta-list">
-									<a href="${basePath}${content.ctaTicketsHref || 'pages/tickets.html'}" class="btn btn-primary header-cta" role="button" aria-label="${escapeHtml(content.ctaTickets || 'Purchase Tickets')}"${ticketsActive}>${escapeHtml(content.ctaTickets || 'Purchase Tickets')}</a>
-									<a href="${basePath}${content.ctaDonateHref || 'pages/donate.html'}" class="btn btn-secondary header-cta" role="button" aria-label="${escapeHtml(content.ctaDonate || 'Donate')}"${donateActive}>${escapeHtml(content.ctaDonate || 'Donate')}</a>
-								</li>
-							</ul>
-						</nav>
+					<nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
+						<ul class="nav-list">
+							${navItems.map(navMenu).join('')}
+							<li class="nav-cta-list">
+								<a href="${basePath}${content.ctaTicketsHref || 'pages/tickets.html'}" class="btn btn-primary header-cta" role="button" aria-label="${escapeHtml(content.ctaTickets || 'Purchase Tickets')}"${ticketsActive}>${escapeHtml(content.ctaTickets || 'Purchase Tickets')}</a>
+								<a href="${basePath}${content.ctaDonateHref || 'pages/donate.html'}" class="btn btn-secondary header-cta" role="button" aria-label="${escapeHtml(content.ctaDonate || 'Donate')}"${donateActive}>${escapeHtml(content.ctaDonate || 'Donate')}</a>
+							</li>
+						</ul>
+					</nav>
 
+					<div class="header-controls">
 						<button id="nav-toggle" class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
 							<svg width="24" height="18" viewBox="0 0 24 18" aria-hidden="true" focusable="false">
 								<rect width="24" height="2" y="0" rx="1"></rect>

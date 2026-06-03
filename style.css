@@ -149,22 +149,14 @@ a{
 	align-items:center;
 	gap:18px;
 	height:var(--nav-height);
-	justify-content:flex-start;
-	max-width:none;
-	width:100%;
+	justify-content:space-between;
 }
 
-/* Left-side grouping so CTAs can sit flush right */
 .header-left{
 	display:flex;
 	align-items:center;
 	gap:18px;
-	flex:1 1 auto;
-	min-width:0;
 }
-
-/* Ensure navigation sits with the left group (override previous ordering) */
-.header-left .primary-nav{ order:0; }
 
 /* Logo (text-based for speed) */
 .logo{
@@ -186,27 +178,23 @@ a{
     display: none;
 }
 
-/* Header controls wrapper */
 .header-controls{
 	display:none;
 	gap:10px;
 	align-items:center;
 }
 
-/* Right-side CTAs wrapper (align donation/ticket buttons) */
 .header-ctas{
 	display:flex;
 	gap:12px;
 	align-items:center;
 }
 
-/* Header CTA sizing */
 .header-cta{
 	padding:8px 14px;
 	font-size: var(--nav-link-font-size);
 }
 
-/* Nav toggle (hidden by default on desktop) */
 .nav-toggle{
 	display:none;
 	border:0;
@@ -217,11 +205,11 @@ a{
 }
 .nav-toggle svg { fill: var(--text-color); opacity:0.9; }
 
-/* Primary navigation (desktop layout) */
-.primary-nav{ order:3; }
+.primary-nav { flex:1; }
 .nav-list{
 	display:flex;
 	align-items:center;
+	justify-content:center;
 	gap:12px;
 	list-style:none;
 	margin:0;
@@ -424,17 +412,6 @@ a{
 }
 .btn-secondary:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(24,139,61,0.22); }
 
-/* Header CTAs (moved from hero) */
-.header-ctas{
-	display:flex;
-	gap:10px;
-	align-items:center;
-	justify-content:flex-end;
-	flex:0 0 auto;
-	margin-left:auto;
-}
-
-/* Smaller header CTA buttons to fit the navigation bar */
 .btn.header-cta{
 	padding:8px 12px;
 	font-size: var(--nav-link-font-size);
@@ -446,7 +423,6 @@ a{
 	box-shadow:0 0 0 3px rgba(255,255,255,0.44), var(--button-shadow);
 }
 
-/* Keep header CTAs visually stable on hover */
 .btn.header-cta:hover{ transform:translateY(-1px); }
 
 /* ---------------------------
@@ -468,7 +444,6 @@ a{
 }
 .section p:last-child{ margin-bottom:0; }
 
-/* Small muted note used to clarify options under CTAs */
 .section-note{
 	margin:0;
 	color:var(--muted);
@@ -476,11 +451,9 @@ a{
 	font-weight:600;
 }
 
-/* Donation CTA utilities */
 .donate-section .donate-actions{ display:flex; justify-content:flex-start; margin-top:22px; }
 .donate-section .donate-cta{ padding:12px 20px; font-size:1.05rem; }
 
-/* Tickets CTA utilities (mirrors donation CTA) */
 .tickets-section .ticket-actions{ display:flex; justify-content:flex-start; margin-top:22px; }
 .tickets-section .ticket-cta{ padding:12px 20px; font-size:1.05rem; }
 .payment-options{
@@ -493,7 +466,6 @@ a{
 	border-top:1px solid rgba(17,17,17,0.08);
 }
 
-/* Ticket embed bubble */
 .ticket-embed{
 	background:
 		linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.48)),
@@ -508,7 +480,6 @@ a{
 	margin:18px auto 0;
 }
 
-/* Zeffy centers its own internal form, so frame it at the service's usable width. */
 .ticket-embed div[data-zeffy-embed],
 .ticket-embed [data-zeffy-embed-fallback]{
 	width:100%;
@@ -520,7 +491,6 @@ a{
 	display:none;
 }
 
-/* Ensure the fallback container and iframe fill the area */
 .zeffy-fallback-frame{
 	position:relative;
 	overflow:hidden;
@@ -542,7 +512,6 @@ a{
 	min-height:820px;
 }
 
-/* Calendar block: keep the schedule close to the classes intro */
 .classes-page .page-hero{
 	padding-bottom:28px;
 	min-height:auto;
@@ -570,7 +539,6 @@ a{
 	row-gap:10px;
 }
 
-/* Footer regions */
 .footer-left{ display:flex; flex-direction:column; gap:6px; }
 .footer-copy{ margin:0; color:var(--muted); font-size:0.95rem; }
 .footer-contact{ margin:0; color:var(--muted); font-weight:600; }
@@ -582,11 +550,12 @@ a{
 	 Responsive (mobile-first is not used — desktop-first approach)
 	 --------------------------- */
 @media (max-width:992px){
-	/* Show mobile nav toggle, hide inline nav */
-	.header-controls{ 
+	.primary-nav { display:none; }
+
+	.header-controls{
 		display:flex;
-		margin-left: auto;
 	}
+
 	.nav-toggle{ display:inline-flex; }
 	.primary-nav{
 		position:fixed;
@@ -600,12 +569,13 @@ a{
 		box-shadow: 0 12px 30px var(--boxshadow-nav);
 		border-bottom: 1px solid var(--surface-contrast);
 	}
-	.primary-nav.open{ transform: translateY(0); }
+	.primary-nav.open{ transform: translateY(0); display:block; }
 
 	.nav-list{
 		flex-direction:column;
 		padding:20px;
 		gap:8px;
+		align-items:stretch;
 	}
 	.nav-link{
 		display:flex;
@@ -671,7 +641,6 @@ a{
 		padding:8px 10px;
 	}
 
-	/* Ensure hero has space when header is sticky */
 	.hero,
 	.page-hero{ padding-top: calc(var(--nav-height) + 28px); padding-bottom:24px; }
 	.header-inner{ padding:0 8px; }
@@ -699,7 +668,6 @@ a{
 	}
 }
 
-/* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce){
 	.btn, .nav-list, .primary-nav{ transition:none; animation:none; }
 }
