@@ -316,6 +316,10 @@ a{
 	padding:9px 12px;
 	font-size:1rem;
 }
+
+.nav-cta-list {
+    display: none;
+}
 .nav-dropdown .nav-link:hover,
 .nav-dropdown .nav-link:focus-visible,
 .nav-dropdown .nav-link.active{
@@ -579,7 +583,10 @@ a{
 	 --------------------------- */
 @media (max-width:880px){
 	/* Show mobile nav toggle, hide inline nav */
-	.header-controls{ display:flex; }
+	.header-controls{ 
+		display:flex;
+		margin-left: auto;
+	}
 	.nav-toggle{ display:inline-flex; }
 	.primary-nav{
 		position:fixed;
@@ -648,7 +655,16 @@ a{
 		padding:8px 10px;
 	}
 	.header-ctas{
-		gap:8px;
+		display: none;
+	}
+
+	.nav-cta-list {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		padding-top: 20px;
+		margin-top: 20px;
+		border-top: 1px solid rgba(17,17,17,0.10);
 	}
 	.btn.header-cta{
 		font-size:0.95rem;

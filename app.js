@@ -100,18 +100,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 				{ href: `${basePath}pages/about/contact.html`, page: 'about/contact.html', label: content.navContact || 'Contact' }
 			]
 		},
+		{ href: `${basePath}pages/community/gallery.html`, page: 'community/gallery.html', label: 'Gallery' },
 		{
 			label: 'Community',
 			items: [
-				{ href: `${basePath}pages/community/gallery.html`, page: 'community/gallery.html', label: 'Gallery' },
-				{ href: `${basePath}pages/community/events.html`, page: 'community/events.html', label: 'Events' }
+				{ href: `${basePath}pages/community/events.html`, page: 'community/events.html', label: 'Events' },
+				{ href: `${basePath}pages/classes/services.html`, page: 'classes/services.html', label: 'Services' }
 			]
 		},
 		{
-			label: content.navClasses || 'Classes & Schedule',
+			label: 'Programs',
 			items: [
-				{ href: `${basePath}pages/classes/`, page: 'classes/index.html', label: content.navClasses || 'Classes & Schedule' },
-				{ href: `${basePath}pages/classes/services.html`, page: 'classes/services.html', label: 'Services' }
+				{ href: `${basePath}pages/classes/`, page: 'classes/index.html', label: 'Dance Classes' },
 			]
 		},
 		{ label: content.navSplendid || 'Splendid China', items: splendidYearItems }
@@ -161,22 +161,26 @@ document.addEventListener('DOMContentLoaded', async () => {
 							<span class="logo-full-text">${escapeHtml(content.logoText || 'Madison Chinese Dance Academy')}</span>
 							<span class="logo-short-text">MCDA</span>
 						</a>
+					</div>
 
-						<div class="header-controls">
-							<button id="nav-toggle" class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
-								<svg width="24" height="18" viewBox="0 0 24 18" aria-hidden="true" focusable="false">
-									<rect width="24" height="2" y="0" rx="1"></rect>
-									<rect width="24" height="2" y="8" rx="1"></rect>
-									<rect width="24" height="2" y="16" rx="1"></rect>
-								</svg>
-							</button>
-						</div>
-
+					<div class="header-controls">
 						<nav id="primary-navigation" class="primary-nav" aria-label="Primary navigation">
 							<ul class="nav-list">
 								${navItems.map(navMenu).join('')}
+								<li class="nav-cta-list">
+									<a href="${basePath}${content.ctaTicketsHref || 'pages/tickets.html'}" class="btn btn-primary header-cta" role="button" aria-label="${escapeHtml(content.ctaTickets || 'Purchase Tickets')}"${ticketsActive}>${escapeHtml(content.ctaTickets || 'Purchase Tickets')}</a>
+									<a href="${basePath}${content.ctaDonateHref || 'pages/donate.html'}" class="btn btn-secondary header-cta" role="button" aria-label="${escapeHtml(content.ctaDonate || 'Donate')}"${donateActive}>${escapeHtml(content.ctaDonate || 'Donate')}</a>
+								</li>
 							</ul>
 						</nav>
+
+						<button id="nav-toggle" class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
+							<svg width="24" height="18" viewBox="0 0 24 18" aria-hidden="true" focusable="false">
+								<rect width="24" height="2" y="0" rx="1"></rect>
+								<rect width="24" height="2" y="8" rx="1"></rect>
+								<rect width="24" height="2" y="16" rx="1"></rect>
+							</svg>
+						</button>
 					</div>
 
 					<div class="header-ctas">
