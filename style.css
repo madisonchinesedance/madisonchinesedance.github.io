@@ -53,7 +53,7 @@
 	--button-shadow: 0 10px 24px rgba(17,17,17,0.12);
 
 	/* Header tab font size (nav links) */
-	--nav-link-font-size: 1.25rem;
+	--nav-link-font-size: 1.1rem;
 
 	/* Header tab font weight (used for nav links and header CTAs) */
 	--nav-link-font-weight: 600;
@@ -581,7 +581,7 @@ a{
 /* ---------------------------
 	 Responsive (mobile-first is not used — desktop-first approach)
 	 --------------------------- */
-@media (max-width:880px){
+@media (max-width:992px){
 	/* Show mobile nav toggle, hide inline nav */
 	.header-controls{ 
 		display:flex;

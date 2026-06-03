@@ -100,7 +100,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 				{ href: `${basePath}pages/about/contact.html`, page: 'about/contact.html', label: content.navContact || 'Contact' }
 			]
 		},
-		{ href: `${basePath}pages/community/gallery.html`, page: 'community/gallery.html', label: 'Gallery' },
 		{
 			label: 'Community',
 			items: [
@@ -111,9 +110,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 		{
 			label: 'Programs',
 			items: [
-				{ href: `${basePath}pages/classes/`, page: 'classes/index.html', label: 'Dance Classes' },
+				{ href: `${basePath}pages/classes/dance-classes.html`, page: 'classes/dance-classes.html', label: 'Dance Classes' },
 			]
 		},
+        { href: `${basePath}pages/community/gallery.html`, page: 'community/gallery.html', label: 'Gallery' },
 		{ label: content.navSplendid || 'Splendid China', items: splendidYearItems }
 	];
 
@@ -271,18 +271,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 				navToggle.setAttribute('aria-expanded', 'false');
 				navToggle.focus();
 			}
-		});
-
-		// If the viewport becomes wide while nav was open, ensure it's closed
-		let resizeTimeout;
-		window.addEventListener('resize', () => {
-			clearTimeout(resizeTimeout);
-			resizeTimeout = setTimeout(() => {
-				if (window.innerWidth > 880 && primaryNav.classList.contains('open')) {
-					primaryNav.classList.remove('open');
-					navToggle.setAttribute('aria-expanded', 'false');
-				}
-			}, 150);
 		});
 	}
 
