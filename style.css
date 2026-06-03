@@ -182,12 +182,8 @@ a{
 	outline:none;
 }
 
-/* Prevent the logo from pushing nav items too far right — truncate long site titles */
-.logo{
-	max-width:260px;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	display:inline-block;
+.logo .logo-short-text {
+    display: none;
 }
 
 /* Header controls wrapper */
@@ -670,6 +666,12 @@ a{
 	}
 	.logo{
 		font-size:1.1rem;
+	}
+	.logo .logo-full-text {
+		display: none;
+	}
+	.logo .logo-short-text {
+		display: inline;
 	}
 	.footer-inner{
 		align-items:flex-start;

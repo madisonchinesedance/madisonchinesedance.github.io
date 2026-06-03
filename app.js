@@ -157,7 +157,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 			<header class="site-header" role="banner">
 				<div class="container header-inner">
 					<div class="header-left">
-						<a href="${basePath}index.html" class="logo" aria-label="${escapeHtml(content.logoText || 'Madison Chinese Dance Academy')} home">${escapeHtml(content.logoText || 'Madison Chinese Dance Academy')}</a>
+						<a href="${basePath}index.html" class="logo" aria-label="${escapeHtml(content.logoText || 'Madison Chinese Dance Academy')} home">
+							<span class="logo-full-text">${escapeHtml(content.logoText || 'Madison Chinese Dance Academy')}</span>
+							<span class="logo-short-text">MCDA</span>
+						</a>
 
 						<div class="header-controls">
 							<button id="nav-toggle" class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
@@ -277,5 +280,47 @@ document.addEventListener('DOMContentLoaded', async () => {
 				}
 			}, 150);
 		});
+	}
+
+	const galleryContainer = $('.gallery-container');
+	if (galleryContainer) {
+		const galleryWrapper = galleryContainer.querySelector('.gallery-wrapper');
+		const prevButton = galleryContainer.querySelector('.prev');
+		const nextButton = galleryContainer.querySelector('.next');
+		const images = galleryWrapper.querySelectorAll('img');
+		let currentIndex = 0;
+		let autoScrollInterval;
+
+		function updateGallery() {
+			galleryWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+		}
+
+		function startAutoScroll() {
+			autoScrollInterval = setInterval(() => {
+				currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+				updateGallery();
+			}, 5000); // 5 seconds interval
+		}
+
+		function stopAutoScroll() {
+			clearInterval(autoScrollInterval);
+		}
+
+		if (prevButton && nextButton) {
+			prevButton.addEventListener('click', () => {
+				currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+				updateGallery();
+			});
+
+			nextButton.addEventListener('click', () => {
+				currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+				updateGallery();
+			});
+		}
+
+		galleryContainer.addEventListener('mouseenter', stopAutoScroll);
+		galleryContainer.addEventListener('mouseleave', startAutoScroll);
+
+		startAutoScroll();
 	}
 });
