@@ -22,6 +22,17 @@ function getPageId() {
     return pagePath;
 }
 
+function getRootPath() {
+	const path = window.location.pathname;
+	if (!path.includes('/pages/')) {
+		return '';
+	}
+
+	const pagePath = getPageId();
+	const depth = pagePath.split('/').length;
+	return '../'.repeat(depth);
+}
+
 function escapeHtml(value) {
 	return String(value)
 		.replace(/&/g, '&amp;')
@@ -75,8 +86,7 @@ function applyJsonContent(content) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-	const isPagesDirectory = window.location.pathname.includes('/pages/');
-	const basePath = isPagesDirectory ? '../../' : '';
+	const basePath = getRootPath();
 	const currentPage = getPageId();
 	const pageContentFile = document.body.getAttribute('data-content-file');
 	const [siteContent, pageContent] = await Promise.all([
@@ -86,8 +96,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const content = { ...siteContent, ...pageContent };
 
 	const splendidYearItems = ['2026', '2025', '2024', '2023', '2022', '2021', '2020'].map((year) => ({
-		href: year === '2026' ? `${basePath}pages/splendid-china/` : `${basePath}pages/splendid-china/splendid-china-${year}.html`,
-		page: year === '2026' ? 'splendid-china/index.html' : `splendid-china/splendid-china-${year}.html`,
+		href: `${basePath}pages/splendid-china/splendid-china-${year}.html`,
+		page: `splendid-china/splendid-china-${year}.html`,
 		label: `Splendid China ${year}`
 	}));
 
@@ -96,7 +106,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		{
 			label: content.navAbout || 'About Us',
 			items: [
-				{ href: `${basePath}pages/about/`, page: 'about/index.html', label: content.navAbout || 'About Us' },
+				{ href: `${basePath}pages/about/about.html`, page: 'about/about.html', label: content.navAbout || 'About Us' },
 				{ href: `${basePath}pages/about/contact.html`, page: 'about/contact.html', label: content.navContact || 'Contact' }
 			]
 		},
