@@ -10,6 +10,18 @@ const $ = (sel) => document.querySelector(sel);
 /* Utility: select all */
 const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
+function getPageId() {
+    const path = window.location.pathname;
+    if (!path.includes('/pages/')) {
+        return 'index.html';
+    }
+    let pagePath = path.substring(path.indexOf('/pages/') + 7);
+    if (pagePath === '' || pagePath.endsWith('/')) {
+        pagePath += 'index.html';
+    }
+    return pagePath;
+}
+
 function escapeHtml(value) {
 	return String(value)
 		.replace(/&/g, '&amp;')
@@ -65,7 +77,7 @@ function applyJsonContent(content) {
 document.addEventListener('DOMContentLoaded', async () => {
 	const isPagesDirectory = window.location.pathname.includes('/pages/');
 	const basePath = isPagesDirectory ? '../../' : '';
-	const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+	const currentPage = getPageId();
 	const pageContentFile = document.body.getAttribute('data-content-file');
 	const [siteContent, pageContent] = await Promise.all([
 		loadJson(`${basePath}content/site.json`),
@@ -74,8 +86,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const content = { ...siteContent, ...pageContent };
 
 	const splendidYearItems = ['2026', '2025', '2024', '2023', '2022', '2021', '2020'].map((year) => ({
-		href: year === '2026' ? `${basePath}pages/splendid-china.html` : `${basePath}pages/splendid-china-${year}.html`,
-		page: year === '2026' ? 'splendid-china.html' : `splendid-china-${year}.html`,
+		href: year === '2026' ? `${basePath}pages/splendid-china/` : `${basePath}pages/splendid-china/splendid-china-${year}.html`,
+		page: year === '2026' ? 'splendid-china/index.html' : `splendid-china/splendid-china-${year}.html`,
 		label: `Splendid China ${year}`
 	}));
 
@@ -84,22 +96,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 		{
 			label: content.navAbout || 'About Us',
 			items: [
-				{ href: `${basePath}pages/about/`, page: 'index.html', label: content.navAbout || 'About Us' },
-				{ href: `${basePath}pages/contact.html`, page: 'contact.html', label: content.navContact || 'Contact' }
+				{ href: `${basePath}pages/about/`, page: 'about/index.html', label: content.navAbout || 'About Us' },
+				{ href: `${basePath}pages/about/contact.html`, page: 'about/contact.html', label: content.navContact || 'Contact' }
 			]
 		},
 		{
 			label: 'Community',
 			items: [
-				{ href: `${basePath}pages/community/gallery.html`, page: 'gallery.html', label: 'Gallery' },
-				{ href: `${basePath}pages/community/events.html`, page: 'events.html', label: 'Events' }
+				{ href: `${basePath}pages/community/gallery.html`, page: 'community/gallery.html', label: 'Gallery' },
+				{ href: `${basePath}pages/community/events.html`, page: 'community/events.html', label: 'Events' }
 			]
 		},
 		{
 			label: content.navClasses || 'Classes & Schedule',
 			items: [
-				{ href: `${basePath}pages/classes/`, page: 'index.html', label: content.navClasses || 'Classes & Schedule' },
-				{ href: `${basePath}pages/classes/services.html`, page: 'services.html', label: 'Services' }
+				{ href: `${basePath}pages/classes/`, page: 'classes/index.html', label: content.navClasses || 'Classes & Schedule' },
+				{ href: `${basePath}pages/classes/services.html`, page: 'classes/services.html', label: 'Services' }
 			]
 		},
 		{ label: content.navSplendid || 'Splendid China', items: splendidYearItems }
