@@ -65,13 +65,48 @@ function resolveLink(value, routes = {}) {
 	return sitePath(text);
 }
 
-function renderMultiline(value) {
-	return escapeHtml(value)
+const ALLOWED_INLINE_TAGS = /<\/?(?:b|strong|i|em|br)\b[^>]*>/gi;
+
+function sanitizeInlineHtml(text) {
+	const saved = [];
+	let safe = String(text).replace(ALLOWED_INLINE_TAGS, (tag) => {
+		const id = saved.push(tag.toLowerCase()) - 1;
+		return `\uE000${id}\uE001`;
+	});
+	safe = escapeHtml(safe);
+	return safe.replace(/\uE000(\d+)\uE001/g, (_, index) => saved[Number(index)] || '');
+}
+
+function usesParagraphWrapper(element) {
+	const tag = element.tagName;
+	return tag === 'DIV' || tag === 'SECTION' || element.hasAttribute('data-json-multiline');
+}
+
+function shouldUsePlainText(element) {
+	if (element.hasAttribute('data-json-attr')) return true;
+	if (element.hasAttribute('data-json-plain')) return true;
+	const tag = element.tagName;
+	return tag === 'TITLE' || tag === 'META' || /^H[1-6]$/.test(tag);
+}
+
+function renderRichText(value, element) {
+	const text = String(value).trim();
+	if (!text) return '';
+
+	const blocks = text
 		.split(/\n{2,}/)
-		.map((paragraph) => paragraph.trim().replace(/\n/g, '<br>'))
+		.map((paragraph) => paragraph.trim())
 		.filter(Boolean)
-		.map((paragraph) => `<p>${paragraph}</p>`)
-		.join('');
+		.map((paragraph) => paragraph
+			.split('\n')
+			.map((line) => sanitizeInlineHtml(line))
+			.join('<br>'));
+
+	if (usesParagraphWrapper(element)) {
+		return blocks.map((block) => `<p>${block}</p>`).join('');
+	}
+
+	return blocks.join('<br><br>');
 }
 
 function applyJsonContent(content, routes) {
@@ -84,11 +119,11 @@ function applyJsonContent(content, routes) {
 		const hrefKey = element.getAttribute('data-json-href');
 
 		if (attr) {
-			element.setAttribute(attr, value);
-		} else if (element.hasAttribute('data-json-multiline')) {
-			element.innerHTML = renderMultiline(value);
-		} else {
+			element.setAttribute(attr, String(value).replace(/\s+/g, ' ').trim());
+		} else if (shouldUsePlainText(element)) {
 			element.textContent = value;
+		} else {
+			element.innerHTML = renderRichText(value, element);
 		}
 
 		if (hrefKey && content[hrefKey] !== undefined) {

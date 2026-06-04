@@ -27,6 +27,22 @@ Reference another site page with a route id instead of a file path:
 
 Route ids are defined under `routes` in `content/site.json` (for example `home`, `gallery`, `tickets`, `splendid-china-2026`).
 
+### Line breaks and emphasis in JSON
+
+In page body fields (paragraphs, divs, buttons, and similar), you can format copy directly in JSON:
+
+- `\n` — line break within the same paragraph
+- `\n\n` — start a new paragraph (on `<div>` blocks, each becomes a `<p>`)
+- `<b>`, `<strong>`, `<i>`, `<em>`, `<br>` — bold, italic, or manual line breaks
+
+Example:
+
+```json
+"classesBody": "We offer classes for <b>all ages</b>.\n\nSchedule details will be posted here."
+```
+
+Titles, headings (`<h1>`–`<h6>`), and meta descriptions stay plain text only. Use `data-json-plain` on an element if you need to force plain text on a specific field.
+
 After changing a JSON file, save it and refresh the page. For local preview, serve the folder over HTTP, because browsers may block JSON loading from a plain `file://` tab.
 
 ## Project structure
