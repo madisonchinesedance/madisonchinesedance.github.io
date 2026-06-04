@@ -157,9 +157,7 @@ function resolveNavEntry(entry, routes) {
 	return null;
 }
 
-function buildHeader(site = {}) {
-	const routes = site.routes || {};
-	const header = site.header || {};
+function buildHeader(header = {}, routes = {}) {
 	const logoRoute = header.logo?.route ? routes[header.logo.route] : routes.home;
 	const logo = {
 		text: header.logo?.text || 'Madison Chinese Dance Academy',
@@ -190,6 +188,25 @@ function buildHeader(site = {}) {
 	};
 }
 
+function resolveFooterLink(link, routes = {}) {
+	if (link.route) {
+		const route = routes[link.route];
+		if (!route) return null;
+
+		return {
+			href: route.href,
+			page: route.page,
+			label: link.label || link.route
+		};
+	}
+
+	return {
+		href: link.href || '',
+		page: null,
+		label: link.label || link.href || ''
+	};
+}
+
 function getPageRouteId(site, pageId) {
 	const routes = site.routes || {};
 	return Object.keys(routes).find((routeId) => routes[routeId].page === pageId) || null;
@@ -198,6 +215,8 @@ function getPageRouteId(site, pageId) {
 document.addEventListener('DOMContentLoaded', async () => {
 	const currentPage = getPageId();
 	const site = await loadJson(`${CONTENT_ROOT}site.json`);
+	const headerConfig = await loadJson(`${CONTENT_ROOT}header.json`);
+	const footerConfig = await loadJson(`${CONTENT_ROOT}footer.json`);
 	const pageRouteId = document.body.getAttribute('data-route')
 		|| getPageRouteId(site, currentPage);
 	const pageContentPath = pageRouteId ? site.routes?.[pageRouteId]?.content : null;
@@ -206,8 +225,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 		: {};
 
 	const routes = site.routes || {};
-	const content = { ...site, ...pageContent };
-	const header = buildHeader(site);
+	const content = { ...pageContent };
+	const header = buildHeader(headerConfig, routes);
 
 	function resolveHref(href = '') {
 		return resolveLink(href, routes);
@@ -308,12 +327,52 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const mount = $('[data-site-footer]');
 		if (!mount) return;
 
+		const brand = footerConfig.brand || {};
+		const brandRoute = brand.route ? routes[brand.route] : routes.home;
+		const brandHref = resolveHref(brandRoute?.href || 'index.html');
+		const brandText = brand.text || 'Madison Chinese Dance Academy';
+		const brandShortText = brand.shortText || 'MCDA';
+		const mission = brand.mission || '';
+		const columns = Array.isArray(footerConfig.columns) ? footerConfig.columns : [];
+		const columnMarkup = columns.map((column) => {
+			const links = Array.isArray(column.links) ? column.links : [];
+			const items = links
+				.map((link) => resolveFooterLink(link, routes))
+				.filter(Boolean)
+				.map((link) => {
+					if (!link.href) {
+						return `<li><span>${escapeHtml(link.label)}</span></li>`;
+					}
+
+					return `<li><a href="${resolveHref(link.href)}">${escapeHtml(link.label)}</a></li>`;
+				})
+				.join('');
+
+			return `
+				<section class="footer-column" aria-label="${escapeHtml(column.heading || 'Footer links')}">
+					<h2>${escapeHtml(column.heading || 'Links')}</h2>
+					<ul>${items}</ul>
+				</section>
+			`;
+		}).join('');
+
 		mount.outerHTML = `
 			<footer class="site-footer" role="contentinfo">
 				<div class="container footer-inner">
-					<p class="footer-copy">${escapeHtml(content.footerCopy || '© 2026 Madison Chinese Dance Academy')}</p>
-					<p class="footer-contact">Email: ${escapeHtml(content.footerEmail || 'ahuan98-dance@yahoo.com')}</p>
-					<p class="footer-contact">Phone: ${escapeHtml(content.footerPhone || '301.299.1562')}</p>
+					<section class="footer-brand" aria-label="${escapeHtml(brandText)}">
+						<a href="${brandHref}" class="footer-logo" aria-label="${escapeHtml(`${brandText} home`)}">
+							<span>${escapeHtml(brandShortText)}</span>
+						</a>
+						<p class="footer-brand-name">${escapeHtml(brandText)}</p>
+						<p class="footer-mission">${escapeHtml(mission)}</p>
+					</section>
+
+					<nav class="footer-directory" aria-label="Footer navigation">
+						${columnMarkup}
+					</nav>
+				</div>
+				<div class="container footer-bottom">
+					<p class="footer-copy">${escapeHtml(footerConfig.copyright || '© 2026 Madison Chinese Dance Academy')}</p>
 				</div>
 			</footer>
 		`;
