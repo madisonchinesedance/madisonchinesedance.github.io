@@ -1,11 +1,8 @@
 {
-  "donatePageTitle": "Donate | Madison Chinese Dance Academy",
-  "donateMetaDescription": "Support Madison Chinese Dance Academy through donations.",
-  "donateHeroHeading": "Donate",
-  "donateSupportHeading": "Support Our Work",
-  "donateSupportText": "Your support helps sustain community classes, performances, and cultural outreach.",
-  "donateDetailsBody": "Madison Chinese Dance Academy relies on community support to keep classes affordable, fund costumes and props, rent rehearsal and performance space, and provide outreach programs that celebrate and teach Chinese dance traditions. Your gift helps sustain instruction for students of all ages and enables us to present public performances that connect culture and community.\n\nWe welcome one-time donations and recurring gifts. Donations are processed securely through Zeffy. For questions about giving or gifts of stock or in-kind support, please email us at madisonchinesedance@gmail.com.",
-  "donateOpenText": "Open in Zeffy",
-  "donateOpenHref": "https://www.zeffy.com/en-US/donation-form/donate-to-madison-chinese-dance-academy",
-  "donateFormNote": "<b> Zeffy donations are optional, please select other if you wish to skip. </b>"
+  "pageTitle": "Donate | Madison Chinese Dance Academy",
+  "metaDescription": "Support Madison Chinese Dance Academy through donations.",
+  "heading": "Support Our Work",
+  "body": "Your support helps sustain community classes, performances, and cultural outreach.\n\nMadison Chinese Dance Academy relies on community support to keep classes affordable, fund costumes and props, rent rehearsal and performance space, and provide outreach programs that celebrate and teach Chinese dance traditions. Your gift helps sustain instruction for students of all ages and enables us to present public performances that connect culture and community.\n\nWe welcome one-time donations and recurring gifts. Donations are processed securely through Zeffy. For questions about giving or gifts of stock or in-kind support, please email us at madisonchinesedance@gmail.com.\n\n<b>Zeffy donations are optional, please select other if you wish to skip.</b>",
+  "openText": "Open in Zeffy",
+  "openHref": "https://www.zeffy.com/en-US/donation-form/donate-to-madison-chinese-dance-academy"
 }
