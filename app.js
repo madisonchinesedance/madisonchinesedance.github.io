@@ -1,6 +1,6 @@
 // app.js
 // Small, dependency-free script:
-// - loads editable site/page copy from JSON files
+// - loads site config, routes, and page copy from JSON
 // - renders shared site header and footer
 // - toggles mobile nav visibility (aria-friendly)
 // - accessible keyboard handling (Escape closes mobile nav)
@@ -10,27 +10,19 @@ const $ = (sel) => document.querySelector(sel);
 /* Utility: select all */
 const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
-function getPageId() {
-    const path = window.location.pathname;
-    if (!path.includes('/pages/')) {
-        return 'index.html';
-    }
-    let pagePath = path.substring(path.indexOf('/pages/') + 7);
-    if (pagePath === '' || pagePath.endsWith('/')) {
-        pagePath += 'index.html';
-    }
-    return pagePath;
-}
+const CONTENT_ROOT = '/content/';
 
-function getRootPath() {
+function getPageId() {
 	const path = window.location.pathname;
 	if (!path.includes('/pages/')) {
-		return '';
+		return 'index.html';
 	}
 
-	const pagePath = getPageId();
-	const depth = pagePath.split('/').length;
-	return '../'.repeat(depth);
+	let pagePath = path.substring(path.indexOf('/pages/') + 7);
+	if (pagePath === '' || pagePath.endsWith('/')) {
+		pagePath += 'index.html';
+	}
+	return pagePath;
 }
 
 function escapeHtml(value) {
@@ -53,6 +45,26 @@ async function loadJson(path) {
 	}
 }
 
+function sitePath(relativePath = '') {
+	if (!relativePath) return '/';
+	const normalized = String(relativePath).replace(/^\/+/, '');
+	return `/${normalized}`;
+}
+
+function resolveLink(value, routes = {}) {
+	if (value === undefined || value === null) return '#';
+	const text = String(value);
+
+	if (text.startsWith('@')) {
+		const route = routes[text.slice(1)];
+		return route ? sitePath(route.href) : '#';
+	}
+
+	if (/^(https?:|mailto:|tel:|#)/.test(text)) return text;
+	if (text.startsWith('/')) return text;
+	return sitePath(text);
+}
+
 function renderMultiline(value) {
 	return escapeHtml(value)
 		.split(/\n{2,}/)
@@ -62,7 +74,7 @@ function renderMultiline(value) {
 		.join('');
 }
 
-function applyJsonContent(content) {
+function applyJsonContent(content, routes) {
 	$$('[data-json]').forEach((element) => {
 		const key = element.getAttribute('data-json');
 		if (!key || content[key] === undefined) return;
@@ -80,103 +92,87 @@ function applyJsonContent(content) {
 		}
 
 		if (hrefKey && content[hrefKey] !== undefined) {
-			element.setAttribute('href', content[hrefKey]);
+			element.setAttribute('href', resolveLink(content[hrefKey], routes));
 		}
 	});
 }
 
-function defaultHeaderContent(content = {}) {
-	const splendidYears = ['2026', '2025', '2024', '2023', '2022', '2021', '2020'];
+function resolveNavEntry(entry, routes) {
+	if (entry.route) {
+		const route = routes[entry.route];
+		if (!route) return null;
+
+		return {
+			href: route.href,
+			page: route.page,
+			label: entry.label || entry.route
+		};
+	}
+
+	if (entry.items) {
+		return {
+			label: entry.label,
+			items: entry.items.map((item) => resolveNavEntry(item, routes)).filter(Boolean)
+		};
+	}
+
+	return null;
+}
+
+function buildHeader(site = {}) {
+	const routes = site.routes || {};
+	const header = site.header || {};
+	const logoRoute = header.logo?.route ? routes[header.logo.route] : routes.home;
+	const logo = {
+		text: header.logo?.text || 'Madison Chinese Dance Academy',
+		shortText: header.logo?.shortText || 'MCDA',
+		ariaLabel: header.logo?.ariaLabel || 'Madison Chinese Dance Academy home',
+		href: logoRoute?.href || 'index.html',
+		page: logoRoute?.page || 'index.html'
+	};
 
 	return {
-		logo: {
-			text: content.logoText || 'Madison Chinese Dance Academy',
-			shortText: 'MCDA',
-			href: 'index.html',
-			ariaLabel: `${content.logoText || 'Madison Chinese Dance Academy'} home`
-		},
-		navigationLabel: 'Primary navigation',
-		menuToggleOpenLabel: 'Open navigation',
-		menuToggleCloseLabel: 'Close navigation',
-		navItems: [
-			{ href: 'index.html', page: 'index.html', label: content.navHome || 'Home' },
-			{
-				label: content.navAbout || 'About Us',
-				items: [
-					{ href: 'pages/about/about.html', page: 'about/about.html', label: content.navAbout || 'About Us' },
-					{ href: 'pages/about/contact.html', page: 'about/contact.html', label: content.navContact || 'Contact' }
-				]
-			},
-			{
-				label: 'Community',
-				items: [
-					{ href: 'pages/community/events.html', page: 'community/events.html', label: 'Events' },
-					{ href: 'pages/classes/services.html', page: 'classes/services.html', label: 'Services' }
-				]
-			},
-			{
-				label: 'Programs',
-				items: [
-					{ href: 'pages/classes/dance-classes.html', page: 'classes/dance-classes.html', label: 'Dance Classes' }
-				]
-			},
-			{ href: 'pages/community/gallery.html', page: 'community/gallery.html', label: 'Gallery' },
-			{
-				label: content.navSplendid || 'Splendid China',
-				items: splendidYears.map((year) => ({
-					href: `pages/splendid-china/splendid-china-${year}.html`,
-					page: `splendid-china/splendid-china-${year}.html`,
-					label: `Splendid China ${year}`
-				}))
-			}
-		],
-		actions: [
-			{
-				label: content.ctaTickets || 'Purchase Tickets',
-				href: content.ctaTicketsHref || 'pages/tickets.html',
-				page: 'tickets.html',
-				style: 'primary',
-				ariaLabel: content.ctaTickets || 'Purchase Tickets'
-			},
-			{
-				label: content.ctaDonate || 'Donate',
-				href: content.ctaDonateHref || 'pages/donate.html',
-				page: 'donate.html',
-				style: 'secondary',
-				ariaLabel: content.ctaDonate || 'Donate'
-			}
-		]
+		logo,
+		navigationLabel: header.navigationLabel || 'Primary navigation',
+		menuToggleOpenLabel: header.menuToggleOpenLabel || 'Open navigation',
+		menuToggleCloseLabel: header.menuToggleCloseLabel || 'Close navigation',
+		navItems: (header.nav || []).map((entry) => resolveNavEntry(entry, routes)).filter(Boolean),
+		actions: (header.actions || []).map((action) => {
+			const route = routes[action.route];
+			if (!route) return null;
+
+			return {
+				href: route.href,
+				page: route.page,
+				label: action.label || action.route,
+				style: action.style === 'secondary' ? 'secondary' : 'primary',
+				ariaLabel: action.ariaLabel || action.label || action.route
+			};
+		}).filter(Boolean)
 	};
 }
 
-function headerContent(content = {}) {
-	const fallback = defaultHeaderContent(content);
-	const header = content.header || {};
-
-	return {
-		...fallback,
-		...header,
-		logo: { ...fallback.logo, ...(header.logo || {}) },
-		navItems: Array.isArray(header.navItems) ? header.navItems : fallback.navItems,
-		actions: Array.isArray(header.actions) ? header.actions : fallback.actions
-	};
+function getPageRouteId(site, pageId) {
+	const routes = site.routes || {};
+	return Object.keys(routes).find((routeId) => routes[routeId].page === pageId) || null;
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-	const basePath = getRootPath();
 	const currentPage = getPageId();
-	const pageContentFile = document.body.getAttribute('data-content-file');
-	const [siteContent, pageContent] = await Promise.all([
-		loadJson(`${basePath}content/site.json`),
-		pageContentFile ? loadJson(`${basePath}content/${pageContentFile}.json`) : Promise.resolve({})
-	]);
-	const content = { ...siteContent, ...pageContent };
-	const header = headerContent(content);
+	const site = await loadJson(`${CONTENT_ROOT}site.json`);
+	const pageRouteId = document.body.getAttribute('data-route')
+		|| getPageRouteId(site, currentPage);
+	const pageContentPath = pageRouteId ? site.routes?.[pageRouteId]?.content : null;
+	const pageContent = pageContentPath
+		? await loadJson(`${CONTENT_ROOT}${pageContentPath}`)
+		: {};
+
+	const routes = site.routes || {};
+	const content = { ...site, ...pageContent };
+	const header = buildHeader(site);
 
 	function resolveHref(href = '') {
-		if (!href) return '#';
-		if (/^(https?:|mailto:|tel:|#|\/)/.test(href)) return href;
-		return `${basePath}${href}`;
+		return resolveLink(href, routes);
 	}
 
 	function isActivePage(item) {
@@ -285,7 +281,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		`;
 	}
 
-	applyJsonContent(content);
+	applyJsonContent(content, routes);
 	renderHeader();
 	renderFooter();
 
@@ -380,7 +376,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 		if (galleryImages.length > 0) {
 			galleryWrapper.innerHTML = galleryImages.map((image, index) => `
-				<img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
+				<img src="${escapeHtml(resolveLink(image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
 			`).join('');
 
 			if (galleryGrid) {
@@ -396,7 +392,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 								imageIndex += 1;
 								return `
 									<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
-										<img src="${escapeHtml(image.thumb || image.src)}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
+										<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
 									</button>
 								`;
 							}).join('');
@@ -419,7 +415,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 				} else {
 					galleryGrid.innerHTML = galleryImages.map((image, index) => `
 						<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
-							<img src="${escapeHtml(image.thumb || image.src)}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
+							<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
 						</button>
 					`).join('');
 				}

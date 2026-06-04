@@ -1,3 +1,6 @@
+// This script scans the images/gallery directory for image files and updates content/gallery.json with the list of gallery images.
+//Usage: node scripts/scan-gallery.js
+
 const fs = require('fs');
 const path = require('path');
 
@@ -24,8 +27,8 @@ function readGalleryImages() {
 		.filter((entry) => entry.isFile() && imageExtensions.has(path.extname(entry.name).toLowerCase()))
 		.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }))
 		.map((entry) => ({
-			src: `../../images/gallery/${entry.name}`,
-			thumb: `../../images/gallery/${entry.name}`,
+			src: `/images/gallery/${entry.name}`,
+			thumb: `/images/gallery/${entry.name}`,
 			alt: titleFromFilename(entry.name)
 		}));
 }
