@@ -328,7 +328,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 				return `
 					<a class="home-feature-card" href="${href}" style="--item-index:${index}">
-						<span class="home-card-kicker">${String(index + 1).padStart(2, '0')}</span>
 						<h3>${escapeHtml(card.heading || '')}</h3>
 						<p>${escapeHtml(card.body || '')}</p>
 						<span class="home-card-link">${escapeHtml(label)}</span>

@@ -20,12 +20,20 @@
 	--font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 	--base-font-size: 14px;
 	--base-line-height: 1.45;
+	--heading-1-font-size: clamp(2rem, 2vw, 3.2rem);
+	--heading-1-font-weight: 700;
+	--heading-1-line-height: 1.08;
+	--heading-2-font-size: 1.35rem;
+	--heading-2-font-weight: 800;
+	--heading-2-line-height: 1.2;
 	--body-font-size: 1.25rem;
 	--body-font-color: var(--muted);
 	--body-font-weight: 400;
-	--page-heading-size: clamp(2rem, 2vw, 3.2rem);
-	--page-heading-weight: 700;
-	--section-heading-size: clamp(1.5rem, 2vw, 2rem);
+	--body-line-height: 1.6;
+	--body-small-font-size: 1rem;
+	--page-heading-size: var(--heading-1-font-size);
+	--page-heading-weight: var(--heading-1-font-weight);
+	--section-heading-size: var(--heading-1-font-size);
 	--logo-font-size: 1.5rem;
 	--logo-font-weight: 700;
 	--nav-link-font-size: 1.1rem;
@@ -382,9 +390,9 @@ a{
 .hero-title,
 .page-hero h1{
 	margin:0 0 14px;
-	font-size:var(--page-heading-size);
-	font-weight:var(--page-heading-weight);
-	line-height:1.08;
+	font-size:var(--heading-1-font-size);
+	font-weight:var(--heading-1-font-weight);
+	line-height:var(--heading-1-line-height);
 	color:var(--text-color);
 }
 .hero-tagline,
@@ -403,7 +411,7 @@ a{
 }
 .page-hero a:not(.btn){
 	color:var(--text-color);
-	font-weight:700;
+	font-weight:var(--heading-2-font-weight);
 }
 .hero-tagline{
 	margin:0 0 22px 0;
@@ -478,6 +486,7 @@ a{
 	margin:0 0 1rem;
 	color:var(--body-font-color);
 	font-size:var(--body-font-size);
+	line-height:var(--body-line-height);
 	max-width:var(--content-max);
 }
 .section p:last-child{ margin-bottom:0; }
@@ -487,6 +496,7 @@ a{
 	color:var(--body-font-color);
 	font-size:var(--body-font-size);
 	font-weight:var(--body-font-weight);
+	line-height:var(--body-line-height);
 }
 
 .section-note{
@@ -531,15 +541,16 @@ a{
 .home-stat strong{
 	display:block;
 	color:var(--text-color);
-	font-size:clamp(1.45rem, 2.2vw, 2.2rem);
-	line-height:1;
+	font-size:var(--heading-1-font-size);
+	font-weight:var(--heading-1-font-weight);
+	line-height:var(--heading-1-line-height);
 }
 .home-stat span{
 	display:block;
 	margin-top:8px;
 	color:var(--body-font-color);
-	font-size:0.98rem;
-	line-height:1.4;
+	font-size:var(--body-small-font-size);
+	line-height:var(--body-line-height);
 }
 .home-section{
 	padding:20px 0 44px;
@@ -554,14 +565,15 @@ a{
 .home-section-heading h2{
 	margin:0 0 12px;
 	color:var(--text-color);
-	font-size:clamp(1.7rem, 3vw, 2.6rem);
-	line-height:1.12;
+	font-size:var(--heading-1-font-size);
+	font-weight:var(--heading-1-font-weight);
+	line-height:var(--heading-1-line-height);
 }
 .home-section-heading p{
 	margin:0;
 	color:var(--body-font-color);
-	font-size:1.12rem;
-	line-height:1.65;
+	font-size:var(--body-font-size);
+	line-height:var(--body-line-height);
 }
 .home-feature-grid,
 .home-pathway-grid{
@@ -605,32 +617,28 @@ a{
 	box-shadow:var(--card-shadow-hover);
 	outline:none;
 }
-.home-card-kicker{
-	color:var(--accent-ticket);
-	font-weight:800;
-	font-size:0.88rem;
-}
 .home-feature-card h3,
 .home-pathway h3{
-	margin:16px 0 10px;
+	margin:0 0 10px;
 	color:var(--text-color);
-	font-size:1.35rem;
-	line-height:1.2;
+	font-size:var(--heading-2-font-size);
+	font-weight:var(--heading-2-font-weight);
+	line-height:var(--heading-2-line-height);
 }
 .home-feature-card p,
 .home-pathway p{
 	margin:0;
 	color:var(--body-font-color);
-	font-size:1rem;
-	line-height:1.6;
+	font-size:var(--body-small-font-size);
+	line-height:var(--body-line-height);
 }
 .home-card-link,
 .home-pathway span{
 	margin-top:auto;
 	padding-top:22px;
 	color:var(--text-color);
-	font-weight:800;
-	font-size:0.98rem;
+	font-weight:var(--heading-2-font-weight);
+	font-size:var(--body-small-font-size);
 }
 .home-card-link::after,
 .home-pathway span::after{
@@ -719,7 +727,7 @@ a{
 	width:100%;
 	overflow:clip;
 	aspect-ratio:16 / 9;
-	max-height:620px;
+	max-height:800px;
 	border-radius:10px;
 	background:var(--gallery-bg);
 }
@@ -782,7 +790,9 @@ a{
 	margin:0;
 }
 .gallery-year h2{
-	font-size:1.5rem;
+	font-size:var(--heading-1-font-size);
+	font-weight:var(--heading-1-font-weight);
+	line-height:var(--heading-1-line-height);
 }
 .gallery-event{
 	display:grid;
@@ -790,8 +800,9 @@ a{
 }
 .gallery-event h3{
 	color:var(--body-font-color);
-	font-size:1rem;
-	font-weight:700;
+	font-size:var(--heading-2-font-size);
+	font-weight:var(--heading-2-font-weight);
+	line-height:var(--heading-2-line-height);
 }
 .gallery-event-grid{
 	display:grid;
