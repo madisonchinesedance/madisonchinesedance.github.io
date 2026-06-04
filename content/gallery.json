@@ -5,34 +5,84 @@
   "galleryGroups": [],
   "galleryImages": [
     {
-      "src": "/images/gallery/N01_0021.jpg",
-      "thumb": "/images/gallery/N01_0021.jpg",
-      "alt": "N01 0021"
+      "src": "/images/gallery/image-001.jpg",
+      "thumb": "/images/gallery/image-001.jpg",
+      "alt": "Image 001"
     },
     {
-      "src": "/images/gallery/N01_0030.jpg",
-      "thumb": "/images/gallery/N01_0030.jpg",
-      "alt": "N01 0030"
+      "src": "/images/gallery/image-002.jpg",
+      "thumb": "/images/gallery/image-002.jpg",
+      "alt": "Image 002"
     },
     {
-      "src": "/images/gallery/Screenshot_3-6-2026_17831_www.chinesedances.org.jpeg",
-      "thumb": "/images/gallery/Screenshot_3-6-2026_17831_www.chinesedances.org.jpeg",
-      "alt": "Screenshot 3 6 2026 17831 Www.Chinesedances.Org"
+      "src": "/images/gallery/image-003.jpg",
+      "thumb": "/images/gallery/image-003.jpg",
+      "alt": "Image 003"
     },
     {
-      "src": "/images/gallery/Screenshot_3-6-2026_17844_www.chinesedances.org.jpeg",
-      "thumb": "/images/gallery/Screenshot_3-6-2026_17844_www.chinesedances.org.jpeg",
-      "alt": "Screenshot 3 6 2026 17844 Www.Chinesedances.Org"
+      "src": "/images/gallery/image-004.jpg",
+      "thumb": "/images/gallery/image-004.jpg",
+      "alt": "Image 004"
     },
     {
-      "src": "/images/gallery/Screenshot_3-6-2026_17859_www.chinesedances.org.jpeg",
-      "thumb": "/images/gallery/Screenshot_3-6-2026_17859_www.chinesedances.org.jpeg",
-      "alt": "Screenshot 3 6 2026 17859 Www.Chinesedances.Org"
+      "src": "/images/gallery/image-005.jpg",
+      "thumb": "/images/gallery/image-005.jpg",
+      "alt": "Image 005"
     },
     {
-      "src": "/images/gallery/Screenshot_3-6-2026_17913_www.chinesedances.org.jpeg",
-      "thumb": "/images/gallery/Screenshot_3-6-2026_17913_www.chinesedances.org.jpeg",
-      "alt": "Screenshot 3 6 2026 17913 Www.Chinesedances.Org"
+      "src": "/images/gallery/image-006.jpg",
+      "thumb": "/images/gallery/image-006.jpg",
+      "alt": "Image 006"
+    },
+    {
+      "src": "/images/gallery/image-007.jpg",
+      "thumb": "/images/gallery/image-007.jpg",
+      "alt": "Image 007"
+    },
+    {
+      "src": "/images/gallery/image-008.jpg",
+      "thumb": "/images/gallery/image-008.jpg",
+      "alt": "Image 008"
+    },
+    {
+      "src": "/images/gallery/image-009.jpg",
+      "thumb": "/images/gallery/image-009.jpg",
+      "alt": "Image 009"
+    },
+    {
+      "src": "/images/gallery/image-010.jpg",
+      "thumb": "/images/gallery/image-010.jpg",
+      "alt": "Image 010"
+    },
+    {
+      "src": "/images/gallery/image-011.jpg",
+      "thumb": "/images/gallery/image-011.jpg",
+      "alt": "Image 011"
+    },
+    {
+      "src": "/images/gallery/image-012.jpg",
+      "thumb": "/images/gallery/image-012.jpg",
+      "alt": "Image 012"
+    },
+    {
+      "src": "/images/gallery/image-013.jpg",
+      "thumb": "/images/gallery/image-013.jpg",
+      "alt": "Image 013"
+    },
+    {
+      "src": "/images/gallery/image-014.jpg",
+      "thumb": "/images/gallery/image-014.jpg",
+      "alt": "Image 014"
+    },
+    {
+      "src": "/images/gallery/image-015.jpg",
+      "thumb": "/images/gallery/image-015.jpg",
+      "alt": "Image 015"
+    },
+    {
+      "src": "/images/gallery/image-016.jpg",
+      "thumb": "/images/gallery/image-016.jpg",
+      "alt": "Image 016"
     }
   ]
 }

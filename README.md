@@ -51,7 +51,7 @@ After changing a JSON file, save it and refresh the page. For local preview, ser
 - `pages/` — secondary pages. Each page uses root-absolute `/style.css` and `/app.js` so assets work regardless of folder depth.
 - `content/` — editable JSON files used as a lightweight CMS.
 - `images/` — image assets for the site. Gallery images currently live directly in `images/gallery/`.
-- `scripts/scan-gallery.js` — scans `images/gallery/` and updates `content/gallery.json`.
+- `scripts/scan-images.py` — scans `images/gallery/` and updates `content/gallery.json`.
 - `style.css` — global styles and CSS custom properties (theme variables).
 - `app.js` — loads `site.json` and page content, renders shared header/footer, and handles the mobile nav toggle.
 
@@ -74,7 +74,7 @@ Add images directly under the gallery folder, for example:
 Then run:
 
 ```sh
-node scripts/scan-gallery.js
+python scripts/scan-images.py
 ```
 
 The scanner updates `content/gallery.json`, and the Gallery page renders the images in filename order.
