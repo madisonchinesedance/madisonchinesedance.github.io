@@ -300,7 +300,39 @@ document.addEventListener('DOMContentLoaded', async () => {
 		return `<a href="${resolveHref(link.href)}" class="btn btn-${style}">${escapeHtml(link.label)}</a>`;
 	}
 
+	function createStarField(className, count = 120, yMax = 100) {
+		const stars = Array.from({ length: count }, () => {
+			const size = (Math.random() * 2.2 + 1).toFixed(2);
+			const opacity = (Math.random() * 0.45 + 0.45).toFixed(2);
+			const x = (Math.random() * 100).toFixed(2);
+			const y = (Math.random() * yMax).toFixed(2);
+			const duration = (Math.random() * 2.8 + 2.2).toFixed(2);
+			const delay = (Math.random() * -5).toFixed(2);
+			const drift = (Math.random() * 14 - 7).toFixed(2);
+
+			return `<span class="site-star" style="--star-x:${x}%; --star-y:${y}%; --star-size:${size}px; --star-opacity:${opacity}; --star-duration:${duration}s; --star-delay:${delay}s; --star-drift:${drift}px;"></span>`;
+		}).join('');
+
+		return `<div class="${className}" aria-hidden="true">${stars}</div>`;
+	}
+
+	function renderPageStars() {
+		if (document.body.classList.contains('home-page')) return;
+
+		const main = $('.site-main');
+		if (!main) return;
+
+		main.querySelector('.page-star-field')?.remove();
+		main.insertAdjacentHTML('afterbegin', createStarField('page-star-field', 150));
+	}
+
 	function renderHomePage() {
+		const hero = $('.home-page .hero');
+		if (hero) {
+			hero.querySelector('.home-star-field')?.remove();
+			hero.insertAdjacentHTML('afterbegin', createStarField('home-star-field', 120, 72));
+		}
+
 		const actionMount = $('[data-home-hero-actions]');
 		if (actionMount) {
 			const actions = Array.isArray(content.heroActions) ? content.heroActions : [];
@@ -460,6 +492,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 	applyJsonContent(content, routes);
 	renderHomePage();
+	renderPageStars();
 	renderHeader();
 	renderFooter();
 
