@@ -21,16 +21,16 @@
       "label": "Founded as a nonprofit academy"
     },
     {
-      "value": "20+",
-      "label": "Annual performances and workshops"
+      "value": "25+",
+      "label": "Performances over the years"
     },
     {
-      "value": "All ages",
+      "value": "Ages 3 to 18+",
       "label": "Classes for beginner through advanced students"
     }
   ],
-  "introHeading": "A community academy for Chinese dance, ballet, and cultural exchange",
-  "introBody": "Madison Chinese Dance Academy gives students a place to train, perform, and grow through Chinese dance traditions and ballet technique. Our programs connect families, artists, and audiences through classes, outreach, and the annual Splendid China performance.",
+  "introHeading": "A community academy for Chinese dance and culture",
+  "introBody": "Madison Chinese Dance Academy gives students a place to train, perform, and grow through Chinese dance traditions and ballet technique. Our programs connect both families and audiences through classes, outreach, and the annual Splendid China performance.",
   "featureCards": [
     {
       "heading": "Classes",
@@ -42,7 +42,7 @@
       "heading": "Splendid China",
       "body": "Our annual concert brings traditional and contemporary Chinese dance to the stage.",
       "route": "splendid-china-2026",
-      "label": "See the 2026 show"
+      "label": "See Splendid China 2026"
     },
     {
       "heading": "Gallery",
@@ -51,13 +51,13 @@
       "label": "Open gallery"
     }
   ],
-  "pathwaysHeading": "What would you like to do next?",
+  "pathwaysHeading": "Get Involved",
   "pathways": [
     {
       "heading": "Attend a performance",
       "body": "Get details for Splendid China 2026 and purchase tickets online.",
       "route": "tickets",
-      "label": "Buy tickets"
+      "label": "Purchase tickets"
     },
     {
       "heading": "Support the academy",
