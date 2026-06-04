@@ -478,6 +478,160 @@ a{
 	margin:0;
 }
 
+/* Homepage */
+.home-page .hero{
+	padding-bottom:24px;
+}
+.home-page .hero-inner{
+	position:relative;
+	overflow:hidden;
+}
+.home-page .hero-title,
+.home-page .hero-tagline,
+.home-page .hero-ctas,
+.home-page .home-stats{
+	animation:home-rise 620ms ease both;
+}
+.home-page .hero-tagline{ animation-delay:80ms; }
+.home-page .hero-ctas{ animation-delay:160ms; }
+.home-page .home-stats{ animation-delay:240ms; }
+.home-page .hero-ctas{
+	justify-content:flex-start;
+	margin-top:26px;
+}
+.home-stats{
+	display:grid;
+	grid-template-columns:repeat(3, minmax(0, 1fr));
+	gap:14px;
+	margin-top:30px;
+	padding-top:26px;
+	border-top:1px solid rgba(17,17,17,0.08);
+}
+.home-stat{
+	padding:16px;
+	border-radius:8px;
+	background:rgba(255,255,255,0.38);
+	border:1px solid rgba(255,255,255,0.58);
+}
+.home-stat strong{
+	display:block;
+	color:var(--text-color);
+	font-size:clamp(1.45rem, 2.2vw, 2.2rem);
+	line-height:1;
+}
+.home-stat span{
+	display:block;
+	margin-top:8px;
+	color:var(--body-font-color);
+	font-size:0.98rem;
+	line-height:1.4;
+}
+.home-section{
+	padding:20px 0 44px;
+}
+.home-section .container{
+	max-width:var(--content-max);
+}
+.home-section-heading{
+	max-width:920px;
+	margin-bottom:24px;
+}
+.home-section-heading h2{
+	margin:0 0 12px;
+	color:var(--text-color);
+	font-size:clamp(1.7rem, 3vw, 2.6rem);
+	line-height:1.12;
+}
+.home-section-heading p{
+	margin:0;
+	color:var(--body-font-color);
+	font-size:1.12rem;
+	line-height:1.65;
+}
+.home-feature-grid,
+.home-pathway-grid{
+	display:grid;
+	gap:18px;
+}
+.home-feature-grid{
+	grid-template-columns:repeat(3, minmax(0, 1fr));
+}
+.home-pathway-grid{
+	grid-template-columns:repeat(3, minmax(0, 1fr));
+}
+.home-feature-card,
+.home-pathway{
+	display:flex;
+	flex-direction:column;
+	min-height:100%;
+	color:inherit;
+	text-decoration:none;
+	border-radius:8px;
+	background:rgba(255,255,255,0.50);
+	border:1px solid rgba(255,255,255,0.68);
+	box-shadow:0 14px 34px rgba(17,17,17,0.07);
+	transition:transform var(--transition-medium), box-shadow var(--transition-medium), background var(--transition-fast);
+	animation:home-rise 620ms ease both;
+	animation-delay:calc(var(--item-index, 0) * 90ms);
+}
+.home-feature-card{
+	padding:24px;
+	min-height:260px;
+}
+.home-pathway{
+	padding:22px;
+}
+.home-feature-card:hover,
+.home-feature-card:focus-visible,
+.home-pathway:hover,
+.home-pathway:focus-visible{
+	transform:translateY(-5px);
+	background:rgba(255,255,255,0.68);
+	box-shadow:0 22px 42px rgba(17,17,17,0.12);
+	outline:none;
+}
+.home-card-kicker{
+	color:var(--accent-ticket);
+	font-weight:800;
+	font-size:0.88rem;
+}
+.home-feature-card h3,
+.home-pathway h3{
+	margin:16px 0 10px;
+	color:var(--text-color);
+	font-size:1.35rem;
+	line-height:1.2;
+}
+.home-feature-card p,
+.home-pathway p{
+	margin:0;
+	color:var(--body-font-color);
+	font-size:1rem;
+	line-height:1.6;
+}
+.home-card-link,
+.home-pathway span{
+	margin-top:auto;
+	padding-top:22px;
+	color:var(--text-color);
+	font-weight:800;
+	font-size:0.98rem;
+}
+.home-card-link::after,
+.home-pathway span::after{
+	content:" ->";
+}
+@keyframes home-rise{
+	from{
+		opacity:0;
+		transform:translateY(14px);
+	}
+	to{
+		opacity:1;
+		transform:translateY(0);
+	}
+}
+
 .donate-section .donate-actions{ display:flex; justify-content:flex-start; margin-top:22px; }
 .donate-section .donate-cta{ padding:12px 20px; font-size:1.05rem; }
 
@@ -644,6 +798,16 @@ a{
 	 Responsive (mobile-first is not used — desktop-first approach)
 	 --------------------------- */
 @media (max-width:992px){
+	.home-stats,
+	.home-feature-grid,
+	.home-pathway-grid{
+		grid-template-columns:1fr;
+	}
+
+	.home-feature-card{
+		min-height:0;
+	}
+
 	.footer-inner,
 	.footer-directory{
 		grid-template-columns:1fr;
@@ -779,8 +943,28 @@ a{
 	}
 }
 
+@media (max-width:640px){
+	.home-page .hero-ctas{
+		display:grid;
+		grid-template-columns:1fr;
+	}
+}
+
 @media (prefers-reduced-motion: reduce){
-	.btn, .nav-list, .primary-nav, .nav-toggle, .nav-toggle rect{ transition:none; animation:none; }
+	.btn,
+	.nav-list,
+	.primary-nav,
+	.nav-toggle,
+	.nav-toggle rect,
+	.home-page .hero-title,
+	.home-page .hero-tagline,
+	.home-page .hero-ctas,
+	.home-page .home-stats,
+	.home-feature-card,
+	.home-pathway{
+		transition:none;
+		animation:none;
+	}
 }
 
 .gallery-container {

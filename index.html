@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="/style.css" />
 	<script defer src="/app.js"></script>
 </head>
-<body data-route="home">
+<body class="home-page" data-route="home">
 	<a class="skip-link" href="#main">Skip to main content</a>
 
 	<div data-site-header></div>
@@ -20,9 +20,29 @@
 				<p class="hero-tagline" data-json="body">
 					We dance to integrate Eastern and Western arts and cultures for a more harmonious world.
 				</p>
+				<div class="hero-ctas" data-home-hero-actions></div>
+				<div class="home-stats" data-home-stats></div>
 			</div>
 		</section>
 
+		<section class="home-section home-intro" aria-labelledby="home-intro-heading">
+			<div class="container">
+				<div class="home-section-heading">
+					<h2 id="home-intro-heading" data-json="introHeading">A community academy for Chinese dance, ballet, and cultural exchange</h2>
+					<p data-json="introBody">Madison Chinese Dance Academy gives students a place to train, perform, and grow through Chinese dance traditions and ballet technique.</p>
+				</div>
+				<div class="home-feature-grid" data-home-feature-cards></div>
+			</div>
+		</section>
+
+		<section class="home-section home-pathways" aria-labelledby="home-pathways-heading">
+			<div class="container">
+				<div class="home-section-heading">
+					<h2 id="home-pathways-heading" data-json="pathwaysHeading">What would you like to do next?</h2>
+				</div>
+				<div class="home-pathway-grid" data-home-pathways></div>
+			</div>
+		</section>
 	</main>
 
 	<div data-site-footer></div>

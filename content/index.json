@@ -2,5 +2,74 @@
   "pageTitle": "Madison Chinese Dance Academy",
   "metaDescription": "Madison Chinese Dance Academy - community classes, performances, and outreach. Purchase tickets or support our community.",
   "heading": "Madison Chinese Dance Academy",
-  "body": "We dance to integrate Eastern and Western arts and cultures for a more harmonious world."
+  "body": "We dance to integrate Eastern and Western arts and cultures for a more harmonious world.",
+  "heroActions": [
+    {
+      "label": "Purchase Tickets",
+      "route": "tickets",
+      "style": "primary"
+    },
+    {
+      "label": "Explore Classes",
+      "route": "dance-classes",
+      "style": "secondary"
+    }
+  ],
+  "stats": [
+    {
+      "value": "1987",
+      "label": "Founded as a nonprofit academy"
+    },
+    {
+      "value": "20+",
+      "label": "Annual performances and workshops"
+    },
+    {
+      "value": "All ages",
+      "label": "Classes for beginner through advanced students"
+    }
+  ],
+  "introHeading": "A community academy for Chinese dance, ballet, and cultural exchange",
+  "introBody": "Madison Chinese Dance Academy gives students a place to train, perform, and grow through Chinese dance traditions and ballet technique. Our programs connect families, artists, and audiences through classes, outreach, and the annual Splendid China performance.",
+  "featureCards": [
+    {
+      "heading": "Classes",
+      "body": "Beginner through advanced dance instruction for students of all ages.",
+      "route": "dance-classes",
+      "label": "View classes"
+    },
+    {
+      "heading": "Splendid China",
+      "body": "Our annual concert brings traditional and contemporary Chinese dance to the stage.",
+      "route": "splendid-china-2026",
+      "label": "See the 2026 show"
+    },
+    {
+      "heading": "Gallery",
+      "body": "Browse moments from performances, community programs, and academy events.",
+      "route": "gallery",
+      "label": "Open gallery"
+    }
+  ],
+  "pathwaysHeading": "What would you like to do next?",
+  "pathways": [
+    {
+      "heading": "Attend a performance",
+      "body": "Get details for Splendid China 2026 and purchase tickets online.",
+      "route": "tickets",
+      "label": "Buy tickets"
+    },
+    {
+      "heading": "Support the academy",
+      "body": "Help fund classes, costumes, rehearsal space, and community outreach.",
+      "route": "donate",
+      "label": "Donate"
+    },
+    {
+      "heading": "Get in touch",
+      "body": "Ask about classes, performances, donations, or community programs.",
+      "route": "contact",
+      "label": "Contact us"
+    }
+  ]
 }

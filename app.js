@@ -207,6 +207,23 @@ function resolveFooterLink(link, routes = {}) {
 	};
 }
 
+function resolveContentLink(link, routes = {}) {
+	if (link.route) {
+		const route = routes[link.route];
+		if (!route) return null;
+
+		return {
+			href: route.href,
+			label: link.label || link.heading || link.route
+		};
+	}
+
+	return {
+		href: link.href || '#',
+		label: link.label || link.heading || link.href || ''
+	};
+}
+
 function getPageRouteId(site, pageId) {
 	const routes = site.routes || {};
 	return Object.keys(routes).find((routeId) => routes[routeId].page === pageId) || null;
@@ -273,6 +290,70 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const ariaLabel = action.ariaLabel || label;
 
 		return `<a href="${resolveHref(action.href)}" class="btn btn-${style} header-cta" role="button" aria-label="${escapeHtml(ariaLabel)}"${currentAttr}>${escapeHtml(label)}</a>`;
+	}
+
+	function contentAction(action) {
+		const link = resolveContentLink(action, routes);
+		if (!link) return '';
+
+		const style = action.style === 'secondary' ? 'secondary' : 'primary';
+		return `<a href="${resolveHref(link.href)}" class="btn btn-${style}">${escapeHtml(link.label)}</a>`;
+	}
+
+	function renderHomePage() {
+		const actionMount = $('[data-home-hero-actions]');
+		if (actionMount) {
+			const actions = Array.isArray(content.heroActions) ? content.heroActions : [];
+			actionMount.innerHTML = actions.map(contentAction).join('');
+		}
+
+		const statsMount = $('[data-home-stats]');
+		if (statsMount) {
+			const stats = Array.isArray(content.stats) ? content.stats : [];
+			statsMount.innerHTML = stats.map((stat) => `
+				<div class="home-stat">
+					<strong>${escapeHtml(stat.value || '')}</strong>
+					<span>${escapeHtml(stat.label || '')}</span>
+				</div>
+			`).join('');
+		}
+
+		const featureMount = $('[data-home-feature-cards]');
+		if (featureMount) {
+			const cards = Array.isArray(content.featureCards) ? content.featureCards : [];
+			featureMount.innerHTML = cards.map((card, index) => {
+				const link = resolveContentLink(card, routes);
+				const href = link ? resolveHref(link.href) : '#';
+				const label = link?.label || 'Learn more';
+
+				return `
+					<a class="home-feature-card" href="${href}" style="--item-index:${index}">
+						<span class="home-card-kicker">${String(index + 1).padStart(2, '0')}</span>
+						<h3>${escapeHtml(card.heading || '')}</h3>
+						<p>${escapeHtml(card.body || '')}</p>
+						<span class="home-card-link">${escapeHtml(label)}</span>
+					</a>
+				`;
+			}).join('');
+		}
+
+		const pathwaysMount = $('[data-home-pathways]');
+		if (pathwaysMount) {
+			const pathways = Array.isArray(content.pathways) ? content.pathways : [];
+			pathwaysMount.innerHTML = pathways.map((pathway, index) => {
+				const link = resolveContentLink(pathway, routes);
+				const href = link ? resolveHref(link.href) : '#';
+				const label = link?.label || 'Learn more';
+
+				return `
+					<a class="home-pathway" href="${href}" style="--item-index:${index}">
+						<h3>${escapeHtml(pathway.heading || '')}</h3>
+						<p>${escapeHtml(pathway.body || '')}</p>
+						<span>${escapeHtml(label)}</span>
+					</a>
+				`;
+			}).join('');
+		}
 	}
 
 	function renderHeader() {
@@ -379,6 +460,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	applyJsonContent(content, routes);
+	renderHomePage();
 	renderHeader();
 	renderFooter();
 
