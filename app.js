@@ -90,7 +90,7 @@ function shouldUsePlainText(element) {
 }
 
 function renderRichText(value, element) {
-	const text = String(value).trim();
+	const text = String(value).replace(/\/n/g, '\n').trim();
 	if (!text) return '';
 
 	const blocks = text
@@ -123,6 +123,9 @@ function applyJsonContent(content, routes) {
 		} else if (shouldUsePlainText(element)) {
 			element.textContent = value;
 		} else {
+			if (!['A', 'BUTTON'].includes(element.tagName)) {
+				element.classList.add('json-body-text');
+			}
 			element.innerHTML = renderRichText(value, element);
 		}
 

@@ -467,11 +467,15 @@ a{
 }
 .section p:last-child{ margin-bottom:0; }
 
+.json-body-text,
+.json-body-text p{
+	color:var(--body-font-color);
+	font-size:var(--body-font-size);
+	font-weight:400;
+}
+
 .section-note{
 	margin:0;
-	color:var(--muted);
-	font-size:1rem;
-	font-weight:600;
 }
 
 .donate-section .donate-actions{ display:flex; justify-content:flex-start; margin-top:22px; }
