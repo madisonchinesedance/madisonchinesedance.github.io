@@ -1,6 +1,6 @@
 // app.js
 // Small, dependency-free script:
-// - loads editable site/page copy from JSON files
+// - loads site config, routes, and page copy from JSON
 // - renders shared site header and footer
 // - toggles mobile nav visibility (aria-friendly)
 // - accessible keyboard handling (Escape closes mobile nav)
@@ -10,27 +10,19 @@ const $ = (sel) => document.querySelector(sel);
 /* Utility: select all */
 const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
-function getPageId() {
-    const path = window.location.pathname;
-    if (!path.includes('/pages/')) {
-        return 'index.html';
-    }
-    let pagePath = path.substring(path.indexOf('/pages/') + 7);
-    if (pagePath === '' || pagePath.endsWith('/')) {
-        pagePath += 'index.html';
-    }
-    return pagePath;
-}
+const CONTENT_ROOT = '/content/';
 
-function getRootPath() {
+function getPageId() {
 	const path = window.location.pathname;
 	if (!path.includes('/pages/')) {
-		return '';
+		return 'index.html';
 	}
 
-	const pagePath = getPageId();
-	const depth = pagePath.split('/').length;
-	return '../'.repeat(depth);
+	let pagePath = path.substring(path.indexOf('/pages/') + 7);
+	if (pagePath === '' || pagePath.endsWith('/')) {
+		pagePath += 'index.html';
+	}
+	return pagePath;
 }
 
 function escapeHtml(value) {
@@ -53,16 +45,71 @@ async function loadJson(path) {
 	}
 }
 
-function renderMultiline(value) {
-	return escapeHtml(value)
-		.split(/\n{2,}/)
-		.map((paragraph) => paragraph.trim().replace(/\n/g, '<br>'))
-		.filter(Boolean)
-		.map((paragraph) => `<p>${paragraph}</p>`)
-		.join('');
+function sitePath(relativePath = '') {
+	if (!relativePath) return '/';
+	const normalized = String(relativePath).replace(/^\/+/, '');
+	return `/${normalized}`;
 }
 
-function applyJsonContent(content) {
+function resolveLink(value, routes = {}) {
+	if (value === undefined || value === null) return '#';
+	const text = String(value);
+
+	if (text.startsWith('@')) {
+		const route = routes[text.slice(1)];
+		return route ? sitePath(route.href) : '#';
+	}
+
+	if (/^(https?:|mailto:|tel:|#)/.test(text)) return text;
+	if (text.startsWith('/')) return text;
+	return sitePath(text);
+}
+
+const ALLOWED_INLINE_TAGS = /<\/?(?:b|strong|i|em|br)\b[^>]*>/gi;
+
+function sanitizeInlineHtml(text) {
+	const saved = [];
+	let safe = String(text).replace(ALLOWED_INLINE_TAGS, (tag) => {
+		const id = saved.push(tag.toLowerCase()) - 1;
+		return `\uE000${id}\uE001`;
+	});
+	safe = escapeHtml(safe);
+	return safe.replace(/\uE000(\d+)\uE001/g, (_, index) => saved[Number(index)] || '');
+}
+
+function usesParagraphWrapper(element) {
+	const tag = element.tagName;
+	return tag === 'DIV' || tag === 'SECTION' || element.hasAttribute('data-json-multiline');
+}
+
+function shouldUsePlainText(element) {
+	if (element.hasAttribute('data-json-attr')) return true;
+	if (element.hasAttribute('data-json-plain')) return true;
+	const tag = element.tagName;
+	return tag === 'TITLE' || tag === 'META' || /^H[1-6]$/.test(tag);
+}
+
+function renderRichText(value, element) {
+	const text = String(value).replace(/\/n/g, '\n').trim();
+	if (!text) return '';
+
+	const blocks = text
+		.split(/\n{2,}/)
+		.map((paragraph) => paragraph.trim())
+		.filter(Boolean)
+		.map((paragraph) => paragraph
+			.split('\n')
+			.map((line) => sanitizeInlineHtml(line))
+			.join('<br>'));
+
+	if (usesParagraphWrapper(element)) {
+		return blocks.map((block) => `<p>${block}</p>`).join('');
+	}
+
+	return blocks.join('<br><br>');
+}
+
+function applyJsonContent(content, routes) {
 	$$('[data-json]').forEach((element) => {
 		const key = element.getAttribute('data-json');
 		if (!key || content[key] === undefined) return;
@@ -72,111 +119,98 @@ function applyJsonContent(content) {
 		const hrefKey = element.getAttribute('data-json-href');
 
 		if (attr) {
-			element.setAttribute(attr, value);
-		} else if (element.hasAttribute('data-json-multiline')) {
-			element.innerHTML = renderMultiline(value);
-		} else {
+			element.setAttribute(attr, String(value).replace(/\s+/g, ' ').trim());
+		} else if (shouldUsePlainText(element)) {
 			element.textContent = value;
+		} else {
+			if (!['A', 'BUTTON'].includes(element.tagName)) {
+				element.classList.add('json-body-text');
+			}
+			element.innerHTML = renderRichText(value, element);
 		}
 
 		if (hrefKey && content[hrefKey] !== undefined) {
-			element.setAttribute('href', content[hrefKey]);
+			element.setAttribute('href', resolveLink(content[hrefKey], routes));
 		}
 	});
 }
 
-function defaultHeaderContent(content = {}) {
-	const splendidYears = ['2026', '2025', '2024', '2023', '2022', '2021', '2020'];
+function resolveNavEntry(entry, routes) {
+	if (entry.route) {
+		const route = routes[entry.route];
+		if (!route) return null;
+
+		return {
+			href: route.href,
+			page: route.page,
+			label: entry.label || entry.route
+		};
+	}
+
+	if (entry.items) {
+		return {
+			label: entry.label,
+			items: entry.items.map((item) => resolveNavEntry(item, routes)).filter(Boolean)
+		};
+	}
+
+	return null;
+}
+
+function buildHeader(site = {}) {
+	const routes = site.routes || {};
+	const header = site.header || {};
+	const logoRoute = header.logo?.route ? routes[header.logo.route] : routes.home;
+	const logo = {
+		text: header.logo?.text || 'Madison Chinese Dance Academy',
+		shortText: header.logo?.shortText || 'MCDA',
+		ariaLabel: header.logo?.ariaLabel || 'Madison Chinese Dance Academy home',
+		href: logoRoute?.href || 'index.html',
+		page: logoRoute?.page || 'index.html'
+	};
 
 	return {
-		logo: {
-			text: content.logoText || 'Madison Chinese Dance Academy',
-			shortText: 'MCDA',
-			href: 'index.html',
-			ariaLabel: `${content.logoText || 'Madison Chinese Dance Academy'} home`
-		},
-		navigationLabel: 'Primary navigation',
-		menuToggleOpenLabel: 'Open navigation',
-		menuToggleCloseLabel: 'Close navigation',
-		navItems: [
-			{ href: 'index.html', page: 'index.html', label: content.navHome || 'Home' },
-			{
-				label: content.navAbout || 'About Us',
-				items: [
-					{ href: 'pages/about/about.html', page: 'about/about.html', label: content.navAbout || 'About Us' },
-					{ href: 'pages/about/contact.html', page: 'about/contact.html', label: content.navContact || 'Contact' }
-				]
-			},
-			{
-				label: 'Community',
-				items: [
-					{ href: 'pages/community/events.html', page: 'community/events.html', label: 'Events' },
-					{ href: 'pages/classes/services.html', page: 'classes/services.html', label: 'Services' }
-				]
-			},
-			{
-				label: 'Programs',
-				items: [
-					{ href: 'pages/classes/dance-classes.html', page: 'classes/dance-classes.html', label: 'Dance Classes' }
-				]
-			},
-			{ href: 'pages/community/gallery.html', page: 'community/gallery.html', label: 'Gallery' },
-			{
-				label: content.navSplendid || 'Splendid China',
-				items: splendidYears.map((year) => ({
-					href: `pages/splendid-china/splendid-china-${year}.html`,
-					page: `splendid-china/splendid-china-${year}.html`,
-					label: `Splendid China ${year}`
-				}))
-			}
-		],
-		actions: [
-			{
-				label: content.ctaTickets || 'Purchase Tickets',
-				href: content.ctaTicketsHref || 'pages/tickets.html',
-				page: 'tickets.html',
-				style: 'primary',
-				ariaLabel: content.ctaTickets || 'Purchase Tickets'
-			},
-			{
-				label: content.ctaDonate || 'Donate',
-				href: content.ctaDonateHref || 'pages/donate.html',
-				page: 'donate.html',
-				style: 'secondary',
-				ariaLabel: content.ctaDonate || 'Donate'
-			}
-		]
+		logo,
+		navigationLabel: header.navigationLabel || 'Primary navigation',
+		menuToggleOpenLabel: header.menuToggleOpenLabel || 'Open navigation',
+		menuToggleCloseLabel: header.menuToggleCloseLabel || 'Close navigation',
+		navItems: (header.nav || []).map((entry) => resolveNavEntry(entry, routes)).filter(Boolean),
+		actions: (header.actions || []).map((action) => {
+			const route = routes[action.route];
+			if (!route) return null;
+
+			return {
+				href: route.href,
+				page: route.page,
+				label: action.label || action.route,
+				style: action.style === 'secondary' ? 'secondary' : 'primary',
+				ariaLabel: action.ariaLabel || action.label || action.route
+			};
+		}).filter(Boolean)
 	};
 }
 
-function headerContent(content = {}) {
-	const fallback = defaultHeaderContent(content);
-	const header = content.header || {};
-
-	return {
-		...fallback,
-		...header,
-		logo: { ...fallback.logo, ...(header.logo || {}) },
-		navItems: Array.isArray(header.navItems) ? header.navItems : fallback.navItems,
-		actions: Array.isArray(header.actions) ? header.actions : fallback.actions
-	};
+function getPageRouteId(site, pageId) {
+	const routes = site.routes || {};
+	return Object.keys(routes).find((routeId) => routes[routeId].page === pageId) || null;
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-	const basePath = getRootPath();
 	const currentPage = getPageId();
-	const pageContentFile = document.body.getAttribute('data-content-file');
-	const [siteContent, pageContent] = await Promise.all([
-		loadJson(`${basePath}content/site.json`),
-		pageContentFile ? loadJson(`${basePath}content/${pageContentFile}.json`) : Promise.resolve({})
-	]);
-	const content = { ...siteContent, ...pageContent };
-	const header = headerContent(content);
+	const site = await loadJson(`${CONTENT_ROOT}site.json`);
+	const pageRouteId = document.body.getAttribute('data-route')
+		|| getPageRouteId(site, currentPage);
+	const pageContentPath = pageRouteId ? site.routes?.[pageRouteId]?.content : null;
+	const pageContent = pageContentPath
+		? await loadJson(`${CONTENT_ROOT}${pageContentPath}`)
+		: {};
+
+	const routes = site.routes || {};
+	const content = { ...site, ...pageContent };
+	const header = buildHeader(site);
 
 	function resolveHref(href = '') {
-		if (!href) return '#';
-		if (/^(https?:|mailto:|tel:|#|\/)/.test(href)) return href;
-		return `${basePath}${href}`;
+		return resolveLink(href, routes);
 	}
 
 	function isActivePage(item) {
@@ -285,7 +319,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		`;
 	}
 
-	applyJsonContent(content);
+	applyJsonContent(content, routes);
 	renderHeader();
 	renderFooter();
 
@@ -362,19 +396,67 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const lightboxClose = $('.gallery-lightbox-close');
 		const prevButton = galleryContainer.querySelector('.prev');
 		const nextButton = galleryContainer.querySelector('.next');
-		const galleryImages = Array.isArray(content.galleryImages) ? content.galleryImages : [];
+		const galleryGroups = Array.isArray(content.galleryGroups) ? content.galleryGroups : [];
+		const groupedImages = galleryGroups.flatMap((group) => {
+			const events = Array.isArray(group.events) ? group.events : [];
+			return events.flatMap((event) => {
+				const images = Array.isArray(event.images) ? event.images : [];
+				return images.map((image) => ({
+					...image,
+					year: group.year,
+					event: event.event
+				}));
+			});
+		});
+		const galleryImages = groupedImages.length > 0
+			? groupedImages
+			: (Array.isArray(content.galleryImages) ? content.galleryImages : []);
 
 		if (galleryImages.length > 0) {
 			galleryWrapper.innerHTML = galleryImages.map((image, index) => `
-				<img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
+				<img src="${escapeHtml(resolveLink(image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
 			`).join('');
 
 			if (galleryGrid) {
-				galleryGrid.innerHTML = galleryImages.map((image, index) => `
-					<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
-						<img src="${escapeHtml(image.thumb || image.src)}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
-					</button>
-				`).join('');
+				let imageIndex = 0;
+
+				if (galleryGroups.length > 0) {
+					galleryGrid.innerHTML = galleryGroups.map((group) => {
+						const events = Array.isArray(group.events) ? group.events : [];
+						const eventMarkup = events.map((event) => {
+							const images = Array.isArray(event.images) ? event.images : [];
+							const thumbnails = images.map((image) => {
+								const index = imageIndex;
+								imageIndex += 1;
+								return `
+									<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
+										<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
+									</button>
+								`;
+							}).join('');
+
+							return `
+								<section class="gallery-event" aria-label="${escapeHtml(event.event || `Gallery ${group.year}`)}">
+									<h3>${escapeHtml(event.event || `Gallery ${group.year}`)}</h3>
+									<div class="gallery-event-grid">${thumbnails}</div>
+								</section>
+							`;
+						}).join('');
+
+						return `
+							<section class="gallery-year" aria-label="${escapeHtml(`${group.year} gallery images`)}">
+								<h2>${escapeHtml(group.year)}</h2>
+								${eventMarkup}
+							</section>
+						`;
+					}).join('');
+				} else {
+					galleryGrid.innerHTML = galleryImages.map((image, index) => `
+						<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
+							<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
+						</button>
+					`).join('');
+				}
 			}
 		}
 

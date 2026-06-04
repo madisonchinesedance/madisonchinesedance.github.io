@@ -1,118 +1,142 @@
 {
+  "routes": {
+    "home": {
+      "href": "index.html",
+      "page": "index.html",
+      "content": "index.json"
+    },
+    "about": {
+      "href": "pages/about/about.html",
+      "page": "about/about.html",
+      "content": "about/about.json"
+    },
+    "contact": {
+      "href": "pages/about/contact.html",
+      "page": "about/contact.html",
+      "content": "about/contact.json"
+    },
+    "events": {
+      "href": "pages/community/events.html",
+      "page": "community/events.html",
+      "content": "community/events.json"
+    },
+    "services": {
+      "href": "pages/community/services.html",
+      "page": "community/services.html",
+      "content": "community/services.json"
+    },
+    "dance-classes": {
+      "href": "pages/programs/dance-classes.html",
+      "page": "programs/dance-classes.html",
+      "content": "programs/dance-classes.json"
+    },
+    "gallery": {
+      "href": "pages/gallery.html",
+      "page": "gallery.html",
+      "content": "gallery.json"
+    },
+    "tickets": {
+      "href": "pages/tickets.html",
+      "page": "tickets.html",
+      "content": "tickets.json"
+    },
+    "donate": {
+      "href": "pages/donate.html",
+      "page": "donate.html",
+      "content": "donate.json"
+    },
+    "splendid-china-2026": {
+      "href": "pages/splendid-china/splendid-china-2026.html",
+      "page": "splendid-china/splendid-china-2026.html",
+      "content": "splendid-china/splendid-china-2026.json"
+    },
+    "splendid-china-2025": {
+      "href": "pages/splendid-china/splendid-china-2025.html",
+      "page": "splendid-china/splendid-china-2025.html",
+      "content": "splendid-china/splendid-china-2025.json"
+    },
+    "splendid-china-2024": {
+      "href": "pages/splendid-china/splendid-china-2024.html",
+      "page": "splendid-china/splendid-china-2024.html",
+      "content": "splendid-china/splendid-china-2024.json"
+    },
+    "splendid-china-2023": {
+      "href": "pages/splendid-china/splendid-china-2023.html",
+      "page": "splendid-china/splendid-china-2023.html",
+      "content": "splendid-china/splendid-china-2023.json"
+    },
+    "splendid-china-2022": {
+      "href": "pages/splendid-china/splendid-china-2022.html",
+      "page": "splendid-china/splendid-china-2022.html",
+      "content": "splendid-china/splendid-china-2022.json"
+    },
+    "splendid-china-2021": {
+      "href": "pages/splendid-china/splendid-china-2021.html",
+      "page": "splendid-china/splendid-china-2021.html",
+      "content": "splendid-china/splendid-china-2021.json"
+    },
+    "splendid-china-2020": {
+      "href": "pages/splendid-china/splendid-china-2020.html",
+      "page": "splendid-china/splendid-china-2020.html",
+      "content": "splendid-china/splendid-china-2020.json"
+    }
+  },
   "header": {
     "logo": {
+      "route": "home",
       "text": "Madison Chinese Dance Academy",
       "shortText": "MCDA",
-      "href": "index.html",
       "ariaLabel": "Madison Chinese Dance Academy home"
     },
     "navigationLabel": "Primary navigation",
     "menuToggleOpenLabel": "Open navigation",
     "menuToggleCloseLabel": "Close navigation",
-    "navItems": [
-      {
-        "label": "Home",
-        "href": "index.html",
-        "page": "index.html"
-      },
+    "nav": [
+      { "route": "home", "label": "Home" },
       {
         "label": "About Us",
         "items": [
-          {
-            "label": "About Us",
-            "href": "pages/about/about.html",
-            "page": "about/about.html"
-          },
-          {
-            "label": "Contact",
-            "href": "pages/about/contact.html",
-            "page": "about/contact.html"
-          }
+          { "route": "about", "label": "About Us" },
+          { "route": "contact", "label": "Contact" }
         ]
       },
       {
         "label": "Community",
         "items": [
-          {
-            "label": "Events",
-            "href": "pages/community/events.html",
-            "page": "community/events.html"
-          },
-          {
-            "label": "Services",
-            "href": "pages/classes/services.html",
-            "page": "classes/services.html"
-          }
+          { "route": "events", "label": "Events" },
+          { "route": "services", "label": "Services" }
         ]
       },
       {
         "label": "Programs",
         "items": [
-          {
-            "label": "Dance Classes",
-            "href": "pages/classes/dance-classes.html",
-            "page": "classes/dance-classes.html"
-          }
+          { "route": "dance-classes", "label": "Dance Classes" }
         ]
       },
-      {
-        "label": "Gallery",
-        "href": "pages/community/gallery.html",
-        "page": "community/gallery.html"
-      },
+      { "route": "gallery", "label": "Gallery" },
       {
         "label": "Splendid China",
         "items": [
-          {
-            "label": "Splendid China 2026",
-            "href": "pages/splendid-china/splendid-china-2026.html",
-            "page": "splendid-china/splendid-china-2026.html"
-          },
-          {
-            "label": "Splendid China 2025",
-            "href": "pages/splendid-china/splendid-china-2025.html",
-            "page": "splendid-china/splendid-china-2025.html"
-          },
-          {
-            "label": "Splendid China 2024",
-            "href": "pages/splendid-china/splendid-china-2024.html",
-            "page": "splendid-china/splendid-china-2024.html"
-          },
-          {
-            "label": "Splendid China 2023",
-            "href": "pages/splendid-china/splendid-china-2023.html",
-            "page": "splendid-china/splendid-china-2023.html"
-          },
-          {
-            "label": "Splendid China 2022",
-            "href": "pages/splendid-china/splendid-china-2022.html",
-            "page": "splendid-china/splendid-china-2022.html"
-          },
-          {
-            "label": "Splendid China 2021",
-            "href": "pages/splendid-china/splendid-china-2021.html",
-            "page": "splendid-china/splendid-china-2021.html"
-          },
-          {
-            "label": "Splendid China 2020",
-            "href": "pages/splendid-china/splendid-china-2020.html",
-            "page": "splendid-china/splendid-china-2020.html"
-          }
+          { "route": "splendid-china-2026", "label": "Splendid China 2026" },
+          { "route": "splendid-china-2025", "label": "Splendid China 2025" },
+          { "route": "splendid-china-2024", "label": "Splendid China 2024" },
+          { "route": "splendid-china-2023", "label": "Splendid China 2023" },
+          { "route": "splendid-china-2022", "label": "Splendid China 2022" },
+          { "route": "splendid-china-2021", "label": "Splendid China 2021" },
+          { "route": "splendid-china-2020", "label": "Splendid China 2020" }
         ]
       }
     ],
     "actions": [
       {
+        "route": "tickets",
         "label": "Purchase Tickets",
-        "href": "pages/tickets.html",
-        "page": "tickets.html",
         "style": "primary",
         "ariaLabel": "Purchase Tickets"
       },
       {
+        "route": "donate",
         "label": "Donate",
-        "href": "pages/donate.html",
-        "page": "donate.html",
         "style": "secondary",
         "ariaLabel": "Donate"
       }

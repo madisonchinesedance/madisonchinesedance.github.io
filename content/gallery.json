@@ -1,31 +1,38 @@
 {
-  "galleryPageTitle": "Gallery | Madison Chinese Dance Academy",
-  "galleryMetaDescription": "Image gallery of the Madison Chinese Dance Academy.",
-  "galleryHeroHeading": "Gallery",
+  "pageTitle": "Gallery | Madison Chinese Dance Academy",
+  "metaDescription": "Image gallery of the Madison Chinese Dance Academy.",
+  "heading": "Gallery",
+  "galleryGroups": [],
   "galleryImages": [
     {
-      "src": "https://picsum.photos/id/1015/800/600",
-      "alt": "Placeholder Image 1"
+      "src": "/images/gallery/N01_0021.jpg",
+      "thumb": "/images/gallery/N01_0021.jpg",
+      "alt": "N01 0021"
     },
     {
-      "src": "https://picsum.photos/id/1016/800/600",
-      "alt": "Placeholder Image 2"
+      "src": "/images/gallery/N01_0030.jpg",
+      "thumb": "/images/gallery/N01_0030.jpg",
+      "alt": "N01 0030"
     },
     {
-      "src": "https://picsum.photos/id/1018/800/600",
-      "alt": "Placeholder Image 3"
+      "src": "/images/gallery/Screenshot_3-6-2026_17831_www.chinesedances.org.jpeg",
+      "thumb": "/images/gallery/Screenshot_3-6-2026_17831_www.chinesedances.org.jpeg",
+      "alt": "Screenshot 3 6 2026 17831 Www.Chinesedances.Org"
     },
     {
-      "src": "https://picsum.photos/id/1019/800/600",
-      "alt": "Placeholder Image 4"
+      "src": "/images/gallery/Screenshot_3-6-2026_17844_www.chinesedances.org.jpeg",
+      "thumb": "/images/gallery/Screenshot_3-6-2026_17844_www.chinesedances.org.jpeg",
+      "alt": "Screenshot 3 6 2026 17844 Www.Chinesedances.Org"
     },
     {
-      "src": "https://picsum.photos/id/1020/800/600",
-      "alt": "Placeholder Image 5"
+      "src": "/images/gallery/Screenshot_3-6-2026_17859_www.chinesedances.org.jpeg",
+      "thumb": "/images/gallery/Screenshot_3-6-2026_17859_www.chinesedances.org.jpeg",
+      "alt": "Screenshot 3 6 2026 17859 Www.Chinesedances.Org"
     },
     {
-      "src": "https://picsum.photos/id/1021/800/600",
-      "alt": "Placeholder Image 6"
+      "src": "/images/gallery/Screenshot_3-6-2026_17913_www.chinesedances.org.jpeg",
+      "thumb": "/images/gallery/Screenshot_3-6-2026_17913_www.chinesedances.org.jpeg",
+      "alt": "Screenshot 3 6 2026 17913 Www.Chinesedances.Org"
     }
   ]
 }
