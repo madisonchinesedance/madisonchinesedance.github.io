@@ -85,7 +85,7 @@ The scanner updates `content/gallery.json`, and the Gallery page renders the ima
 	- `--base-font-size` — root font size (px)
 	- `--body-font-size` and `--body-font-color` — paragraph text size and color
 	- `--nav-link-font-size` — header tab text size
-	- `--page-heading-size` and `--page-heading-weight` — page/hero heading sizing
+	- `--heading-1-font-size` and `--heading-1-font-weight` — page/hero heading sizing
 	- `--content-max` — maximum measure used for centered content blocks
 
 ## Notes & tips
