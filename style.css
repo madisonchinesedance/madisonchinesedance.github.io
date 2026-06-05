@@ -21,16 +21,7 @@
 	--color-green: #1E7E34;
 	--color-peach: #FFE2CF;
 	--color-peach-dark: #FFAD82;
-
-	/* Alpha colors */
-	--alpha-white-08: #FFFFFF14;
-	--alpha-white-12: #FFFFFF1F;
-	--alpha-white-14: #FFFFFF24;
-	--alpha-white-16: #FFFFFF29;
-	--alpha-white-44: #FFFFFF70;
-	--alpha-peach-94: #FFD9C2F0;
-	--alpha-peach-pale-22: #FFF4E738;
-	--alpha-peach-medium-82: #FFAD82D1;
+	--color-blue-grey: #FFFFFF14;
 
 	/* Announcement highlight colors */
 	--peach-glow: #FFD9C2F2;
@@ -42,7 +33,7 @@
 	--blue-ring: #6096FF9E;
 	--blue-glow: #6096FF9E;
 
-	--announcement-button-border: #0613322E;
+	--announcement-button-border: var(--color-black);
 
 	/* Brand/background colors */
 	--bg-top: var(--color-deep-navy);
@@ -53,12 +44,12 @@
 	--hero-bg-bottom: var(--color-sunrise);
 	--light-text-color: var(--color-white);
 	--dark-text-color: var(--color-black);
-	--page-bg-gradient: linear-gradient(to bottom, var(--bg-top) 0%, var(--bg-middle) 55%, var(--bg-bottom) 100%);
-	--hero-bg-gradient: linear-gradient(180deg, var(--hero-bg-top) 0%, var(--hero-bg-middle) 52%, var(--hero-bg-bottom) 100%);
-	--home-intro-bg: linear-gradient(180deg, var(--color-deep-navy) 0%, var(--bg-top) 86%);
-	--home-intro-rule-bg: linear-gradient(90deg, var(--color-transparent), var(--alpha-peach-pale-22), var(--color-transparent));
-	--ticket-embed-bg: linear-gradient(180deg, var(--alpha-peach-94), var(--alpha-peach-medium-82)), linear-gradient(to bottom, var(--hero-bg-middle), var(--hero-bg-bottom));
-	--footer-bg: linear-gradient(180deg, var(--color-deep-navy), var(--color-deep-navy));
+
+	--page-bg-gradient: linear-gradient(var(--bg-top), var(--bg-middle), var(--bg-bottom));
+	--hero-bg-gradient: linear-gradient(180deg, var(--hero-bg-top), var(--hero-bg-middle), var(--hero-bg-bottom));
+	--home-intro-bg: var(--color-deep-navy);
+	--zeffy-embed-bg: linear-gradient(180deg, var(--color-deep-navy), var(--color-sunrise));
+	--footer-bg: var(--color-deep-navy);
 
 	/* Typography */
 	--font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
@@ -133,7 +124,7 @@
 
 	/* Surface / UI colors */
 	--surface-foreground: var(--color-white);
-	--surface-contrast: var(--alpha-white-16);
+	--surface-contrast: var(--color-blue-grey);
 	--header-bg-start: var(--color-deep-navy);
 	--header-bg-end: var(--color-deep-navy);
 	--header-bg: linear-gradient(to right, var(--header-bg-start), var(--header-bg-end));
@@ -141,13 +132,11 @@
 	--surface-backdrop-end: var(--color-deep-navy);
 	--surface-panel: var(--color-deep-navy);
 	--surface-panel-strong: var(--color-deep-navy);
-	--surface-panel-border: var(--alpha-white-14);
-	--surface-card: linear-gradient(135deg, var(--color-peach), var(--color-peach-dark));
-	--surface-card-hover: linear-gradient(135deg, var(--color-peach), var(--color-peach));
-	--surface-card-border: var(--peach-ring);
-	--surface-stat: var(--surface-card);
-	--surface-stat-border: var(--surface-card-border);
-	--nav-hover-bg: var(--alpha-white-12);
+	--surface-panel-border: var(--color-blue-grey);
+	--card-bg: linear-gradient(135deg, var(--color-peach), var(--color-peach-dark));
+	--card-bg-hover: linear-gradient(135deg, var(--color-peach), var(--color-peach-dark));
+	--card-border: var(--color-peach-dark);
+	--nav-hover-bg: var(--color-blue-grey);
 	--nav-toggle-ring: var(--color-black);
 	--nav-subtle-border: var(--color-black);
 	--focus-ring: #FFBE9147;
@@ -172,13 +161,13 @@
 	--gallery-lightbox-shadow: 0 24px 70px var(--color-navy-shadow);
 	--footer-shadow: 0 -6px 20px var(--color-navy-shadow);
 	--footer-logo-shadow: 0 12px 26px var(--color-navy-shadow);
-	--header-current-shadow: 0 0 0 3px var(--alpha-white-44);
+	--header-current-shadow: 0 0 0 3px var(--color-blue-grey);
 	--highlight-shadow: 0 0 0 2px var(--highlight-ring), 0 0 18px var(--highlight-glow);
 	--highlight-shadow-soft: 0 0 0 2px var(--highlight-ring), 0 0 12px var(--highlight-glow);
 	--highlight-shadow-strong: 0 0 0 3px var(--highlight-ring-strong), 0 0 24px var(--highlight-glow-strong);
 
 	/* Gallery */
-	--gallery-bg: var(--alpha-white-08);
+	--gallery-bg: var(--color-blue-grey);
 	--gallery-control-bg: var(--color-black);
 	--gallery-thumb-bg: var(--color-white);
 	--gallery-overlay-bg: var(--color-black);
@@ -513,7 +502,7 @@ a{
 	font-weight:var(--primary-button-font-weight);
 	text-decoration:none;
 	border:1px solid var(--announcement-button-border);
-	background:var(--surface-card);
+	background:var(--card-bg);
 	transition:transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
 }
 .announcement-dismiss{
@@ -525,7 +514,7 @@ a{
 	height:30px;
 	border:1px solid var(--announcement-button-border);
 	border-radius:999px;
-	background:var(--surface-card);
+	background:var(--card-bg);
 	color:var(--dark-text-color);
 	font:inherit;
 	font-size:1.5rem;
@@ -537,13 +526,13 @@ a{
 .announcement-dismiss:hover,
 .announcement-dismiss:focus-visible{
 	transform:translateY(-1px);
-	background:var(--surface-card-hover);
+	background:var(--card-bg-hover);
 	outline:none;
 }
 .announcement-link:hover,
 .announcement-link:focus-visible{
 	transform:translateY(-1px);
-	background:var(--surface-card-hover);
+	background:var(--card-bg-hover);
 	outline:none;
 }
 .is-announcement-highlight{
@@ -595,8 +584,8 @@ a{
 .hero-inner,
 .page-hero .container,
 .section .container{
-	background:var(--surface-card);
-	border:1px solid var(--surface-card-border);
+	background:var(--card-bg);
+	border:1px solid var(--card-border);
 	border-radius:var(--radius);
 	box-shadow:var(--panel-shadow);
 	padding:clamp(18px, 3vw, 40px);
@@ -813,8 +802,8 @@ a{
 .home-stat{
 	padding:16px;
 	border-radius:var(--card-radius);
-	background:var(--surface-stat);
-	border:1px solid var(--surface-stat-border);
+	background:var(--card-bg);
+	border:1px solid var(--card-border);
 }
 .home-stat strong{
 	display:block;
@@ -849,7 +838,7 @@ a{
 	left:clamp(20px, 5vw, 76px);
 	right:clamp(20px, 5vw, 76px);
 	height:1px;
-	background:var(--home-intro-rule-bg);
+	background:var(--home-intro-bg);
 }
 .home-intro .container{
 	position:relative;
@@ -894,8 +883,8 @@ a{
 	color:inherit;
 	text-decoration:none;
 	border-radius:var(--card-radius);
-	background:var(--surface-card);
-	border:1px solid var(--surface-card-border);
+	background:var(--card-bg);
+	border:1px solid var(--card-border);
 	box-shadow:var(--card-shadow);
 	transition:transform var(--transition-medium), box-shadow var(--transition-medium), background var(--transition-fast);
 	animation:home-rise var(--entrance-duration) ease both;
@@ -913,7 +902,7 @@ a{
 .home-pathway:hover,
 .home-pathway:focus-visible{
 	transform:translateY(-5px);
-	background:var(--surface-card-hover);
+	background:var(--card-bg-hover);
 	box-shadow:var(--card-shadow-hover);
 	outline:none;
 }
@@ -971,11 +960,11 @@ a{
 }
 
 .ticket-embed{
-	background:var(--ticket-embed-bg);
+	background:var(--zeffy-embed-bg);
 	border-radius:14px;
 	padding:clamp(18px, 3vw, 32px);
 	box-shadow:var(--card-shadow);
-	border:1px solid var(--surface-card-border);
+	border:1px solid var(--card-border);
 	overflow:hidden;
 	position:relative;
 	width:100%;
@@ -1207,7 +1196,7 @@ a{
 	width:54px;
 	height:54px;
 	border-radius:50%;
-	background:var(--surface-card);
+	background:var(--card-bg);
 	color:var(--dark-text-color);
 	text-decoration:none;
 	font-weight:800;
