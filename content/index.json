@@ -28,19 +28,22 @@
           ]
         },
         {
-          "type": "stats",
+          "type": "cards",
+          "variant": "stats",
+          "columns": 3,
+          "headingTag": "h2",
           "items": [
             {
-              "value": "1987",
-              "label": "Founded as a nonprofit academy"
+              "heading": "1987",
+              "body": "Founded as a nonprofit academy"
             },
             {
-              "value": "Splendid China",
-              "label": "Annual cultural showcase in June at the Robert E. Parilla Performing Arts Center - where community artistry meets a world-class stage."
+              "heading": "Splendid China",
+              "body": "Annual cultural showcase in June at the Robert E. Parilla Performing Arts Center - where community artistry meets a world-class stage."
             },
             {
-              "value": "Ages 3 to 18+",
-              "label": "Classes for beginner through advanced students"
+              "heading": "Ages 3 to 18+",
+              "body": "Classes for beginner through advanced students"
             }
           ]
         }
@@ -60,7 +63,7 @@
           "text": "Madison Chinese Dance Academy gives students a place to train, perform, and grow through Chinese dance traditions and ballet technique. Our programs connect both families and audiences through classes, outreach, and the annual Splendid China performance."
         },
         {
-          "type": "blocks",
+          "type": "cards",
           "columns": 3,
           "items": [
             {
@@ -95,7 +98,7 @@
           "text": "Get Involved"
         },
         {
-          "type": "blocks",
+          "type": "cards",
           "columns": 3,
           "items": [
             {

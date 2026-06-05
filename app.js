@@ -418,28 +418,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 		return body || actions ? `<div class="${classes}">${body}${actions}</div>` : '';
 	}
 
-	function renderStatsBlock(block = {}) {
-		const items = Array.isArray(block.items) ? block.items : [];
-		if (!items.length) return '';
-
-		return `
-			<div class="home-stats">
-				${items.map((stat) => `
-					<div class="home-stat">
-						<strong>${escapeHtml(stat.value || '')}</strong>
-						<span>${escapeHtml(stat.label || '')}</span>
-					</div>
-				`).join('')}
-			</div>
-		`;
-	}
-
 	function renderCardsBlock(block = {}) {
 		const cards = Array.isArray(block.items) ? block.items : (Array.isArray(block.cards) ? block.cards : []);
 		if (!cards.length) return '';
 
 		const columns = Math.max(1, Math.min(Number(block.columns || cards.length || 1), 4));
 		const variant = block.variant ? ` component-card-grid-${escapeHtml(block.variant)}` : '';
+		const cardClass = block.variant ? ` component-card-${escapeHtml(block.variant)}` : '';
+		const headingTag = /^h[1-6]$/.test(block.headingTag || '') ? block.headingTag : 'h3';
 
 		return `
 			<div class="component-card-grid${variant}" style="--card-columns:${columns}">
@@ -449,11 +435,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 					const label = link?.label || '';
 					const tag = href && href !== '#' ? 'a' : 'article';
 					const hrefAttr = tag === 'a' ? ` href="${href}"` : '';
+					const heading = card.heading || card.value || '';
+					const body = card.body || card.label || '';
 
 					return `
-						<${tag} class="component-card" style="--item-index:${index}"${hrefAttr}>
-							${card.heading ? `<h3>${escapeHtml(card.heading)}</h3>` : ''}
-							${card.body ? `<p>${escapeHtml(card.body)}</p>` : ''}
+						<${tag} class="component-card${cardClass}" style="--item-index:${index}"${hrefAttr}>
+							${heading ? `<${headingTag}>${escapeHtml(heading)}</${headingTag}>` : ''}
+							${body ? `<p>${escapeHtml(body)}</p>` : ''}
 							${tag === 'a' && label ? `<span class="component-card-link">${escapeHtml(label)}</span>` : ''}
 						</${tag}>
 					`;
@@ -499,7 +487,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 			body: () => renderBodyBlock(block, context),
 			blocks: () => renderCardsBlock(block),
 			cards: () => renderCardsBlock(block),
-			stats: () => renderStatsBlock(block),
 			gallery: () => renderGalleryBlock(block),
 			zeffyEmbed: () => renderZeffyEmbedBlock(block),
 			section: () => renderSectionBlock(block),
