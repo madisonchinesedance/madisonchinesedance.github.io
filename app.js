@@ -664,7 +664,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const logoAriaLabel = logo.ariaLabel || `${logoText} home`;
 		const menuOpenLabel = header.menuToggleOpenLabel || 'Open navigation';
 		const actionButtons = header.actions.map(headerAction).join('');
-		const announcementMarkup = isAnnouncementDismissed() ? '' : header.announcements.map((announcement) => {
+		const hasVisibleAnnouncements = !isAnnouncementDismissed() && header.announcements.length > 0;
+		const announcementMarkup = !hasVisibleAnnouncements ? '' : header.announcements.map((announcement) => {
 			const actions = announcement.actions.map((action) => `
 				<a class="announcement-link announcement-link-${escapeHtml(action.style)}" href="${resolveHref(action.href)}" aria-label="${escapeHtml(action.ariaLabel)}">
 					${escapeHtml(action.label)}
@@ -688,7 +689,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		}).join('');
 
 		mount.outerHTML = `
-			<header class="site-header" role="banner">
+			<header class="site-header${hasVisibleAnnouncements ? ' has-visible-announcement' : ''}" role="banner">
 				<div class="container header-inner">
 					<div class="header-left">
 						<a href="${resolveHref(logo.href || 'index.html')}" class="logo" aria-label="${escapeHtml(logoAriaLabel)}">
@@ -720,8 +721,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 						${actionButtons}
 					</div>
 				</div>
+				${announcementMarkup}
 			</header>
-			${announcementMarkup}
 		`;
 	}
 
@@ -798,6 +799,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		announcementDismiss.addEventListener('click', () => {
 			sessionStorage.setItem(ANNOUNCEMENT_DISMISS_KEY, 'true');
 			announcementDismiss.closest('.site-announcement')?.remove();
+			$('.site-header')?.classList.remove('has-visible-announcement');
 		});
 	}
 

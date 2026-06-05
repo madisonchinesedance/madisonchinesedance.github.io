@@ -100,6 +100,7 @@
 
 	/* Layout sizing */
 	--header-bar-height: 65px;
+	--announcement-height: 42px;
 	--header-content-width: 1700px;
 	--content-width: 1600px;
 	--card-radius: 20px;
@@ -225,6 +226,9 @@ a{
 	backdrop-filter: blur(12px);
 	border-bottom: 1px solid var(--edge-contrast);
 	box-shadow:var(--header-shadow);
+}
+.site-header.has-visible-announcement{
+	box-shadow:none;
 }
 .header-inner{
 	display:flex;
@@ -680,6 +684,10 @@ a{
 	flex:1 0 auto;
 	overflow:hidden;
 	padding-bottom:clamp(36px, 5vw, 76px);
+}
+
+body:has(.site-header.has-visible-announcement) .page-hero{
+	padding-top:calc(var(--header-bar-height) + var(--announcement-height) + 28px);
 }
 .site-main > .page-hero,
 .site-main > .section{
@@ -1384,10 +1392,10 @@ a{
 	.nav-toggle{ display:inline-flex; }
 	.primary-nav{
 		display:block;
-		position:fixed;
+		position:absolute;
 		left:0;
 		right:0;
-		top:var(--header-bar-height);
+		top:100%;
 		background: linear-gradient(to bottom, var(--bg-top), var(--bg-bottom));
 		opacity:0;
 		pointer-events:none;
