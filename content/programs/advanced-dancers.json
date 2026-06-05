@@ -1,6 +1,20 @@
 {
   "pageTitle": "Advanced Dancers | Madison Chinese Dance Academy",
   "metaDescription": "Class information for older and advanced Madison Chinese Dance Academy students.",
-  "heading": "Advanced Dancers",
-  "body": "A class group for older students ready for more advanced choreography, technique, and performance preparation.\n\nThis placeholder page can be updated with age range, schedule, tuition, registration details, and teacher notes when class information is finalized."
+  "blocks": [
+    {
+      "type": "hero",
+      "blocks": [
+        {
+          "type": "heading1",
+          "id": "advanced-dancers-heading",
+          "text": "Advanced Dancers"
+        },
+        {
+          "type": "body",
+          "text": "A class group for older students ready for more advanced choreography, technique, and performance preparation.\n\nThis placeholder page can be updated with age range, schedule, tuition, registration details, and teacher notes when class information is finalized."
+        }
+      ]
+    }
+  ]
 }

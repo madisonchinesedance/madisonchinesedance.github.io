@@ -135,6 +135,35 @@ function applyJsonContent(content, routes) {
 	});
 }
 
+function renderRichTextValue(value) {
+	const text = String(value || '').replace(/\/n/g, '\n').trim();
+	if (!text) return '';
+
+	return text
+		.split(/\n{2,}/)
+		.map((paragraph) => paragraph.trim())
+		.filter(Boolean)
+		.map((paragraph) => paragraph
+			.split('\n')
+			.map((line) => sanitizeInlineHtml(line))
+			.join('<br>'))
+		.map((block) => `<p>${block}</p>`)
+		.join('');
+}
+
+function blockId(block, fallback) {
+	return block.id ? escapeHtml(block.id) : fallback;
+}
+
+function findBlock(blocks = [], type) {
+	for (const block of blocks) {
+		if (block?.type === type) return block;
+		const nested = Array.isArray(block?.blocks) ? findBlock(block.blocks, type) : null;
+		if (nested) return nested;
+	}
+	return null;
+}
+
 function resolveNavEntry(entry, routes) {
 	if (entry.route) {
 		const route = routes[entry.route];
@@ -352,7 +381,203 @@ document.addEventListener('DOMContentLoaded', async () => {
 		if (!link) return '';
 
 		const style = action.style === 'secondary' ? 'secondary' : 'primary';
-		return `<a href="${resolveHref(link.href)}" class="btn btn-${style}">${escapeHtml(link.label)}</a>`;
+		const targetAttr = action.newTab ? ' target="_blank" rel="noopener noreferrer"' : '';
+		const className = action.className ? ` ${escapeHtml(action.className)}` : '';
+		const ariaLabel = action.ariaLabel ? ` aria-label="${escapeHtml(action.ariaLabel)}"` : '';
+		return `<a href="${resolveHref(link.href)}" class="btn btn-${style}${className}" role="button"${targetAttr}${ariaLabel}>${escapeHtml(link.label)}</a>`;
+	}
+
+	function renderHeadingBlock(block = {}, level = 2, context = {}) {
+		const safeLevel = Math.min(Math.max(Number(block.level || level), 1), 6);
+		const text = block.text || block.heading || '';
+		if (!text) return '';
+
+		const id = blockId(block, '');
+		const idAttr = id ? ` id="${id}"` : '';
+		const classes = [
+			block.className,
+			context.variant === 'home-hero' && safeLevel === 1 ? 'hero-title' : ''
+		].filter(Boolean).map(escapeHtml).join(' ');
+		const classAttr = classes ? ` class="${classes}"` : '';
+
+		return `<h${safeLevel}${idAttr}${classAttr}>${escapeHtml(text)}</h${safeLevel}>`;
+	}
+
+	function renderBodyBlock(block = {}, context = {}) {
+		const text = block.text || block.body || '';
+		const body = renderRichTextValue(text);
+		const actions = Array.isArray(block.actions) && block.actions.length
+			? `<div class="component-actions">${block.actions.map(contentAction).join('')}</div>`
+			: '';
+		const classes = [
+			'component-body',
+			context.variant === 'home-hero' ? 'hero-tagline' : '',
+			block.className
+		].filter(Boolean).map(escapeHtml).join(' ');
+
+		return body || actions ? `<div class="${classes}">${body}${actions}</div>` : '';
+	}
+
+	function renderStatsBlock(block = {}) {
+		const items = Array.isArray(block.items) ? block.items : [];
+		if (!items.length) return '';
+
+		return `
+			<div class="home-stats">
+				${items.map((stat) => `
+					<div class="home-stat">
+						<strong>${escapeHtml(stat.value || '')}</strong>
+						<span>${escapeHtml(stat.label || '')}</span>
+					</div>
+				`).join('')}
+			</div>
+		`;
+	}
+
+	function renderCardsBlock(block = {}) {
+		const cards = Array.isArray(block.items) ? block.items : (Array.isArray(block.cards) ? block.cards : []);
+		if (!cards.length) return '';
+
+		const columns = Math.max(1, Math.min(Number(block.columns || cards.length || 1), 4));
+		const variant = block.variant ? ` component-card-grid-${escapeHtml(block.variant)}` : '';
+
+		return `
+			<div class="component-card-grid${variant}" style="--card-columns:${columns}">
+				${cards.map((card, index) => {
+					const link = resolveContentLink(card, routes);
+					const href = link?.href ? resolveHref(link.href) : '';
+					const label = link?.label || '';
+					const tag = href && href !== '#' ? 'a' : 'article';
+					const hrefAttr = tag === 'a' ? ` href="${href}"` : '';
+
+					return `
+						<${tag} class="component-card" style="--item-index:${index}"${hrefAttr}>
+							${card.heading ? `<h3>${escapeHtml(card.heading)}</h3>` : ''}
+							${card.body ? `<p>${escapeHtml(card.body)}</p>` : ''}
+							${tag === 'a' && label ? `<span class="component-card-link">${escapeHtml(label)}</span>` : ''}
+						</${tag}>
+					`;
+				}).join('')}
+			</div>
+		`;
+	}
+
+	function renderGalleryBlock() {
+		return `
+			<div class="gallery-container">
+				<div class="gallery-wrapper" data-gallery-carousel></div>
+				<div class="gallery-controls" aria-label="Gallery controls">
+					<button class="prev" type="button" aria-label="Previous image">&#10094;</button>
+					<button class="next" type="button" aria-label="Next image">&#10095;</button>
+				</div>
+			</div>
+			<div class="gallery-grid" data-gallery-grid aria-label="Gallery image thumbnails"></div>
+		`;
+	}
+
+	function renderZeffyEmbedBlock(block = {}) {
+		const formUrl = block.formUrl || '';
+		const iframeSrc = block.iframeSrc || (formUrl ? `https://www.zeffy.com${formUrl}` : '');
+		if (!formUrl && !iframeSrc) return '';
+
+		return `
+			<div class="ticket-embed">
+				${formUrl ? `<div data-zeffy-embed data-form-url="${escapeHtml(formUrl)}"></div>` : ''}
+				<div data-zeffy-embed-fallback>
+					<div class="zeffy-fallback-frame">
+						<iframe title="${escapeHtml(block.iframeTitle || 'Embedded form powered by Zeffy')}" src="${escapeHtml(iframeSrc)}" allowpaymentrequest allowTransparency="true"></iframe>
+					</div>
+				</div>
+			</div>
+		`;
+	}
+
+	function renderBlock(block = {}, context = {}) {
+		const builders = {
+			heading1: () => renderHeadingBlock(block, 1, context),
+			heading2: () => renderHeadingBlock(block, 2, context),
+			body: () => renderBodyBlock(block, context),
+			blocks: () => renderCardsBlock(block),
+			cards: () => renderCardsBlock(block),
+			stats: () => renderStatsBlock(block),
+			gallery: () => renderGalleryBlock(block),
+			zeffyEmbed: () => renderZeffyEmbedBlock(block),
+			section: () => renderSectionBlock(block),
+			hero: () => renderHeroBlock(block)
+		};
+
+		const builder = builders[block.type];
+		return builder ? builder() : '';
+	}
+
+	function renderBlocks(blocks = [], context = {}) {
+		return blocks.map((block) => renderBlock(block, context)).join('');
+	}
+
+	function renderHeroBlock(block = {}) {
+		const isHomeHero = block.variant === 'home';
+		const sectionClass = isHomeHero ? 'hero' : 'page-hero';
+		const containerClass = isHomeHero ? 'container hero-inner' : 'container page-block-container';
+		const headingBlock = block.blocks?.find((item) => item.type === 'heading1');
+		const labelledBy = headingBlock?.id ? ` aria-labelledby="${escapeHtml(headingBlock.id)}"` : '';
+		const role = isHomeHero ? ' role="region"' : '';
+
+		return `
+			<section class="${sectionClass}"${role}${labelledBy}>
+				<div class="${containerClass}">
+					${renderBlocks(block.blocks || [], { variant: isHomeHero ? 'home-hero' : 'page-hero' })}
+				</div>
+			</section>
+		`;
+	}
+
+	function renderSectionBlock(block = {}) {
+		const classes = [
+			'section',
+			'page-section',
+			block.variant === 'home-intro' || block.variant === 'home-pathways' ? 'home-section' : '',
+			block.variant === 'home-intro' ? 'home-intro' : '',
+			block.variant ? `page-section-${block.variant}` : '',
+			block.className
+		]
+			.filter(Boolean)
+			.map(escapeHtml)
+			.join(' ');
+		const headingBlock = block.blocks?.find((item) => item.type === 'heading2' || item.type === 'heading1');
+		const labelledBy = headingBlock?.id ? ` aria-labelledby="${escapeHtml(headingBlock.id)}"` : '';
+
+		return `
+			<section class="${classes}"${labelledBy}>
+				<div class="container">
+					${renderBlocks(block.blocks || [], { variant: block.variant || '' })}
+				</div>
+			</section>
+		`;
+	}
+
+	function renderPageBlocks() {
+		const mount = $('[data-page-blocks]') || $('.site-main');
+		if (!mount) return;
+
+		const blocks = Array.isArray(content.blocks) ? content.blocks : [];
+		if (!blocks.length) return;
+		mount.innerHTML = renderBlocks(blocks);
+	}
+
+	function loadZeffyEmbedScript() {
+		if (!$('[data-zeffy-embed]')) return;
+		if ($('script[data-zeffy-embed-script]')) return;
+
+		const script = document.createElement('script');
+		script.src = 'https://www.zeffy.com/embed/v2/zeffy-embed.js';
+		script.defer = true;
+		script.setAttribute('data-zeffy-embed-script', '');
+		script.onerror = () => {
+			$$('[data-zeffy-embed-fallback]').forEach((element) => {
+				element.style.display = 'block';
+			});
+		};
+		document.body.appendChild(script);
 	}
 
 	function createStarField(className, count = 120, yMax = 100) {
@@ -569,7 +794,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	applyJsonContent(content, routes);
+	renderPageBlocks();
 	renderHomePage();
+	loadZeffyEmbedScript();
 	renderPageStars();
 	renderHeader();
 	renderFooter();
@@ -655,7 +882,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const lightboxClose = $('.gallery-lightbox-close');
 		const prevButton = galleryContainer.querySelector('.prev');
 		const nextButton = galleryContainer.querySelector('.next');
-		const galleryGroups = Array.isArray(content.galleryGroups) ? content.galleryGroups : [];
+		const galleryBlock = findBlock(content.blocks || [], 'gallery') || {};
+		const galleryGroups = Array.isArray(galleryBlock.groups)
+			? galleryBlock.groups
+			: (Array.isArray(content.galleryGroups) ? content.galleryGroups : []);
 		const groupedImages = galleryGroups.flatMap((group) => {
 			const events = Array.isArray(group.events) ? group.events : [];
 			return events.flatMap((event) => {
@@ -669,7 +899,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 		});
 		const galleryImages = groupedImages.length > 0
 			? groupedImages
-			: (Array.isArray(content.galleryImages) ? content.galleryImages : []);
+			: (Array.isArray(galleryBlock.images)
+				? galleryBlock.images
+				: (Array.isArray(content.galleryImages) ? content.galleryImages : []));
 
 		if (galleryImages.length > 0) {
 			galleryWrapper.innerHTML = galleryImages.map((image, index) => `
