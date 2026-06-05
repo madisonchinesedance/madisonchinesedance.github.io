@@ -13,23 +13,14 @@
 	--color-transparent: transparent;
 	--color-white: #FFFFFF;
 	--color-black: #000000;
-	--color-ink: #111111;
 	--color-deep-navy: #101A4F;
 	--color-deep-navy-2: #161F5A;
 	--color-footer-navy: #0B1642;
 	--color-violet: #2A2361;
 	--color-coral: #D85D4B;
-	--color-midnight: #0B0C1E;
-	--color-plum: #1D1630;
-	--color-green-dark: #1E7E34;
-	--color-green: #28A745;
-	--color-cream: #FFFAF4;
-	--color-peach: #FFD9C2;
-	--color-peach-light: #FFE2CF;
-	--color-peach-medium: #FFAD82;
-	--color-peach-hover: #FFB58D;
-	--color-peach-pale: #FFF4E7;
-	--color-button-border: #061332;
+	--color-green: #1E7E34;
+	--color-peach: #FFE2CF;
+	--color-peach-dark: #FFAD82;
 
 	/* Alpha colors */
 	--alpha-white-08: #FFFFFF14;
@@ -72,8 +63,7 @@
 	--blue-ring: #6096FF9E;
 	--blue-glow: #6096FF9E;
 
-	--alpha-button-border-18: #0613322E;
-	--alpha-button-border-22: #06133238;
+	--announcement-button-border: #0613322E;
 
 	/* Brand/background colors */
 	--bg-top: var(--color-deep-navy);
@@ -130,7 +120,7 @@
 	--letter-spacing-footer-heading: 0.04em;
 
 	/* Primary Button */
-	--primary-button-color: linear-gradient(135deg, var(--color-green-dark), var(--color-green));
+	--primary-button-color: linear-gradient(135deg, var(--color-green), var(--color-green));
 	--primary-button-text: var(--light-text-color);
 	--primary-button-font-size: 1rem;
 	--primary-button-font-weight: 700;
@@ -173,8 +163,8 @@
 	--surface-panel: var(--color-deep-navy);
 	--surface-panel-strong: var(--color-deep-navy);
 	--surface-panel-border: var(--alpha-white-14);
-	--surface-card: linear-gradient(135deg, var(--color-peach), var(--color-peach-medium));
-	--surface-card-hover: linear-gradient(135deg, var(--color-peach-light), var(--color-peach-hover));
+	--surface-card: linear-gradient(135deg, var(--color-peach), var(--color-peach-dark));
+	--surface-card-hover: linear-gradient(135deg, var(--color-peach), var(--color-peach));
 	--surface-card-border: var(--peach-ring);
 	--surface-stat: var(--surface-card);
 	--surface-stat-border: var(--surface-card-border);
@@ -183,17 +173,17 @@
 	--nav-toggle-ring: var(--alpha-ink-06);
 	--nav-subtle-border: var(--alpha-ink-10);
 	--focus-ring: #FFBE9147;
-	--skiplink-bg: var(--color-cream);
+	--skiplink-bg: var(--color-peach);
 	--skiplink-fg: var(--color-deep-navy);
 	--mobile-nav-bg-start: var(--color-deep-navy);
 	--mobile-nav-bg-end: var(--color-deep-navy-2);
 	--mobile-nav-bg: linear-gradient(to bottom, var(--mobile-nav-bg-start), var(--mobile-nav-bg-end));
 	--dropdown-bg: linear-gradient(180deg, var(--mobile-nav-bg-start), var(--color-deep-navy-2));
 	--boxshadow-nav: var(--alpha-black-24);
-	--announcement-bg: linear-gradient(90deg, var(--color-midnight), var(--color-plum));
+	--announcement-bg: --color-black;
 	--announcement-border: var(--peach-ring);
-	--announcement-button-border: var(--alpha-button-border-22);
-	--announcement-dismiss-border: var(--alpha-button-border-18);
+	--announcement-button-border: var(--announcement-button-border);
+	--announcement-dismiss-border: var(--announcement-button-border);
 	--panel-shadow: 0 18px 50px var(--alpha-black-22);
 	--card-shadow: 0 14px 34px var(--alpha-black-18);
 	--card-shadow-hover: 0 22px 42px var(--alpha-black-26);
