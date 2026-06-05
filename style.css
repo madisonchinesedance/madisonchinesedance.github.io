@@ -687,7 +687,7 @@ a{
 }
 
 body:has(.site-header.has-visible-announcement) .page-hero{
-	padding-top:calc(var(--header-bar-height) + var(--announcement-height) + 28px);
+	padding-top:32px;
 }
 .site-main > .page-hero,
 .site-main > .section{
@@ -1489,7 +1489,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	}
 
 	.hero,
-	.page-hero{ padding-top: calc(var(--header-bar-height) + 28px); padding-bottom:24px; }
+	.page-hero{ padding-top:28px; padding-bottom:24px; }
 	.header-inner{ padding:0 8px; }
 	.hero-inner,
 	.page-hero .container,
