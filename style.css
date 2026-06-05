@@ -58,16 +58,6 @@
 	--alpha-ink-54: #1111118A;
 	--alpha-ink-72: #111111B8;
 	--alpha-ink-90: #111111E6;
-	--alpha-navy-72: #171E56B8;
-	--alpha-deep-navy-76: #101A4FC2;
-	--alpha-deep-navy-84: #101A4FD6;
-	--alpha-deep-navy-90: #101A4FE6;
-	--alpha-deep-navy-92: #101A4FEB;
-	--alpha-deep-navy-96: #101A4FF5;
-	--alpha-deep-navy-98: #101A4FFA;
-	--alpha-deep-navy-2-94: #161F5AF0;
-	--alpha-deep-navy-2-98: #161F5AFA;
-	--alpha-footer-navy-98: #0B1642FA;
 	--alpha-peach-72: #FFD9C2B8;
 	--alpha-peach-94: #FFD9C2F0;
 	--alpha-peach-95: #FFD9C2F2;
@@ -101,10 +91,10 @@
 	--dark-text-color: var(--color-black);
 	--page-bg-gradient: linear-gradient(to bottom, var(--bg-top) 0%, var(--bg-middle) 55%, var(--bg-bottom) 100%);
 	--hero-bg-gradient: linear-gradient(180deg, var(--hero-bg-top) 0%, var(--hero-bg-middle) 52%, var(--hero-bg-bottom) 100%);
-	--home-intro-bg: linear-gradient(180deg, var(--alpha-deep-navy-98) 0%, var(--bg-top) 86%);
+	--home-intro-bg: linear-gradient(180deg, var(--color-deep-navy) 0%, var(--bg-top) 86%);
 	--home-intro-rule-bg: linear-gradient(90deg, var(--color-transparent), var(--alpha-peach-pale-22), var(--color-transparent));
 	--ticket-embed-bg: linear-gradient(180deg, var(--alpha-peach-94), var(--alpha-peach-medium-82)), linear-gradient(to bottom, var(--hero-bg-middle), var(--hero-bg-bottom));
-	--footer-bg: linear-gradient(180deg, var(--alpha-deep-navy-96), var(--alpha-footer-navy-98));
+	--footer-bg: linear-gradient(180deg, var(--color-deep-navy), var(--color-deep-navy-2));
 
 	/* Typography */
 	--font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
@@ -180,13 +170,13 @@
 	/* Surface / UI colors */
 	--surface-foreground: var(--color-white);
 	--surface-contrast: var(--alpha-white-16);
-	--header-bg-start: var(--alpha-deep-navy-96);
-	--header-bg-end: var(--alpha-deep-navy-92);
+	--header-bg-start: var(--color-deep-navy);
+	--header-bg-end: var(--color-deep-navy);
 	--header-bg: linear-gradient(to right, var(--header-bg-start), var(--header-bg-end));
-	--surface-backdrop-start: var(--alpha-deep-navy-84);
-	--surface-backdrop-end: var(--alpha-navy-72);
-	--surface-panel: var(--alpha-deep-navy-76);
-	--surface-panel-strong: var(--alpha-deep-navy-90);
+	--surface-backdrop-start: var(--color-deep-navy);
+	--surface-backdrop-end: var(--color-deep-navy-2);
+	--surface-panel: var(--color-deep-navy);
+	--surface-panel-strong: var(--color-deep-navy);
 	--surface-panel-border: var(--alpha-white-14);
 	--surface-card: linear-gradient(135deg, var(--color-peach), var(--color-peach-medium));
 	--surface-card-hover: linear-gradient(135deg, var(--color-peach-light), var(--color-peach-hover));
@@ -200,10 +190,10 @@
 	--focus-ring: #FFBE9147;
 	--skiplink-bg: var(--color-cream);
 	--skiplink-fg: var(--color-deep-navy);
-	--mobile-nav-bg-start: var(--alpha-deep-navy-98);
-	--mobile-nav-bg-end: var(--alpha-deep-navy-2-98);
+	--mobile-nav-bg-start: var(--color-deep-navy);
+	--mobile-nav-bg-end: var(--color-deep-navy-2);
 	--mobile-nav-bg: linear-gradient(to bottom, var(--mobile-nav-bg-start), var(--mobile-nav-bg-end));
-	--dropdown-bg: linear-gradient(180deg, var(--mobile-nav-bg-start), var(--alpha-deep-navy-2-94));
+	--dropdown-bg: linear-gradient(180deg, var(--mobile-nav-bg-start), var(--color-deep-navy-2));
 	--boxshadow-nav: var(--alpha-black-24);
 	--announcement-bg: linear-gradient(90deg, var(--color-midnight), var(--color-plum));
 	--announcement-border: var(--alpha-peach-72);
