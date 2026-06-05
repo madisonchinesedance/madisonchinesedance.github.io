@@ -1,0 +1,31 @@
+{
+  "announcements": [
+    {
+      "id": "splendid-china-2026",
+      "enabled": true,
+      "label": "Upcoming Event",
+      "body": "Splendid China 2026 is coming up on June 20th! Join us for an evening of culture presented by community performers. Tickets are on sale now!",
+      "actions": [
+        {
+          "route": "splendid-china-2026",
+          "label": "Learn More",
+          "style": "secondary",
+          "ariaLabel": "Learn more about Splendid China 2026"
+        },
+        {
+          "route": "tickets",
+          "label": "Purchase Tickets",
+          "style": "primary",
+          "ariaLabel": "Purchase Splendid China 2026 tickets"
+        }
+      ]
+    }
+  ],
+  "highlights": {
+    "enabled": true,
+    "color": "gold",
+    "style": "pulse",
+    "navRoutes": ["splendid-china-2026"],
+    "actionRoutes": []
+  }
+}

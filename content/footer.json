@@ -11,7 +11,9 @@
       "links": [
         { "route": "home", "label": "Home" },
         { "route": "about", "label": "About Us" },
-        { "route": "dance-classes", "label": "Classes" },
+        { "route": "beginner-dancers", "label": "Beginner Dancers" },
+        { "route": "intermediate-dancers", "label": "Intermediate Dancers" },
+        { "route": "advanced-dancers", "label": "Advanced Dancers" },
         { "route": "gallery", "label": "Gallery" },
         { "route": "contact", "label": "Contact" }
       ]

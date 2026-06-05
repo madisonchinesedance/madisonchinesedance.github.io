@@ -141,6 +141,7 @@ function resolveNavEntry(entry, routes) {
 		if (!route) return null;
 
 		return {
+			routeId: entry.route,
 			href: route.href,
 			page: route.page,
 			label: entry.label || entry.route
@@ -157,7 +158,7 @@ function resolveNavEntry(entry, routes) {
 	return null;
 }
 
-function buildHeader(header = {}, routes = {}) {
+function buildHeader(header = {}, routes = {}, announcementsConfig = {}) {
 	const logoRoute = header.logo?.route ? routes[header.logo.route] : routes.home;
 	const logo = {
 		text: header.logo?.text || 'Madison Chinese Dance Academy',
@@ -166,6 +167,7 @@ function buildHeader(header = {}, routes = {}) {
 		href: logoRoute?.href || 'index.html',
 		page: logoRoute?.page || 'index.html'
 	};
+	const highlights = announcementsConfig.highlights || {};
 
 	return {
 		logo,
@@ -173,11 +175,40 @@ function buildHeader(header = {}, routes = {}) {
 		menuToggleOpenLabel: header.menuToggleOpenLabel || 'Open navigation',
 		menuToggleCloseLabel: header.menuToggleCloseLabel || 'Close navigation',
 		navItems: (header.nav || []).map((entry) => resolveNavEntry(entry, routes)).filter(Boolean),
+		highlights: {
+			enabled: highlights.enabled !== false,
+			style: highlights.style || 'pulse',
+			color: highlights.color || 'peach',
+			navRoutes: highlights.navRoutes || [],
+			actionRoutes: highlights.actionRoutes || []
+		},
+		announcements: (announcementsConfig.announcements || []).map((announcement) => {
+			if (announcement.enabled === false) return null;
+
+			return {
+				id: announcement.id || announcement.label || announcement.body || 'announcement',
+				label: announcement.label || '',
+				body: announcement.body || '',
+				actions: (announcement.actions || []).map((action) => {
+					const link = resolveContentLink(action, routes);
+					if (!link) return null;
+
+					return {
+						routeId: action.route || null,
+						href: link.href,
+						label: link.label,
+						style: action.style === 'secondary' ? 'secondary' : 'primary',
+						ariaLabel: action.ariaLabel || link.label
+					};
+				}).filter(Boolean)
+			};
+		}).filter(Boolean),
 		actions: (header.actions || []).map((action) => {
 			const route = routes[action.route];
 			if (!route) return null;
 
 			return {
+				routeId: action.route,
 				href: route.href,
 				page: route.page,
 				label: action.label || action.route,
@@ -230,9 +261,16 @@ function getPageRouteId(site, pageId) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+	const ANNOUNCEMENT_DISMISS_KEY = 'mcda-announcement-dismissed';
+	const navigationEntry = performance.getEntriesByType?.('navigation')?.[0];
+	if (navigationEntry?.type === 'reload') {
+		sessionStorage.removeItem(ANNOUNCEMENT_DISMISS_KEY);
+	}
+
 	const currentPage = getPageId();
 	const site = await loadJson(`${CONTENT_ROOT}site.json`);
 	const headerConfig = await loadJson(`${CONTENT_ROOT}header.json`);
+	const announcementsConfig = await loadJson(`${CONTENT_ROOT}announcements.json`);
 	const footerConfig = await loadJson(`${CONTENT_ROOT}footer.json`);
 	const pageRouteId = document.body.getAttribute('data-route')
 		|| getPageRouteId(site, currentPage);
@@ -243,21 +281,36 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 	const routes = site.routes || {};
 	const content = { ...pageContent };
-	const header = buildHeader(headerConfig, routes);
+	const header = buildHeader(headerConfig, routes, announcementsConfig);
 
 	function resolveHref(href = '') {
 		return resolveLink(href, routes);
+	}
+
+	function isAnnouncementDismissed() {
+		return sessionStorage.getItem(ANNOUNCEMENT_DISMISS_KEY) === 'true';
 	}
 
 	function isActivePage(item) {
 		return item.page && currentPage === item.page;
 	}
 
+	function highlightClass(type, routeId) {
+		if (!header.highlights?.enabled || !routeId) return '';
+		const targetRoutes = type === 'action'
+			? header.highlights.actionRoutes
+			: header.highlights.navRoutes;
+
+		if (!targetRoutes.includes(routeId)) return '';
+		return ` is-announcement-highlight is-announcement-highlight-${escapeHtml(header.highlights.color)} is-announcement-highlight-${escapeHtml(header.highlights.style)}`;
+	}
+
 	function navLink(item) {
 		const isActive = isActivePage(item);
 		const activeClass = isActive ? ' active' : '';
+		const importantClass = highlightClass('nav', item.routeId);
 		const currentAttr = isActive ? ' aria-current="page"' : '';
-		return `<li class="nav-item"><a href="${resolveHref(item.href)}" class="nav-link${activeClass}"${currentAttr}>${escapeHtml(item.label)}</a></li>`;
+		return `<li class="nav-item"><a href="${resolveHref(item.href)}" class="nav-link${activeClass}${importantClass}"${currentAttr}>${escapeHtml(item.label)}</a></li>`;
 	}
 
 	function navMenu(item, index) {
@@ -265,11 +318,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 		const isActive = item.items.some(isActivePage);
 		const activeClass = isActive ? ' active' : '';
+		const importantClass = item.items.some((child) => highlightClass('nav', child.routeId)) ? highlightClass('nav', item.items.find((child) => highlightClass('nav', child.routeId))?.routeId) : '';
 		const menuId = `nav-menu-${index}`;
 
 		return `
 			<li class="nav-item nav-item-dropdown">
-				<button class="nav-link nav-menu-toggle${activeClass}" type="button" aria-expanded="false" aria-controls="${menuId}">
+				<button class="nav-link nav-menu-toggle${activeClass}${importantClass}" type="button" aria-expanded="false" aria-controls="${menuId}">
 					${escapeHtml(item.label)}
 					<svg class="nav-caret" width="14" height="14" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
 						<path d="M5.5 7.5 10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -288,8 +342,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const style = action.style === 'secondary' ? 'secondary' : 'primary';
 		const label = action.label || '';
 		const ariaLabel = action.ariaLabel || label;
+		const importantClass = highlightClass('action', action.routeId);
 
-		return `<a href="${resolveHref(action.href)}" class="btn btn-${style} header-cta" role="button" aria-label="${escapeHtml(ariaLabel)}"${currentAttr}>${escapeHtml(label)}</a>`;
+		return `<a href="${resolveHref(action.href)}" class="btn btn-${style} header-cta${importantClass}" role="button" aria-label="${escapeHtml(ariaLabel)}"${currentAttr}>${escapeHtml(label)}</a>`;
 	}
 
 	function contentAction(action) {
@@ -397,6 +452,28 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const logoAriaLabel = logo.ariaLabel || `${logoText} home`;
 		const menuOpenLabel = header.menuToggleOpenLabel || 'Open navigation';
 		const actionButtons = header.actions.map(headerAction).join('');
+		const announcementMarkup = isAnnouncementDismissed() ? '' : header.announcements.map((announcement) => {
+			const actions = announcement.actions.map((action) => `
+				<a class="announcement-link announcement-link-${escapeHtml(action.style)}" href="${resolveHref(action.href)}" aria-label="${escapeHtml(action.ariaLabel)}">
+					${escapeHtml(action.label)}
+				</a>
+			`).join('');
+
+			return `
+				<section class="site-announcement" data-announcement-id="${escapeHtml(announcement.id)}" aria-label="${escapeHtml(announcement.label || 'Site announcement')}">
+					<div class="container announcement-inner">
+						<div class="announcement-copy">
+							${announcement.label ? `<span class="announcement-label">${escapeHtml(announcement.label)}</span>` : ''}
+							${announcement.body ? `<span class="announcement-body">${escapeHtml(announcement.body)}</span>` : ''}
+						</div>
+						${actions ? `<div class="announcement-actions">${actions}</div>` : ''}
+						<button class="announcement-dismiss" type="button" aria-label="Dismiss announcement">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</section>
+			`;
+		}).join('');
 
 		mount.outerHTML = `
 			<header class="site-header" role="banner">
@@ -432,6 +509,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 					</div>
 				</div>
 			</header>
+			${announcementMarkup}
 		`;
 	}
 
@@ -497,9 +575,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 	renderFooter();
 
 	// Elements
+	const announcementDismiss = $('.announcement-dismiss');
 	const navToggle = $('#nav-toggle');
 	const primaryNav = $('#primary-navigation');
 	const dropdownToggles = $$('.nav-menu-toggle');
+
+	if (announcementDismiss) {
+		announcementDismiss.addEventListener('click', () => {
+			sessionStorage.setItem(ANNOUNCEMENT_DISMISS_KEY, 'true');
+			announcementDismiss.closest('.site-announcement')?.remove();
+		});
+	}
 
 	function closeDropdowns(exceptToggle = null) {
 		dropdownToggles.forEach((toggle) => {

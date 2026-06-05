@@ -25,10 +25,20 @@
       "page": "community/services.html",
       "content": "community/services.json"
     },
-    "dance-classes": {
-      "href": "pages/programs/dance-classes.html",
-      "page": "programs/dance-classes.html",
-      "content": "programs/dance-classes.json"
+    "beginner-dancers": {
+      "href": "pages/programs/beginner-dancers.html",
+      "page": "programs/beginner-dancers.html",
+      "content": "programs/beginner-dancers.json"
+    },
+    "intermediate-dancers": {
+      "href": "pages/programs/intermediate-dancers.html",
+      "page": "programs/intermediate-dancers.html",
+      "content": "programs/intermediate-dancers.json"
+    },
+    "advanced-dancers": {
+      "href": "pages/programs/advanced-dancers.html",
+      "page": "programs/advanced-dancers.html",
+      "content": "programs/advanced-dancers.json"
     },
     "gallery": {
       "href": "pages/gallery.html",

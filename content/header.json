@@ -10,6 +10,7 @@
   "menuToggleCloseLabel": "Close navigation",
   "nav": [
     { "route": "home", "label": "Home" },
+    { "route": "gallery", "label": "Gallery" },
     {
       "label": "About Us",
       "items": [
@@ -27,10 +28,11 @@
     {
       "label": "Programs",
       "items": [
-        { "route": "dance-classes", "label": "Dance Classes" }
+        { "route": "beginner-dancers", "label": "Beginner Dancers" },
+        { "route": "intermediate-dancers", "label": "Intermediate Dancers" },
+        { "route": "advanced-dancers", "label": "Advanced Dancers" }
       ]
     },
-    { "route": "gallery", "label": "Gallery" },
     {
       "label": "Splendid China",
       "items": [

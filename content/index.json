@@ -1,20 +1,8 @@
 {
-  "pageTitle": "Madison Chinese Dance Academy",
+  "pageTitle": "Madison Chinese Dance Academy | Home",
   "metaDescription": "Madison Chinese Dance Academy - community classes, performances, and outreach. Purchase tickets or support our community.",
   "heading": "Madison Chinese Dance Academy",
   "body": "We dance to integrate Eastern and Western arts and cultures for a more harmonious world.",
-  "heroActions": [
-    {
-      "label": "Purchase Tickets",
-      "route": "tickets",
-      "style": "primary"
-    },
-    {
-      "label": "Explore Classes",
-      "route": "dance-classes",
-      "style": "secondary"
-    }
-  ],
   "stats": [
     {
       "value": "1987",
@@ -35,8 +23,8 @@
     {
       "heading": "Classes",
       "body": "Beginner through advanced dance instruction for students of all ages.",
-      "route": "dance-classes",
-      "label": "View classes"
+      "route": "beginner-dancers",
+      "label": "Start with beginner dancers"
     },
     {
       "heading": "Splendid China",
