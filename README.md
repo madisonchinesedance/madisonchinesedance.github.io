@@ -86,7 +86,7 @@ The scanner updates `content/gallery.json`, and the Gallery page renders the ima
 	- `--body-font-size` and `--body-font-color` — paragraph text size and color
 	- `--nav-link-font-size` — header tab text size
 	- `--heading-1-font-size` and `--heading-1-font-weight` — page/hero heading sizing
-	- `--content-max` — maximum measure used for centered content blocks
+	- `--content-width` — maximum measure used for centered content blocks
 
 ## Notes & tips
 
