@@ -10,37 +10,28 @@
 	 --------------------------- */
 :root{
 	/* Core colors */
-	--color-transparent: transparent;
 	--color-white: #FFFFFF;
 	--color-black: #000000;
 	--color-navy-shadow: #030c38;
 	--color-deep-navy: #101A4F;
-	--color-footer-navy: #0B1642;
 	--color-violet: #2A2361;
 	--color-sunrise: #D85D4B;
 	--color-green: #1E7E34;
 	--color-peach: #FFE2CF;
 	--color-peach-dark: #FFAD82;
 	--color-blue-grey: #FFFFFF14;
-
 	--color-alpha-deep-navy: #101b4fcb;
 
-	/* Announcement highlight colors */
-	--peach-glow: #FFD9C2F2;
-	--peach-ring: #FFD9C2F2;
-	--green-ring: #28A7459E;
-	--green-glow: #28A7459E;
-	--gold-ring: #FFC440A8;
-	--gold-glow: #FFC440A8;
-	--blue-ring: #6096FF9E;
-	--blue-glow: #6096FF9E;
+	/* Announcement highlight colors (ring + glow share the same value per color) */
+	--peach-highlight: #FFD9C2F2;
+	--green-highlight: #28A7459E;
+	--gold-highlight: #FFC440A8;
+	--blue-highlight: #6096FF9E;
 
 	--announcement-button-border: var(--color-black);
 
 	/* Brand/background colors */
-	--bg-top: var(--color-deep-navy);
-	--bg-middle: var(--color-deep-navy);
-	--bg-bottom: var(--color-deep-navy);
+	--bg-color: var(--color-deep-navy);
 	--hero-bg-top: var(--color-deep-navy);
 	--hero-bg-middle: var(--color-violet);
 	--hero-bg-bottom: var(--color-sunrise);
@@ -48,8 +39,6 @@
 	--dark-text-color: var(--color-black);
 
 	/* Gradients */
-	--page-bg-gradient: linear-gradient(var(--bg-top), var(--bg-middle), var(--bg-bottom));
-	--hero-bg-gradient: linear-gradient(180deg, var(--hero-bg-top), var(--hero-bg-middle), var(--hero-bg-bottom));
 	--home-intro-bg: var(--color-deep-navy);
 	--zeffy-embed-bg: linear-gradient(180deg, var(--color-deep-navy), var(--color-sunrise));
 	--footer-bg: var(--color-deep-navy);
@@ -58,7 +47,6 @@
 	--font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 	--base-font-size: 14px;
 	--base-line-height: 1.45;
-	--line-height-tight: 1;
 	--heading-1-font-size: clamp(2rem, 2vw, 3.2rem);
 	--heading-1-font-weight: 700;
 	--heading-1-line-height: 1.08;
@@ -72,14 +60,7 @@
 	--small-body-font-size: 1rem;
 	--logo-font-size: 1.5rem;
 	--nav-link-font-size: 1.1rem;
-	--button-cta-font-size: 1.05rem;
-	--footer-heading-font-size: 0.92rem;
-	--footer-copy-font-size: 0.9rem;
 	--nav-link-font-weight: 600;
-	--letter-spacing-none: 0;
-	--letter-spacing-logo: 0.2px;
-	--letter-spacing-footer-logo: 0.5px;
-	--letter-spacing-footer-heading: 0.04em;
 
 	/* Primary Button */
 	--primary-button-color: linear-gradient(135deg, var(--color-green), var(--color-green));
@@ -88,11 +69,10 @@
 
 	/* Layout sizing */
 	--header-bar-height: 65px;
-	--announcement-height: 42px;
 	--header-content-width: 1700px;
 	--content-width: 1600px;
 	--card-radius: 20px;
-	--section-radius:40px;
+	--section-radius: 40px;
 
 	/* Motion & transitions */
 	--transition-fast: 180ms;
@@ -106,15 +86,14 @@
 	/* UI colors */
 	--edge-contrast: var(--color-blue-grey);
 	--card-bg: linear-gradient(135deg, var(--color-peach), var(--color-peach-dark));
-	--card-bg-hover: linear-gradient(135deg, var(--color-peach), var(--color-peach-dark));
 	--card-border: var(--color-peach-dark);
 	--button-hover-bg: var(--color-blue-grey);
 	--skiplink-bg: var(--color-peach);
 	--skiplink-fg: var(--color-deep-navy);
-	--dropdown-bg: linear-gradient(180deg, var(--bg-top), var(--color-deep-navy));
+	--dropdown-bg: var(--bg-color);
 	--boxshadow-nav: var(--color-black);
 	--announcement-bg: var(--color-black);
-	--announcement-border: var(--peach-ring);
+	--announcement-border: var(--peach-highlight);
 	--header-bg: var(--color-alpha-deep-navy);
 
 	/* Shadows */
@@ -132,8 +111,6 @@
 	--footer-logo-shadow: 0 12px 26px var(--color-navy-shadow);
 	--header-current-shadow: 0 0 0 3px var(--color-blue-grey);
 	--highlight-shadow: 0 0 0 2px var(--highlight-ring), 0 0 18px var(--highlight-glow);
-	--highlight-shadow-soft: 0 0 0 2px var(--highlight-ring), 0 0 12px var(--highlight-glow);
-	--highlight-shadow-strong: 0 0 0 3px var(--highlight-ring-strong), 0 0 24px var(--highlight-glow-strong);
 
 	/* Gallery */
 	--gallery-bg: var(--color-blue-grey);
@@ -158,7 +135,7 @@ body{
 	margin:0;
 	font-family:var(--font-family-base);
 	color:var(--light-text-color);
-	background:linear-gradient(to bottom, var(--bg-top) 0%, var(--bg-middle) 55%, var(--bg-bottom) 100%);
+	background: var(--bg-color);
 	background-attachment: fixed;
 	-webkit-font-smoothing:antialiased;
 	-moz-osx-font-smoothing:grayscale;
@@ -559,7 +536,7 @@ a{
 	padding:clamp(18px, 3vw, 40px);
 }
 .hero-inner{
-	background:linear-gradient(135deg, var(--bg-top), var(--bg-bottom));
+	background: var(--bg-color);
 }
 .hero-title,
 .page-hero h1{
@@ -1384,7 +1361,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 		left:0;
 		right:0;
 		top:100%;
-		background: linear-gradient(to bottom, var(--bg-top), var(--bg-bottom));
+		background: var(--bg-color);
 		opacity:0;
 		pointer-events:none;
 		transform: translateY(-18px);
