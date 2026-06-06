@@ -759,6 +759,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 			`;
 		}).join('');
 
+		const operations = Array.isArray(footerConfig.operations) ? footerConfig.operations : [];
+		const operationsMarkup = operations.map((op) => {
+			if (!op.href) {
+				return `<span>${escapeHtml(op.label)}</span>`;
+			}
+			const href = op.href.startsWith('mailto:') || op.href.startsWith('tel:') ? op.href : resolveHref(op.href);
+			return `<a href="${escapeHtml(href)}">${escapeHtml(op.label)}</a>`;
+		}).join('<br>');
+
 		mount.outerHTML = `
 			<footer class="site-footer" role="contentinfo">
 				<div class="container footer-inner">
@@ -768,6 +777,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						</a>
 						<p class="footer-brand-name">${escapeHtml(brandText)}</p>
 						<p class="footer-mission">${escapeHtml(mission)}</p>
+						${operationsMarkup ? `<div class="footer-operations">${operationsMarkup}</div>` : ''}
 					</section>
 
 					<nav class="footer-directory" aria-label="Footer navigation">

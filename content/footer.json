@@ -7,44 +7,46 @@
   },
   "columns": [
     {
-      "heading": "Quick Links",
+      "heading": "About Us",
       "links": [
-        { "route": "home", "label": "Home" },
         { "route": "about", "label": "About Us" },
         { "route": "meet-the-faculty", "label": "Meet the Faculty" },
         { "route": "success-stories", "label": "Success Stories" },
+        { "route": "contact", "label": "Contact" }
+      ]
+    },
+    {
+      "heading": "Community",
+      "links": [
+        { "route": "events", "label": "Events" },
+        { "route": "services", "label": "Services" },
+        { "route": "gallery", "label": "Gallery" },
+        { "route": "faq", "label": "FAQ" }
+      ]
+    },
+    {
+      "heading": "Programs",
+      "links": [
         { "route": "beginner-dancers", "label": "Beginner Dancers" },
         { "route": "intermediate-dancers", "label": "Intermediate Dancers" },
-        { "route": "advanced-dancers", "label": "Advanced Dancers" },
-        { "route": "gallery", "label": "Gallery" },
-        { "route": "faq", "label": "FAQ" },
-        { "route": "contact", "label": "Contact" }
+        { "route": "advanced-dancers", "label": "Advanced Dancers" }
       ]
     },
     {
       "heading": "Get Involved",
       "links": [
-        { "route": "join-us", "label": "Join Us" },
-        { "route": "book-a-performance", "label": "Book a Performance" },
-        { "route": "donate", "label": "Donate" },
-        { "route": "events", "label": "Events" }
-      ]
-    },
-    {
-      "heading": "Support & Actions",
-      "links": [
-        { "route": "tickets", "label": "Purchase Tickets" },
-        { "route": "splendid-china-2026", "label": "Splendid China 2026" }
-      ]
-    },
-    {
-      "heading": "Operations",
-      "links": [
-        { "href": "mailto:madison.chinese.dances@gmail.com", "label": "madison.chinese.dances@gmail.com" },
-        { "href": "tel:13012991562", "label": "(301)-299-1562" },
-        { "label": "PO Box 10067 Rockville, MD 20849" }
+        { "route": "join-us", "label": "Dance With Us" },
+        { "route": "book-a-performance", "label": "Bring Us to Your Event" },
+        { "route": "see-a-performance", "label": "See A Performance" },
+        { "route": "support-our-cause", "label": "Support Our Cause" },
+        { "route": "donate", "label": "Donate" }
       ]
     }
+  ],
+  "operations": [
+    { "href": "mailto:madison.chinese.dances@gmail.com", "label": "madison.chinese.dances@gmail.com" },
+    { "href": "tel:13012991562", "label": "(301)-299-1562" },
+    { "label": "PO Box 10067 Rockville, MD 20849" }
   ],
   "copyright": "© 2026 Madison Chinese Dance Academy. All rights reserved."
 }

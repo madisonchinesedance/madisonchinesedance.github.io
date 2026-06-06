@@ -13,19 +13,7 @@
         },
         {
           "type": "body",
-          "text": "We dance to integrate Eastern and Western arts and cultures for a more harmonious world.",
-          "actions": [
-            {
-              "route": "tickets",
-              "label": "Purchase tickets",
-              "style": "primary"
-            },
-            {
-              "route": "donate",
-              "label": "Donate",
-              "style": "secondary"
-            }
-          ]
+          "text": "We dance to integrate Eastern and Western arts and cultures for a more harmonious world."
         },
         {
           "type": "cards",

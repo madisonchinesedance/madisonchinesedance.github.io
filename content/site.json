@@ -114,6 +114,16 @@
       "href": "pages/faq.html",
       "page": "faq.html",
       "content": "faq.json"
+    },
+    "see-a-performance": {
+      "href": "pages/get-involved/see-a-performance.html",
+      "page": "get-involved/see-a-performance.html",
+      "content": "get-involved/see-a-performance.json"
+    },
+    "support-our-cause": {
+      "href": "pages/get-involved/support-our-cause.html",
+      "page": "get-involved/support-our-cause.html",
+      "content": "get-involved/support-our-cause.json"
     }
   }
 }

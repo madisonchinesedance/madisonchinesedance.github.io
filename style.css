@@ -28,6 +28,16 @@
 	--gold-highlight: #FFC440A8;
 	--blue-highlight: #6096FF9E;
 
+	/* Per-color ring + glow used by the highlight ring/glow shadow. */
+	--peach-ring: #FFB37A;
+	--peach-glow: #FFB37A;
+	--green-ring: #28A745;
+	--green-glow: #28A745;
+	--gold-ring: #FFC440;
+	--gold-glow: #FFC440;
+	--blue-ring: #4A90E2;
+	--blue-glow: #4A90E2;
+
 	--announcement-button-border: var(--color-black);
 
 	/* Brand/background colors */
@@ -66,6 +76,23 @@
 	--primary-button-color: linear-gradient(135deg, var(--color-green), var(--color-green));
 	--primary-button-text: var(--light-text-color);
 	--primary-button-font-size: 1rem;
+	--primary-button-padding: 14px 20px;
+	--primary-button-radius: var(--section-radius);
+	--primary-button-hover-filter: brightness(1.1) saturate(1.05);
+	--primary-button-hover-translate: var(--translate-button-hover);
+	--primary-button-transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
+	--primary-button-focus-outline: 4px solid var(--button-hover-bg);
+	--primary-button-focus-offset: 3px;
+
+	/* Header/Nav CTA buttons (separate from content buttons) */
+	--nav-button-padding: 8px 12px;
+	--nav-button-font-size: var(--nav-link-font-size);
+	--nav-button-font-weight: var(--nav-link-font-weight);
+	--nav-button-radius: 999px;
+	--nav-button-hover-filter: brightness(1.08);
+	--nav-button-hover-translate: var(--translate-button-hover);
+	--nav-button-transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
+	--nav-button-active-shadow: var(--header-current-shadow);
 
 	/* Layout sizing */
 	--header-bar-height: 65px;
@@ -78,6 +105,12 @@
 	--transition-fast: 180ms;
 	--transition-medium: 260ms;
 	--entrance-duration: 1000ms;
+	--entrance-translate: 50px;
+	--entrance-delay-hero: 0ms;
+	--entrance-delay-section: 90ms;
+	--entrance-delay-card-group: 120ms;
+	--entrance-delay-card: 90ms;
+	--entrance-delay-footer: 300ms;
 	--pulse-duration: 2s;
 	--translate-button-hover: -2px;
 	--translate-card-hover: -5px;
@@ -85,16 +118,59 @@
 
 	/* UI colors */
 	--edge-contrast: var(--color-blue-grey);
-	/* All "card" surfaces use the transparent navy gradient now,
-	   matching the page-hero / section cards. Dark text on these
-	   cards is overridden to use light-text-color. */
 	--card-bg: linear-gradient(180deg, var(--color-violet), var(--color-deep-navy));
 	--card-border: var(--edge-contrast);
-	--card-bg-hover: linear-gradient(180deg, var(--color-violet), var(--color-deep-navy));
+
+	/* ----- Section-level variables (big single blocks) ----- */
+	--section-bg: linear-gradient(180deg, var(--color-violet), var(--color-deep-navy));
+	--section-bg-solid: var(--color-deep-navy);
+	--section-border: var(--edge-contrast);
+	--section-transparency: 0.85;          /* resting opacity for sections like home-intro */
+	--section-transparency-hover: 1;         /* hover/focus opacity */
+	--section-text-color: var(--light-text-color);
+	--section-heading-color: var(--light-text-color);
+	--section-radius: 40px;                /* matches --section-radius alias */
+	--section-padding-x: clamp(18px, 3vw, 40px);
+	--section-shadow: 0 18px 50px var(--color-navy-shadow);
+	--section-shadow-hover: 0 22px 42px var(--color-navy-shadow);
+	--section-blend-mode: normal;
+	--section-blur: 0px;
+	--section-max-width: 1600px;
+	--section-gap: 18px;
+	--section-border-radius-top-left: 36px;
+	--section-border-radius-top-right: 36px;
+	--section-border-radius-bottom-left: 0px;
+	--section-border-radius-bottom-right: 0px;
+	--section-margin-top: -34px;           /* home-intro pull-up offset */
+	--section-padding-top: 84px;
+
+	/* ----- Card-level variables (small items in a row) ----- */
+	--card-text-color: var(--light-text-color);
+	--card-heading-color: var(--light-text-color);
+	--card-link-color: var(--light-text-color);
+	--card-border-radius: 20px;            /* matches --card-radius */
+	--card-padding: 24px;
+	--card-padding-sm: 22px;
+	--card-padding-xs: 16px;
+	--card-transparency: 0.85;             /* resting opacity for cards */
+	--card-transparency-hover: 1;
+	--card-border-color: var(--edge-contrast);
+	--card-border-hover: transparent;
+	--card-shadow: 0 14px 34px var(--color-navy-shadow);
+	--card-shadow-hover: 0 22px 42px var(--color-navy-shadow);
+	--card-min-height: 260px;
+	--card-blend-mode: normal;
+	--card-blur: 0px;
+	--card-opacity-disabled: 0.5;
+	--card-link-after-content: " ->";
+	--card-gap: 18px;
+	--card-grid-columns: 3;
+	--card-link-font-weight: 800;
+
 	--button-hover-bg: var(--color-blue-grey);
 	--skiplink-bg: var(--color-peach);
 	--skiplink-fg: var(--color-deep-navy);
-	--dropdown-bg: var(--bg-color);
+	--dropdown-bg: var(--color-deep-navy);
 	--boxshadow-nav: var(--color-black);
 	--announcement-bg: var(--color-black);
 	--announcement-border: var(--peach-highlight);
@@ -486,7 +562,8 @@ a{
 .announcement-link:hover,
 .announcement-link:focus-visible{
 	transform:translateY(var(--translate-button-hover));
-	background:var(--[rimary-button-color]);
+	background:var(--primary-button-color);
+	filter:brightness(1.12) saturate(1.05);
 	opacity:1;
 	border-color:transparent;
 	box-shadow:var(--card-shadow-hover);
@@ -539,26 +616,14 @@ a{
 	margin:0 auto;
 }
 .hero-inner,
-.page-hero .container,
-.section .container{
-	background:var(--card-bg);
-	border:1px solid var(--card-border);
-	border-radius:var(--section-radius);
-	box-shadow:var(--panel-shadow);
-	padding:clamp(18px, 3vw, 40px);
-}
-.hero-inner{
-	background: var(--bg-color);
-}
-
-/* Non-home page sections use a dark card so they don't blend
-   into the deep navy body background. Sections stay visually
-   separated from each other instead of stacking peach-on-peach. */
 .page-hero .page-block-container,
 .page-hero .container,
 .section .container{
-	background:linear-gradient(180deg, var(--color-violet), var(--color-deep-navy));
+	background:var(--section-bg);
 	border:1px solid var(--edge-contrast);
+	border-radius:var(--section-radius);
+	box-shadow:var(--panel-shadow);
+	padding:clamp(18px, 3vw, 40px);
 	color:var(--light-text-color);
 }
 .page-hero .page-block-container a:not(.btn),
@@ -637,50 +702,50 @@ a{
 	cursor:pointer;
 	user-select:none;
 	font-weight:var(--heading-1-font-weight);
-	padding:14px 20px;
-	border-radius:var(--section-radius);
-	transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+	padding:var(--primary-button-padding);
+	border-radius:var(--primary-button-radius);
+	transition: var(--primary-button-transition);
 	border:0;
 	color:var(--primary-button-text);
 	font-size:var(--primary-button-font-size);
 }
-.btn:focus-visible{ outline:4px solid var(--button-hover-bg); outline-offset:3px; }
+.btn:focus-visible{ outline:var(--primary-button-focus-outline); outline-offset:var(--primary-button-focus-offset); }
 
 /* Primary (ticket) */
 .btn-primary{
 	background:var(--primary-button-color);
-	transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
+	transition: var(--primary-button-transition);
 }
 .btn-primary:hover{
-	transform:translateY(var(--translate-button-hover));
-	filter:brightness(1.1) saturate(1.05);
+	transform:translateY(var(--primary-button-hover-translate));
+	filter:var(--primary-button-hover-filter);
 }
 
 /* Secondary (donate) */
 .btn-secondary{
 	background:var(--primary-button-color);
-	transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
+	transition: var(--primary-button-transition);
 }
 .btn-secondary:hover{
-	transform:translateY(var(--translate-button-hover));
-	filter:brightness(1.1) saturate(1.05);
+	transform:translateY(var(--primary-button-hover-translate));
+	filter:var(--primary-button-hover-filter);
 }
 
 .btn.header-cta{
-	padding:8px 12px;
-	font-size: var(--nav-link-font-size);
-	font-weight: var(--nav-link-font-weight);
-	border-radius:999px;
+	padding:var(--nav-button-padding);
+	font-size: var(--nav-button-font-size);
+	font-weight: var(--nav-button-font-weight);
+	border-radius:var(--nav-button-radius);
 	white-space:nowrap;
-	transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
+	transition: var(--nav-button-transition);
 }
 .btn.header-cta[aria-current="page"]{
-	box-shadow:var(--header-current-shadow);
+	box-shadow:var(--nav-button-active-shadow);
 }
 
 .btn.header-cta:hover{
-	transform:translateY(var(--translate-button-hover));
-	filter:brightness(1.08);
+	transform:translateY(var(--nav-button-hover-translate));
+	filter:var(--nav-button-hover-filter);
 }
 
 /* ---------------------------
@@ -704,12 +769,44 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	position:relative;
 	z-index:1;
 }
+/* Entrance animation applied to every major page block.
+   Each section's container card slides up + fades in, with a
+   cascading delay so the page "unfolds" top to bottom.
+   All values use CSS variables for consistent behavior.
+   Home sections (home-intro, home-pathways) are excluded — they
+   render statically to avoid exposing the hero gradient boundary. */
+.site-main > .page-hero,
+.site-main > .section:not(.home-intro):not(.home-pathways),
+.site-footer,
+.site-main > .component-card-grid,
+.site-main > .component-body,
+.site-main > .ticket-embed,
+.site-main > .page-blocks,
+.site-main > [data-page-blocks],
+.site-main > .gallery-container,
+.site-main > .gallery-wrapper,
+.site-main > .gallery-grid,
+.site-main > .page-block-container,
+.site-main > .donate-section,
+.site-main > .tickets-section,
+.site-main > .faq-section,
+.site-main > .page-section:not(.home-intro):not(.home-pathways){
+	animation:home-rise var(--entrance-duration) ease both;
+}
+.site-main > .page-hero{ animation-delay: var(--entrance-delay-hero); }
+.site-main > .section:not(.home-intro):not(.home-pathways),
+.site-main > .page-section:not(.home-intro):not(.home-pathways){ animation-delay: var(--entrance-delay-section); }
+.site-main > .component-card-grid{ animation-delay: var(--entrance-delay-card-group); }
+.site-main > .gallery-container,
+.site-main > .gallery-grid{ animation-delay: calc(var(--entrance-delay-section) + var(--entrance-delay-card)); }
+.site-main > .ticket-embed{ animation-delay: calc(var(--entrance-delay-section) + var(--entrance-delay-card) * 2); }
+.site-footer{ animation-delay: var(--entrance-delay-footer); }
 .site-main > .page-hero .container,
 .site-main > .section .container{
 	animation:home-rise var(--entrance-duration) ease both;
 }
 .site-main > .section .container{
-	animation-delay:90ms;
+	animation-delay: var(--entrance-delay-section);
 }
 .page-star-field{
 	position:absolute;
@@ -843,19 +940,35 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	margin-top:-34px;
 	padding-top:84px;
 	background:var(--home-intro-bg);
+	/* No bottom border so the home-intro melts into the home-pathways
+	   section's star field (no visible seam between them). */
+	border:1px solid transparent;
+	border-bottom:0;
 	border-radius:36px 36px 0 0;
-	box-shadow:var(--home-intro-shadow);
+	box-shadow:0 -18px 42px var(--color-navy-shadow);
 }
-.home-intro::before{
-	content:"";
-	position:absolute;
-	top:26px;
-	left:clamp(20px, 5vw, 76px);
-	right:clamp(20px, 5vw, 76px);
-	height:1px;
-	background:var(--home-intro-bg);
+/* Both star fields on the home-intro were removed per feedback
+   (the radial-gradient tile didn't render nicely, the stars
+   couldn't twinkle since there are no DOM elements to keyframe). */
+.home-intro::before,
+.home-intro::after{
+	content:none;
 }
 .home-intro .container{
+	position:relative;
+	z-index:1;
+}
+/* The home-pathways ("Get Involved") section used to have a pure-CSS
+   star field here, but it was removed per feedback: the small
+   repeating tile didn't render nicely, the stars couldn't twinkle
+   (no DOM elements for keyframes), and they weren't essential. */
+.home-pathways{
+	position:relative;
+}
+.home-pathways::before{
+	content:none;
+}
+.home-pathways > .container{
 	position:relative;
 	z-index:1;
 }
@@ -1058,7 +1171,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 @keyframes home-rise{
 	from{
 		opacity:0;
-		transform:translateY(50px);
+		transform:translateY(var(--entrance-translate));
 	}
 	to{
 		opacity:1;
@@ -1345,9 +1458,32 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	font-size:1rem;
 	line-height:1.65;
 }
+.footer-operations{
+	margin-top:20px;
+	padding-top:16px;
+	border-top:1px solid var(--edge-contrast);
+	font-size:0.92rem;
+	line-height:1.7;
+	color:var(--body-font-color);
+}
+.footer-operations a{
+	color:var(--body-font-color);
+	text-decoration:none;
+	transition:color var(--transition-fast), transform var(--transition-fast);
+	display:inline-block;
+}
+.footer-operations a:hover,
+.footer-operations a:focus{
+	color:var(--light-text-color);
+	transform:translateX(3px);
+	outline:none;
+}
+.footer-operations span{
+	color:var(--body-font-color);
+}
 .footer-directory{
 	display:grid;
-	grid-template-columns:repeat(3, minmax(140px, 1fr));
+	grid-template-columns:repeat(4, minmax(140px, 1fr));
 	gap:clamp(22px, 4vw, 46px);
 }
 .footer-column h2{
@@ -1625,8 +1761,24 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	.home-page .hero-tagline,
 	.home-page .hero-ctas,
 	.home-page .home-stats,
+	.site-main > .page-hero,
 	.site-main > .page-hero .container,
+	.site-main > .section,
 	.site-main > .section .container,
+	.site-main > .home-section,
+	.site-main > .home-intro,
+	.site-main > .home-pathways,
+	.site-main > .component-card-grid,
+	.site-main > .ticket-embed,
+	.site-main > .gallery-container,
+	.site-main > .gallery-grid,
+	.site-main > .component-card,
+	.site-main > .page-block-container,
+	.site-main > .donate-section,
+	.site-main > .tickets-section,
+	.site-main > .faq-section,
+	.site-main > .page-section,
+	.site-footer,
 	.component-card,
 	.home-feature-card,
 	.home-pathway,

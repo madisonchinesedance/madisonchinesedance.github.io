@@ -39,8 +39,10 @@
     {
       "label": "Get Involved",
       "items": [
-        { "route": "join-us", "label": "Join Us" },
-        { "route": "book-a-performance", "label": "Book a Performance" }
+        { "route": "join-us", "label": "Dance With Us" },
+        { "route": "book-a-performance", "label": "Bring Us to Your Event" },
+        { "route": "see-a-performance", "label": "See A Performance" },
+        { "route": "support-our-cause", "label": "Support Our Cause" }
       ]
     },
     {
