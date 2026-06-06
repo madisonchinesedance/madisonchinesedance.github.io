@@ -163,10 +163,6 @@
 	--card-blur: 0px;
 	--card-opacity-disabled: 0.5;
 
-	/* ----- Stat card variables (home-stat blocks) ----- */
-	--stat-transparency: 0.75;             /* resting opacity for stat cards */
-	--stat-transparency-hover: 1;          /* hover/focus opacity for stat cards */
-
 	--card-link-after-content: " ->";
 	--card-gap: 18px;
 	--card-grid-columns: 3;
@@ -624,12 +620,31 @@ a{
 .page-hero .page-block-container,
 .page-hero .container,
 .section .container{
-	background:var(--section-bg);
-	border:1px solid var(--edge-contrast);
+	background:linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-violet) calc(var(--section-transparency) * 100%), transparent),
+		color-mix(in srgb, var(--color-deep-navy) calc(var(--section-transparency) * 100%), transparent)
+	);
+	border:1px solid color-mix(in srgb, var(--section-border) calc(var(--section-transparency) * 100%), transparent);
 	border-radius:var(--section-radius);
-	box-shadow:var(--panel-shadow);
-	padding:clamp(18px, 3vw, 40px);
+	box-shadow:var(--section-shadow);
+	padding:clamp(18px, 3vw, 40px) var(--section-padding-x);
 	color:var(--light-text-color);
+	transition:background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.page-hero .page-block-container:hover,
+.page-hero .page-block-container:focus-within,
+.page-hero .container:hover,
+.page-hero .container:focus-within,
+.section .container:hover,
+.section .container:focus-within{
+	background:linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-violet) calc(var(--section-transparency-hover) * 100%), transparent),
+		color-mix(in srgb, var(--color-deep-navy) calc(var(--section-transparency-hover) * 100%), transparent)
+	);
+	border-color:color-mix(in srgb, var(--section-border) calc(var(--section-transparency-hover) * 100%), transparent);
+	box-shadow:var(--section-shadow-hover);
 }
 .page-hero .page-block-container a:not(.btn),
 .page-hero .container a:not(.btn),
@@ -765,6 +780,9 @@ a{
 	overflow:hidden;
 	padding-bottom:clamp(36px, 5vw, 76px);
 }
+.home-page .site-main{
+	background:var(--home-intro-bg);
+}
 
 body:has(.site-header.has-visible-announcement) .page-hero{
 	padding-top:32px;
@@ -886,55 +904,20 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	background:transparent;
 	border-color:transparent;
 	box-shadow:none;
+	opacity:1;
+	--entrance-end-opacity: 1;
 	backdrop-filter:none;
 }
 .home-page .hero-title,
 .home-page .hero-tagline,
-.home-page .hero-ctas,
-.home-page .home-stats{
+.home-page .hero-ctas{
 	animation:home-rise var(--entrance-duration) ease both;
 }
 .home-page .hero-tagline{ animation-delay:80ms; }
 .home-page .hero-ctas{ animation-delay:160ms; }
-.home-page .home-stats{ animation-delay:240ms; }
 .home-page .hero-ctas{
 	justify-content:flex-start;
 	margin-top:26px;
-}
-.home-stats{
-	display:grid;
-	grid-template-columns:repeat(3, minmax(0, 1fr));
-	gap:14px;
-	margin-top:30px;
-	padding-top:26px;
-	border-top:1px solid var(--edge-contrast);
-}
-.home-stat{
-	padding:16px;
-	border-radius:var(--card-radius);
-	background:var(--card-bg);
-	border:1px solid var(--card-border);
-	opacity:var(--stat-transparency);
-	--entrance-end-opacity: var(--stat-transparency);
-	transition:opacity var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-.home-stat:hover{
-	border-color:transparent;
-	box-shadow:var(--card-shadow-hover);
-}
-.home-stat strong{
-	display:block;
-	color:var(--light-text-color);
-	font-size:var(--heading-1-font-size);
-	font-weight:var(--heading-1-font-weight);
-	line-height:var(--heading-1-line-height);
-}
-.home-stat span{
-	display:block;
-	margin-top:8px;
-	color:var(--light-text-color);
-	font-size:var(--small-body-font-size);
-	line-height:var(--body-line-height);
 }
 .home-section{
 	padding:20px 0 44px;
@@ -945,12 +928,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	margin-top:-34px;
 	padding-top:84px;
 	background:var(--home-intro-bg);
-	/* No bottom border so the home-intro melts into the home-pathways
-	   section's star field (no visible seam between them). */
-	border:1px solid transparent;
-	border-bottom:0;
 	border-radius:36px 36px 0 0;
-	box-shadow:0 -18px 42px var(--color-navy-shadow);
 }
 /* Both star fields on the home-intro were removed per feedback
    (the radial-gradient tile didn't render nicely, the stars
@@ -969,6 +947,8 @@ body:has(.site-header.has-visible-announcement) .page-hero{
    (no DOM elements for keyframes), and they weren't essential. */
 .home-pathways{
 	position:relative;
+	margin-top:-1px;
+	padding-top:21px;
 }
 .home-pathways::before{
 	content:none;
@@ -985,7 +965,15 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	border:0;
 	border-radius:0;
 	box-shadow:none;
+	opacity:1;
+	--entrance-end-opacity: 1;
 	padding:0 20px;
+}
+.home-section .container:hover,
+.home-section .container:focus-within{
+	background:transparent;
+	border-color:transparent;
+	box-shadow:none;
 }
 .home-section-heading{
 	max-width:920px;
@@ -1010,79 +998,6 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	max-width:920px;
 	margin-bottom:24px;
 }
-.home-feature-grid,
-.home-pathway-grid{
-	display:grid;
-	gap:18px;
-}
-.home-feature-grid{
-	grid-template-columns:repeat(3, minmax(0, 1fr));
-}
-.home-pathway-grid{
-	grid-template-columns:repeat(3, minmax(0, 1fr));
-}
-.home-feature-card,
-.home-pathway{
-	display:flex;
-	flex-direction:column;
-	min-height:100%;
-	color:inherit;
-	text-decoration:none;
-	border-radius:var(--card-radius);
-	background:var(--card-bg);
-	border:1px solid var(--card-border);
-	box-shadow:var(--card-shadow);
-	opacity:var(--card-transparency);
-	--entrance-end-opacity: var(--card-transparency);
-	transition:transform var(--transition-medium), box-shadow var(--transition-medium), background var(--transition-fast), opacity var(--transition-fast), border-color var(--transition-fast);
-	animation:home-rise var(--entrance-duration) ease both;
-	animation-delay:calc(var(--item-index, 0) * 90ms);
-}
-.home-feature-card{
-	padding:24px;
-	min-height:260px;
-}
-.home-pathway{
-	padding:22px;
-}
-.home-feature-card:hover,
-.home-feature-card:focus-visible,
-.home-pathway:hover,
-.home-pathway:focus-visible{
-	transform:translateY(-5px);
-	background:var(--card-bg);
-	opacity:var(--card-transparency-hover);
-	border-color:transparent;
-	box-shadow:var(--card-shadow-hover);
-	outline:none;
-}
-.home-feature-card h3,
-.home-pathway h3{
-	margin:0 0 10px;
-	color:var(--light-text-color);
-	font-size:var(--heading-2-font-size);
-	font-weight:var(--heading-2-font-weight);
-	line-height:var(--heading-2-line-height);
-}
-.home-feature-card p,
-.home-pathway p{
-	margin:0;
-	color:var(--light-text-color);
-	font-size:var(--body-font-size);
-	line-height:var(--body-line-height);
-}
-.home-card-link,
-.home-pathway span{
-	margin-top:auto;
-	padding-top:22px;
-	color:var(--light-text-color);
-	font-weight:var(--heading-2-font-weight);
-	font-size:var(--body-font-size);
-}
-.home-card-link::after,
-.home-pathway span::after{
-	content:" ->";
-}
 .component-actions{
 	display:flex;
 	align-items:center;
@@ -1098,7 +1013,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	max-width:var(--content-width);
 	margin:24px auto 0;
 }
-.component-card-grid-stats{
+.hero-inner .component-card-grid{
 	margin-top:30px;
 	padding-top:26px;
 	border-top:1px solid var(--edge-contrast);
@@ -1111,34 +1026,42 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	display:flex;
 	flex-direction:column;
 	min-height:100%;
-	padding:24px;
+	padding:var(--card-padding);
+	--card-heading-font-size: var(--heading-2-font-size);
+	--card-heading-font-weight: var(--heading-2-font-weight);
+	--card-heading-line-height: var(--heading-2-line-height);
 	color:inherit;
 	text-decoration:none;
-	border-radius:var(--card-radius);
-	background:var(--card-bg);
-	border:1px solid var(--card-border);
+	border-radius:var(--card-border-radius);
+	background:linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-violet) calc(var(--card-transparency) * 100%), transparent),
+		color-mix(in srgb, var(--color-deep-navy) calc(var(--card-transparency) * 100%), transparent)
+	);
+	border:1px solid color-mix(in srgb, var(--card-border-color) calc(var(--card-transparency) * 100%), transparent);
 	box-shadow:var(--card-shadow);
-	opacity:var(--card-transparency);
-	--entrance-end-opacity: var(--card-transparency);
-	transition:transform var(--transition-medium), box-shadow var(--transition-medium), background var(--transition-fast), opacity var(--transition-fast), border-color var(--transition-fast);
+	transition:transform var(--transition-medium), box-shadow var(--transition-medium), background var(--transition-fast), border-color var(--transition-fast);
 	animation:home-rise var(--entrance-duration) ease both;
 	animation-delay:calc(var(--block-delay, 0ms) + var(--item-index, 0) * 90ms);
 }
 .component-card:hover,
 .component-card:focus-visible{
 	transform:translateY(var(--translate-card-hover));
-	background:var(--card-bg);
-	opacity:var(--card-transparency-hover);
-	border-color:transparent;
+	background:linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-violet) calc(var(--card-transparency-hover) * 100%), transparent),
+		color-mix(in srgb, var(--color-deep-navy) calc(var(--card-transparency-hover) * 100%), transparent)
+	);
+	border-color:color-mix(in srgb, var(--card-border-hover) calc(var(--card-transparency-hover) * 100%), transparent);
 	box-shadow:var(--card-shadow-hover);
 	outline:none;
 }
-.component-card h3{
+.component-card-heading{
 	margin:0 0 10px;
 	color:var(--light-text-color);
-	font-size:var(--heading-2-font-size);
-	font-weight:var(--heading-2-font-weight);
-	line-height:var(--heading-2-line-height);
+	font-size:var(--card-heading-font-size);
+	font-weight:var(--card-heading-font-weight);
+	line-height:var(--card-heading-line-height);
 }
 .component-card p{
 	margin:0;
@@ -1155,25 +1078,6 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 }
 .component-card-link::after{
 	content:" ->";
-}
-.component-card-stats{
-	padding:16px;
-	box-shadow:none;
-}
-.component-card-stats h2{
-	display:block;
-	margin:0;
-	color:var(--light-text-color);
-	font-size:var(--heading-1-font-size);
-	font-weight:var(--heading-1-font-weight);
-	line-height:var(--heading-1-line-height);
-}
-.component-card-stats p{
-	display:block;
-	margin-top:8px;
-	color:var(--light-text-color);
-	font-size:var(--small-body-font-size);
-	line-height:var(--body-line-height);
 }
 @keyframes home-rise{
 	from{
@@ -1437,18 +1341,25 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	width:54px;
 	height:54px;
 	border-radius:50%;
-	background:var(--card-bg);
+	background:linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-violet) calc(var(--card-transparency) * 100%), transparent),
+		color-mix(in srgb, var(--color-deep-navy) calc(var(--card-transparency) * 100%), transparent)
+	);
 	color:var(--light-text-color);
 	text-decoration:none;
 	font-weight:800;
 	letter-spacing:0.5px;
-	opacity:var(--card-transparency);
 	box-shadow:var(--footer-logo-shadow);
-	transition:opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+	transition:background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 .footer-logo:hover,
 .footer-logo:focus-visible{
-	opacity:var(--card-transparency-hover);
+	background:linear-gradient(
+		180deg,
+		color-mix(in srgb, var(--color-violet) calc(var(--card-transparency-hover) * 100%), transparent),
+		color-mix(in srgb, var(--color-deep-navy) calc(var(--card-transparency-hover) * 100%), transparent)
+	);
 	transform:translateY(-2px);
 	box-shadow:var(--card-shadow-hover);
 	outline:none;
@@ -1540,15 +1451,8 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	 Responsive (mobile-first is not used — desktop-first approach)
 	 --------------------------- */
 @media (max-width:992px){
-	.home-stats,
-	.home-feature-grid,
-	.home-pathway-grid,
 	.component-card-grid{
 		grid-template-columns:1fr;
-	}
-
-	.home-feature-card{
-		min-height:0;
 	}
 
 	.footer-inner,
@@ -1671,6 +1575,9 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	.section .container{
 		padding:24px;
 	}
+	.home-section .container{
+		padding:0 20px;
+	}
 	.logo{
 		font-size:1.35rem;
 	}
@@ -1767,7 +1674,6 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	.home-page .hero-title,
 	.home-page .hero-tagline,
 	.home-page .hero-ctas,
-	.home-page .home-stats,
 	.site-main > .page-hero,
 	.site-main > .page-hero .container,
 	.site-main > .section,
@@ -1787,8 +1693,6 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	.site-main > .page-section,
 	.site-footer,
 	.component-card,
-	.home-feature-card,
-	.home-pathway,
 	.site-star,
 	.is-announcement-highlight-pulse{
 		transition:none;

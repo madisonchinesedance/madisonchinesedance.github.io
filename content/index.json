@@ -17,21 +17,21 @@
         },
         {
           "type": "cards",
-          "variant": "stats",
           "columns": 3,
           "headingTag": "h2",
+          "headingSize": "var(--heading-1-font-size)",
           "items": [
             {
               "heading": "1987",
-              "body": "Founded as a nonprofit academy"
+              "body": "Founded as a nonprofit danceacademy over 30 years ago."
             },
             {
               "heading": "Splendid China",
-              "body": "Annual cultural showcase in June at the Robert E. Parilla Performing Arts Center - where community artistry meets a world-class stage."
+              "body": "Annual showcase at the Robert E. Parilla Performing Arts Center - where community artistry meets the stage."
             },
             {
               "heading": "Ages 3 to 18+",
-              "body": "Classes for beginner through advanced students"
+              "body": "Classes for beginner dancers through advanced students and beyond."
             }
           ]
         }

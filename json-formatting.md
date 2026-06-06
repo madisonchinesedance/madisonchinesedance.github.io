@@ -217,12 +217,15 @@ Use `type: "cards"` for repeated card-like items.
 
 Optional card layout fields:
 
-- `variant`: optional visual variant, such as `stats`.
+- `variant`: optional visual variant, only when the stylesheet already defines one for that card group.
 - `headingTag`: optional heading tag for card headings, such as `h2` or `h3`. The default is `h3`.
+- `headingSize`: optional CSS font size for all card headings in the group, such as `1.5rem` or `var(--heading-1-font-size)`.
 
 Item fields:
 
 - `heading`: card title.
+- `headingTag`: optional heading tag for this card only.
+- `headingSize`: optional CSS font size for this card only.
 - `body`: card text.
 - `route`: optional internal link.
 - `href`: optional direct link.
@@ -232,14 +235,14 @@ If an item has no `route` or `href`, it renders as a plain card.
 
 ## Stat Cards
 
-Stats are regular cards with the `stats` variant and a larger heading tag.
+Stats are regular cards. Use `headingTag` and `headingSize` when their heading should read larger than ordinary card titles.
 
 ```json
 {
   "type": "cards",
-  "variant": "stats",
   "columns": 3,
   "headingTag": "h2",
+  "headingSize": "var(--heading-1-font-size)",
   "items": [
     {
       "heading": "1987",

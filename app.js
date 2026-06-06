@@ -425,7 +425,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const columns = Math.max(1, Math.min(Number(block.columns || cards.length || 1), 4));
 		const variant = block.variant ? ` component-card-grid-${escapeHtml(block.variant)}` : '';
 		const cardClass = block.variant ? ` component-card-${escapeHtml(block.variant)}` : '';
-		const headingTag = /^h[1-6]$/.test(block.headingTag || '') ? block.headingTag : 'h3';
+		const blockHeadingTag = /^h[1-6]$/.test(block.headingTag || '') ? block.headingTag : 'h3';
+		const cssSizePattern = /^(?:var\(--[a-z0-9-]+\)|clamp\([^;{}]+\)|min\([^;{}]+\)|max\([^;{}]+\)|calc\([^;{}]+\)|[\d.]+(?:rem|em|px|%|vw|vh))$/i;
 
 		return `
 			<div class="component-card-grid${variant}" style="--card-columns:${columns}">
@@ -437,10 +438,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 					const hrefAttr = tag === 'a' ? ` href="${href}"` : '';
 					const heading = card.heading || card.value || '';
 					const body = card.body || card.label || '';
+					const headingTag = /^h[1-6]$/.test(card.headingTag || '') ? card.headingTag : blockHeadingTag;
+					const headingSize = String(card.headingSize || block.headingSize || '').trim();
+					const headingSizeStyle = cssSizePattern.test(headingSize) ? ` --card-heading-font-size:${headingSize};` : '';
 
 					return `
-						<${tag} class="component-card${cardClass}" style="--item-index:${index}"${hrefAttr}>
-							${heading ? `<${headingTag}>${escapeHtml(heading)}</${headingTag}>` : ''}
+						<${tag} class="component-card${cardClass}" style="--item-index:${index};${headingSizeStyle}"${hrefAttr}>
+							${heading ? `<${headingTag} class="component-card-heading">${escapeHtml(heading)}</${headingTag}>` : ''}
 							${body ? `<p>${escapeHtml(body)}</p>` : ''}
 							${tag === 'a' && label ? `<span class="component-card-link">${escapeHtml(label)}</span>` : ''}
 						</${tag}>
@@ -606,52 +610,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 			actionMount.innerHTML = actions.map(contentAction).join('');
 		}
 
-		const statsMount = $('[data-home-stats]');
-		if (statsMount) {
-			const stats = Array.isArray(content.stats) ? content.stats : [];
-			statsMount.innerHTML = stats.map((stat) => `
-				<div class="home-stat">
-					<strong>${escapeHtml(stat.value || '')}</strong>
-					<span>${escapeHtml(stat.label || '')}</span>
-				</div>
-			`).join('');
-		}
-
-		const featureMount = $('[data-home-feature-cards]');
-		if (featureMount) {
-			const cards = Array.isArray(content.featureCards) ? content.featureCards : [];
-			featureMount.innerHTML = cards.map((card, index) => {
-				const link = resolveContentLink(card, routes);
-				const href = link ? resolveHref(link.href) : '#';
-				const label = link?.label || 'Learn more';
-
-				return `
-					<a class="home-feature-card" href="${href}" style="--item-index:${index}">
-						<h3>${escapeHtml(card.heading || '')}</h3>
-						<p>${escapeHtml(card.body || '')}</p>
-						<span class="home-card-link">${escapeHtml(label)}</span>
-					</a>
-				`;
-			}).join('');
-		}
-
-		const pathwaysMount = $('[data-home-pathways]');
-		if (pathwaysMount) {
-			const pathways = Array.isArray(content.pathways) ? content.pathways : [];
-			pathwaysMount.innerHTML = pathways.map((pathway, index) => {
-				const link = resolveContentLink(pathway, routes);
-				const href = link ? resolveHref(link.href) : '#';
-				const label = link?.label || 'Learn more';
-
-				return `
-					<a class="home-pathway" href="${href}" style="--item-index:${index}">
-						<h3>${escapeHtml(pathway.heading || '')}</h3>
-						<p>${escapeHtml(pathway.body || '')}</p>
-						<span>${escapeHtml(label)}</span>
-					</a>
-				`;
-			}).join('');
-		}
 	}
 
 	function renderHeader() {
