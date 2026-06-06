@@ -11,10 +11,13 @@
   "nav": [
     { "route": "home", "label": "Home" },
     { "route": "gallery", "label": "Gallery" },
+    { "route": "faq", "label": "FAQ" },
     {
       "label": "About Us",
       "items": [
         { "route": "about", "label": "About Us" },
+        { "route": "meet-the-faculty", "label": "Meet the Faculty" },
+        { "route": "success-stories", "label": "Success Stories" },
         { "route": "contact", "label": "Contact" }
       ]
     },
@@ -31,6 +34,13 @@
         { "route": "beginner-dancers", "label": "Beginner Dancers" },
         { "route": "intermediate-dancers", "label": "Intermediate Dancers" },
         { "route": "advanced-dancers", "label": "Advanced Dancers" }
+      ]
+    },
+    {
+      "label": "Get Involved",
+      "items": [
+        { "route": "join-us", "label": "Join Us" },
+        { "route": "book-a-performance", "label": "Book a Performance" }
       ]
     },
     {

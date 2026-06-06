@@ -11,20 +11,30 @@
       "links": [
         { "route": "home", "label": "Home" },
         { "route": "about", "label": "About Us" },
+        { "route": "meet-the-faculty", "label": "Meet the Faculty" },
+        { "route": "success-stories", "label": "Success Stories" },
         { "route": "beginner-dancers", "label": "Beginner Dancers" },
         { "route": "intermediate-dancers", "label": "Intermediate Dancers" },
         { "route": "advanced-dancers", "label": "Advanced Dancers" },
         { "route": "gallery", "label": "Gallery" },
+        { "route": "faq", "label": "FAQ" },
         { "route": "contact", "label": "Contact" }
+      ]
+    },
+    {
+      "heading": "Get Involved",
+      "links": [
+        { "route": "join-us", "label": "Join Us" },
+        { "route": "book-a-performance", "label": "Book a Performance" },
+        { "route": "donate", "label": "Donate" },
+        { "route": "events", "label": "Events" }
       ]
     },
     {
       "heading": "Support & Actions",
       "links": [
         { "route": "tickets", "label": "Purchase Tickets" },
-        { "route": "donate", "label": "Donate" },
-        { "route": "splendid-china-2026", "label": "Splendid China 2026" },
-        { "route": "events", "label": "Events" }
+        { "route": "splendid-china-2026", "label": "Splendid China 2026" }
       ]
     },
     {

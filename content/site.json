@@ -89,6 +89,31 @@
       "href": "pages/splendid-china/splendid-china-2020.html",
       "page": "splendid-china/splendid-china-2020.html",
       "content": "splendid-china/splendid-china-2020.json"
+    },
+    "join-us": {
+      "href": "pages/get-involved/join-us.html",
+      "page": "get-involved/join-us.html",
+      "content": "get-involved/join-us.json"
+    },
+    "book-a-performance": {
+      "href": "pages/get-involved/book-a-performance.html",
+      "page": "get-involved/book-a-performance.html",
+      "content": "get-involved/book-a-performance.json"
+    },
+    "meet-the-faculty": {
+      "href": "pages/about/meet-the-faculty.html",
+      "page": "about/meet-the-faculty.html",
+      "content": "about/meet-the-faculty.json"
+    },
+    "success-stories": {
+      "href": "pages/about/success-stories.html",
+      "page": "about/success-stories.html",
+      "content": "about/success-stories.json"
+    },
+    "faq": {
+      "href": "pages/faq.html",
+      "page": "faq.html",
+      "content": "faq.json"
     }
   }
 }

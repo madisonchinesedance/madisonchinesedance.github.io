@@ -1,0 +1,99 @@
+{
+  "pageTitle": "Meet the Faculty | Madison Chinese Dance Academy",
+  "metaDescription": "Meet the faculty and instructors at Madison Chinese Dance Academy.",
+  "blocks": [
+    {
+      "type": "hero",
+      "blocks": [
+        {
+          "type": "heading1",
+          "id": "meet-the-faculty-heading",
+          "text": "Meet the Faculty"
+        },
+        {
+          "type": "body",
+          "text": "Our faculty brings together experienced dancers, choreographers, and educators who are passionate about Chinese dance, ballet, and cultural exchange. They guide students at every level with care, expertise, and encouragement."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "blocks": [
+        {
+          "type": "heading2",
+          "id": "faculty-approach",
+          "text": "Our Teaching Approach"
+        },
+        {
+          "type": "body",
+          "text": "At Madison Chinese Dance Academy, we believe strong technique and meaningful artistry go hand in hand. Our faculty emphasizes proper foundation, individual attention, and a welcoming environment where every student can grow."
+        },
+        {
+          "type": "body",
+          "text": "Instructors draw on both Eastern and Western dance traditions, blending classical Chinese forms with ballet training. This dual foundation helps dancers develop versatility, expressiveness, and a deeper understanding of the art form."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "blocks": [
+        {
+          "type": "heading2",
+          "id": "faculty-list",
+          "text": "Faculty Members"
+        },
+        {
+          "type": "body",
+          "text": "Our faculty includes founding instructors, guest artists, and program directors who collectively shape the Madison Chinese Dance Academy experience. Detailed biographies and credentials for each instructor will be shared on this page soon."
+        },
+        {
+          "type": "cards",
+          "columns": 3,
+          "items": [
+            {
+              "heading": "Founding Director",
+              "body": "Leads the academy's artistic vision and oversees curriculum development, faculty training, and the annual Splendid China production."
+            },
+            {
+              "heading": "Chinese Dance Instructors",
+              "body": "Specialists in traditional and contemporary Chinese dance forms who guide students through technique, choreography, and performance."
+            },
+            {
+              "heading": "Ballet Faculty",
+              "body": "Trained in classical ballet pedagogy, supporting dancers in building a strong technical foundation alongside their Chinese dance studies."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "blocks": [
+        {
+          "type": "heading2",
+          "id": "join-as-faculty",
+          "text": "Join Our Teaching Team"
+        },
+        {
+          "type": "body",
+          "text": "We occasionally welcome new instructors, teaching assistants, and guest artists who share our commitment to excellence in Chinese dance education. If you are interested in working with us, please reach out with a short introduction, your training background, and areas of expertise."
+        },
+        {
+          "type": "body",
+          "actions": [
+            {
+              "route": "contact",
+              "label": "Contact Us",
+              "style": "primary"
+            },
+            {
+              "route": "about",
+              "label": "Learn About the Academy",
+              "style": "secondary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
