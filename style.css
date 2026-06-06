@@ -125,7 +125,7 @@
 	--section-bg: linear-gradient(180deg, var(--color-violet), var(--color-deep-navy));
 	--section-bg-solid: var(--color-deep-navy);
 	--section-border: var(--edge-contrast);
-	--section-transparency: 0.85;          /* resting opacity for sections like home-intro */
+	--section-transparency: 0.75;          /* resting opacity for sections like home-intro */
 	--section-transparency-hover: 1;         /* hover/focus opacity */
 	--section-text-color: var(--light-text-color);
 	--section-heading-color: var(--light-text-color);
@@ -152,7 +152,7 @@
 	--card-padding: 24px;
 	--card-padding-sm: 22px;
 	--card-padding-xs: 16px;
-	--card-transparency: 0.85;             /* resting opacity for cards */
+	--card-transparency: 0.75;             /* resting opacity for cards */
 	--card-transparency-hover: 1;
 	--card-border-color: var(--edge-contrast);
 	--card-border-hover: transparent;
@@ -162,6 +162,11 @@
 	--card-blend-mode: normal;
 	--card-blur: 0px;
 	--card-opacity-disabled: 0.5;
+
+	/* ----- Stat card variables (home-stat blocks) ----- */
+	--stat-transparency: 0.75;             /* resting opacity for stat cards */
+	--stat-transparency-hover: 1;          /* hover/focus opacity for stat cards */
+
 	--card-link-after-content: " ->";
 	--card-gap: 18px;
 	--card-grid-columns: 3;
@@ -909,11 +914,11 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	border-radius:var(--card-radius);
 	background:var(--card-bg);
 	border:1px solid var(--card-border);
-	opacity:0.85;
+	opacity:var(--stat-transparency);
+	--entrance-end-opacity: var(--stat-transparency);
 	transition:opacity var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 .home-stat:hover{
-	opacity:1;
 	border-color:transparent;
 	box-shadow:var(--card-shadow-hover);
 }
@@ -1027,7 +1032,8 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	background:var(--card-bg);
 	border:1px solid var(--card-border);
 	box-shadow:var(--card-shadow);
-	opacity:0.85;
+	opacity:var(--card-transparency);
+	--entrance-end-opacity: var(--card-transparency);
 	transition:transform var(--transition-medium), box-shadow var(--transition-medium), background var(--transition-fast), opacity var(--transition-fast), border-color var(--transition-fast);
 	animation:home-rise var(--entrance-duration) ease both;
 	animation-delay:calc(var(--item-index, 0) * 90ms);
@@ -1045,7 +1051,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 .home-pathway:focus-visible{
 	transform:translateY(-5px);
 	background:var(--card-bg);
-	opacity:1;
+	opacity:var(--card-transparency-hover);
 	border-color:transparent;
 	box-shadow:var(--card-shadow-hover);
 	outline:none;
@@ -1112,7 +1118,8 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	background:var(--card-bg);
 	border:1px solid var(--card-border);
 	box-shadow:var(--card-shadow);
-	opacity:0.85;
+	opacity:var(--card-transparency);
+	--entrance-end-opacity: var(--card-transparency);
 	transition:transform var(--transition-medium), box-shadow var(--transition-medium), background var(--transition-fast), opacity var(--transition-fast), border-color var(--transition-fast);
 	animation:home-rise var(--entrance-duration) ease both;
 	animation-delay:calc(var(--block-delay, 0ms) + var(--item-index, 0) * 90ms);
@@ -1121,7 +1128,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 .component-card:focus-visible{
 	transform:translateY(var(--translate-card-hover));
 	background:var(--card-bg);
-	opacity:1;
+	opacity:var(--card-transparency-hover);
 	border-color:transparent;
 	box-shadow:var(--card-shadow-hover);
 	outline:none;
@@ -1174,7 +1181,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 		transform:translateY(var(--entrance-translate));
 	}
 	to{
-		opacity:1;
+		opacity:var(--entrance-end-opacity, 1);
 		transform:translateY(0);
 	}
 }
@@ -1435,13 +1442,13 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	text-decoration:none;
 	font-weight:800;
 	letter-spacing:0.5px;
-	opacity:0.85;
+	opacity:var(--card-transparency);
 	box-shadow:var(--footer-logo-shadow);
 	transition:opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 .footer-logo:hover,
 .footer-logo:focus-visible{
-	opacity:1;
+	opacity:var(--card-transparency-hover);
 	transform:translateY(-2px);
 	box-shadow:var(--card-shadow-hover);
 	outline:none;
