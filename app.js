@@ -1008,4 +1008,182 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 		startAutoScroll();
 	}
+
+	// Chatbot functionality
+	const chatbot = $('#chatbot');
+	const chatbotToggle = $('#chatbot-toggle');
+	const chatbotPanel = $('#chatbot-panel');
+	const chatbotMinimize = $('#chatbot-minimize');
+	const chatbotForm = $('#chatbot-form');
+	const chatbotInput = $('#chatbot-input');
+	const chatbotMessages = $('#chatbot-messages');
+	const chatbotSend = $('#chatbot-send');
+
+	if (chatbot && chatbotToggle && chatbotPanel) {
+		function toggleChatbot() {
+			const isOpen = chatbotToggle.getAttribute('aria-expanded') === 'true';
+			chatbotToggle.setAttribute('aria-expanded', String(!isOpen));
+			chatbotPanel.hidden = isOpen;
+			if (!isOpen) {
+				chatbotInput.focus();
+			}
+		}
+
+		chatbotToggle.addEventListener('click', toggleChatbot);
+
+		if (chatbotMinimize) {
+			chatbotMinimize.addEventListener('click', toggleChatbot);
+		}
+
+		// Close chatbot on Escape key
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && chatbotToggle.getAttribute('aria-expanded') === 'true') {
+				toggleChatbot();
+				chatbotToggle.focus();
+			}
+		});
+
+		// Close chatbot when clicking outside
+		document.addEventListener('click', (e) => {
+			if (chatbotToggle.getAttribute('aria-expanded') === 'true' &&
+				!chatbot.contains(e.target)) {
+				toggleChatbot();
+			}
+		});
+
+		function addMessage(text, isUser = false) {
+			const messageDiv = document.createElement('div');
+			messageDiv.className = `chatbot-message ${isUser ? 'user' : 'bot'}`;
+
+			const avatarDiv = document.createElement('div');
+			avatarDiv.className = 'chatbot-message-avatar';
+			avatarDiv.setAttribute('aria-hidden', 'true');
+			avatarDiv.innerHTML = isUser
+				? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>'
+				: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>';
+
+			const contentDiv = document.createElement('div');
+			contentDiv.className = 'chatbot-message-content';
+			const p = document.createElement('p');
+			p.textContent = text;
+			contentDiv.appendChild(p);
+
+			messageDiv.appendChild(avatarDiv);
+			messageDiv.appendChild(contentDiv);
+
+			chatbotMessages.appendChild(messageDiv);
+			chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+		}
+
+		function showTypingIndicator() {
+			const typingDiv = document.createElement('div');
+			typingDiv.className = 'chatbot-message bot chatbot-typing';
+			typingDiv.innerHTML = `
+				<div class="chatbot-message-avatar" aria-hidden="true">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<circle cx="12" cy="12" r="10"></circle>
+						<path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+						<line x1="12" y1="17" x2="12.01" y2="17"></line>
+					</svg>
+				</div>
+				<div class="chatbot-message-content">
+					<div class="chatbot-typing-dots">
+						<span></span><span></span><span></span>
+					</div>
+				</div>
+			`;
+			chatbotMessages.appendChild(typingDiv);
+			chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+			return typingDiv;
+		}
+
+		function removeTypingIndicator(typingDiv) {
+			typingDiv.remove();
+		}
+
+		// Cloudflare Worker endpoint (deploy your worker and update this URL)
+		// The worker will call Cloudflare Workers AI with your API key stored securely
+		const CHATBOT_API_ENDPOINT = 'https://mcda-ai-bot.joshuacheng-dev.workers.dev/'; // UPDATE THIS
+
+		async function sendMessage(message) {
+			// Add user message
+			addMessage(message, true);
+			chatbotInput.value = '';
+			chatbotSend.disabled = true;
+
+			// Show typing indicator
+			const typingIndicator = showTypingIndicator();
+
+			try {
+				const response = await fetch(CHATBOT_API_ENDPOINT, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ message })
+				});
+
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+
+				const data = await response.json();
+				const botResponse = data.response || 'Sorry, I could not process your request.';
+
+				removeTypingIndicator(typingIndicator);
+				addMessage(botResponse, false);
+			} catch (error) {
+				removeTypingIndicator(typingIndicator);
+				addMessage('Sorry, there was an error processing your request. Please try again.', false);
+				console.error('Chatbot error:', error);
+			} finally {
+				chatbotSend.disabled = false;
+				chatbotInput.focus();
+			}
+		}
+
+		if (chatbotForm) {
+			chatbotForm.addEventListener('submit', (e) => {
+				e.preventDefault();
+				const message = chatbotInput.value.trim();
+				if (message) {
+					sendMessage(message);
+				}
+			});
+		}
+	}
 });
+
+/* -------------------------------------------------
+   CSS for typing indicator (injected via JS to keep
+   all chatbot styles together, but you can move this
+   to style.css if preferred)
+   ------------------------------------------------- */
+const chatbotStyles = `
+<style>
+.chatbot-typing .chatbot-message-content {
+	background: linear-gradient(180deg, var(--color-violet), var(--color-deep-navy));
+	border: 1px solid var(--edge-contrast);
+	border-radius: 16px;
+	border-bottom-left-radius: 4px;
+	padding: 12px 16px;
+}
+.chatbot-typing-dots {
+	display: flex;
+	gap: 4px;
+}
+.chatbot-typing-dots span {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--light-text-color);
+	opacity: 0.5;
+	animation: chatbot-typing-bounce 1.4s ease-in-out infinite both;
+}
+.chatbot-typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+.chatbot-typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+@keyframes chatbot-typing-bounce {
+	0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+	40% { transform: scale(1); opacity: 1; }
+}
+</style>
+`;
+document.head.insertAdjacentHTML('beforeend', chatbotStyles);
