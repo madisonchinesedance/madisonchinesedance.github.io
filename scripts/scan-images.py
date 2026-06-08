@@ -29,13 +29,21 @@ import re
 from pathlib import Path
 
 import boto3
+from dotenv import load_dotenv
 
 # ---------------------------------------------------------------------------
 # R2 / S3 configuration
 #
-# Credentials are read from environment variables first; if any are missing,
-# the script falls back to scripts/r2-config.json (which is gitignored).
+# Credentials are loaded in order of precedence:
+#   1. Environment variables (set in the shell / OS)
+#   2. scripts/.env file (gitignored)
+#   3. scripts/r2-config.json (gitignored, legacy fallback)
 # ---------------------------------------------------------------------------
+
+# Load .env file next to this script if it exists (does not override env vars)
+_env_path = Path(__file__).resolve().parent / ".env"
+if _env_path.exists():
+    load_dotenv(_env_path)
 
 _env = os.environ.get
 
