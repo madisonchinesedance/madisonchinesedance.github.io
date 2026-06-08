@@ -35,11 +35,7 @@
     {
       "heading": "Get Involved",
       "links": [
-<<<<<<< HEAD
-        { "route": "join-us", "label": "Dance With Us" },
-=======
         { "route": "dance-with-us", "label": "Dance With Us" },
->>>>>>> 35d4090 (Initial clean commit without image tracking)
         { "route": "book-a-performance", "label": "Bring Us to Your Event" },
         { "route": "see-a-performance", "label": "See A Performance" },
         { "route": "support-our-cause", "label": "Support Our Cause" },
