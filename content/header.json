@@ -11,7 +11,6 @@
   "nav": [
     { "route": "home", "label": "Home" },
     { "route": "gallery", "label": "Gallery" },
-    { "route": "faq", "label": "FAQ" },
     {
       "label": "About Us",
       "items": [
@@ -22,14 +21,14 @@
       ]
     },
     {
-      "label": "Community",
+      "label": "Programs",
       "items": [
         { "route": "events", "label": "Events" },
         { "route": "services", "label": "Services" }
       ]
     },
     {
-      "label": "Programs",
+      "label": "Classes",
       "items": [
         { "route": "beginner-dancers", "label": "Beginner Dancers" },
         { "route": "intermediate-dancers", "label": "Intermediate Dancers" },
