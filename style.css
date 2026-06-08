@@ -2143,3 +2143,69 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 		gap:8px;
 	}
 }
+/* Gallery year tab bar (filters the runner + thumbnails by year) */
+.gallery-year-tabs{
+	display:flex;
+	flex-wrap:wrap;
+	gap:8px;
+	padding:0 0 16px;
+	margin:0 0 16px;
+	border-bottom:1px solid var(--edge-contrast);
+}
+.gallery-year-tab{
+	display:inline-flex;
+	align-items:center;
+	gap:8px;
+	padding:8px 16px;
+	min-height:36px;
+	border:1px solid var(--edge-contrast);
+	border-radius:999px;
+	background:transparent;
+	color:var(--light-text-color);
+	font-family:inherit;
+	font-size:var(--small-body-font-size);
+	font-weight:var(--heading-2-font-weight);
+	cursor:pointer;
+	transition:background var(--transition-fast),border-color var(--transition-fast),color var(--transition-fast),transform var(--transition-fast);
+}
+.gallery-year-tab:hover{
+	background:var(--button-hover-bg);
+	border-color:transparent;
+	transform:translateY(var(--translate-button-hover));
+}
+.gallery-year-tab:focus-visible{
+	outline:var(--primary-button-focus-outline);
+	outline-offset:var(--primary-button-focus-offset);
+}
+.gallery-year-tab.active{
+	background:var(--color-sunrise);
+	border-color:var(--color-sunrise);
+	color:var(--light-text-color);
+}
+.gallery-year-tab-count{
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	min-width:24px;
+	height:22px;
+	padding:0 8px;
+	border-radius:999px;
+	background:color-mix(in srgb,var(--color-white) 12%,transparent);
+	color:var(--light-text-color);
+	font-size:0.78rem;
+	font-weight:700;
+}
+.gallery-year-tab.active .gallery-year-tab-count{
+	background:color-mix(in srgb,var(--color-deep-navy) 35%,transparent);
+}
+@media (max-width: 640px) {
+	.gallery-year-tabs{
+		gap:6px;
+		padding-bottom:12px;
+	}
+	.gallery-year-tab{
+		padding:6px 12px;
+		min-height:32px;
+		font-size:0.85rem;
+	}
+}

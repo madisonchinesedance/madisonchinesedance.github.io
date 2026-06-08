@@ -1009,76 +1009,199 @@ document.addEventListener('DOMContentLoaded', async () => {
 				}));
 			});
 		});
-		const galleryImages = groupedImages.length > 0
-			? groupedImages
-			: (Array.isArray(galleryBlock.images)
-				? galleryBlock.images
-				: (Array.isArray(content.galleryImages) ? content.galleryImages : []));
+		// When the gallery groups the images by year, default to showing
+		// only the most recent year. A tab bar of year buttons sits above
+		// the runner so visitors can pick a year without scrolling past
+		// dozens of thumbnails. Pages with a single year, a flat image
+		// list, or no year grouping (e.g. the splendid-china archive
+		// pages) keep the original full-page render path.
+		const useYearTabs = !isSplendidChinaGallery && galleryGroups.length > 1;
+		let activeYearIndex = 0;
 
-		if (galleryImages.length > 0) {
-			galleryWrapper.innerHTML = galleryImages.map((image, index) => `
-				<img src="${escapeHtml(resolveLink(image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
-			`).join('');
+		function imagesForActiveYear() {
+			if (!useYearTabs) {
+				return groupedImages.length > 0
+					? groupedImages
+					: (Array.isArray(galleryBlock.images)
+						? galleryBlock.images
+						: (Array.isArray(content.galleryImages) ? content.galleryImages : []));
+			}
+			const activeGroup = galleryGroups[activeYearIndex];
+			if (!activeGroup) return [];
+			const events = Array.isArray(activeGroup.events) ? activeGroup.events : [];
+			return events.flatMap((event) => {
+				const eventImages = Array.isArray(event.images) ? event.images : [];
+				return eventImages.map((image) => ({
+					...image,
+					year: activeGroup.year,
+					event: event.event
+				}));
+			});
+		}
 
-			if (isSplendidChinaGallery) {
-				// Render selectable dot indicators below the carousel
-				galleryDots.innerHTML = galleryImages.map((image, index) => `
-					<button class="gallery-dot ${index === 0 ? 'active' : ''}" type="button" data-gallery-dot="${index}" aria-label="Go to image ${index + 1}"></button>
+		// Build the year tab bar above the gallery runner. Each tab is a
+		// <button role="tab">; the active tab is tracked by the
+		// `aria-selected` attribute and a CSS class. The tab order
+		// matches `galleryGroups` (already sorted by year desc by
+		// scan-images.py), so the most recent year comes first.
+		function renderYearTabs() {
+			if (!useYearTabs) return;
+			if (galleryContainer.parentElement?.querySelector('.gallery-year-tabs')) return;
+
+			const tabs = document.createElement('div');
+			tabs.className = 'gallery-year-tabs';
+			tabs.setAttribute('role', 'tablist');
+			tabs.setAttribute('aria-label', 'Filter gallery by year');
+			tabs.innerHTML = galleryGroups.map((group, index) => {
+				const year = group.year || `Group ${index + 1}`;
+				const isActive = index === activeYearIndex;
+				const totalImages = (group.events || []).reduce((sum, event) => {
+					return sum + (Array.isArray(event.images) ? event.images.length : 0);
+				}, 0);
+				return `
+					<button class="gallery-year-tab${isActive ? ' active' : ''}" type="button" role="tab" data-gallery-year-tab="${index}" aria-selected="${isActive}" tabindex="${isActive ? '0' : '-1'}">
+						<span class="gallery-year-tab-label">${escapeHtml(year)}</span>
+						<span class="gallery-year-tab-count" aria-hidden="true">${totalImages}</span>
+					</button>
+				`;
+			}).join('');
+			galleryContainer.parentElement?.insertBefore(tabs, galleryContainer);
+		}
+
+		// `images`, `currentIndex`, and `autoScrollInterval` are shared
+		// between the initial render and any year-switch re-render, so
+		// they must live in the outer scope (not be re-declared as
+		// `const`/`let` inside the year-render function).
+		let images = [];
+		let currentIndex = 0;
+		let autoScrollInterval;
+
+		function renderYear() {
+			const activeImages = imagesForActiveYear();
+
+			if (activeImages.length > 0) {
+				galleryWrapper.innerHTML = activeImages.map((image, index) => `
+					<img src="${escapeHtml(resolveLink(image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
 				`).join('');
-			} else if (galleryGrid) {
-				let imageIndex = 0;
 
-				if (galleryGroups.length > 0) {
-					galleryGrid.innerHTML = galleryGroups.map((group) => {
-						const events = Array.isArray(group.events) ? group.events : [];
+				if (isSplendidChinaGallery) {
+					galleryDots.innerHTML = activeImages.map((image, index) => `
+						<button class="gallery-dot ${index === 0 ? 'active' : ''}" type="button" data-gallery-dot="${index}" aria-label="Go to image ${index + 1}"></button>
+					`).join('');
+				} else if (galleryGrid) {
+					if (useYearTabs) {
+						// Show only the active year's events under the
+						// tab bar. The year heading is already in the
+						// tab list so we skip it here.
+						const activeGroup = galleryGroups[activeYearIndex];
+						const events = Array.isArray(activeGroup?.events) ? activeGroup.events : [];
+						let thumbIndex = 0;
 						const eventMarkup = events.map((event) => {
-							const images = Array.isArray(event.images) ? event.images : [];
-							const thumbnails = images.map((image) => {
-								const index = imageIndex;
-								imageIndex += 1;
+							const eventImages = Array.isArray(event.images) ? event.images : [];
+							const thumbnails = eventImages.map((image) => {
+								const localIndex = thumbIndex;
+								thumbIndex += 1;
 								return `
-									<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
-									<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}" loading="lazy">
-								</button>
-							`;
-						}).join('');
-
+									<button class="gallery-thumb" type="button" data-gallery-thumb="${localIndex}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${localIndex + 1}`)}">
+										<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${localIndex + 1}`)}" loading="lazy" decoding="async">
+									</button>
+								`;
+							}).join('');
+							if (!thumbnails) return '';
 							return `
-								<section class="gallery-event" aria-label="${escapeHtml(event.event || `Gallery ${group.year}`)}">
-									<h3>${escapeHtml(event.event || `Gallery ${group.year}`)}</h3>
+								<section class="gallery-event" aria-label="${escapeHtml(event.event || `Gallery ${activeGroup?.year || ''}`)}">
+									<h3>${escapeHtml(event.event || `Gallery ${activeGroup?.year || ''}`)}</h3>
 									<div class="gallery-event-grid">${thumbnails}</div>
 								</section>
 							`;
 						}).join('');
+						galleryGrid.innerHTML = eventMarkup || '<p class="gallery-empty-message">No images are available for this year.</p>';
+					} else if (galleryGroups.length > 0) {
+						let imageIndex = 0;
+						galleryGrid.innerHTML = galleryGroups.map((group) => {
+							const events = Array.isArray(group.events) ? group.events : [];
+							const eventMarkup = events.map((event) => {
+								const images = Array.isArray(event.images) ? event.images : [];
+								const thumbnails = images.map((image) => {
+									const index = imageIndex;
+									imageIndex += 1;
+									return `
+										<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
+										<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}" loading="lazy">
+									</button>
+								`;
+							}).join('');
 
-						return `
-							<section class="gallery-year" aria-label="${escapeHtml(`${group.year} gallery images`)}">
-								<h2>${escapeHtml(group.year)}</h2>
-								${eventMarkup}
-							</section>
-						`;
-					}).join('');
-				} else {
-						galleryGrid.innerHTML = galleryImages.map((image, index) => `
-						<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
-							<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}" loading="lazy">
-						</button>
-					`).join('');
+								return `
+									<section class="gallery-event" aria-label="${escapeHtml(event.event || `Gallery ${group.year}`)}">
+										<h3>${escapeHtml(event.event || `Gallery ${group.year}`)}</h3>
+										<div class="gallery-event-grid">${thumbnails}</div>
+									</section>
+								`;
+							}).join('');
+
+							return `
+								<section class="gallery-year" aria-label="${escapeHtml(`${group.year} gallery images`)}">
+									<h2>${escapeHtml(group.year)}</h2>
+									${eventMarkup}
+								</section>
+							`;
+						}).join('');
+					} else {
+						galleryGrid.innerHTML = activeImages.map((image, index) => `
+							<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
+								<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}" loading="lazy">
+							</button>
+						`).join('');
+					}
+				}
+			} else {
+				galleryWrapper.innerHTML = '<div class="gallery-empty-message" role="status">No images to display.</div>';
+				if (galleryGrid) {
+					galleryGrid.innerHTML = '<p class="gallery-empty-message">No images are available for this gallery.</p>';
+				}
+				if (galleryDots) {
+					galleryDots.innerHTML = '';
 				}
 			}
-		} else {
-			galleryWrapper.innerHTML = '<div class="gallery-empty-message" role="status">No images to display.</div>';
-			if (galleryGrid) {
-				galleryGrid.innerHTML = '<p class="gallery-empty-message">No images are available for this gallery.</p>';
-			}
-			if (galleryDots) {
-				galleryDots.innerHTML = '';
-			}
+
+			// Refresh the `images` collection from the new DOM so the
+			// rest of the gallery logic (auto-scroll, prev/next,
+			// lightbox, etc.) operates on the current year's images.
+			images = Array.from(galleryWrapper.querySelectorAll('img'));
+			images.forEach((image, index) => {
+				image.setAttribute('tabindex', '-1');
+				image.setAttribute('data-gallery-index', String(index));
+			});
+			currentIndex = 0;
 		}
 
-		const images = Array.from(galleryWrapper.querySelectorAll('img'));
-		let currentIndex = 0;
-		let autoScrollInterval;
+		renderYearTabs();
+		renderYear();
+
+		// Wire up year tab clicks. Tabs are static, so this can run once
+		// after the initial render. Clicking a tab stops the auto-scroll,
+		// re-renders the runner + thumbnails, and restarts the carousel.
+		if (useYearTabs) {
+			$$('.gallery-year-tab').forEach((tab) => {
+				tab.addEventListener('click', () => {
+					const index = Number(tab.getAttribute('data-gallery-year-tab'));
+					if (Number.isNaN(index) || index === activeYearIndex) return;
+
+					stopAutoScroll();
+					activeYearIndex = index;
+					$$('.gallery-year-tab').forEach((t) => {
+						const isActive = Number(t.getAttribute('data-gallery-year-tab')) === activeYearIndex;
+						t.classList.toggle('active', isActive);
+						t.setAttribute('aria-selected', String(isActive));
+						t.setAttribute('tabindex', isActive ? '0' : '-1');
+					});
+					renderYear();
+					// Reset auto-scroll so the new year starts from the top.
+					startAutoScroll();
+				});
+			});
+		}
 
 		function updateGallery({ focus = false } = {}) {
 			const image = images[currentIndex];
