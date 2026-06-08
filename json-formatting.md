@@ -8,8 +8,8 @@ Most page JSON files should look like this:
 
 ```json
 {
-  "pageTitle": "About Us | Madison Chinese Dance Academy",
-  "metaDescription": "Learn about Madison Chinese Dance Academy.",
+  "pageTitle": "Our Story | Madison Chinese Dance Academy",
+  "metaDescription": "Learn about Madison Chinese Dance Academy and its community dance programs.",
   "blocks": [
     {
       "type": "hero",
@@ -56,7 +56,7 @@ A `hero` block creates the large main panel at the top of a page.
     {
       "type": "heading1",
       "id": "about-heading",
-      "text": "About Us"
+      "text": "Our Story"
     },
     {
       "type": "body",

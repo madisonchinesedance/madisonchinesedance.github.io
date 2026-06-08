@@ -9,7 +9,7 @@
     {
       "heading": "About Us",
       "links": [
-        { "route": "about", "label": "About Us" },
+        { "route": "about", "label": "Our Story" },
         { "route": "meet-the-faculty", "label": "Meet the Faculty" },
         { "route": "success-stories", "label": "Success Stories" },
         { "route": "contact", "label": "Contact" }
@@ -35,7 +35,11 @@
     {
       "heading": "Get Involved",
       "links": [
+<<<<<<< HEAD
         { "route": "join-us", "label": "Dance With Us" },
+=======
+        { "route": "dance-with-us", "label": "Dance With Us" },
+>>>>>>> 35d4090 (Initial clean commit without image tracking)
         { "route": "book-a-performance", "label": "Bring Us to Your Event" },
         { "route": "see-a-performance", "label": "See A Performance" },
         { "route": "support-our-cause", "label": "Support Our Cause" },

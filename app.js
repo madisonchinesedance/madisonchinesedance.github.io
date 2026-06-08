@@ -291,9 +291,11 @@ function getPageRouteId(site, pageId) {
 
 document.addEventListener('DOMContentLoaded', async () => {
 	const ANNOUNCEMENT_DISMISS_KEY = 'mcda-announcement-dismissed';
+	const CHATBOT_MESSAGES_KEY = 'mcda-chatbot-messages';
 	const navigationEntry = performance.getEntriesByType?.('navigation')?.[0];
 	if (navigationEntry?.type === 'reload') {
 		sessionStorage.removeItem(ANNOUNCEMENT_DISMISS_KEY);
+		sessionStorage.removeItem(CHATBOT_MESSAGES_KEY);
 	}
 
 	const currentPage = getPageId();
@@ -612,6 +614,90 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 	}
 
+	function renderChatbot() {
+		document.body.insertAdjacentHTML('beforeend', `
+			<div class="chatbot" id="chatbot" role="region" aria-label="Chat assistant">
+				<button class="chatbot-toggle" id="chatbot-toggle" type="button" aria-expanded="false" aria-controls="chatbot-panel" aria-label="Open chat assistant">
+					<svg class="chatbot-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+					</svg>
+					<svg class="chatbot-icon-close" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<line x1="18" y1="6" x2="6" y2="18"></line>
+						<line x1="6" y1="6" x2="18" y2="18"></line>
+					</svg>
+					<span class="chatbot-toggle-label">MCDA ASSISTANT</span>
+				</button>
+
+				<div class="chatbot-panel" id="chatbot-panel" role="dialog" aria-modal="true" aria-label="Chat assistant" hidden>
+					<div class="chatbot-header">
+						<div class="chatbot-header-info">
+							<div class="chatbot-avatar" aria-hidden="true">
+								<span class="chatbot-logo">MCDA</span>
+							</div>
+							<div>
+								<h3 class="chatbot-title">MCDA ASSISTANT</h3>
+								<span class="chatbot-status">BETA</span>
+							</div>
+						</div>
+						<div class="chatbot-header-actions">
+							<button class="chatbot-clear" id="chatbot-clear" type="button" aria-label="Clear chat">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<polyline points="3 6 5 6 21 6"></polyline>
+									<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+								</svg>
+							</button>
+							<button class="chatbot-minimize" id="chatbot-minimize" type="button" aria-label="Minimize chat">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<line x1="5" y1="12" x2="19" y2="12"></line>
+								</svg>
+							</button>
+						</div>
+					</div>
+
+					<div class="chatbot-messages" id="chatbot-messages" role="log" aria-live="polite" aria-label="Conversation">
+						<div class="chatbot-message bot">
+							<div class="chatbot-message-avatar" aria-hidden="true">
+								<span class="chatbot-logo">MCDA</span>
+							</div>
+							<div class="chatbot-message-content">
+								<p>Hello! I'm the MCDA Assistant. How can I help you today?</p>
+							</div>
+						</div>
+						<div class="chatbot-message bot chatbot-notice">
+							<div class="chatbot-message-avatar" aria-hidden="true">
+								<span class="chatbot-logo">MCDA</span>
+							</div>
+							<div class="chatbot-message-content">
+								<p><strong>Note:</strong> This chatbot is in testing stage and may not work properly. For urgent inquiries, please contact the academy directly.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="chatbot-input-area">
+						<form class="chatbot-form" id="chatbot-form">
+							<input
+								type="text"
+								class="chatbot-input"
+								id="chatbot-input"
+								placeholder="Type your message..."
+								autocomplete="off"
+								aria-label="Chat message"
+								required
+							>
+							<button type="submit" class="chatbot-send" id="chatbot-send" aria-label="Send message">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<line x1="22" y1="2" x2="11" y2="13"></line>
+									<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+								</svg>
+							</button>
+						</form>
+						<p class="chatbot-disclaimer">AI assistant. Responses may not be accurate.</p>
+					</div>
+				</div>
+			</div>
+		`);
+	}
+
 	function renderHeader() {
 		const mount = $('[data-site-header]');
 		if (!mount) return;
@@ -625,7 +711,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const hasVisibleAnnouncements = !isAnnouncementDismissed() && header.announcements.length > 0;
 		const announcementMarkup = !hasVisibleAnnouncements ? '' : header.announcements.map((announcement) => {
 			const actions = announcement.actions.map((action) => `
-				<a class="announcement-link announcement-link-${escapeHtml(action.style)}" href="${resolveHref(action.href)}" aria-label="${escapeHtml(action.ariaLabel)}">
+				<a class="announcement-btn announcement-btn-${escapeHtml(action.style)}" href="${resolveHref(action.href)}" aria-label="${escapeHtml(action.ariaLabel)}">
 					${escapeHtml(action.label)}
 				</a>
 			`).join('');
@@ -637,10 +723,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 							${announcement.label ? `<span class="announcement-label">${escapeHtml(announcement.label)}</span>` : ''}
 							${announcement.body ? `<span class="announcement-body">${escapeHtml(announcement.body)}</span>` : ''}
 						</div>
-						${actions ? `<div class="announcement-actions">${actions}</div>` : ''}
-						<button class="announcement-dismiss" type="button" aria-label="Dismiss announcement">
-							<span aria-hidden="true">&times;</span>
-						</button>
+						<div class="announcement-actions">
+							${actions}
+							<button class="announcement-dismiss" type="button" aria-label="Dismiss announcement" title="Dismiss">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
 					</div>
 				</section>
 			`;
@@ -650,7 +738,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 			<header class="site-header${hasVisibleAnnouncements ? ' has-visible-announcement' : ''}" role="banner">
 				<div class="container header-inner">
 					<div class="header-left">
-						<a href="${resolveHref(logo.href || 'index.html')}" class="logo" aria-label="${escapeHtml(logoAriaLabel)}">
+					<a href="${resolveHref(logo.href || 'index.html')}" class="logo" aria-label="${escapeHtml(logoAriaLabel)}">
+							<span class="logo-icon" aria-hidden="true">
+								<svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+									<circle cx="16" cy="16" r="14.5" stroke="currentColor" stroke-width="1.5"/>
+									<text x="16" y="14" text-anchor="middle" fill="currentColor" font-size="9" font-weight="800" font-family="inherit" letter-spacing="0.5">MC</text>
+									<text x="16" y="24" text-anchor="middle" fill="currentColor" font-size="9" font-weight="800" font-family="inherit" letter-spacing="0.5">DA</text>
+								</svg>
+							</span>
 							<span class="logo-full-text">${escapeHtml(logoText)}</span>
 							<span class="logo-short-text">${escapeHtml(logoShortText)}</span>
 						</a>
@@ -667,10 +762,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 					<div class="header-controls">
 						<button id="nav-toggle" class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="${escapeHtml(menuOpenLabel)}">
-							<svg width="24" height="18" viewBox="0 0 24 18" aria-hidden="true" focusable="false">
-								<rect width="24" height="2" y="0" rx="1"></rect>
-								<rect width="24" height="2" y="8" rx="1"></rect>
-								<rect width="24" height="2" y="16" rx="1"></rect>
+							<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+								<rect width="24" height="2" y="3" rx="1"></rect>
+								<rect width="24" height="2" y="11" rx="1"></rect>
+								<rect width="24" height="2" y="19" rx="1"></rect>
 							</svg>
 						</button>
 					</div>
@@ -730,8 +825,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 			<footer class="site-footer" role="contentinfo">
 				<div class="container footer-inner">
 					<section class="footer-brand" aria-label="${escapeHtml(brandText)}">
-						<a href="${brandHref}" class="footer-logo" aria-label="${escapeHtml(`${brandText} home`)}">
-							<span>${escapeHtml(brandShortText)}</span>
+					<a href="${brandHref}" class="footer-logo" aria-label="${escapeHtml(`${brandText} home`)}">
+							<span class="footer-logo-icon" aria-hidden="true">
+								<svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+									<circle cx="16" cy="16" r="14.5" stroke="currentColor" stroke-width="1.5"/>
+									<text x="16" y="14" text-anchor="middle" fill="currentColor" font-size="9" font-weight="800" font-family="inherit" letter-spacing="0.5">MC</text>
+									<text x="16" y="24" text-anchor="middle" fill="currentColor" font-size="9" font-weight="800" font-family="inherit" letter-spacing="0.5">DA</text>
+								</svg>
+							</span>
 						</a>
 						<p class="footer-brand-name">${escapeHtml(brandText)}</p>
 						<p class="footer-mission">${escapeHtml(mission)}</p>
@@ -750,12 +851,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	applyJsonContent(content, routes);
+
+	// Save a reference to the splendid china gallery mount point BEFORE
+	// renderPageBlocks() overwrites the <main> contents.
+	const hasSplendidChinaGallery = !!$('[data-splendid-china-gallery]');
+
 	renderPageBlocks();
 	renderHomePage();
 	loadZeffyEmbedScript();
 	renderPageStars();
 	renderHeader();
 	renderFooter();
+	renderChatbot();
 
 	// Elements
 	const announcementDismiss = $('.announcement-dismiss');
@@ -830,10 +937,58 @@ document.addEventListener('DOMContentLoaded', async () => {
 		});
 	}
 
+	// Splendid China archive pages include a tiny
+	// `<div data-splendid-china-gallery></div>` mount point inside
+	// `<main>`. When that mount point is present, inject the same
+	// gallery markup used by the main Gallery page (plus the matching
+	// lightbox) so the existing gallery runner can populate it with
+	// the page's per-year `content.galleryImages`. This keeps the
+	// splendid china pages in lock-step with the Gallery page without
+	// hand-editing each HTML file.
+	// NOTE: hasSplendidChinaGallery is detected *before* renderPageBlocks()
+	// because renderPageBlocks() overwrites the contents of <main>,
+	// destroying the static mount element.
+	function renderSplendidChinaGallery() {
+		if (!hasSplendidChinaGallery) return;
+
+		const main = $('.site-main');
+		if (!main) return;
+
+		main.insertAdjacentHTML('beforeend', `
+			<section class="page-section page-section-gallery" aria-label="Gallery photos">
+				<div class="container">
+					<div class="gallery-container">
+						<div class="gallery-wrapper" data-gallery-carousel></div>
+						<div class="gallery-controls" aria-label="Gallery controls">
+							<button class="prev" type="button" aria-label="Previous image">&#10094;</button>
+							<button class="next" type="button" aria-label="Next image">&#10095;</button>
+						</div>
+					</div>
+					<div class="gallery-dots" data-gallery-dots aria-label="Gallery image selection"></div>
+				</div>
+			</section>
+		`);
+
+		// Lightbox lives outside <main> so it can overlay the page,
+		// matching the structure used on pages/gallery.html.
+		document.body.insertAdjacentHTML('beforeend', `
+			<div class="gallery-lightbox" data-gallery-lightbox hidden>
+				<div class="gallery-lightbox-window" role="dialog" aria-modal="true" aria-label="Gallery image preview">
+					<button class="gallery-lightbox-close" type="button" aria-label="Close gallery image preview">&times;</button>
+					<img src="" alt="" data-gallery-lightbox-image>
+				</div>
+			</div>
+		`);
+	}
+
+	renderSplendidChinaGallery();
+
 	const galleryContainer = $('.gallery-container');
 	if (galleryContainer) {
 		const galleryWrapper = galleryContainer.querySelector('.gallery-wrapper');
 		const galleryGrid = $('[data-gallery-grid]');
+		const galleryDots = $('[data-gallery-dots]');
+		const isSplendidChinaGallery = !!galleryDots;
 		const lightbox = $('[data-gallery-lightbox]');
 		const lightboxImage = $('[data-gallery-lightbox-image]');
 		const lightboxClose = $('.gallery-lightbox-close');
@@ -865,7 +1020,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 				<img src="${escapeHtml(resolveLink(image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
 			`).join('');
 
-			if (galleryGrid) {
+			if (isSplendidChinaGallery) {
+				// Render selectable dot indicators below the carousel
+				galleryDots.innerHTML = galleryImages.map((image, index) => `
+					<button class="gallery-dot ${index === 0 ? 'active' : ''}" type="button" data-gallery-dot="${index}" aria-label="Go to image ${index + 1}"></button>
+				`).join('');
+			} else if (galleryGrid) {
 				let imageIndex = 0;
 
 				if (galleryGroups.length > 0) {
@@ -906,6 +1066,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 					`).join('');
 				}
 			}
+		} else {
+			galleryWrapper.innerHTML = '<div class="gallery-empty-message" role="status">No images to display.</div>';
+			if (galleryGrid) {
+				galleryGrid.innerHTML = '<p class="gallery-empty-message">No images are available for this gallery.</p>';
+			}
+			if (galleryDots) {
+				galleryDots.innerHTML = '';
+			}
 		}
 
 		const images = Array.from(galleryWrapper.querySelectorAll('img'));
@@ -918,6 +1086,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 			image.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 			if (focus) image.focus({ preventScroll: true });
+
+			// Update active dot indicator for splendid china gallery
+			if (isSplendidChinaGallery) {
+				$$('.gallery-dot').forEach((dot) => {
+					const dotIndex = Number(dot.getAttribute('data-gallery-dot'));
+					dot.classList.toggle('active', dotIndex === currentIndex);
+				});
+			}
 		}
 
 		function startAutoScroll() {
@@ -995,6 +1171,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 			});
 		});
 
+		// Dot navigation for splendid china gallery
+		// Only navigates the carousel — does NOT open the lightbox.
+		// Thumbnail clicks on the main Gallery page still open the lightbox.
+		$$('[data-gallery-dot]').forEach((button) => {
+			button.addEventListener('click', () => {
+				const index = Number(button.getAttribute('data-gallery-dot'));
+				if (Number.isNaN(index)) return;
+
+				currentIndex = index;
+				updateGallery({ focus: true });
+			});
+		});
+
 		lightboxClose?.addEventListener('click', closeLightbox);
 		lightbox?.addEventListener('click', (event) => {
 			if (event.target === lightbox) closeLightbox();
@@ -1017,9 +1206,85 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const chatbotForm = $('#chatbot-form');
 	const chatbotInput = $('#chatbot-input');
 	const chatbotMessages = $('#chatbot-messages');
-	const chatbotSend = $('#chatbot-send');
+		const chatbotSend = $('#chatbot-send');
+		const chatbotClear = $('#chatbot-clear');
 
-	if (chatbot && chatbotToggle && chatbotPanel) {
+		if (chatbot && chatbotToggle && chatbotPanel) {
+		// Load saved chat messages from sessionStorage
+		function loadSavedMessages() {
+			try {
+				const saved = sessionStorage.getItem(CHATBOT_MESSAGES_KEY);
+				if (!saved) return false;
+				const messages = JSON.parse(saved);
+				if (!Array.isArray(messages) || messages.length === 0) return false;
+
+				// Clear the default welcome messages
+				chatbotMessages.innerHTML = '';
+
+				// Re-render each saved message
+				messages.forEach(({ text, isUser }) => {
+					const messageDiv = document.createElement('div');
+					messageDiv.className = `chatbot-message ${isUser ? 'user' : 'bot'}`;
+
+					const avatarDiv = document.createElement('div');
+					avatarDiv.className = 'chatbot-message-avatar';
+					avatarDiv.setAttribute('aria-hidden', 'true');
+					avatarDiv.innerHTML = isUser
+						? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>'
+						: '<span class="chatbot-logo">MCDA</span>';
+
+					const contentDiv = document.createElement('div');
+					contentDiv.className = 'chatbot-message-content';
+					const p = document.createElement('p');
+					p.textContent = text;
+					contentDiv.appendChild(p);
+
+					messageDiv.appendChild(avatarDiv);
+					messageDiv.appendChild(contentDiv);
+					chatbotMessages.appendChild(messageDiv);
+				});
+
+				chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+				return true;
+			} catch (e) {
+				return false;
+			}
+		}
+
+		// Save chat messages to sessionStorage
+		function saveMessages() {
+			try {
+				const messages = [];
+				chatbotMessages.querySelectorAll('.chatbot-message').forEach((msg) => {
+					const p = msg.querySelector('.chatbot-message-content p');
+					if (p) {
+						messages.push({ text: p.textContent, isUser: msg.classList.contains('user') });
+					}
+				});
+				sessionStorage.setItem(CHATBOT_MESSAGES_KEY, JSON.stringify(messages));
+			} catch (e) {
+				// Silently fail if sessionStorage is unavailable
+			}
+		}
+
+		loadSavedMessages();
+
+		// Clear chat button
+		if (chatbotClear) {
+			chatbotClear.addEventListener('click', () => {
+				chatbotMessages.innerHTML = '';
+				const welcomeMsg = document.createElement('div');
+				welcomeMsg.className = 'chatbot-message bot';
+				welcomeMsg.innerHTML = `
+					<div class="chatbot-message-avatar" aria-hidden="true"><span class="chatbot-logo">MCDA</span></div>
+					<div class="chatbot-message-content"><p>Chat cleared. How can I help you?</p></div>
+				`;
+				chatbotMessages.appendChild(welcomeMsg);
+				chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+				sessionStorage.removeItem(CHATBOT_MESSAGES_KEY);
+			});
+		}
+
 		function toggleChatbot() {
 			const isOpen = chatbotToggle.getAttribute('aria-expanded') === 'true';
 			chatbotToggle.setAttribute('aria-expanded', String(!isOpen));
@@ -1059,8 +1324,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 			avatarDiv.className = 'chatbot-message-avatar';
 			avatarDiv.setAttribute('aria-hidden', 'true');
 			avatarDiv.innerHTML = isUser
-				? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>'
-				: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>';
+				? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>'
+				: '<span class="chatbot-logo">MCDA</span>';
 
 			const contentDiv = document.createElement('div');
 			contentDiv.className = 'chatbot-message-content';
@@ -1073,6 +1338,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 			chatbotMessages.appendChild(messageDiv);
 			chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+			saveMessages();
 		}
 
 		function showTypingIndicator() {
@@ -1080,11 +1346,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 			typingDiv.className = 'chatbot-message bot chatbot-typing';
 			typingDiv.innerHTML = `
 				<div class="chatbot-message-avatar" aria-hidden="true">
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<circle cx="12" cy="12" r="10"></circle>
-						<path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-						<line x1="12" y1="17" x2="12.01" y2="17"></line>
-					</svg>
+					<span class="chatbot-logo">MCDA</span>
 				</div>
 				<div class="chatbot-message-content">
 					<div class="chatbot-typing-dots">

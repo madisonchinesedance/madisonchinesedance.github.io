@@ -1,6 +1,6 @@
 # Madison Chinese Dance Academy — Website
 
-This repository contains a small, responsive static website for the Madison Chinese Dance Academy. It's authored with plain HTML, CSS, and a tiny JavaScript helper for navigation.
+This repository contains the static website for the Madison Chinese Dance Academy. It's authored with plain HTML, CSS, and a tiny JavaScript helper for navigation.
 
 ## Editing site text
 
@@ -50,8 +50,9 @@ After changing a JSON file, save it and refresh the page. For local preview, ser
 - `index.html` — site home (hero + header/footer). Keep at repo root for Pages.
 - `pages/` — secondary pages. Each page uses root-absolute `/style.css` and `/app.js` so assets work regardless of folder depth.
 - `content/` — editable JSON files used as a lightweight CMS.
-- `images/` — image assets for the site. Gallery images currently live directly in `images/gallery/`.
-- `scripts/scan-images.py` — scans `images/gallery/` and updates `content/gallery.json`.
+- `images/` — image assets for the site. Splendid China photos live in `images/splendid-china/splendid-china-YYYY/` folders, one folder per year.
+- `scripts/scan-images.py` — scans `images/splendid-china/splendid-china-YYYY/` folders and updates `content/gallery.json` with grouped year entries.
+- `scripts/rename.py` — renames images in a folder to use the folder's name as a prefix (e.g. `images/splendid-china/splendid-china-2021/IMG_1234.jpg` → `splendid-china-2021-01.jpg`).
 - `style.css` — global styles and CSS custom properties (theme variables).
 - `app.js` — loads `site.json` and page content, renders shared header/footer, and handles the mobile nav toggle.
 
@@ -65,11 +66,11 @@ After changing a JSON file, save it and refresh the page. For local preview, ser
 
 You do not need to update paths in every JSON file if links use `@route-id` references.
 
-## Updating gallery images
+## Updating performance images
 
-Add images directly under the gallery folder, for example:
+Photos are organized by Splendid China year. Add images directly to the matching year folder under `images/splendid-china/splendid-china-YYYY/`, for example:
 
-`images/gallery/my-photo.jpg`
+`images/splendid-china/splendid-china-2026/showcase-01.jpg`
 
 Then run:
 
@@ -77,7 +78,27 @@ Then run:
 python scripts/scan-images.py
 ```
 
-The scanner updates `content/gallery.json`, and the Gallery page renders the images in filename order.
+The scanner walks every year folder under `images/splendid-china/`, builds year groups in reverse-chronological order, and writes the result to `content/gallery.json`. Year folders without images are skipped, and within each year the images are sorted by filename.
+
+To target a different root or output file, pass `--images-dir` or `--content`:
+
+```sh
+python scripts/scan-images.py --images-dir path/to/images --content content/gallery.json
+```
+
+### Standardizing image filenames
+
+To make a year folder's images easy to scan and serve, you can rename them so the filename reflects the folder. The included `scripts/rename.py` prefixes every image in a folder with the folder's own name:
+
+```sh
+# Interactive: prompts for the path
+python scripts/rename.py
+
+# Or pass the path directly
+python scripts/rename.py images/splendid-china/splendid-china-2021
+```
+
+For a folder named `splendid-china-2021` containing `IMG_1234.jpg` and `IMG_5678.jpg`, the script will produce `splendid-china-2021-01.jpg` and `splendid-china-2021-02.jpg` in filename order.
 
 ## Customizing styles
 

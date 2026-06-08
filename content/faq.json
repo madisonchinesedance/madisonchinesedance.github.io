@@ -125,8 +125,8 @@
               "style": "primary"
             },
             {
-              "route": "join-us",
-              "label": "Join Us",
+              "route": "dance-with-us",
+              "label": "Dance With Us",
               "style": "secondary"
             }
           ]

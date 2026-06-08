@@ -1,102 +1,772 @@
 {
   "pageTitle": "Gallery | Madison Chinese Dance Academy",
   "metaDescription": "Image gallery of the Madison Chinese Dance Academy.",
-  "blocks": [
+  "heading": "Gallery",
+  "galleryGroups": [
     {
-      "type": "hero",
-      "blocks": [
+      "year": "2026",
+      "events": [
         {
-          "type": "heading1",
-          "id": "gallery-heading",
-          "text": "Gallery"
-        },
-        {
-          "type": "gallery",
-          "groups": [],
+          "event": "Splendid China",
           "images": [
             {
-              "src": "/images/gallery/image-001.jpg",
-              "thumb": "/images/gallery/image-001.jpg",
-              "alt": "Image 001"
+              "src": "/images/splendid-china/splendid-china-2026/splendid-china-2026_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2026/splendid-china-2026_001.webp",
+              "alt": "Splendid China 2026 001"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2025",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_001.webp",
+              "alt": "Splendid China 2025 001"
             },
             {
-              "src": "/images/gallery/image-002.jpg",
-              "thumb": "/images/gallery/image-002.jpg",
-              "alt": "Image 002"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_002.webp",
+              "alt": "Splendid China 2025 002"
             },
             {
-              "src": "/images/gallery/image-003.jpg",
-              "thumb": "/images/gallery/image-003.jpg",
-              "alt": "Image 003"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_003.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_003.webp",
+              "alt": "Splendid China 2025 003"
             },
             {
-              "src": "/images/gallery/image-004.jpg",
-              "thumb": "/images/gallery/image-004.jpg",
-              "alt": "Image 004"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_004.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_004.webp",
+              "alt": "Splendid China 2025 004"
             },
             {
-              "src": "/images/gallery/image-005.jpg",
-              "thumb": "/images/gallery/image-005.jpg",
-              "alt": "Image 005"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_005.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_005.webp",
+              "alt": "Splendid China 2025 005"
             },
             {
-              "src": "/images/gallery/image-006.jpg",
-              "thumb": "/images/gallery/image-006.jpg",
-              "alt": "Image 006"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_006.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_006.webp",
+              "alt": "Splendid China 2025 006"
             },
             {
-              "src": "/images/gallery/image-007.jpg",
-              "thumb": "/images/gallery/image-007.jpg",
-              "alt": "Image 007"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_007.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_007.webp",
+              "alt": "Splendid China 2025 007"
             },
             {
-              "src": "/images/gallery/image-008.jpg",
-              "thumb": "/images/gallery/image-008.jpg",
-              "alt": "Image 008"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_008.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_008.webp",
+              "alt": "Splendid China 2025 008"
             },
             {
-              "src": "/images/gallery/image-009.jpg",
-              "thumb": "/images/gallery/image-009.jpg",
-              "alt": "Image 009"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_009.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_009.webp",
+              "alt": "Splendid China 2025 009"
             },
             {
-              "src": "/images/gallery/image-010.jpg",
-              "thumb": "/images/gallery/image-010.jpg",
-              "alt": "Image 010"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_010.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_010.webp",
+              "alt": "Splendid China 2025 010"
             },
             {
-              "src": "/images/gallery/image-011.jpg",
-              "thumb": "/images/gallery/image-011.jpg",
-              "alt": "Image 011"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_011.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_011.webp",
+              "alt": "Splendid China 2025 011"
             },
             {
-              "src": "/images/gallery/image-012.jpg",
-              "thumb": "/images/gallery/image-012.jpg",
-              "alt": "Image 012"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_012.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_012.webp",
+              "alt": "Splendid China 2025 012"
             },
             {
-              "src": "/images/gallery/image-013.jpg",
-              "thumb": "/images/gallery/image-013.jpg",
-              "alt": "Image 013"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_013.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_013.webp",
+              "alt": "Splendid China 2025 013"
             },
             {
-              "src": "/images/gallery/image-014.jpg",
-              "thumb": "/images/gallery/image-014.jpg",
-              "alt": "Image 014"
+              "src": "/images/splendid-china/splendid-china-2025/splendid-china-2025_014.webp",
+              "thumb": "/images/splendid-china/splendid-china-2025/splendid-china-2025_014.webp",
+              "alt": "Splendid China 2025 014"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2024",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_001.webp",
+              "alt": "Splendid China 2024 001"
             },
             {
-              "src": "/images/gallery/image-015.jpg",
-              "thumb": "/images/gallery/image-015.jpg",
-              "alt": "Image 015"
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_002.webp",
+              "alt": "Splendid China 2024 002"
             },
             {
-              "src": "/images/gallery/image-016.jpg",
-              "thumb": "/images/gallery/image-016.jpg",
-              "alt": "Image 016"
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_003.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_003.webp",
+              "alt": "Splendid China 2024 003"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_004.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_004.webp",
+              "alt": "Splendid China 2024 004"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_005.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_005.webp",
+              "alt": "Splendid China 2024 005"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_006.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_006.webp",
+              "alt": "Splendid China 2024 006"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_007.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_007.webp",
+              "alt": "Splendid China 2024 007"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_008.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_008.webp",
+              "alt": "Splendid China 2024 008"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_009.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_009.webp",
+              "alt": "Splendid China 2024 009"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_010.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_010.webp",
+              "alt": "Splendid China 2024 010"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_011.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_011.webp",
+              "alt": "Splendid China 2024 011"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_012.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_012.webp",
+              "alt": "Splendid China 2024 012"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_013.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_013.webp",
+              "alt": "Splendid China 2024 013"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_014.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_014.webp",
+              "alt": "Splendid China 2024 014"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_015.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_015.webp",
+              "alt": "Splendid China 2024 015"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_016.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_016.webp",
+              "alt": "Splendid China 2024 016"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_017.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_017.webp",
+              "alt": "Splendid China 2024 017"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_018.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_018.webp",
+              "alt": "Splendid China 2024 018"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_019.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_019.webp",
+              "alt": "Splendid China 2024 019"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_020.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_020.webp",
+              "alt": "Splendid China 2024 020"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_021.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_021.webp",
+              "alt": "Splendid China 2024 021"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_022.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_022.webp",
+              "alt": "Splendid China 2024 022"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_023.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_023.webp",
+              "alt": "Splendid China 2024 023"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_024.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_024.webp",
+              "alt": "Splendid China 2024 024"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_025.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_025.webp",
+              "alt": "Splendid China 2024 025"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_026.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_026.webp",
+              "alt": "Splendid China 2024 026"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2024/splendid-china-2024_027.webp",
+              "thumb": "/images/splendid-china/splendid-china-2024/splendid-china-2024_027.webp",
+              "alt": "Splendid China 2024 027"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2023",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_001.webp",
+              "alt": "Splendid China 2023 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_002.webp",
+              "alt": "Splendid China 2023 002"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_003.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_003.webp",
+              "alt": "Splendid China 2023 003"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_004.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_004.webp",
+              "alt": "Splendid China 2023 004"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_005.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_005.webp",
+              "alt": "Splendid China 2023 005"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_006.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_006.webp",
+              "alt": "Splendid China 2023 006"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_007.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_007.webp",
+              "alt": "Splendid China 2023 007"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_008.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_008.webp",
+              "alt": "Splendid China 2023 008"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_009.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_009.webp",
+              "alt": "Splendid China 2023 009"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_010.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_010.webp",
+              "alt": "Splendid China 2023 010"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_011.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_011.webp",
+              "alt": "Splendid China 2023 011"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_012.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_012.webp",
+              "alt": "Splendid China 2023 012"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_013.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_013.webp",
+              "alt": "Splendid China 2023 013"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_014.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_014.webp",
+              "alt": "Splendid China 2023 014"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_015.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_015.webp",
+              "alt": "Splendid China 2023 015"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_016.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_016.webp",
+              "alt": "Splendid China 2023 016"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_017.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_017.webp",
+              "alt": "Splendid China 2023 017"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2023/splendid-china-2023_018.webp",
+              "thumb": "/images/splendid-china/splendid-china-2023/splendid-china-2023_018.webp",
+              "alt": "Splendid China 2023 018"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2022",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_001.webp",
+              "alt": "Splendid China 2022 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_002.webp",
+              "alt": "Splendid China 2022 002"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_003.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_003.webp",
+              "alt": "Splendid China 2022 003"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_004.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_004.webp",
+              "alt": "Splendid China 2022 004"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_005.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_005.webp",
+              "alt": "Splendid China 2022 005"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_006.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_006.webp",
+              "alt": "Splendid China 2022 006"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_007.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_007.webp",
+              "alt": "Splendid China 2022 007"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_008.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_008.webp",
+              "alt": "Splendid China 2022 008"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_009.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_009.webp",
+              "alt": "Splendid China 2022 009"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_010.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_010.webp",
+              "alt": "Splendid China 2022 010"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_011.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_011.webp",
+              "alt": "Splendid China 2022 011"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_012.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_012.webp",
+              "alt": "Splendid China 2022 012"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_013.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_013.webp",
+              "alt": "Splendid China 2022 013"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_014.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_014.webp",
+              "alt": "Splendid China 2022 014"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_015.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_015.webp",
+              "alt": "Splendid China 2022 015"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2022/splendid-china-2022_016.webp",
+              "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_016.webp",
+              "alt": "Splendid China 2022 016"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2019",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_001.webp",
+              "alt": "Splendid China 2019 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_002.webp",
+              "alt": "Splendid China 2019 002"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_003.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_003.webp",
+              "alt": "Splendid China 2019 003"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_004.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_004.webp",
+              "alt": "Splendid China 2019 004"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_005.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_005.webp",
+              "alt": "Splendid China 2019 005"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_006.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_006.webp",
+              "alt": "Splendid China 2019 006"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_007.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_007.webp",
+              "alt": "Splendid China 2019 007"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_008.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_008.webp",
+              "alt": "Splendid China 2019 008"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_009.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_009.webp",
+              "alt": "Splendid China 2019 009"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_010.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_010.webp",
+              "alt": "Splendid China 2019 010"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_011.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_011.webp",
+              "alt": "Splendid China 2019 011"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_012.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_012.webp",
+              "alt": "Splendid China 2019 012"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_013.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_013.webp",
+              "alt": "Splendid China 2019 013"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2019/splendid-china-2019_014.webp",
+              "thumb": "/images/splendid-china/splendid-china-2019/splendid-china-2019_014.webp",
+              "alt": "Splendid China 2019 014"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2018",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2018/splendid-china-2018_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2018/splendid-china-2018_001.webp",
+              "alt": "Splendid China 2018 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2018/splendid-china-2018_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2018/splendid-china-2018_002.webp",
+              "alt": "Splendid China 2018 002"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2018/splendid-china-2018_003.webp",
+              "thumb": "/images/splendid-china/splendid-china-2018/splendid-china-2018_003.webp",
+              "alt": "Splendid China 2018 003"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2018/splendid-china-2018_004.webp",
+              "thumb": "/images/splendid-china/splendid-china-2018/splendid-china-2018_004.webp",
+              "alt": "Splendid China 2018 004"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2018/splendid-china-2018_005.webp",
+              "thumb": "/images/splendid-china/splendid-china-2018/splendid-china-2018_005.webp",
+              "alt": "Splendid China 2018 005"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2018/splendid-china-2018_006.webp",
+              "thumb": "/images/splendid-china/splendid-china-2018/splendid-china-2018_006.webp",
+              "alt": "Splendid China 2018 006"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2017",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2017/splendid-china-2017_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2017/splendid-china-2017_001.webp",
+              "alt": "Splendid China 2017 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2017/splendid-china-2017_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2017/splendid-china-2017_002.webp",
+              "alt": "Splendid China 2017 002"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2016",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2016/splendid-china-2016_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2016/splendid-china-2016_001.webp",
+              "alt": "Splendid China 2016 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2016/splendid-china-2016_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2016/splendid-china-2016_002.webp",
+              "alt": "Splendid China 2016 002"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2015",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2015/splendid-china-2015_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2015/splendid-china-2015_001.webp",
+              "alt": "Splendid China 2015 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2015/splendid-china-2015_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2015/splendid-china-2015_002.webp",
+              "alt": "Splendid China 2015 002"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2014",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2014/splendid-china-2014_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2014/splendid-china-2014_001.webp",
+              "alt": "Splendid China 2014 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2014/splendid-china-2014_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2014/splendid-china-2014_002.webp",
+              "alt": "Splendid China 2014 002"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2013",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2013/splendid-china-2013_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2013/splendid-china-2013_001.webp",
+              "alt": "Splendid China 2013 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2013/splendid-china-2013_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2013/splendid-china-2013_002.webp",
+              "alt": "Splendid China 2013 002"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2013/splendid-china-2013_003.webp",
+              "thumb": "/images/splendid-china/splendid-china-2013/splendid-china-2013_003.webp",
+              "alt": "Splendid China 2013 003"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2012",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2012/splendid-china-2012_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2012/splendid-china-2012_001.webp",
+              "alt": "Splendid China 2012 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2012/splendid-china-2012_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2012/splendid-china-2012_002.webp",
+              "alt": "Splendid China 2012 002"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2011",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2011/splendid-china-2011_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2011/splendid-china-2011_001.webp",
+              "alt": "Splendid China 2011 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2011/splendid-china-2011_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2011/splendid-china-2011_002.webp",
+              "alt": "Splendid China 2011 002"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2011/splendid-china-2011_003.webp",
+              "thumb": "/images/splendid-china/splendid-china-2011/splendid-china-2011_003.webp",
+              "alt": "Splendid China 2011 003"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2011/splendid-china-2011_004.webp",
+              "thumb": "/images/splendid-china/splendid-china-2011/splendid-china-2011_004.webp",
+              "alt": "Splendid China 2011 004"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2010",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2010/splendid-china-2010_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2010/splendid-china-2010_001.webp",
+              "alt": "Splendid China 2010 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2010/splendid-china-2010_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2010/splendid-china-2010_002.webp",
+              "alt": "Splendid China 2010 002"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2009",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2009/splendid-china-2009_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2009/splendid-china-2009_001.webp",
+              "alt": "Splendid China 2009 001"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": "2008",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "/images/splendid-china/splendid-china-2008/splendid-china-2008_001.webp",
+              "thumb": "/images/splendid-china/splendid-china-2008/splendid-china-2008_001.webp",
+              "alt": "Splendid China 2008 001"
+            },
+            {
+              "src": "/images/splendid-china/splendid-china-2008/splendid-china-2008_002.webp",
+              "thumb": "/images/splendid-china/splendid-china-2008/splendid-china-2008_002.webp",
+              "alt": "Splendid China 2008 002"
             }
           ]
         }
       ]
     }
+<<<<<<< HEAD
   ]
+=======
+  ],
+  "galleryImages": []
+>>>>>>> 35d4090 (Initial clean commit without image tracking)
 }

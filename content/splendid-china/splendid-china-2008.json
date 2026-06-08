@@ -1,0 +1,32 @@
+{
+  "pageTitle": "Splendid China 2008 | Madison Chinese Dance Academy",
+  "metaDescription": "Splendid China 2008 performance archive by Madison Chinese Dance Academy.",
+  "blocks": [
+    {
+      "type": "hero",
+      "blocks": [
+        {
+          "type": "heading1",
+          "id": "splendid-2008-heading",
+          "text": "Splendid China 2008"
+        },
+        {
+          "type": "body",
+          "text": "Performance archive details, photos, and program notes can be added here."
+        }
+      ]
+    }
+  ],
+  "galleryImages": [
+    {
+      "src": "/images/splendid-china/splendid-china-2008/splendid-china-2008_001.webp",
+      "thumb": "/images/splendid-china/splendid-china-2008/splendid-china-2008_001.webp",
+      "alt": "Splendid China 2008 001"
+    },
+    {
+      "src": "/images/splendid-china/splendid-china-2008/splendid-china-2008_002.webp",
+      "thumb": "/images/splendid-china/splendid-china-2008/splendid-china-2008_002.webp",
+      "alt": "Splendid China 2008 002"
+    }
+  ]
+}

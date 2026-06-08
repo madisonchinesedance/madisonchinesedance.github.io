@@ -1,5 +1,5 @@
 {
-  "pageTitle": "About Us | Madison Chinese Dance Academy",
+  "pageTitle": "Our Story | Madison Chinese Dance Academy",
   "metaDescription": "Learn about Madison Chinese Dance Academy and its community dance programs.",
   "blocks": [
     {
@@ -8,7 +8,7 @@
         {
           "type": "heading1",
           "id": "about-heading",
-          "text": "About Us"
+          "text": "Our Story"
         },
         {
           "type": "body",

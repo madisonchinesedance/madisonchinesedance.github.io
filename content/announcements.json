@@ -4,7 +4,7 @@
       "id": "splendid-china-2026",
       "enabled": true,
       "label": "Upcoming Event",
-      "body": "Splendid China 2026 is coming up on June 20th! Join us for an evening of culture presented by community performers. Tickets are on sale now!",
+      "body": "Splendid China 2026 is coming up on June 20th! Join us for an evening of culture presented by community performers. Experience the beauty of China through music and dance. Don't miss out on this unforgettable event!",
       "actions": [
         {
           "route": "splendid-china-2026",
@@ -14,7 +14,7 @@
         },
         {
           "route": "tickets",
-          "label": "Purchase Tickets",
+          "label": "See The Show",
           "style": "primary",
           "ariaLabel": "Purchase Splendid China 2026 tickets"
         }
