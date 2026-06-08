@@ -16,8 +16,6 @@
         }
       ]
     }
-<<<<<<< HEAD
-=======
   ],
   "galleryImages": [
     {
@@ -100,6 +98,5 @@
       "thumb": "/images/splendid-china/splendid-china-2022/splendid-china-2022_016.webp",
       "alt": "Splendid China 2022 016"
     }
->>>>>>> 35d4090 (Initial clean commit without image tracking)
   ]
 }

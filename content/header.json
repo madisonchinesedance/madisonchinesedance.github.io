@@ -39,11 +39,7 @@
     {
       "label": "Get Involved",
       "items": [
-<<<<<<< HEAD
-        { "route": "join-us", "label": "Dance With Us" },
-=======
         { "route": "dance-with-us", "label": "Dance With Us" },
->>>>>>> 35d4090 (Initial clean commit without image tracking)
         { "route": "book-a-performance", "label": "Bring Us to Your Event" },
         { "route": "see-a-performance", "label": "See A Performance" },
         { "route": "support-our-cause", "label": "Support Our Cause" }
@@ -58,9 +54,6 @@
         { "route": "splendid-china-2023", "label": "Splendid China 2023" },
         { "route": "splendid-china-2022", "label": "Splendid China 2022" },
         { "route": "splendid-china-2021", "label": "Splendid China 2021" },
-<<<<<<< HEAD
-        { "route": "splendid-china-2020", "label": "Splendid China 2020" }
-=======
         { "route": "splendid-china-2020", "label": "Splendid China 2020" },
         { "route": "splendid-china-2019", "label": "Splendid China 2019" },
         { "route": "splendid-china-2018", "label": "Splendid China 2018" },
@@ -74,7 +67,6 @@
         { "route": "splendid-china-2010", "label": "Splendid China 2010" },
         { "route": "splendid-china-2009", "label": "Splendid China 2009" },
         { "route": "splendid-china-2008", "label": "Splendid China 2008" }
->>>>>>> 35d4090 (Initial clean commit without image tracking)
       ]
     }
   ],

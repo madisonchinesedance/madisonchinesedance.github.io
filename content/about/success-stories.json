@@ -12,11 +12,7 @@
         },
         {
           "type": "body",
-<<<<<<< HEAD
           "text": "Madison Chinese Dance Academy has shaped the lives of students, families, and performers for decades. These are some of their stories."
-=======
-          "text": "Madison Chinese Dance Academy has shaped the lives of students, alumni, and members of the community for decades. These are some of their stories."
->>>>>>> 35d4090 (Initial clean commit without image tracking)
         }
       ]
     },
@@ -34,7 +30,6 @@
         },
         {
           "type": "cards",
-<<<<<<< HEAD
           "columns": 2,
           "items": [
             {
@@ -44,13 +39,6 @@
             {
               "heading": "Confidence Through Dance",
               "body": "Students often share that the academy helped them build confidence, discipline, and friendships. Performing on stage teaches lessons that reach far beyond the studio."
-=======
-          "columns": 1,
-          "items": [
-            {
-              "heading": "Addie C. (2016-Present)",
-              "body": "From beginner to advanced, I’ve developed so much as a dancer while having tons of fun the whole time!"
->>>>>>> 35d4090 (Initial clean commit without image tracking)
             }
           ]
         }
@@ -61,7 +49,6 @@
       "blocks": [
         {
           "type": "heading2",
-<<<<<<< HEAD
           "id": "family-stories",
           "text": "Family Stories"
         },
@@ -80,22 +67,6 @@
             {
               "heading": "Cultural Connection",
               "body": "Families value the academy as a place to share Chinese language, history, and artistry with the next generation, building identity and pride through movement."
-=======
-          "id": "alumni-stories",
-          "text": "Alumni Stories"
-        },
-        {
-          "type": "body",
-          "text": "Our alumni have gone on to pursue diverse paths, but many continue to be involved with the academy in various ways. They share their experiences and insights, inspiring current students and contributing to the academy's legacy."
-        },
-        {
-          "type": "cards",
-          "columns": 1,
-          "items": [
-            {
-              "heading": "Placeholder Name (2000-2010)",
-              "body": "Placeholder."
->>>>>>> 35d4090 (Initial clean commit without image tracking)
             }
           ]
         }
@@ -106,7 +77,6 @@
       "blocks": [
         {
           "type": "heading2",
-<<<<<<< HEAD
           "id": "community-impact",
           "text": "Community Impact"
         },
@@ -125,8 +95,6 @@
       "blocks": [
         {
           "type": "heading2",
-=======
->>>>>>> 35d4090 (Initial clean commit without image tracking)
           "id": "share-your-story",
           "text": "Share Your Story"
         },
@@ -143,13 +111,8 @@
               "style": "primary"
             },
             {
-<<<<<<< HEAD
-              "route": "join-us",
-              "label": "Join Us",
-=======
               "route": "dance-with-us",
               "label": "Dance With Us",
->>>>>>> 35d4090 (Initial clean commit without image tracking)
               "style": "secondary"
             }
           ]
