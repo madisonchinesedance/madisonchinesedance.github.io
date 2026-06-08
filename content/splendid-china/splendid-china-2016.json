@@ -19,13 +19,13 @@
   ],
   "galleryImages": [
     {
-      "src": "/images/splendid-china/splendid-china-2016/splendid-china-2016_001.webp",
-      "thumb": "/images/splendid-china/splendid-china-2016/splendid-china-2016_001.webp",
+      "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2016/splendid-china-2016_001.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2016/splendid-china-2016_001.webp",
       "alt": "Splendid China 2016 001"
     },
     {
-      "src": "/images/splendid-china/splendid-china-2016/splendid-china-2016_002.webp",
-      "thumb": "/images/splendid-china/splendid-china-2016/splendid-china-2016_002.webp",
+      "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2016/splendid-china-2016_002.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2016/splendid-china-2016_002.webp",
       "alt": "Splendid China 2016 002"
     }
   ]

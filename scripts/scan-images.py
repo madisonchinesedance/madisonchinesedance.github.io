@@ -1,6 +1,6 @@
-"""Update gallery JSON files from images in images/splendid-china/.
+"""Update gallery JSON files from images in Cloudflare R2 bucket.
 
-For each per-year folder (e.g. images/splendid-china/splendid-china-2024/):
+For each per-year folder (e.g. splendid-china/splendid-china-2024/ in the bucket):
   * Populate `galleryImages` in content/splendid-china/splendid-china-2024.json
     so the matching Splendid China archive page (which uses the same gallery
     runner as the main Gallery page) shows those photos.
@@ -10,9 +10,13 @@ content/gallery.json so the main Gallery page can still display everything
 together. Years are sorted in reverse chronological order so the most recent
 year appears first.
 
+Configuration (in order of precedence):
+    1. Environment variables: R2_ACCOUNT_ID, R2_ACCESS_KEY, R2_SECRET_KEY,
+       R2_BUCKET, R2_PUBLIC_URL
+    2. scripts/r2-config.json file (gitignored -- never commit this file)
+
 Usage:
     python scripts/scan-images.py
-    python scripts/scan-images.py --images-dir path/to/images
     python scripts/scan-images.py --content content/gallery.json
 """
 
@@ -20,9 +24,78 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 from pathlib import Path
 
+import boto3
+
+# ---------------------------------------------------------------------------
+# R2 / S3 configuration
+#
+# Credentials are read from environment variables first; if any are missing,
+# the script falls back to scripts/r2-config.json (which is gitignored).
+# ---------------------------------------------------------------------------
+
+_env = os.environ.get
+
+R2_ACCOUNT_ID = _env("R2_ACCOUNT_ID")
+R2_ACCESS_KEY = _env("R2_ACCESS_KEY")
+R2_SECRET_KEY = _env("R2_SECRET_KEY")
+R2_BUCKET = _env("R2_BUCKET")
+R2_PUBLIC_URL = (_env("R2_PUBLIC_URL") or "").rstrip("/")
+
+# Fall back to the local config file for any values not set via env vars.
+CONFIG_PATH = Path(__file__).resolve().parent / "r2-config.json"
+_cfg: dict = {}
+if CONFIG_PATH.exists():
+    with open(CONFIG_PATH) as f:
+        _cfg = json.load(f)
+
+if not R2_ACCOUNT_ID:
+    R2_ACCOUNT_ID = _cfg.get("account_id", "")
+if not R2_ACCESS_KEY:
+    R2_ACCESS_KEY = _cfg.get("access_key_id", "")
+if not R2_SECRET_KEY:
+    R2_SECRET_KEY = _cfg.get("secret_access_key", "")
+if not R2_BUCKET:
+    R2_BUCKET = _cfg.get("bucket_name", "")
+if not R2_PUBLIC_URL:
+    R2_PUBLIC_URL = _cfg.get("public_url", "").rstrip("/")
+
+# Validate that all required values are present.
+_missing = []
+for _name, _val in [
+    ("R2_ACCOUNT_ID", R2_ACCOUNT_ID),
+    ("R2_ACCESS_KEY", R2_ACCESS_KEY),
+    ("R2_SECRET_KEY", R2_SECRET_KEY),
+    ("R2_BUCKET", R2_BUCKET),
+    ("R2_PUBLIC_URL", R2_PUBLIC_URL),
+]:
+    if not _val:
+        _missing.append(_name)
+
+if _missing:
+    raise SystemExit(
+        "Missing required R2 configuration values: "
+        + ", ".join(_missing)
+        + "\n\nSet them as environment variables or add them to "
+        + str(CONFIG_PATH)
+    )
+
+# S3-compatible endpoint for Cloudflare R2
+R2_ENDPOINT = f"https://{R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
+
+# Create the S3 client
+s3_client = boto3.client(
+    "s3",
+    endpoint_url=R2_ENDPOINT,
+    aws_access_key_id=R2_ACCESS_KEY,
+    aws_secret_access_key=R2_SECRET_KEY,
+    region_name="auto",  # R2 uses 'auto' for all regions
+)
+
+# ---------------------------------------------------------------------------
 
 IMAGE_EXTENSIONS = {".avif", ".gif", ".jpeg", ".jpg", ".png", ".webp"}
 DEFAULT_CONTENT = {
@@ -42,21 +115,23 @@ def repo_root() -> Path:
     return Path(__file__).resolve().parent.parent
 
 
-def natural_key(path: Path) -> list[object]:
+def natural_key(name: str) -> list[object]:
     return [
         int(part) if part.isdigit() else part.lower()
-        for part in re.split(r"(\d+)", path.name)
+        for part in re.split(r"(\d+)", name)
     ]
 
 
-def title_from_filename(path: Path) -> str:
-    words = re.sub(r"[_-]+", " ", path.stem)
+def title_from_filename(filename: str) -> str:
+    stem = Path(filename).stem
+    words = re.sub(r"[_-]+", " ", stem)
     words = re.sub(r"\s+", " ", words).strip()
     return words.title()
 
 
-def site_path(path: Path, root: Path) -> str:
-    return "/" + path.relative_to(root).as_posix()
+def r2_object_url(key: str) -> str:
+    """Return the public URL for a given R2 object key."""
+    return f"{R2_PUBLIC_URL}/{key}"
 
 
 def read_existing_content(path: Path) -> dict:
@@ -74,53 +149,86 @@ def read_existing_content(path: Path) -> dict:
     return data
 
 
-def scan_year_images(year_dir: Path, root: Path) -> list[dict[str, str]]:
-    images = sorted(
-        (
-            path
-            for path in year_dir.iterdir()
-            if path.is_file() and path.suffix.lower() in IMAGE_EXTENSIONS
-        ),
-        key=natural_key,
+def list_bucket_prefixes(prefix: str, delimiter: str = "/") -> list[str]:
+    """Return the 'subdirectory' prefixes under *prefix* in the R2 bucket.
+
+    For example, with prefix='splendid-china/' this returns entries like
+    'splendid-china/splendid-china-2025/' from CommonPrefixes.
+    """
+    response = s3_client.list_objects_v2(
+        Bucket=R2_BUCKET,
+        Prefix=prefix,
+        Delimiter=delimiter,
     )
+    return response.get("CommonPrefixes", [])
+
+
+def list_bucket_objects(prefix: str) -> list[str]:
+    """Return all object keys under *prefix* in the R2 bucket.
+
+    Only returns image files (matching IMAGE_EXTENSIONS).
+    """
+    keys: list[str] = []
+    paginator = s3_client.get_paginator("list_objects_v2")
+    for page in paginator.paginate(Bucket=R2_BUCKET, Prefix=prefix):
+        for obj in page.get("Contents", []):
+            key = obj["Key"]
+            if Path(key).suffix.lower() in IMAGE_EXTENSIONS:
+                keys.append(key)
+    return keys
+
+
+def scan_year_images(year_prefix: str) -> list[dict[str, str]]:
+    """Return image metadata for all images under *year_prefix* in R2.
+
+    *year_prefix* is something like 'splendid-china/splendid-china-2025/'.
+    """
+    keys = list_bucket_objects(year_prefix)
+    keys.sort(key=natural_key)
 
     return [
         {
-            "src": site_path(path, root),
-            "thumb": site_path(path, root),
-            "alt": title_from_filename(path),
+            "src": r2_object_url(key),
+            "thumb": r2_object_url(key),
+            "alt": title_from_filename(Path(key).name),
         }
-        for path in images
+        for key in keys
     ]
 
 
-def scan_year_folders(images_dir: Path, root: Path) -> list[dict]:
-    """Return one entry per `splendid-china-YYYY` folder under images_dir."""
-    if not images_dir.exists():
+def scan_year_folders() -> list[dict]:
+    """Return one entry per ``splendid-china-YYYY`` folder in the R2 bucket.
+
+    Scans the 'splendid-china/' prefix for year subdirectories.
+    """
+    # Get all subdirectories under splendid-china/
+    common_prefixes = list_bucket_prefixes("splendid-china/")
+    if not common_prefixes:
         return []
 
     years = []
-    for year_dir in sorted(
-        (path for path in images_dir.iterdir() if path.is_dir()),
-        key=lambda path: path.name,
-        reverse=True,
-    ):
-        match = YEAR_FOLDER_PATTERN.match(year_dir.name)
+    for cp in common_prefixes:
+        prefix = cp["Prefix"]  # e.g. 'splendid-china/splendid-china-2025/'
+        # Extract the folder name (e.g. 'splendid-china-2025')
+        folder_name = prefix.strip("/").split("/")[-1]
+        match = YEAR_FOLDER_PATTERN.match(folder_name)
         if not match:
             continue
         year = match.group(1)
-        images = scan_year_images(year_dir, root)
+        images = scan_year_images(prefix)
         years.append({
             "year": year,
-            "dir": year_dir,
+            "dir_prefix": prefix,
             "images": images,
         })
 
+    # Sort by year descending (most recent first)
+    years.sort(key=lambda y: y["year"], reverse=True)
     return years
 
 
 def build_gallery_groups(years: list[dict]) -> list[dict]:
-    """Build the `galleryGroups` structure for content/gallery.json."""
+    """Build the ``galleryGroups`` structure for content/gallery.json."""
     groups = []
     for year_info in years:
         if not year_info["images"]:
@@ -165,7 +273,7 @@ def update_main_gallery(content_path: Path, existing: dict, years: list[dict]) -
 
 
 def update_per_year_json(content_path: Path, year_info: dict) -> int:
-    """Update a per-year JSON file with its `galleryImages` array.
+    """Update a per-year JSON file with its ``galleryImages`` array.
 
     The script preserves every other field (page title, blocks, etc.) so
     the page's content stays intact.
@@ -179,13 +287,7 @@ def update_per_year_json(content_path: Path, year_info: dict) -> int:
 def parse_args() -> argparse.Namespace:
     root = repo_root()
     parser = argparse.ArgumentParser(
-        description="Scan year-based image folders and update gallery JSON files."
-    )
-    parser.add_argument(
-        "--images-dir",
-        default=root / "images" / "splendid-china",
-        type=Path,
-        help="Directory containing per-year image subfolders (e.g. images/splendid-china).",
+        description="Scan year-based image folders in R2 and update gallery JSON files."
     )
     parser.add_argument(
         "--content",
@@ -210,13 +312,19 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     root = repo_root()
-    images_dir = args.images_dir.resolve()
     content_path = args.content.resolve()
     per_year_dir = args.per_year_dir.resolve()
 
-    years = scan_year_folders(images_dir, root)
+    # Verify the R2 bucket is accessible
+    try:
+        s3_client.head_bucket(Bucket=R2_BUCKET)
+        print(f"Connected to R2 bucket: {R2_BUCKET}")
+    except Exception as exc:
+        raise SystemExit(f"Could not access R2 bucket '{R2_BUCKET}': {exc}") from exc
+
+    years = scan_year_folders()
     if not years:
-        print(f"No splendid-china-YYYY folders found in {images_dir}")
+        print("No splendid-china-YYYY folders found in R2 bucket.")
         return
 
     image_count = sum(len(year["images"]) for year in years)
@@ -253,5 +361,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-
