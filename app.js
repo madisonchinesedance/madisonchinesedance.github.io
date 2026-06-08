@@ -1038,10 +1038,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 								imageIndex += 1;
 								return `
 									<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
-										<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
-									</button>
-								`;
-							}).join('');
+									<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}" loading="lazy">
+								</button>
+							`;
+						}).join('');
 
 							return `
 								<section class="gallery-event" aria-label="${escapeHtml(event.event || `Gallery ${group.year}`)}">
@@ -1059,9 +1059,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 						`;
 					}).join('');
 				} else {
-					galleryGrid.innerHTML = galleryImages.map((image, index) => `
+						galleryGrid.innerHTML = galleryImages.map((image, index) => `
 						<button class="gallery-thumb" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
-							<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
+							<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}" loading="lazy">
 						</button>
 					`).join('');
 				}
