@@ -157,7 +157,7 @@ def read_existing_content(path: Path) -> dict:
     return data
 
 
-def list_bucket_prefixes(prefix: str, delimiter: str = "/") -> list[str]:
+def list_bucket_prefixes(prefix: str, delimiter: str = "/") -> list[dict]:
     """Return the 'subdirectory' prefixes under *prefix* in the R2 bucket.
 
     For example, with prefix='splendid-china/' this returns entries like
