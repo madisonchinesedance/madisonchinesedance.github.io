@@ -10,219 +10,219 @@
 	 --------------------------- */
 :root{
 	/* ── Core colors ── */
-	--color-white: #FFFFFF;
-	--color-black: #000000;
-	--color-navy-shadow: #030c38;
-	--color-deep-navy: #101A4F;
-	--color-violet: #2A2361;
-	--color-sunrise: #D85D4B;
-	--color-green: #1E7E34;
-	--color-peach: #FFE2CF;
-	--color-peach-dark: #FFAD82;
-	--color-blue-grey: #FFFFFF14;
 	--color-alpha-deep-navy: #101b4fcb;
 	--color-alpha-navy-shadow: transparent;
+	--color-black: #000000;
+	--color-blue-grey: #FFFFFF14;
+	--color-deep-navy: #101A4F;
+	--color-green: #1E7E34;
+	--color-navy-shadow: #030c38;
+	--color-peach: #FFE2CF;
+	--color-peach-dark: #FFAD82;
 	--color-purple: #9D7CFF;
+	--color-sunrise: #D85D4B;
+	--color-violet: #2A2361;
+	--color-white: #FFFFFF;
 
 	/* ── Brand / background colors ── */
 	--bg-color: var(--color-deep-navy);
-	--hero-bg-top: var(--color-deep-navy);
-	--hero-bg-middle: var(--color-violet);
-	--hero-bg-bottom: var(--color-sunrise);
-	--light-text-color: var(--color-white);
 	--dark-text-color: var(--color-black);
+	--footer-bg: var(--bg-color);
+	--hero-bg-bottom: var(--color-sunrise);
+	--hero-bg-middle: var(--color-violet);
+	--hero-bg-top: var(--color-deep-navy);
+	--light-text-color: var(--color-white);
+
+	/* ── Cards ── */
+	--card-bg: var(--section-bg); /* cards use the same gradient as sections */
+	--card-blend-mode: normal;
+	--card-blur: 0px;
+	--card-border-color: var(--edge-contrast);
+	--card-border-hover: transparent;
+	--card-border-radius: 20px;
+	--card-gap: 18px;
+	--card-grid-columns: 3;
+	--card-heading-color: var(--light-text-color);
+	--card-link-after-content: " ->";
+	--card-link-font-weight: 800;
+	--card-min-height: 260px;
+	--card-opacity-disabled: 0.5;
+	--card-padding: 24px;
+	--card-padding-sm: 22px;
+	--card-padding-xs: 16px;
+	--card-shadow: 0 14px 34px var(--color-navy-shadow);
+	--card-shadow-hover: 0 22px 42px var(--color-navy-shadow);
+	--card-text-color: var(--light-text-color);
+	--card-transparency: 0.5;             /* resting opacity for cards */
+	--card-transparency-hover: 0.5;
+
+	/* ── Footer ── */
+	--footer-logo-shadow: 0 12px 26px var(--color-navy-shadow);
+	--footer-shadow: 0 -6px 20px var(--color-navy-shadow);
+
+	/* ── Gallery ── */
+	--gallery-arrows-bg: var(--color-black);
+	--gallery-bg: var(--color-blue-grey);
+	--gallery-close-bg: var(--color-deep-navy);
+	--gallery-close-hover-bg: var(--color-navy-shadow);
+	--gallery-lightbox-shadow: 0 24px 70px var(--color-navy-shadow);
+	--gallery-overlay-bg: var(--color-alpha-deep-navy);
+	--gallery-thumb-bg: var(--color-white);
+	--gallery-thumb-shadow: 0 5px 12px var(--color-navy-shadow);
+	--gallery-thumb-shadow-hover: 0 8px 18px var(--color-navy-shadow);
+	--gallery-window-bg: var(--color-white);
 
 	/* ── Gradients ── */
+	--footer-bg: var(--bg-color);
 	--home-intro-bg: var(--bg-color);
 	--zeffy-embed-bg: linear-gradient(180deg, var(--color-deep-navy), var(--color-sunrise));
-	--footer-bg: var(--bg-color);
+
+	/* ── Header ── */
+	--header-bg: var(--color-alpha-deep-navy);
+	--header-current-shadow: 0 0 0 3px var(--color-blue-grey);
+	--header-shadow: 0 8px 28px var(--color-navy-shadow);
+
+	/* ── Layout sizing ── */
+	--card-radius: 20px;
+	--content-width: 1600px;
+	--header-bar-height: 65px;
+	--header-content-width: 1700px;
+	--section-radius: 40px;
+
+	/* ── Motion & transitions ── */
+	--entrance-delay-card: 90ms;
+	--entrance-delay-card-group: 120ms;
+	--entrance-delay-footer: 300ms;
+	--entrance-delay-hero: 0ms;
+	--entrance-delay-section: 90ms;
+	--entrance-duration: 1000ms;
+	--entrance-translate: 50px;
+	--pulse-duration: 2s;
+	--transition-fast: 180ms;
+	--transition-medium: 260ms;
+	--translate-button-hover: -2px;
+	--translate-card-hover: -5px;
+	--translate-dropdown-hidden: -6px;
+
+	/* ── Navigation & Dropdown ── */
+	--boxshadow-nav: var(--color-black);
+	--dropdown-bg: var(--color-deep-navy);
+	--dropdown-shadow: 0 18px 42px var(--color-navy-shadow);
+
+	/* ── Nav CTA Buttons (separate from content buttons) ── */
+	--nav-button-active-shadow: var(--header-current-shadow);
+	--nav-button-font-size: var(--nav-link-font-size);
+	--nav-button-font-weight: var(--nav-link-font-weight);
+	--nav-button-hover-filter: brightness(1.08);
+	--nav-button-hover-translate: var(--translate-button-hover);
+	--nav-button-padding: 8px 12px;
+	--nav-button-radius: 999px;
+	--nav-button-transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
+
+	/* ── Panel ── */
+	--panel-shadow: var(--section-shadow);
+
+	/* ── Primary Button ── */
+	--primary-button-bg: var(--color-purple);
+	--primary-button-color: var(--primary-button-bg);
+	--primary-button-focus-offset: 3px;
+	--primary-button-focus-outline: 4px solid var(--button-hover-bg);
+	--primary-button-font-size: 1rem;
+	--primary-button-hover-filter: brightness(1.1) saturate(1.05);
+	--primary-button-hover-translate: var(--translate-button-hover);
+	--primary-button-padding: 14px 20px;
+	--primary-button-radius: var(--section-radius);
+	--primary-button-text: var(--light-text-color);
+	--primary-button-transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
+
+	/* ── Section ── */
+	--section-bg: linear-gradient(180deg, var(--color-violet), var(--color-deep-navy));
+	--section-bg-solid: var(--section-bg);
+	--section-blend-mode: normal;
+	--section-blur: 0px;
+	--section-border: var(--edge-contrast);
+	--section-border-radius-bottom-left: 0px;
+	--section-border-radius-bottom-right: 0px;
+	--section-border-radius-top-left: 36px;
+	--section-border-radius-top-right: 36px;
+	--section-gap: 18px;
+	--section-heading-color: var(--light-text-color);
+	--section-margin-top: -34px;           /* home-intro pull-up offset */
+	--section-max-width: 1600px;
+	--section-padding-top: 84px;
+	--section-padding-x: clamp(18px, 3vw, 40px);
+	--section-radius: 40px;
+	--section-shadow: 0 18px 50px var(--color-navy-shadow);
+	--section-text-color: var(--light-text-color);
+	--section-transparency: 0.5;          /* resting opacity for sections like home-intro */
+	--section-transparency-hover: 0.5;         /* hover/focus opacity */
+	--home-intro-shadow: 0 -18px 42px var(--color-navy-shadow);
+
+	/* ── Skip Link ── */
+	--skiplink-bg: var(--color-peach);
+	--skiplink-fg: var(--color-deep-navy);
 
 	/* ── UI colors ── */
-	--edge-contrast: var(--color-blue-grey);
 	--button-hover-bg: var(--color-blue-grey);
+	--edge-contrast: var(--color-blue-grey);
 
 	/* ── Typography — 4-tier system:
 	     heading-1 = page titles
 	     heading-2 = section headings (slightly smaller than h1)
 	     body      = normal page text
 	     small-body = captions, footer, announcement bar, etc. ── */
-	--font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 	--base-font-size: 14px;
 	--base-line-height: 1.45;
+	--body-font-color: var(--light-text-color);
+	--body-font-size: 1.15rem;
+	--body-font-weight: 400;
+	--body-line-height: 1.6;
+	--font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 	--heading-1-font-size: clamp(2rem, 2vw, 3.2rem);
 	--heading-1-font-weight: 700;
 	--heading-1-line-height: 1.08;
 	--heading-2-font-size: clamp(1.25rem, 1.4vw, 1.65rem);
 	--heading-2-font-weight: 700;
 	--heading-2-line-height: 1.25;
-	--body-font-size: 1.15rem;
-	--body-font-color: var(--light-text-color);
-	--body-font-weight: 400;
-	--body-line-height: 1.6;
-	--small-body-font-size: 0.92rem;
 	--logo-font-size: 1.4rem;
 	--nav-link-font-size: 1.05rem;
 	--nav-link-font-weight: 600;
-
-	/* ── Layout sizing ── */
-	--header-bar-height: 65px;
-	--header-content-width: 1700px;
-	--content-width: 1600px;
-	--card-radius: 20px;
-	--section-radius: 40px;
-
-	/* ── Motion & transitions ── */
-	--transition-fast: 180ms;
-	--transition-medium: 260ms;
-	--entrance-duration: 1000ms;
-	--entrance-translate: 50px;
-	--entrance-delay-hero: 0ms;
-	--entrance-delay-section: 90ms;
-	--entrance-delay-card-group: 120ms;
-	--entrance-delay-card: 90ms;
-	--entrance-delay-footer: 300ms;
-	--pulse-duration: 2s;
-	--translate-button-hover: -2px;
-	--translate-card-hover: -5px;
-	--translate-dropdown-hidden: -6px;
-
-	/* ── Primary Button ── */
-	--primary-button-bg: var(--color-purple);
-	--primary-button-color: var(--primary-button-bg);
-	--primary-button-text: var(--light-text-color);
-	--primary-button-font-size: 1rem;
-	--primary-button-padding: 14px 20px;
-	--primary-button-radius: var(--section-radius);
-	--primary-button-hover-filter: brightness(1.1) saturate(1.05);
-	--primary-button-hover-translate: var(--translate-button-hover);
-	--primary-button-transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
-	--primary-button-focus-outline: 4px solid var(--button-hover-bg);
-	--primary-button-focus-offset: 3px;
-
-	/* ── Nav CTA Buttons (separate from content buttons) ── */
-	--nav-button-padding: 8px 12px;
-	--nav-button-font-size: var(--nav-link-font-size);
-	--nav-button-font-weight: var(--nav-link-font-weight);
-	--nav-button-radius: 999px;
-	--nav-button-hover-filter: brightness(1.08);
-	--nav-button-hover-translate: var(--translate-button-hover);
-	--nav-button-transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
-	--nav-button-active-shadow: var(--header-current-shadow);
-
-	/* ── Header ── */
-	--header-bg: var(--color-alpha-deep-navy);
-	--header-shadow: 0 8px 28px var(--color-navy-shadow);
-	--header-current-shadow: 0 0 0 3px var(--color-blue-grey);
-
-	/* ── Navigation & Dropdown ── */
-	--dropdown-bg: var(--color-deep-navy);
-	--dropdown-shadow: 0 18px 42px var(--color-navy-shadow);
-	--boxshadow-nav: var(--color-black);
-
-	/* ── Skip Link ── */
-	--skiplink-bg: var(--color-peach);
-	--skiplink-fg: var(--color-deep-navy);
+	--small-body-font-size: 0.92rem;
 
 	/* ── Announcement ── */
 	--announcement-bg: var(--color-alpha-navy-shadow);
 	--announcement-border: var(--peach-highlight);
-	--announcement-shadow: 0 8px 18px var(--color-navy-shadow);
-	--announcement-button-border: var(--color-black);
-	--announcement-button-font-size: var(--small-body-font-size);
-	--announcement-button-font-weight: 600;
-	--announcement-button-padding: 6px 14px;
-	--announcement-button-min-height: 34px;
 	--announcement-button-bg: var(--primary-button-bg);
-	--announcement-button-radius: 999px;
-	--announcement-button-hover-filter: brightness(1.12) saturate(1.05);
-	--announcement-button-hover-translate: -1px;
-	--announcement-button-transition: transform var(--transition-fast), filter var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast), border-color var(--transition-fast);
-	--announcement-button-opacity: 0.9;
-	--announcement-button-hover-opacity: 1;
+	--announcement-button-border: var(--color-black);
 	--announcement-button-border-color: var(--edge-contrast);
 	--announcement-button-border-hover: transparent;
+	--announcement-button-font-size: var(--small-body-font-size);
+	--announcement-button-font-weight: 600;
+	--announcement-button-hover-filter: brightness(1.12) saturate(1.05);
+	--announcement-button-hover-opacity: 1;
+	--announcement-button-hover-translate: -1px;
+	--announcement-button-min-height: 34px;
+	--announcement-button-opacity: 0.9;
+	--announcement-button-padding: 6px 14px;
+	--announcement-button-radius: 999px;
 	--announcement-button-shadow-hover: var(--card-shadow-hover);
+	--announcement-button-transition: transform var(--transition-fast), filter var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast), border-color var(--transition-fast);
+	--announcement-shadow: 0 8px 18px var(--color-navy-shadow);
 
 	/* ── Announcement Highlight Colors ── */
-	--peach-highlight: #FFD9C2F2;
-	--green-highlight: #28A7459E;
-	--gold-highlight: #FFC440A8;
-	--blue-highlight: #6096FF9E;
-	--peach-ring: #FFB37A;
-	--peach-glow: #FFB37A;
-	--green-ring: #28A745;
-	--green-glow: #28A745;
-	--gold-ring: #FFC440;
-	--gold-glow: #FFC440;
-	--blue-ring: #4A90E2;
 	--blue-glow: #4A90E2;
+	--blue-highlight: #6096FF9E;
+	--blue-ring: #4A90E2;
+	--gold-glow: #FFC440;
+	--gold-highlight: #FFC440A8;
+	--gold-ring: #FFC440;
+	--green-glow: #28A745;
+	--green-highlight: #28A7459E;
+	--green-ring: #28A745;
 	--highlight-shadow: 0 0 0 2px var(--highlight-ring), 0 0 18px var(--highlight-glow);
-
-	/* ── Section ── */
-	--section-bg: linear-gradient(180deg, var(--color-violet), var(--color-deep-navy));
-	--section-bg-solid: var(--section-bg);
-	--section-border: var(--edge-contrast);
-	--section-transparency: 0.5;          /* resting opacity for sections like home-intro */
-	--section-transparency-hover: 0.5;         /* hover/focus opacity */
-	--section-text-color: var(--light-text-color);
-	--section-heading-color: var(--light-text-color);
-	--section-radius: 40px;
-	--section-padding-x: clamp(18px, 3vw, 40px);
-	--section-shadow: 0 18px 50px var(--color-navy-shadow);
-	--section-blend-mode: normal;
-	--section-blur: 0px;
-	--section-max-width: 1600px;
-	--section-gap: 18px;
-	--section-border-radius-top-left: 36px;
-	--section-border-radius-top-right: 36px;
-	--section-border-radius-bottom-left: 0px;
-	--section-border-radius-bottom-right: 0px;
-	--section-margin-top: -34px;           /* home-intro pull-up offset */
-	--section-padding-top: 84px;
-	--home-intro-shadow: 0 -18px 42px var(--color-navy-shadow);
-
-	/* ── Cards ── */
-	--card-text-color: var(--light-text-color);
-	--card-heading-color: var(--light-text-color);
-	--card-link-color: var(--light-text-color);
-	--card-border-radius: 20px;
-	--card-padding: 24px;
-	--card-padding-sm: 22px;
-	--card-padding-xs: 16px;
-	--card-transparency: 0.5;             /* resting opacity for cards */
-	--card-transparency-hover: 0.5;
-	--card-border-color: var(--edge-contrast);
-	--card-border-hover: transparent;
-	--card-shadow: 0 14px 34px var(--color-navy-shadow);
-	--card-shadow-hover: 0 22px 42px var(--color-navy-shadow);
-	--card-min-height: 260px;
-	--card-blend-mode: normal;
-	--card-blur: 0px;
-	--card-opacity-disabled: 0.5;
-	--card-bg: var(--section-bg); /* cards use the same gradient as sections */
-	--card-link-after-content: " ->";
-	--card-gap: 18px;
-	--card-grid-columns: 3;
-	--card-link-font-weight: 800;
-
-	/* ── Gallery ── */
-	--gallery-bg: var(--color-blue-grey);
-	--gallery-arrows-bg: var(--color-black);
-	--gallery-thumb-bg: var(--color-white);
-	--gallery-overlay-bg: var(--color-alpha-deep-navy);
-	--gallery-window-bg: var(--color-white);
-	--gallery-close-bg: var(--color-deep-navy);
-	--gallery-close-hover-bg: var(--color-navy-shadow);
-	--gallery-thumb-shadow: 0 5px 12px var(--color-navy-shadow);
-	--gallery-thumb-shadow-hover: 0 8px 18px var(--color-navy-shadow);
-	--gallery-lightbox-shadow: 0 24px 70px var(--color-navy-shadow);
-
-	/* ── Footer ── */
-	--footer-shadow: 0 -6px 20px var(--color-navy-shadow);
-	--footer-logo-shadow: 0 12px 26px var(--color-navy-shadow);
-
-	/* ── Panel ── */
-	--panel-shadow: var(--section-shadow);
+	--peach-glow: #FFB37A;
+	--peach-highlight: #FFD9C2F2;
+	--peach-ring: #FFB37A;
 }
 
 /* ---------------------------
