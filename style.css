@@ -39,6 +39,7 @@
 
 	/* ── UI colors ── */
 	--edge-contrast: var(--color-blue-grey);
+	--button-hover-bg: var(--color-blue-grey);
 
 	/* ── Typography — 4-tier system:
 	     heading-1 = page titles
@@ -184,6 +185,7 @@
 	--card-text-color: var(--light-text-color);
 	--card-heading-color: var(--light-text-color);
 	--card-link-color: var(--light-text-color);
+	--card-border-radius: 20px;
 	--card-padding: 24px;
 	--card-padding-sm: 22px;
 	--card-padding-xs: 16px;
