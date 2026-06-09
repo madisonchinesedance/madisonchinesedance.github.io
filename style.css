@@ -144,7 +144,6 @@
 
 	/* ── Primary Button ── */
 	--primary-button-bg: var(--color-purple);
-	--primary-button-color: var(--primary-button-bg);
 	--primary-button-focus-offset: 3px;
 	--primary-button-focus-outline: 4px solid var(--button-hover-bg);
 	--primary-button-font-size: 1rem;
@@ -789,15 +788,6 @@ a{
 	filter:var(--primary-button-hover-filter);
 }
 
-/* Secondary (donate) */
-.btn-secondary{
-	background:var(--primary-button-bg);
-	transition: var(--primary-button-transition);
-}
-.btn-secondary:hover{
-	transform:translateY(var(--primary-button-hover-translate));
-	filter:var(--primary-button-hover-filter);
-}
 
 .btn.header-cta{
 	padding:var(--nav-button-padding);

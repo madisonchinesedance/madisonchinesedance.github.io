@@ -226,7 +226,7 @@ function buildHeader(header = {}, routes = {}, announcementsConfig = {}) {
 						routeId: action.route || null,
 						href: link.href,
 						label: link.label,
-						style: action.style === 'secondary' ? 'secondary' : 'primary',
+						style: 'primary',
 						ariaLabel: action.ariaLabel || link.label
 					};
 				}).filter(Boolean)
@@ -241,7 +241,7 @@ function buildHeader(header = {}, routes = {}, announcementsConfig = {}) {
 				href: route.href,
 				page: route.page,
 				label: action.label || action.route,
-				style: action.style === 'secondary' ? 'secondary' : 'primary',
+				style: 'primary',
 				ariaLabel: action.ariaLabel || action.label || action.route
 			};
 		}).filter(Boolean)
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	function headerAction(action) {
 		const isActive = isActivePage(action);
 		const currentAttr = isActive ? ' aria-current="page"' : '';
-		const style = action.style === 'secondary' ? 'secondary' : 'primary';
+		const style = 'primary';
 		const label = action.label || '';
 		const ariaLabel = action.ariaLabel || label;
 		const importantClass = highlightClass('action', action.routeId);
@@ -382,7 +382,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const link = resolveContentLink(action, routes);
 		if (!link) return '';
 
-		const style = action.style === 'secondary' ? 'secondary' : 'primary';
+		const style = 'primary';
 		const targetAttr = action.newTab ? ' target="_blank" rel="noopener noreferrer"' : '';
 		const className = action.className ? ` ${escapeHtml(action.className)}` : '';
 		const ariaLabel = action.ariaLabel ? ` aria-label="${escapeHtml(action.ariaLabel)}"` : '';
