@@ -22,6 +22,7 @@
 	--color-blue-grey: #FFFFFF14;
 	--color-alpha-deep-navy: #101b4fcb;
 	--color-alpha-navy-shadow: transparent;
+	--color-purple: #9D7CFF;
 
 	/* Announcement highlight colors (ring + glow share the same value per color) */
 	--peach-highlight: #FFD9C2F2;
@@ -93,7 +94,7 @@
 	--nav-link-font-weight: 600;
 
 	/* Primary Button */
-	--primary-button-bg: #9D7CFF;
+	--primary-button-bg: var(--color-purple);
 	--primary-button-color: var(--primary-button-bg);
 	--primary-button-text: var(--light-text-color);
 	--primary-button-font-size: 1rem;
