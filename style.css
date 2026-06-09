@@ -1363,7 +1363,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 }
 .gallery-lightbox-window{
 	position:relative;
-	width:min(90vw, 760px);
+	max-width:95vw;
 	max-height:calc(100vh - var(--header-bar-height) - 60px);
 	padding:12px;
 	border-radius:var(--card-radius);
@@ -1373,7 +1373,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 }
 .gallery-lightbox-window img{
 	display:block;
-	width:100%;
+	max-width:95vw;
 	max-height:calc(100vh - var(--header-bar-height) - 84px);
 	object-fit:contain;
 	border-radius:6px;
@@ -1400,10 +1400,10 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox{
 	padding-top:calc(var(--header-bar-height) + 54px + 20px);
 }
 body:has(.site-header.has-visible-announcement) .gallery-lightbox-window{
-	max-height:calc(100vh - var(--header-bar-height) - 54px - 60px);
+	max-height:calc(100vh - var(--header-bar-height) - 54px - 40px);
 }
 body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
-	max-height:calc(100vh - var(--header-bar-height) - 54px - 84px);
+	max-height:calc(100vh - var(--header-bar-height) - 54px - 64px);
 }
 
 /* Footer */
