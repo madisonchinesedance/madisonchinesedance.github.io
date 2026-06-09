@@ -93,7 +93,7 @@
 	--nav-link-font-weight: 600;
 
 	/* Primary Button */
-	--primary-button-color: linear-gradient(135deg, var(--color-green), var(--color-green));
+--primary-button-color: linear-gradient(135deg, var(--color-sunrise), var(--color-sunrise));
 	--primary-button-text: var(--light-text-color);
 	--primary-button-font-size: 1rem;
 	--primary-button-padding: 14px 20px;
