@@ -104,6 +104,25 @@
 	--translate-card-hover: -5px;
 	--translate-dropdown-hidden: -6px;
 
+	/* ── Spacing system ── */
+	--spacing-xxs: 4px;
+	--spacing-xs: 8px;
+	--spacing-sm: 12px;
+	--spacing-md: 16px;
+	--spacing-lg: 20px;
+	--spacing-xl: 24px;
+	--spacing-xxl: 32px;
+	--spacing-xxxl: 40px;
+
+	/* ── Opacity levels ── */
+	--opacity-disabled: 0.5;
+	--opacity-hover: 0.7;
+	--opacity-active: 0.8;
+	--opacity-subtle: 0.45;
+	--opacity-faint: 0.72;
+	--opacity-strong: 0.9;
+	--opacity-full: 1.0;
+
 	/* ── Navigation & Dropdown ── */
 	--boxshadow-nav: var(--color-black);
 	--dropdown-bg: var(--color-deep-navy);
