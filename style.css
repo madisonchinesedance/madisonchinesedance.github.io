@@ -155,8 +155,8 @@
 	--primary-button-transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
 
 	/* ── Section ── */
-	--section-bg-top: #4908b1; /* Top color for gradient */
-	--section-bg-bottom: #386cdc; /* Bottom color for gradient */
+	--section-bg-top: #3d0597; /* Top color for gradient */
+	--section-bg-bottom: #2860da; /* Bottom color for gradient */
 	--section-bg-solid: var(--section-bg);
 	--section-blend-mode: normal;
 	--section-blur: 0px;
