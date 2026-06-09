@@ -525,6 +525,9 @@ a{
 	transform:none;
 }
 
+.site-header:has(.primary-nav.open) .site-announcement {
+	display: none !important;
+}
 .site-announcement{
 	position:relative;
 	z-index:30;
