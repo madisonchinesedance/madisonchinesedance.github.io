@@ -44,7 +44,7 @@
 	--announcement-button-font-weight: 600;
 	--announcement-button-padding: 6px 14px;
 	--announcement-button-min-height: 34px;
-	--announcement-button-bg: linear-gradient(135deg, var(--color-green), var(--color-green));
+	--announcement-button-bg: var(--primary-button-bg);
 	--announcement-button-radius: 999px;
 	--announcement-button-hover-filter: brightness(1.12) saturate(1.05);
 	--announcement-button-hover-translate: -1px;
@@ -93,7 +93,8 @@
 	--nav-link-font-weight: 600;
 
 	/* Primary Button */
---primary-button-color: linear-gradient(135deg, var(--color-sunrise), var(--color-sunrise));
+	--primary-button-bg: #9D7CFF;
+	--primary-button-color: var(--primary-button-bg);
 	--primary-button-text: var(--light-text-color);
 	--primary-button-font-size: 1rem;
 	--primary-button-padding: 14px 20px;
@@ -141,7 +142,7 @@
 
 	/* ----- Section-level variables (big single blocks) ----- */
 	--section-bg: linear-gradient(180deg, var(--color-violet), var(--color-deep-navy));
-	--section-bg-solid: --section-bg;
+	--section-bg-solid: var(--section-bg);
 	--section-border: var(--edge-contrast);
 	--section-transparency: 0.5;          /* resting opacity for sections like home-intro */
 	--section-transparency-hover: 0.5;         /* hover/focus opacity */
@@ -180,7 +181,7 @@
 	--card-blend-mode: normal;
 	--card-blur: 0px;
 	--card-opacity-disabled: 0.5;
-	--card-bg: --section-bg; /* cards use the same gradient as sections */
+	--card-bg: var(--section-bg); /* cards use the same gradient as sections */
 	--card-border: var(--edge-contrast);
 
 	--card-link-after-content: " ->";
@@ -766,7 +767,7 @@ a{
 
 /* Primary (ticket) */
 .btn-primary{
-	background:var(--primary-button-color);
+	background:var(--primary-button-bg);
 	transition: var(--primary-button-transition);
 }
 .btn-primary:hover{
@@ -776,7 +777,7 @@ a{
 
 /* Secondary (donate) */
 .btn-secondary{
-	background:var(--primary-button-color);
+	background:var(--primary-button-bg);
 	transition: var(--primary-button-transition);
 }
 .btn-secondary:hover{
@@ -1221,7 +1222,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	-webkit-touch-callout:none;
 }
 .gallery-wrapper img:focus{
-	outline:3px solid var(--primary-button-color);
+	outline:3px solid var(--primary-button-bg);
 	outline-offset:-6px;
 }
 .gallery-empty-message{
@@ -1280,7 +1281,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	transform:scale(1.2);
 }
 .gallery-dot:focus-visible{
-	outline:2px solid var(--primary-button-color);
+	outline:2px solid var(--primary-button-bg);
 	outline-offset:2px;
 }
 .gallery-dot.active{
@@ -2191,8 +2192,8 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	outline-offset:var(--primary-button-focus-offset);
 }
 .gallery-year-tab.active{
-	background:var(--color-sunrise);
-	border-color:var(--color-sunrise);
+	background:var(--primary-button-bg);
+	border-color:var(--primary-button-bg);
 	color:var(--light-text-color);
 }
 .gallery-year-tab-count{
