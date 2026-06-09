@@ -1176,7 +1176,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 				image.addEventListener('click', () => {
 					stopAutoScroll();
 					currentIndex = index;
-					updateGallery({ scroll: true, focus: true });
 					openLightbox(index);
 				});
 			});
@@ -1249,7 +1248,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 			image.addEventListener('click', () => {
 				stopAutoScroll();
 				currentIndex = index;
-				updateGallery({ scroll: true, focus: true });
 				openLightbox(index);
 			});
 		});
@@ -1302,17 +1300,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 		// Use event delegation on galleryGrid so thumbnail clicks still
 		// work after a year-tab re-render replaces the grid contents.
 		if (galleryGrid) {
-			galleryGrid.addEventListener('click', (event) => {
-				const button = event.target.closest('[data-gallery-thumb]');
-				if (!button) return;
-				const index = Number(button.getAttribute('data-gallery-thumb'));
-				if (Number.isNaN(index)) return;
+				galleryGrid.addEventListener('click', (event) => {
+					const button = event.target.closest('[data-gallery-thumb]');
+					if (!button) return;
+					const index = Number(button.getAttribute('data-gallery-thumb'));
+					if (Number.isNaN(index)) return;
 
-				stopAutoScroll();
-				currentIndex = index;
-				updateGallery({ focus: true });
-				openLightbox(index);
-			});
+					stopAutoScroll();
+					currentIndex = index;
+					openLightbox(index);
+				});
 		}
 
 		// Dot navigation for splendid china gallery
