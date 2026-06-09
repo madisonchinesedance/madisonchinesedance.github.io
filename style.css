@@ -33,13 +33,12 @@
 	--dark-text-color: var(--color-black);
 
 	/* ── Gradients ── */
-	--home-intro-bg: var(--color-deep-navy);
+	--home-intro-bg: var(--bg-color);
 	--zeffy-embed-bg: linear-gradient(180deg, var(--color-deep-navy), var(--color-sunrise));
-	--footer-bg: var(--color-deep-navy);
+	--footer-bg: var(--bg-color);
 
 	/* ── UI colors ── */
 	--edge-contrast: var(--color-blue-grey);
-	--button-hover-bg: var(--color-blue-grey);
 
 	/* ── Typography — 4-tier system:
 	     heading-1 = page titles
@@ -166,10 +165,9 @@
 	--section-transparency-hover: 0.5;         /* hover/focus opacity */
 	--section-text-color: var(--light-text-color);
 	--section-heading-color: var(--light-text-color);
-	--section-radius: 40px;                /* matches --section-radius alias */
+	--section-radius: 40px;
 	--section-padding-x: clamp(18px, 3vw, 40px);
 	--section-shadow: 0 18px 50px var(--color-navy-shadow);
-	--section-shadow-hover: 0 18px 50px var(--color-navy-shadow);
 	--section-blend-mode: normal;
 	--section-blur: 0px;
 	--section-max-width: 1600px;
@@ -186,7 +184,6 @@
 	--card-text-color: var(--light-text-color);
 	--card-heading-color: var(--light-text-color);
 	--card-link-color: var(--light-text-color);
-	--card-border-radius: 20px;            /* matches --card-radius */
 	--card-padding: 24px;
 	--card-padding-sm: 22px;
 	--card-padding-xs: 16px;
@@ -201,7 +198,6 @@
 	--card-blur: 0px;
 	--card-opacity-disabled: 0.5;
 	--card-bg: var(--section-bg); /* cards use the same gradient as sections */
-	--card-border: var(--edge-contrast);
 	--card-link-after-content: " ->";
 	--card-gap: 18px;
 	--card-grid-columns: 3;
@@ -224,7 +220,7 @@
 	--footer-logo-shadow: 0 12px 26px var(--color-navy-shadow);
 
 	/* ── Panel ── */
-	--panel-shadow: 0 18px 50px var(--color-navy-shadow);
+	--panel-shadow: var(--section-shadow);
 }
 
 /* ---------------------------
