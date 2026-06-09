@@ -1172,6 +1172,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 			images.forEach((image, index) => {
 				image.setAttribute('tabindex', '-1');
 				image.setAttribute('data-gallery-index', String(index));
+				image.style.cursor = 'pointer';
+				image.addEventListener('click', () => {
+					stopAutoScroll();
+					currentIndex = index;
+					updateGallery({ scroll: true, focus: true });
+					openLightbox(index);
+				});
 			});
 			currentIndex = 0;
 		}
@@ -1203,11 +1210,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 			});
 		}
 
-		function updateGallery({ focus = false } = {}) {
+		function updateGallery({ focus = false, scroll = true } = {}) {
 			const image = images[currentIndex];
 			if (!image) return;
 
-			image.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+			if (scroll) {
+				image.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+			}
 			if (focus) image.focus({ preventScroll: true });
 
 			// Update active dot indicator for splendid china gallery
@@ -1224,7 +1233,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 			autoScrollInterval = setInterval(() => {
 				currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-				updateGallery();
+				updateGallery({ scroll: false });
 			}, 5000); // 5 seconds interval
 		}
 
@@ -1233,9 +1242,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 			autoScrollInterval = null;
 		}
 
+		// Add click event delegation on gallery wrapper for carousel images
+		// (handles first render before renderYear adds individual listeners)
 		images.forEach((image, index) => {
-			image.setAttribute('tabindex', '-1');
-			image.setAttribute('data-gallery-index', String(index));
+			image.style.cursor = 'pointer';
+			image.addEventListener('click', () => {
+				stopAutoScroll();
+				currentIndex = index;
+				updateGallery({ scroll: true, focus: true });
+				openLightbox(index);
+			});
 		});
 
 		if (prevButton && nextButton) {
@@ -1283,16 +1299,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 			startAutoScroll();
 		}
 
-		$$('[data-gallery-thumb]').forEach((button) => {
-			button.addEventListener('click', () => {
+		// Use event delegation on galleryGrid so thumbnail clicks still
+		// work after a year-tab re-render replaces the grid contents.
+		if (galleryGrid) {
+			galleryGrid.addEventListener('click', (event) => {
+				const button = event.target.closest('[data-gallery-thumb]');
+				if (!button) return;
 				const index = Number(button.getAttribute('data-gallery-thumb'));
 				if (Number.isNaN(index)) return;
 
+				stopAutoScroll();
 				currentIndex = index;
 				updateGallery({ focus: true });
 				openLightbox(index);
 			});
-		});
+		}
 
 		// Dot navigation for splendid china gallery
 		// Only navigates the carousel — does NOT open the lightbox.

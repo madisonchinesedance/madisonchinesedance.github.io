@@ -1214,6 +1214,9 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	object-fit:contain;
 	scroll-snap-align:center;
 	scroll-snap-stop:always;
+	user-select:none;
+	-webkit-user-select:none;
+	-webkit-touch-callout:none;
 }
 .gallery-wrapper img:focus{
 	outline:3px solid var(--primary-button-color);
