@@ -4,30 +4,95 @@
   "heading": "Gallery",
   "galleryGroups": [
     {
+      "year": "2026",
+      "events": [
+        {
+          "event": "Splendid China",
+          "images": [
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2026/splendid-china-2026-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2026/splendid-china-2026-001.webp",
+              "alt": "Splendid China 2026 001"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "year": "2025",
       "events": [
         {
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2025/splendid-china-2025_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2025/splendid-china-2025_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-001.webp",
               "alt": "Splendid China 2025 001"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2025/splendid-china-2025_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2025/splendid-china-2025_002.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-002.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-002.webp",
               "alt": "Splendid China 2025 002"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2025/splendid-china-2025_003.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2025/splendid-china-2025_003.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-003.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-003.webp",
               "alt": "Splendid China 2025 003"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2025/splendid-china-2025_004.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2025/splendid-china-2025_004.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-004.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-004.webp",
               "alt": "Splendid China 2025 004"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-005.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-005.webp",
+              "alt": "Splendid China 2025 005"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-006.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-006.webp",
+              "alt": "Splendid China 2025 006"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-007.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-007.webp",
+              "alt": "Splendid China 2025 007"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-008.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-008.webp",
+              "alt": "Splendid China 2025 008"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-009.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-009.webp",
+              "alt": "Splendid China 2025 009"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-010.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-010.webp",
+              "alt": "Splendid China 2025 010"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-011.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-011.webp",
+              "alt": "Splendid China 2025 011"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-012.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-012.webp",
+              "alt": "Splendid China 2025 012"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-013.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-013.webp",
+              "alt": "Splendid China 2025 013"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-014.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2025/splendid-china-2025-014.webp",
+              "alt": "Splendid China 2025 014"
             }
           ]
         }
@@ -40,139 +105,134 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-001.webp",
               "alt": "Splendid China 2024 001"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_002.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-002.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-002.webp",
               "alt": "Splendid China 2024 002"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_003.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_003.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-003.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-003.webp",
               "alt": "Splendid China 2024 003"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_004.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_004.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-004.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-004.webp",
               "alt": "Splendid China 2024 004"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_005.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_005.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-005.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-005.webp",
               "alt": "Splendid China 2024 005"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_006.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_006.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-006.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-006.webp",
               "alt": "Splendid China 2024 006"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_007.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_007.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-007.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-007.webp",
               "alt": "Splendid China 2024 007"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_008.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_008.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-008.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-008.webp",
               "alt": "Splendid China 2024 008"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_009.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_009.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-009.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-009.webp",
               "alt": "Splendid China 2024 009"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_010.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_010.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-010.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-010.webp",
               "alt": "Splendid China 2024 010"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_011.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_011.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-011.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-011.webp",
               "alt": "Splendid China 2024 011"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_012.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_012.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-012.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-012.webp",
               "alt": "Splendid China 2024 012"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_013.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_013.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-013.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-013.webp",
               "alt": "Splendid China 2024 013"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_014.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_014.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-014.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-014.webp",
               "alt": "Splendid China 2024 014"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_015.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_015.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-015.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-015.webp",
               "alt": "Splendid China 2024 015"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_016.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_016.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-016.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-016.webp",
               "alt": "Splendid China 2024 016"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_017.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_017.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-017.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-017.webp",
               "alt": "Splendid China 2024 017"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_018.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_018.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-018.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-018.webp",
               "alt": "Splendid China 2024 018"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_019.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_019.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-019.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-019.webp",
               "alt": "Splendid China 2024 019"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_020.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_020.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-020.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-020.webp",
               "alt": "Splendid China 2024 020"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_021.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_021.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-021.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-021.webp",
               "alt": "Splendid China 2024 021"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_022.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_022.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-022.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-022.webp",
               "alt": "Splendid China 2024 022"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_023.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_023.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-023.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-023.webp",
               "alt": "Splendid China 2024 023"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_024.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_024.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-024.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-024.webp",
               "alt": "Splendid China 2024 024"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_025.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_025.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-025.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-025.webp",
               "alt": "Splendid China 2024 025"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_026.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_026.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-026.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2024/splendid-china-2024-026.webp",
               "alt": "Splendid China 2024 026"
-            },
-            {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_027.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2024/splendid-china-2024_027.webp",
-              "alt": "Splendid China 2024 027"
             }
           ]
         }
@@ -185,94 +245,89 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-001.webp",
               "alt": "Splendid China 2023 001"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_002.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-002.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-002.webp",
               "alt": "Splendid China 2023 002"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_003.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_003.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-003.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-003.webp",
               "alt": "Splendid China 2023 003"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_004.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_004.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-004.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-004.webp",
               "alt": "Splendid China 2023 004"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_005.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_005.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-005.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-005.webp",
               "alt": "Splendid China 2023 005"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_006.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_006.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-006.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-006.webp",
               "alt": "Splendid China 2023 006"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_007.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_007.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-007.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-007.webp",
               "alt": "Splendid China 2023 007"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_008.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_008.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-008.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-008.webp",
               "alt": "Splendid China 2023 008"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_009.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_009.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-009.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-009.webp",
               "alt": "Splendid China 2023 009"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_010.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_010.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-010.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-010.webp",
               "alt": "Splendid China 2023 010"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_011.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_011.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-011.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-011.webp",
               "alt": "Splendid China 2023 011"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_012.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_012.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-012.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-012.webp",
               "alt": "Splendid China 2023 012"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_013.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_013.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-013.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-013.webp",
               "alt": "Splendid China 2023 013"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_014.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_014.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-014.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-014.webp",
               "alt": "Splendid China 2023 014"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_015.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_015.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-015.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-015.webp",
               "alt": "Splendid China 2023 015"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_016.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_016.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-016.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-016.webp",
               "alt": "Splendid China 2023 016"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_017.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_017.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-017.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-017.webp",
               "alt": "Splendid China 2023 017"
-            },
-            {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_018.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2023/splendid-china-2023_018.webp",
-              "alt": "Splendid China 2023 018"
             }
           ]
         }
@@ -285,83 +340,83 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-001.webp",
               "alt": "Splendid China 2022 001"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_002.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-002.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-002.webp",
               "alt": "Splendid China 2022 002"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_003.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_003.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-003.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-003.webp",
               "alt": "Splendid China 2022 003"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_004.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_004.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-004.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-004.webp",
               "alt": "Splendid China 2022 004"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_005.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_005.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-005.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-005.webp",
               "alt": "Splendid China 2022 005"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_006.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_006.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-006.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-006.webp",
               "alt": "Splendid China 2022 006"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_007.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_007.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-007.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-007.webp",
               "alt": "Splendid China 2022 007"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_008.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_008.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-008.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-008.webp",
               "alt": "Splendid China 2022 008"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_009.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_009.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-009.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-009.webp",
               "alt": "Splendid China 2022 009"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_010.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_010.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-010.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-010.webp",
               "alt": "Splendid China 2022 010"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_011.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_011.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-011.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-011.webp",
               "alt": "Splendid China 2022 011"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_012.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_012.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-012.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-012.webp",
               "alt": "Splendid China 2022 012"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_013.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_013.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-013.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-013.webp",
               "alt": "Splendid China 2022 013"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_014.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_014.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-014.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-014.webp",
               "alt": "Splendid China 2022 014"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_015.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_015.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-015.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-015.webp",
               "alt": "Splendid China 2022 015"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_016.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2022/splendid-china-2022_016.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-016.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2022/splendid-china-2022-016.webp",
               "alt": "Splendid China 2022 016"
             }
           ]
@@ -375,73 +430,73 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-001.webp",
               "alt": "Splendid China 2019 001"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_002.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-002.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-002.webp",
               "alt": "Splendid China 2019 002"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_003.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_003.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-003.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-003.webp",
               "alt": "Splendid China 2019 003"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_004.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_004.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-004.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-004.webp",
               "alt": "Splendid China 2019 004"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_005.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_005.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-005.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-005.webp",
               "alt": "Splendid China 2019 005"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_006.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_006.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-006.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-006.webp",
               "alt": "Splendid China 2019 006"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_007.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_007.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-007.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-007.webp",
               "alt": "Splendid China 2019 007"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_008.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_008.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-008.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-008.webp",
               "alt": "Splendid China 2019 008"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_009.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_009.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-009.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-009.webp",
               "alt": "Splendid China 2019 009"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_010.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_010.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-010.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-010.webp",
               "alt": "Splendid China 2019 010"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_011.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_011.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-011.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-011.webp",
               "alt": "Splendid China 2019 011"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_012.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_012.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-012.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-012.webp",
               "alt": "Splendid China 2019 012"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_013.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_013.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-013.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-013.webp",
               "alt": "Splendid China 2019 013"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_014.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2019/splendid-china-2019_014.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-014.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-014.webp",
               "alt": "Splendid China 2019 014"
             }
           ]
@@ -455,34 +510,84 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2018/splendid-china-2018_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2018/splendid-china-2018_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-001.webp",
               "alt": "Splendid China 2018 001"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2018/splendid-china-2018_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2018/splendid-china-2018_002.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-002.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-002.webp",
               "alt": "Splendid China 2018 002"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2018/splendid-china-2018_003.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2018/splendid-china-2018_003.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-003.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-003.webp",
               "alt": "Splendid China 2018 003"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2018/splendid-china-2018_004.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2018/splendid-china-2018_004.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-004.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-004.webp",
               "alt": "Splendid China 2018 004"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2018/splendid-china-2018_005.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2018/splendid-china-2018_005.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-005.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-005.webp",
               "alt": "Splendid China 2018 005"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2018/splendid-china-2018_006.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2018/splendid-china-2018_006.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-006.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-006.webp",
               "alt": "Splendid China 2018 006"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-007.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-007.webp",
+              "alt": "Splendid China 2018 007"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-008.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-008.webp",
+              "alt": "Splendid China 2018 008"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-009.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-009.webp",
+              "alt": "Splendid China 2018 009"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-010.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-010.webp",
+              "alt": "Splendid China 2018 010"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-011.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-011.webp",
+              "alt": "Splendid China 2018 011"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-012.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-012.webp",
+              "alt": "Splendid China 2018 012"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-013.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-013.webp",
+              "alt": "Splendid China 2018 013"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-014.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-014.webp",
+              "alt": "Splendid China 2018 014"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-015.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-015.webp",
+              "alt": "Splendid China 2018 015"
+            },
+            {
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-016.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2018/splendid-china-2018-016.webp",
+              "alt": "Splendid China 2018 016"
             }
           ]
         }
@@ -495,14 +600,9 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2017/splendid-china-2017_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2017/splendid-china-2017_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2017/splendid-china-2017-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2017/splendid-china-2017-001.webp",
               "alt": "Splendid China 2017 001"
-            },
-            {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2017/splendid-china-2017_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2017/splendid-china-2017_002.webp",
-              "alt": "Splendid China 2017 002"
             }
           ]
         }
@@ -515,14 +615,9 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2016/splendid-china-2016_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2016/splendid-china-2016_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2016/splendid-china-2016-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2016/splendid-china-2016-001.webp",
               "alt": "Splendid China 2016 001"
-            },
-            {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2016/splendid-china-2016_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2016/splendid-china-2016_002.webp",
-              "alt": "Splendid China 2016 002"
             }
           ]
         }
@@ -535,14 +630,9 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2015/splendid-china-2015_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2015/splendid-china-2015_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2015/splendid-china-2015-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2015/splendid-china-2015-001.webp",
               "alt": "Splendid China 2015 001"
-            },
-            {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2015/splendid-china-2015_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2015/splendid-china-2015_002.webp",
-              "alt": "Splendid China 2015 002"
             }
           ]
         }
@@ -555,13 +645,13 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2014/splendid-china-2014_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2014/splendid-china-2014_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2014/splendid-china-2014-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2014/splendid-china-2014-001.webp",
               "alt": "Splendid China 2014 001"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2014/splendid-china-2014_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2014/splendid-china-2014_002.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2014/splendid-china-2014-002.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2014/splendid-china-2014-002.webp",
               "alt": "Splendid China 2014 002"
             }
           ]
@@ -575,18 +665,18 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2013/splendid-china-2013_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2013/splendid-china-2013_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2013/splendid-china-2013-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2013/splendid-china-2013-001.webp",
               "alt": "Splendid China 2013 001"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2013/splendid-china-2013_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2013/splendid-china-2013_002.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2013/splendid-china-2013-002.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2013/splendid-china-2013-002.webp",
               "alt": "Splendid China 2013 002"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2013/splendid-china-2013_003.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2013/splendid-china-2013_003.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2013/splendid-china-2013-003.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2013/splendid-china-2013-003.webp",
               "alt": "Splendid China 2013 003"
             }
           ]
@@ -600,13 +690,13 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2012/splendid-china-2012_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2012/splendid-china-2012_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2012/splendid-china-2012-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2012/splendid-china-2012-001.webp",
               "alt": "Splendid China 2012 001"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2012/splendid-china-2012_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2012/splendid-china-2012_002.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2012/splendid-china-2012-002.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2012/splendid-china-2012-002.webp",
               "alt": "Splendid China 2012 002"
             }
           ]
@@ -620,23 +710,23 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2011/splendid-china-2011_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2011/splendid-china-2011_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2011/splendid-china-2011-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2011/splendid-china-2011-001.webp",
               "alt": "Splendid China 2011 001"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2011/splendid-china-2011_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2011/splendid-china-2011_002.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2011/splendid-china-2011-002.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2011/splendid-china-2011-002.webp",
               "alt": "Splendid China 2011 002"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2011/splendid-china-2011_003.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2011/splendid-china-2011_003.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2011/splendid-china-2011-003.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2011/splendid-china-2011-003.webp",
               "alt": "Splendid China 2011 003"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2011/splendid-china-2011_004.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2011/splendid-china-2011_004.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2011/splendid-china-2011-004.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2011/splendid-china-2011-004.webp",
               "alt": "Splendid China 2011 004"
             }
           ]
@@ -650,14 +740,9 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2010/splendid-china-2010_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2010/splendid-china-2010_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2010/splendid-china-2010-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2010/splendid-china-2010-001.webp",
               "alt": "Splendid China 2010 001"
-            },
-            {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2010/splendid-china-2010_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2010/splendid-china-2010_002.webp",
-              "alt": "Splendid China 2010 002"
             }
           ]
         }
@@ -670,8 +755,8 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2009/splendid-china-2009_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2009/splendid-china-2009_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2009/splendid-china-2009-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2009/splendid-china-2009-001.webp",
               "alt": "Splendid China 2009 001"
             }
           ]
@@ -685,13 +770,13 @@
           "event": "Splendid China",
           "images": [
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2008/splendid-china-2008_001.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2008/splendid-china-2008_001.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2008/splendid-china-2008-001.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2008/splendid-china-2008-001.webp",
               "alt": "Splendid China 2008 001"
             },
             {
-              "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2008/splendid-china-2008_002.webp",
-              "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2008/splendid-china-2008_002.webp",
+              "src": "https://cdn.madisonchinesedance.org/splendid-china-2008/splendid-china-2008-002.webp",
+              "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2008/splendid-china-2008-002.webp",
               "alt": "Splendid China 2008 002"
             }
           ]

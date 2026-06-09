@@ -19,14 +19,9 @@
   ],
   "galleryImages": [
     {
-      "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2010/splendid-china-2010_001.webp",
-      "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2010/splendid-china-2010_001.webp",
+      "src": "https://cdn.madisonchinesedance.org/splendid-china-2010/splendid-china-2010-001.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2010/splendid-china-2010-001.webp",
       "alt": "Splendid China 2010 001"
-    },
-    {
-      "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2010/splendid-china-2010_002.webp",
-      "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2010/splendid-china-2010_002.webp",
-      "alt": "Splendid China 2010 002"
     }
   ]
 }

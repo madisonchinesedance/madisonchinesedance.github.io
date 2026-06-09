@@ -19,14 +19,9 @@
   ],
   "galleryImages": [
     {
-      "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2015/splendid-china-2015_001.webp",
-      "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2015/splendid-china-2015_001.webp",
+      "src": "https://cdn.madisonchinesedance.org/splendid-china-2015/splendid-china-2015-001.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2015/splendid-china-2015-001.webp",
       "alt": "Splendid China 2015 001"
-    },
-    {
-      "src": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2015/splendid-china-2015_002.webp",
-      "thumb": "https://cdn.madisonchinesedance.org/splendid-china/splendid-china-2015/splendid-china-2015_002.webp",
-      "alt": "Splendid China 2015 002"
     }
   ]
 }

@@ -1,6 +1,6 @@
 """Update gallery JSON files from images in Cloudflare R2 bucket.
 
-For each per-year folder (e.g. splendid-china/splendid-china-2024/ in the bucket):
+For each per-year folder (e.g. splendid-china-2024/ at the root of the bucket):
   * Populate `galleryImages` in content/splendid-china/splendid-china-2024.json
     so the matching Splendid China archive page (which uses the same gallery
     runner as the main Gallery page) shows those photos.
@@ -29,6 +29,7 @@ import re
 from pathlib import Path
 
 import boto3
+from botocore.config import Config
 from dotenv import load_dotenv
 
 # ---------------------------------------------------------------------------
@@ -43,7 +44,7 @@ from dotenv import load_dotenv
 # Load .env file next to this script if it exists (does not override env vars)
 _env_path = Path(__file__).resolve().parent / ".env"
 if _env_path.exists():
-    load_dotenv(_env_path)
+    load_dotenv(_env_path, override=True)
 
 _env = os.environ.get
 
@@ -101,6 +102,7 @@ s3_client = boto3.client(
     aws_access_key_id=R2_ACCESS_KEY,
     aws_secret_access_key=R2_SECRET_KEY,
     region_name="auto",  # R2 uses 'auto' for all regions
+    config=Config(signature_version="s3v4"),
 )
 
 # ---------------------------------------------------------------------------
@@ -207,10 +209,10 @@ def scan_year_images(year_prefix: str) -> list[dict[str, str]]:
 def scan_year_folders() -> list[dict]:
     """Return one entry per ``splendid-china-YYYY`` folder in the R2 bucket.
 
-    Scans the 'splendid-china/' prefix for year subdirectories.
+    Scans the root of the bucket for top-level folders matching the pattern.
     """
-    # Get all subdirectories under splendid-china/
-    common_prefixes = list_bucket_prefixes("splendid-china/")
+    # Get all top-level subdirectories in the bucket
+    common_prefixes = list_bucket_prefixes("")
     if not common_prefixes:
         return []
 
@@ -323,12 +325,7 @@ def main() -> None:
     content_path = args.content.resolve()
     per_year_dir = args.per_year_dir.resolve()
 
-    # Verify the R2 bucket is accessible
-    try:
-        s3_client.head_bucket(Bucket=R2_BUCKET)
-        print(f"Connected to R2 bucket: {R2_BUCKET}")
-    except Exception as exc:
-        raise SystemExit(f"Could not access R2 bucket '{R2_BUCKET}': {exc}") from exc
+    print(f"Connecting to R2 bucket: {R2_BUCKET} ...")
 
     years = scan_year_folders()
     if not years:
