@@ -409,13 +409,13 @@ a{
 	transition:transform var(--transition-medium), opacity var(--transition-fast);
 }
 .nav-toggle[aria-expanded="true"] rect:nth-child(1){
-	transform:rotate(45deg);
+	transform:translateY(8px) rotate(45deg);
 }
 .nav-toggle[aria-expanded="true"] rect:nth-child(2){
 	opacity:0;
 }
 .nav-toggle[aria-expanded="true"] rect:nth-child(3){
-	transform:rotate(-45deg);
+	transform:translateY(-8px) rotate(-45deg);
 }
 
 .primary-nav { flex:1; }
