@@ -21,6 +21,7 @@
 	--color-peach-dark: #FFAD82;
 	--color-blue-grey: #FFFFFF14;
 	--color-alpha-deep-navy: #101b4fcb;
+	--color-alpha-navy-shadow: transparent;
 
 	/* Announcement highlight colors (ring + glow share the same value per color) */
 	--peach-highlight: #FFD9C2F2;
@@ -192,7 +193,7 @@
 	--skiplink-fg: var(--color-deep-navy);
 	--dropdown-bg: var(--color-deep-navy);
 	--boxshadow-nav: var(--color-black);
-	--announcement-bg: var(--color-navy-shadow);
+	--announcement-bg: var(--color-alpha-navy-shadow);
 	--announcement-border: var(--peach-highlight);
 	--header-bg: var(--color-alpha-deep-navy);
 
@@ -505,9 +506,10 @@ a{
 .site-announcement{
 	position:relative;
 	z-index:30;
-	background:var(--announcement-bg);
+	background:transparent;
+	border-top:1px solid rgba(255,255,255,0.4);
 	border-bottom:1px solid var(--announcement-border);
-	box-shadow:var(--announcement-shadow);
+	box-shadow:none;
 }
 .announcement-inner{
 	display:flex;
@@ -1352,25 +1354,27 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 .gallery-lightbox{
 	position:fixed;
 	inset:0;
-	z-index:100;
+	z-index:130;
 	display:grid;
 	place-items:center;
 	padding:20px;
+	padding-top:calc(var(--header-bar-height) + 20px);
 	background:var(--gallery-overlay-bg);
 }
 .gallery-lightbox-window{
 	position:relative;
 	width:min(90vw, 760px);
-	max-height:86vh;
+	max-height:calc(100vh - var(--header-bar-height) - 60px);
 	padding:12px;
 	border-radius:var(--card-radius);
 	background:var(--gallery-window-bg);
 	box-shadow:var(--gallery-lightbox-shadow);
+	overflow:hidden;
 }
 .gallery-lightbox-window img{
 	display:block;
 	width:100%;
-	max-height:calc(86vh - 24px);
+	max-height:calc(100vh - var(--header-bar-height) - 84px);
 	object-fit:contain;
 	border-radius:6px;
 }
@@ -1391,6 +1395,15 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 .gallery-lightbox-close:hover,
 .gallery-lightbox-close:focus-visible{
 	background:var(--gallery-close-hover-bg);
+}
+body:has(.site-header.has-visible-announcement) .gallery-lightbox{
+	padding-top:calc(var(--header-bar-height) + 54px + 20px);
+}
+body:has(.site-header.has-visible-announcement) .gallery-lightbox-window{
+	max-height:calc(100vh - var(--header-bar-height) - 54px - 60px);
+}
+body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
+	max-height:calc(100vh - var(--header-bar-height) - 54px - 84px);
 }
 
 /* Footer */
