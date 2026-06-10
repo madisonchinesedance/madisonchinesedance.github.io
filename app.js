@@ -226,7 +226,7 @@ function buildHeader(header = {}, routes = {}, announcementsConfig = {}) {
 						routeId: action.route || null,
 						href: link.href,
 						label: link.label,
-						style: action.style === 'secondary' ? 'secondary' : 'primary',
+						style: 'primary',
 						ariaLabel: action.ariaLabel || link.label
 					};
 				}).filter(Boolean)
@@ -241,7 +241,7 @@ function buildHeader(header = {}, routes = {}, announcementsConfig = {}) {
 				href: route.href,
 				page: route.page,
 				label: action.label || action.route,
-				style: action.style === 'secondary' ? 'secondary' : 'primary',
+				style: 'primary',
 				ariaLabel: action.ariaLabel || action.label || action.route
 			};
 		}).filter(Boolean)
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	function headerAction(action) {
 		const isActive = isActivePage(action);
 		const currentAttr = isActive ? ' aria-current="page"' : '';
-		const style = action.style === 'secondary' ? 'secondary' : 'primary';
+		const style = 'primary';
 		const label = action.label || '';
 		const ariaLabel = action.ariaLabel || label;
 		const importantClass = highlightClass('action', action.routeId);
@@ -382,7 +382,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const link = resolveContentLink(action, routes);
 		if (!link) return '';
 
-		const style = action.style === 'secondary' ? 'secondary' : 'primary';
+		const style = 'primary';
 		const targetAttr = action.newTab ? ' target="_blank" rel="noopener noreferrer"' : '';
 		const className = action.className ? ` ${escapeHtml(action.className)}` : '';
 		const ariaLabel = action.ariaLabel ? ` aria-label="${escapeHtml(action.ariaLabel)}"` : '';
@@ -673,6 +673,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						</div>
 					</div>
 
+					<div class="chatbot-suggestions" id="chatbot-suggestions"></div>
 					<div class="chatbot-input-area">
 						<form class="chatbot-form" id="chatbot-form">
 							<input
@@ -870,12 +871,62 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const primaryNav = $('#primary-navigation');
 	const dropdownToggles = $$('.nav-menu-toggle');
 
+	// If announcement text overflows, convert to scrolling (marquee) layout.
+	// Only the body text scrolls — the label stays fixed.
+	function enableAnnouncementScroll(announcementSection) {
+		const copy = announcementSection.querySelector('.announcement-copy');
+		if (!copy) return;
+
+		const body = copy.querySelector('.announcement-body');
+		if (!body) return;
+
+		// Check if the body text overflows the available width
+		const container = announcementSection.querySelector('.announcement-inner');
+		if (!container) return;
+
+		const actionsEl = announcementSection.querySelector('.announcement-actions');
+		const actionsWidth = actionsEl ? actionsEl.offsetWidth + 12 : 0; // 12 = gap
+		const label = copy.querySelector('.announcement-label');
+		const labelWidth = label ? label.offsetWidth + 8 : 0; // 8 = gap
+		const availableWidth = container.offsetWidth - actionsWidth - labelWidth - 24; // 24 = padding/gap
+		const textWidth = body.scrollWidth;
+
+		if (textWidth > availableWidth) {
+			announcementSection.classList.add('has-scroll-text');
+
+			// Create a scroll-track inside the body span with duplicated content
+			const track = document.createElement('span');
+			track.className = 'announcement-scroll-track';
+
+			const item1 = document.createElement('span');
+			item1.className = 'announcement-scroll-item';
+			item1.textContent = body.textContent;
+
+			const item2 = document.createElement('span');
+			item2.className = 'announcement-scroll-item';
+			item2.textContent = body.textContent;
+
+			track.appendChild(item1);
+			track.appendChild(item2);
+
+			// Replace the body's text content with the scroll track
+			body.innerHTML = '';
+			body.appendChild(track);
+		}
+	}
+
 	if (announcementDismiss) {
 		announcementDismiss.addEventListener('click', () => {
 			sessionStorage.setItem(ANNOUNCEMENT_DISMISS_KEY, 'true');
 			announcementDismiss.closest('.site-announcement')?.remove();
 			$('.site-header')?.classList.remove('has-visible-announcement');
 		});
+	}
+
+	// Activate announcement scrolling if text overflows
+	const announcementSection = $('.site-announcement');
+	if (announcementSection) {
+		enableAnnouncementScroll(announcementSection);
 	}
 
 	function closeDropdowns(exceptToggle = null) {
@@ -1349,9 +1400,128 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const chatbotMessages = $('#chatbot-messages');
 		const chatbotSend = $('#chatbot-send');
 		const chatbotClear = $('#chatbot-clear');
+	const chatbotSuggestions = $('#chatbot-suggestions');
+
+	// Page-specific suggested prompts
+	const SUGGESTED_PROMPTS = {
+		home: [
+			'What programs do you offer?',
+			'How can I get involved?',
+			'When is the next performance?'
+		],
+		about: [
+			'What is the mission of MCDA?',
+			'Who leads the academy?',
+			'How can I contact MCDA?'
+		],
+		'beginner-dancers': [
+			'When do classes start?',
+			'How do I register for classes?',
+			'What should I wear to class?'
+		],
+		'intermediate-dancers': [
+			'What level is intermediate?',
+			'How do I prepare for intermediate classes?',
+			'Can I move up to advanced?'
+		],
+		'advanced-dancers': [
+			'What does the advanced program involve?',
+			'Are there performance opportunities?',
+			'How do I audition?'
+		],
+		'dance-with-us': [
+			'What classes are available for adults?',
+			'Do I need experience to join?',
+			'What is the class schedule?'
+		],
+		'book-a-performance': [
+			'How do I book a performance?',
+			'What types of performances do you offer?',
+			'What is the pricing for a booking?'
+		],
+		'see-a-performance': [
+			'When is the next show?',
+			'Where are performances held?',
+			'How do I buy tickets?'
+		],
+		'support-our-cause': [
+			'How can I donate?',
+			'Are donations tax-deductible?',
+			'What does my donation support?'
+		],
+		donate: [
+			'How do I make a donation?',
+			'What payment methods are accepted?',
+			'Can I set up recurring donations?'
+		],
+		tickets: [
+			'How do I purchase tickets?',
+			'Are there group discounts?',
+			'What is the refund policy?'
+		],
+		events: [
+			'What upcoming events are planned?',
+			'How do I RSVP for an event?',
+			'Can I volunteer at events?'
+		],
+		services: [
+			'What community services do you provide?',
+			'How can I request a cultural workshop?',
+			'Do you offer virtual programs?'
+		],
+		'meet-the-faculty': [
+			'Who are the instructors?',
+			'What are their qualifications?',
+			'Can I schedule a meeting?'
+		],
+		'success-stories': [
+			'Can I read alumni stories?',
+			'How has MCDA impacted students?',
+			'Can I share my own story?'
+		],
+		faq: [
+			'What is the class schedule?',
+			'What is your refund policy?',
+			'Do you offer private lessons?'
+		],
+		gallery: [
+			'How can I appear in the gallery?',
+			'Can I submit my photos?',
+			'How do I view past performances?'
+		]
+	};
 
 		if (chatbot && chatbotToggle && chatbotPanel) {
 		// Load saved chat messages from sessionStorage
+		// Render page-specific suggestion bubbles
+		function renderSuggestions() {
+			if (!chatbotSuggestions) return;
+			const routeId = pageRouteId || 'home';
+			const prompts = SUGGESTED_PROMPTS[routeId] || SUGGESTED_PROMPTS.home;
+			chatbotSuggestions.innerHTML = prompts.map((prompt) =>
+				`<button type="button" class="chatbot-suggestion-btn">${escapeHtml(prompt)}</button>`
+			).join('');
+		}
+
+		// Handle suggestion clicks
+		function setupSuggestionClicks() {
+			if (!chatbotSuggestions) return;
+			chatbotSuggestions.addEventListener('click', (e) => {
+				const btn = e.target.closest('.chatbot-suggestion-btn');
+				if (!btn) return;
+				const text = btn.textContent;
+				chatbotSuggestions.innerHTML = '';
+				sendMessage(text);
+			});
+		}
+
+		// Hide suggestions after first interaction
+		function hideSuggestions() {
+			if (chatbotSuggestions) {
+				chatbotSuggestions.innerHTML = '';
+			}
+		}
+
 		function loadSavedMessages() {
 			try {
 				const saved = sessionStorage.getItem(CHATBOT_MESSAGES_KEY);
@@ -1408,7 +1578,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 			}
 		}
 
-		loadSavedMessages();
+		// Render suggestions only if no saved messages exist
+		if (!loadSavedMessages()) {
+			renderSuggestions();
+			setupSuggestionClicks();
+		}
 
 		// Clear chat button
 		if (chatbotClear) {
