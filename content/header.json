@@ -9,76 +9,172 @@
   "menuToggleOpenLabel": "Open navigation",
   "menuToggleCloseLabel": "Close navigation",
   "nav": [
-    { "route": "home", "label": "Home" },
-    { "route": "gallery", "label": "Gallery" },
     {
-      "label": "About Us",
-      "items": [
-        { "route": "about", "label": "Our Story" },
-        { "route": "meet-the-faculty", "label": "Meet the Faculty" },
-        { "route": "success-stories", "label": "Success Stories" },
-        { "route": "contact", "label": "Contact" }
-      ]
+      "route": "home",
+      "label": "Home"
+    },
+    {
+      "route": "gallery",
+      "label": "Gallery"
     },
     {
       "label": "Programs",
       "items": [
-        { "route": "events", "label": "Events" },
-        { "route": "services", "label": "Services" }
+        {
+          "route": "programs",
+          "label": "Our Story"
+        },
+        {
+          "route": "meet-the-faculty",
+          "label": "Meet the Faculty"
+        },
+        {
+          "route": "success-stories",
+          "label": "Success Stories"
+        },
+        {
+          "route": "contact",
+          "label": "Contact"
+        }
       ]
     },
     {
       "label": "Classes",
       "items": [
-        { "route": "beginner-dancers", "label": "Beginner Dancers" },
-        { "route": "intermediate-dancers", "label": "Intermediate Dancers" },
-        { "route": "advanced-dancers", "label": "Advanced Dancers" }
+        {
+          "route": "beginner-dancers",
+          "label": "Beginner Dancers"
+        },
+        {
+          "route": "intermediate-dancers",
+          "label": "Intermediate Dancers"
+        },
+        {
+          "route": "advanced-dancers",
+          "label": "Advanced Dancers"
+        }
       ]
     },
     {
       "label": "Get Involved",
       "items": [
-        { "route": "dance-with-us", "label": "Dance With Us" },
-        { "route": "book-a-performance", "label": "Bring Us to Your Event" },
-        { "route": "see-a-performance", "label": "See A Performance" },
-        { "route": "support-our-cause", "label": "Support Our Cause" }
+        {
+          "route": "dance-with-us",
+          "label": "Dance With Us"
+        },
+        {
+          "route": "book-a-performance",
+          "label": "Bring Us to Your Event"
+        },
+        {
+          "route": "see-a-performance",
+          "label": "See A Performance"
+        },
+        {
+          "route": "support-our-cause",
+          "label": "Support Our Cause"
+        }
+      ]
+    },
+    {
+      "label": "Event",
+      "items": [
+        {
+          "route": "events",
+          "label": "Events"
+        },
+        {
+          "route": "services",
+          "label": "Services"
+        }
       ]
     },
     {
       "label": "Splendid China",
       "items": [
-        { "route": "splendid-china-2026", "label": "Splendid China 2026" },
-        { "route": "splendid-china-2025", "label": "Splendid China 2025" },
-        { "route": "splendid-china-2024", "label": "Splendid China 2024" },
-        { "route": "splendid-china-2023", "label": "Splendid China 2023" },
-        { "route": "splendid-china-2022", "label": "Splendid China 2022" },
-        { "route": "splendid-china-2019", "label": "Splendid China 2019" },
-        { "route": "splendid-china-2018", "label": "Splendid China 2018" },
-        { "route": "splendid-china-2017", "label": "Splendid China 2017" },
-        { "route": "splendid-china-2016", "label": "Splendid China 2016" },
-        { "route": "splendid-china-2015", "label": "Splendid China 2015" },
-        { "route": "splendid-china-2014", "label": "Splendid China 2014" },
-        { "route": "splendid-china-2013", "label": "Splendid China 2013" },
-        { "route": "splendid-china-2012", "label": "Splendid China 2012" },
-        { "route": "splendid-china-2011", "label": "Splendid China 2011" },
-        { "route": "splendid-china-2010", "label": "Splendid China 2010" },
-        { "route": "splendid-china-2009", "label": "Splendid China 2009" },
-        { "route": "splendid-china-2008", "label": "Splendid China 2008" }
+        {
+          "route": "splendid-china-2026",
+          "label": "Splendid China 2026"
+        },
+        {
+          "route": "splendid-china-2025",
+          "label": "Splendid China 2025"
+        },
+        {
+          "route": "splendid-china-2024",
+          "label": "Splendid China 2024"
+        },
+        {
+          "route": "splendid-china-2023",
+          "label": "Splendid China 2023"
+        },
+        {
+          "route": "splendid-china-2022",
+          "label": "Splendid China 2022"
+        },
+        {
+          "route": "splendid-china-2019",
+          "label": "Splendid China 2019"
+        },
+        {
+          "route": "splendid-china-2018",
+          "label": "Splendid China 2018"
+        },
+        {
+          "route": "splendid-china-2017",
+          "label": "Splendid China 2017"
+        },
+        {
+          "route": "splendid-china-2016",
+          "label": "Splendid China 2016"
+        },
+        {
+          "route": "splendid-china-2015",
+          "label": "Splendid China 2015"
+        },
+        {
+          "route": "splendid-china-2014",
+          "label": "Splendid China 2014"
+        },
+        {
+          "route": "splendid-china-2013",
+          "label": "Splendid China 2013"
+        },
+        {
+          "route": "splendid-china-2012",
+          "label": "Splendid China 2012"
+        },
+        {
+          "route": "splendid-china-2011",
+          "label": "Splendid China 2011"
+        },
+        {
+          "route": "splendid-china-2010",
+          "label": "Splendid China 2010"
+        },
+        {
+          "route": "splendid-china-2009",
+          "label": "Splendid China 2009"
+        },
+        {
+          "route": "splendid-china-2008",
+          "label": "Splendid China 2008"
+        }
       ]
     }
   ],
   "actions": [
     {
       "route": "tickets",
-      "label": "Purchase Tickets",
+      "label": "Purchase Ticket",
       "style": "primary",
-      "ariaLabel": "Purchase Tickets"
+      "ariaLabel": "Purchase Ticket"
     },
     {
       "route": "donate",
-      "label": "Donate",
+      "label": "Donation",
       "style": "secondary",
-      "ariaLabel": "Donate"
+      "ariaLabel": "Donation"
     }
   ]
 }

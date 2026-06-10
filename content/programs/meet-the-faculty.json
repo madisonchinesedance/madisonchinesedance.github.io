@@ -87,7 +87,7 @@
               "style": "primary"
             },
             {
-              "route": "about",
+              "route": "programs",
               "label": "Learn About the Academy",
               "style": "secondary"
             }
