@@ -172,12 +172,11 @@ def main() -> None:
         parent = prompt("Dropdown name (press enter for top-level)", "")
         add_to_nav(header, route_id, title, parent)
         write_json(content_root / "header.json", header)
+        print("Updated header.json")
 
     print(f"\nCreated page: {html_path.relative_to(root)}")
     print(f"Created content: {json_path.relative_to(root)}")
     print("Updated site.json")
-    if parent or "Add this page" in locals():
-        print("Updated header.json")
 
 
 if __name__ == "__main__":
