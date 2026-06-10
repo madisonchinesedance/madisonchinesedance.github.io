@@ -2053,6 +2053,36 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	}
 }
 
+.chatbot-suggestions{
+	display:flex;
+	flex-wrap:wrap;
+	gap:8px;
+	padding:12px 20px 0 20px;
+}
+.chatbot-suggestion-btn{
+	display:inline-block;
+	padding:8px 14px;
+	border:1px solid var(--edge-contrast);
+	border-radius:999px;
+	background:transparent;
+	color:var(--light-text-color);
+	font-family:inherit;
+	font-size:0.8rem;
+	cursor:pointer;
+	transition:background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+	white-space:nowrap;
+}
+.chatbot-suggestion-btn:hover,
+.chatbot-suggestion-btn:focus-visible{
+	background:var(--button-hover-bg);
+	border-color:transparent;
+	transform:translateY(var(--translate-button-hover));
+	outline:none;
+}
+.chatbot-suggestion-btn:active{
+	transform:scale(0.97);
+}
+
 .chatbot-input-area{
 	padding:16px 20px;
 	background:var(--color-deep-navy);
