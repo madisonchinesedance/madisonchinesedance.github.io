@@ -536,6 +536,9 @@ a{
 	border-bottom:1px solid var(--announcement-border);
 	box-shadow:none;
 }
+.site-announcement.has-scroll-text{
+	overflow:hidden;
+}
 .announcement-inner{
 	display:flex;
 	align-items:center;
@@ -550,9 +553,31 @@ a{
 	gap:8px;
 	flex:1;
 	min-width:0;
-	white-space:nowrap;
 	overflow:hidden;
-	text-overflow:ellipsis;
+}
+.announcement-scroll-track{
+	display:flex;
+	align-items:center;
+	gap:2rem;
+	white-space:nowrap;
+	will-change:transform;
+}
+.site-announcement.has-scroll-text .announcement-scroll-track{
+	animation:announcement-scroll 20s linear 4s infinite;
+}
+.announcement-scroll-track:hover,
+.site-announcement.has-scroll-text:hover .announcement-scroll-track{
+	animation-play-state:paused;
+}
+.announcement-scroll-item{
+	display:inline-flex;
+	align-items:center;
+	gap:0.5rem;
+	flex-shrink:0;
+}
+@keyframes announcement-scroll{
+	0%{transform:translateX(0);}
+	100%{transform:translateX(-50%);}
 }
 .announcement-label,
 .announcement-body{
@@ -569,8 +594,11 @@ a{
 }
 .announcement-body{
 	font-size:var(--small-body-font-size);
+}
+.site-announcement.has-scroll-text .announcement-body{
 	overflow:hidden;
-	text-overflow:ellipsis;
+	flex:1 1 auto;
+	min-width:0;
 }
 .announcement-actions{
 	display:flex;
@@ -1786,7 +1814,8 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	.site-footer,
 	.component-card,
 	.site-star,
-	.is-announcement-highlight-pulse{
+	.is-announcement-highlight-pulse,
+	.announcement-scroll-track{
 		transition:none;
 		animation:none;
 	}
