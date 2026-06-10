@@ -1,22 +1,6 @@
 {
   "pageTitle": "Splendid China 2023 | Madison Chinese Dance Academy",
   "metaDescription": "Splendid China 2023 performance archive by Madison Chinese Dance Academy.",
-  "blocks": [
-    {
-      "type": "hero",
-      "blocks": [
-        {
-          "type": "heading1",
-          "id": "splendid-2023-heading",
-          "text": "Splendid China 2023"
-        },
-        {
-          "type": "body",
-          "text": "Performance archive details, photos, and program notes can be added here."
-        }
-      ]
-    }
-  ],
   "galleryImages": [
     {
       "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-001.webp",
@@ -102,6 +86,23 @@
       "src": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-017.webp",
       "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2023/splendid-china-2023-017.webp",
       "alt": "Splendid China 2023 017"
+    }
+  ],
+  "sections": [
+    {
+      "name": "intro",
+      "columns": 1,
+      "items": [
+        {
+          "heading1": {
+            "text": "Splendid China 2023",
+            "id": "splendid-2023-heading"
+          },
+          "body": {
+            "text": "Performance archive details, photos, and program notes can be added here."
+          }
+        }
+      ]
     }
   ]
 }

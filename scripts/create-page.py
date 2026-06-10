@@ -141,19 +141,20 @@ def main() -> None:
         {
             "pageTitle": f"{title} | Madison Chinese Dance Academy",
             "metaDescription": f"{title} page for Madison Chinese Dance Academy.",
-            "blocks": [
+            "sections": [
                 {
-                    "type": "hero",
-                    "blocks": [
+                    "name": "intro",
+                    "columns": 1,
+                    "items": [
                         {
-                            "type": "heading1",
-                            "id": f"{slug.replace('/', '-')}-heading",
-                            "text": title,
-                        },
-                        {
-                            "type": "body",
-                            "text": "Add your page content here.",
-                        },
+                            "heading1": {
+                                "id": f"{slug.replace('/', '-')}-heading",
+                                "text": title,
+                            },
+                            "body": {
+                                "text": "Add your page content here.",
+                            },
+                        }
                     ],
                 }
             ],

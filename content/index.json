@@ -1,131 +1,196 @@
 {
   "pageTitle": "Madison Chinese Dance Academy | Home",
   "metaDescription": "Madison Chinese Dance Academy - community classes, performances, and outreach. Purchase tickets or support our community.",
-  "blocks": [
+  "sections": [
     {
-      "type": "hero",
-      "variant": "home",
-      "blocks": [
+      "name": "intro",
+      "columns": 1,
+      "items": [
         {
-          "type": "heading1",
-          "id": "hero-title",
-          "text": "Madison Chinese Dance Academy"
-        },
-        {
-          "type": "body",
-          "text": "We dance to integrate Eastern and Western arts and cultures for a more harmonious world."
-        },
-        {
-          "type": "cards",
-          "columns": 3,
-          "headingTag": "h2",
-          "headingSize": "var(--heading-1-font-size)",
-          "items": [
-            {
-              "heading": "1987",
-              "body": "Founded as a nonprofit danceacademy over 30 years ago."
-            },
-            {
-              "heading": "Splendid China",
-              "body": "Annual showcase at the Robert E. Parilla Performing Arts Center - where community artistry meets the stage."
-            },
-            {
-              "heading": "Ages 3 to 18+",
-              "body": "Classes for beginner dancers through advanced students and beyond."
-            }
-          ]
+          "heading1": {
+            "id": "home-heading",
+            "text": "Madison Chinese Dance Academy",
+            "fontSize": "var(--heading-1-font-size)"
+          },
+          "body": {
+            "text": "We dance to integrate Eastern and Western arts and cultures for a more harmonious world."
+          }
         }
       ]
     },
     {
-      "type": "section",
-      "variant": "home-intro",
-      "blocks": [
+      "name": "highlights",
+      "columns": 3,
+      "items": [
         {
-          "type": "heading2",
-          "id": "home-intro-heading",
-          "text": "A community academy for Chinese dance and culture"
+          "heading2": {
+            "text": "1987",
+            "fontSize": "var(--heading-1-font-size)"
+          },
+          "body": {
+            "text": "Founded as a nonprofit danceacademy over 30 years ago."
+          }
         },
         {
-          "type": "body",
-          "text": "Madison Chinese Dance Academy gives students a place to train, perform, and grow through Chinese dance traditions and ballet technique. Our programs connect both families and audiences through classes, outreach, and the annual Splendid China performance."
+          "heading2": {
+            "text": "Splendid China",
+            "fontSize": "var(--heading-1-font-size)"
+          },
+          "body": {
+            "text": "Annual showcase at the Robert E. Parilla Performing Arts Center - where community artistry meets the stage."
+          }
         },
         {
-          "type": "cards",
-          "columns": 3,
-          "items": [
-            {
-              "heading": "Classes",
-              "body": "Beginner through advanced dance instruction for students of all ages.",
-              "route": "beginner-dancers",
-              "label": "Start with beginner dancers"
-            },
-            {
-              "heading": "Splendid China",
-              "body": "Our annual concert brings traditional and contemporary Chinese dance to the stage.",
-              "route": "splendid-china-2026",
-              "label": "See Splendid China 2026"
-            },
-            {
-              "heading": "Gallery",
-              "body": "Browse moments from performances, community programs, and academy events.",
-              "route": "gallery",
-              "label": "Open gallery"
-            }
-          ]
+          "heading2": {
+            "text": "Ages 3 to 18+",
+            "fontSize": "var(--heading-1-font-size)"
+          },
+          "body": {
+            "text": "Classes for beginner dancers through advanced students and beyond."
+          }
         }
       ]
     },
     {
-      "type": "section",
-      "blocks": [
+      "name": "academy",
+      "columns": 1,
+      "className": "home-section home-intro page-section-home-intro",
+      "items": [
         {
-          "type": "heading2",
-          "id": "our-story-heading",
-          "text": "Our Story"
-        },
-        {
-          "type": "body",
-          "text": "The Madison Chinese Dance Academy was founded as a nonprofit organization in 1987. It is a teaching institution that emphasizes cultural enrichment through the art of Chinese dance and ballet. The Academy holds weekly classes year-round for students to learn traditional and modern Chinese dances, ballet, and Chinese ballet. It further cultivates students' appreciation of Eastern and Western arts and cultures through dance reviews and senior choreography projects.\n\nIn addition to its annual Splendid China dance concert at the Robert E. Parilla Performing Arts Center, the Academy presents more than twenty dance performances, workshops, and speeches at various occasions yearly. It has been invited to perform across the country at venues including the White House Music Festival, Smithsonian museums, conventions, and universities nationwide, as well as Disney Epcot Center. It is also one of the few arts groups invited to perform at the World New Millennium Music and Dance Festival held at the Giza Pyramids in Cairo.\n\nThe Academy welcomes individuals and groups of all racial and cultural backgrounds to join their pursuit of a more civilized, harmonious, and enjoyable world."
-        },
-        {
-          "type": "body",
-          "text": "<!-- 中文翻译占位符 - Chinese translation placeholder -->"
+          "heading2": {
+            "id": "home-intro-heading",
+            "text": "A community academy for Chinese dance and culture"
+          },
+          "body": {
+            "text": "Madison Chinese Dance Academy gives students a place to train, perform, and grow through Chinese dance traditions and ballet technique. Our programs connect both families and audiences through classes, outreach, and the annual Splendid China performance."
+          }
         }
       ]
     },
     {
-      "type": "section",
-      "variant": "home-pathways",
-      "blocks": [
+      "name": "academy-links",
+      "columns": 3,
+      "items": [
         {
-          "type": "heading2",
-          "id": "home-pathways-heading",
-          "text": "Get Involved"
+          "heading2": {
+            "text": "Classes"
+          },
+          "body": {
+            "text": "Beginner through advanced dance instruction for students of all ages.",
+            "actions": [
+              {
+                "route": "beginner-dancers",
+                "label": "Start with beginner dancers"
+              }
+            ]
+          }
         },
         {
-          "type": "cards",
-          "columns": 3,
-          "items": [
-            {
-              "heading": "Attend a performance",
-              "body": "Get details for Splendid China 2026 and purchase tickets online.",
-              "route": "tickets",
-              "label": "Purchase tickets"
-            },
-            {
-              "heading": "Support the academy",
-              "body": "Help fund classes, costumes, rehearsal space, and community outreach.",
-              "route": "donate",
-              "label": "Donate"
-            },
-            {
-              "heading": "Get in touch",
-              "body": "Ask about classes, performances, donations, or community programs.",
-              "route": "contact",
-              "label": "Contact us"
-            }
-          ]
+          "heading2": {
+            "text": "Splendid China"
+          },
+          "body": {
+            "text": "Our annual concert brings traditional and contemporary Chinese dance to the stage.",
+            "actions": [
+              {
+                "route": "splendid-china-2026",
+                "label": "See Splendid China 2026"
+              }
+            ]
+          }
+        },
+        {
+          "heading2": {
+            "text": "Gallery"
+          },
+          "body": {
+            "text": "Browse moments from performances, community programs, and academy events.",
+            "actions": [
+              {
+                "route": "gallery",
+                "label": "Open gallery"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "story",
+      "columns": 1,
+      "items": [
+        {
+          "heading2": {
+            "id": "our-story-heading",
+            "text": "Our Story"
+          },
+          "body": {
+            "text": "The Madison Chinese Dance Academy was founded as a nonprofit organization in 1987. It is a teaching institution that emphasizes cultural enrichment through the art of Chinese dance and ballet. The Academy holds weekly classes year-round for students to learn traditional and modern Chinese dances, ballet, and Chinese ballet. It further cultivates students' appreciation of Eastern and Western arts and cultures through dance reviews and senior choreography projects.\n\nIn addition to its annual Splendid China dance concert at the Robert E. Parilla Performing Arts Center, the Academy presents more than twenty dance performances, workshops, and speeches at various occasions yearly. It has been invited to perform across the country at venues including the White House Music Festival, Smithsonian museums, conventions, and universities nationwide, as well as Disney Epcot Center. It is also one of the few arts groups invited to perform at the World New Millennium Music and Dance Festival held at the Giza Pyramids in Cairo.\n\nThe Academy welcomes individuals and groups of all racial and cultural backgrounds to join their pursuit of a more civilized, harmonious, and enjoyable world."
+          },
+          "body_2": {
+            "text": "<!-- Chinese translation placeholder -->"
+          }
+        }
+      ]
+    },
+    {
+      "name": "get-involved",
+      "columns": 1,
+      "className": "home-section home-pathways page-section-home-pathways",
+      "items": [
+        {
+          "heading2": {
+            "id": "home-pathways-heading",
+            "text": "Get Involved"
+          }
+        }
+      ]
+    },
+    {
+      "name": "get-involved-links",
+      "columns": 3,
+      "items": [
+        {
+          "heading2": {
+            "text": "Attend a performance"
+          },
+          "body": {
+            "text": "Get details for Splendid China 2026 and purchase tickets online.",
+            "actions": [
+              {
+                "route": "tickets",
+                "label": "Purchase tickets"
+              }
+            ]
+          }
+        },
+        {
+          "heading2": {
+            "text": "Support the academy"
+          },
+          "body": {
+            "text": "Help fund classes, costumes, rehearsal space, and community outreach.",
+            "actions": [
+              {
+                "route": "donate",
+                "label": "Donate"
+              }
+            ]
+          }
+        },
+        {
+          "heading2": {
+            "text": "Get in touch"
+          },
+          "body": {
+            "text": "Ask about classes, performances, donations, or community programs.",
+            "actions": [
+              {
+                "route": "contact",
+                "label": "Contact us"
+              }
+            ]
+          }
         }
       ]
     }

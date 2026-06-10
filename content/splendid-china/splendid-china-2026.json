@@ -1,36 +1,37 @@
 {
   "pageTitle": "Splendid China | Madison Chinese Dance Academy",
   "metaDescription": "Splendid China annual performance by Madison Chinese Dance Academy.",
-  "blocks": [
-    {
-      "type": "hero",
-      "blocks": [
-        {
-          "type": "heading1",
-          "id": "splendid-heading",
-          "text": "Splendid China 2026"
-        },
-        {
-          "type": "body",
-          "text": "A Concert of Chinese Dance and Ballet\n\nSaturday, June 20, 2026 at 8:00pm\n\nRobert E. Parilla Performing Arts Center\nMontgomery College\n51 Mannakee Street, Rockville, MD",
-          "actions": [
-            {
-              "route": "tickets",
-              "label": "Purchase Tickets",
-              "style": "primary",
-              "className": "header-cta",
-              "ariaLabel": "Purchase Tickets"
-            }
-          ]
-        }
-      ]
-    }
-  ],
   "galleryImages": [
     {
       "src": "https://cdn.madisonchinesedance.org/splendid-china-2026/splendid-china-2026-001.webp",
       "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2026/splendid-china-2026-001.webp",
       "alt": "Splendid China 2026 001"
+    }
+  ],
+  "sections": [
+    {
+      "name": "intro",
+      "columns": 1,
+      "items": [
+        {
+          "heading1": {
+            "text": "Splendid China 2026",
+            "id": "splendid-heading"
+          },
+          "body": {
+            "text": "A Concert of Chinese Dance and Ballet\n\nSaturday, June 20, 2026 at 8:00pm\n\nRobert E. Parilla Performing Arts Center\nMontgomery College\n51 Mannakee Street, Rockville, MD",
+            "actions": [
+              {
+                "route": "tickets",
+                "label": "Purchase Tickets",
+                "style": "primary",
+                "className": "header-cta",
+                "ariaLabel": "Purchase Tickets"
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }

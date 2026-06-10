@@ -1,18 +1,19 @@
 {
   "pageTitle": "Intermediate Dancers | Madison Chinese Dance Academy",
   "metaDescription": "Class information for intermediate Madison Chinese Dance Academy students.",
-  "blocks": [
+  "sections": [
     {
-      "type": "hero",
-      "blocks": [
+      "name": "intro",
+      "columns": 1,
+      "items": [
         {
-          "type": "heading1",
-          "id": "intermediate-dancers-heading",
-          "text": "Intermediate Dancers"
-        },
-        {
-          "type": "body",
-          "text": "A class group for intermediate students building technique, coordination, musicality, and confidence.\n\nThis placeholder page can be updated with age range, schedule, tuition, registration details, and teacher notes when class information is finalized."
+          "heading1": {
+            "text": "Intermediate Dancers",
+            "id": "intermediate-dancers-heading"
+          },
+          "body": {
+            "text": "A class group for intermediate students building technique, coordination, musicality, and confidence.\n\nThis placeholder page can be updated with age range, schedule, tuition, registration details, and teacher notes when class information is finalized."
+          }
         }
       ]
     }
