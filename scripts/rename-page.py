@@ -209,30 +209,9 @@ def rename_page(old_id: str, new_id: str, root: Path, *, force: bool = False) ->
 
     # ── 5. Update header.json navigation ─────────────────────────────────
 
-    old_title = slug_to_title(old_id)
-
     if header_path.exists():
         header = load_json(header_path)
         header_updated = _update_route_refs_in_obj(header, old_id, new_id)
-
-        # Also update nav dropdown group labels that match the old route title
-        nav = header.get("nav", [])
-        for group in nav:
-            if "items" not in group:
-                continue
-            # Check if this dropdown group contains the renamed route
-            group_routes = {
-                item.get("route") for item in group["items"] if "route" in item
-            }
-            if old_id in group_routes or new_id in group_routes:
-                group_label = group.get("label", "")
-                if group_label == old_title:
-                    group["label"] = new_title
-                    header_updated = True
-                    result.log(
-                        f"Updated nav group label in header.json: '{old_title}' -> '{new_title}'"
-                    )
-
         if header_updated:
             write_json(header_path, header)
             result.log("Updated route references in header.json")
@@ -242,23 +221,6 @@ def rename_page(old_id: str, new_id: str, root: Path, *, force: bool = False) ->
     if footer_path.exists():
         footer = load_json(footer_path)
         footer_updated = _update_route_refs_in_obj(footer, old_id, new_id)
-
-        # Also update footer column headings that match the old route title
-        columns = footer.get("columns", [])
-        for column in columns:
-            col_links = column.get("links", [])
-            col_routes = {
-                link.get("route") for link in col_links if "route" in link
-            }
-            if old_id in col_routes or new_id in col_routes:
-                col_heading = column.get("heading", "")
-                if col_heading == old_title:
-                    column["heading"] = new_title
-                    footer_updated = True
-                    result.log(
-                        f"Updated footer heading: '{old_title}' -> '{new_title}'"
-                    )
-
         if footer_updated:
             write_json(footer_path, footer)
             result.log("Updated route references in footer.json")
