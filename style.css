@@ -173,6 +173,7 @@
 	--section-padding-x: clamp(18px, 3vw, 40px);
 	--section-radius: 40px;
 	--section-shadow: 0 18px 50px var(--color-navy-shadow);
+	--section-shadow-hover: 0 22px 56px var(--color-navy-shadow);
 	--section-text-color: var(--light-text-color);
 	--section-transparency: 0.5;          /* resting opacity for sections like home-intro */
 	--section-transparency-hover: 0.5;         /* hover/focus opacity */
@@ -714,15 +715,28 @@ a{
 	color:var(--light-text-color);
 	transition:background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
-.page-hero .page-block-container:hover,
-.page-hero .page-block-container:focus-within,
-.page-hero .container:hover,
-.page-hero .container:focus-within,
-.section .container:hover,
-.section .container:focus-within{
+/* Only section containers that contain interactive elements (links, buttons) and do not contain cards
+   should change their shadow/background on hover. Static sections remain unchanged.
+   Sections containing cards should not have a section-level hover effect. */
+.page-hero:has(a, button):not(:has(.component-card)):hover .container,
+.page-hero:has(a, button):not(:has(.component-card)):focus-within .container,
+.section:has(a, button):not(:has(.component-card)):hover .container,
+.section:has(a, button):not(:has(.component-card)):focus-within .container{
 	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency-hover) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency-hover) * 100%), transparent));
 	border-color:color-mix(in srgb, var(--section-border) calc(var(--section-transparency-hover) * 100%), transparent);
 	box-shadow:var(--section-shadow-hover);
+}
+/* Section containers that contain linked cards should not change their own
+   shadow/background on hover — the individual cards handle their own
+   hover effects. We set them explicitly to their resting state on hover/focus.
+   This prevents the section shadow from masking/fighting card shadows. */
+.section:has(a.component-card):hover .container,
+.section:has(a.component-card):focus-within .container,
+.page-hero:has(a.component-card):hover .container,
+.page-hero:has(a.component-card):focus-within .container{
+	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency) * 100%), transparent));
+	border-color:color-mix(in srgb, var(--section-border) calc(var(--section-transparency) * 100%), transparent);
+	box-shadow:var(--section-shadow);
 }
 .page-hero .page-block-container a:not(.btn),
 .page-hero .container a:not(.btn),
@@ -1109,8 +1123,10 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	animation:home-rise var(--entrance-duration) ease both;
 	animation-delay:calc(var(--block-delay, 0ms) + var(--item-index, 0) * 90ms);
 }
-.component-card:hover,
-.component-card:focus-visible{
+/* Only cards that are links (<a>) get hover effects.
+   Non-linked cards (<article>) remain static. */
+a.component-card:hover,
+a.component-card:focus-visible{
 	transform:translateY(var(--translate-card-hover));
 	background:linear-gradient(180deg, color-mix(in srgb, var(--card-bg-top) calc(var(--card-transparency-hover) * 100%), transparent), color-mix(in srgb, var(--card-bg-bottom) calc(var(--card-transparency-hover) * 100%), transparent));
 	border-color:color-mix(in srgb, var(--card-border-hover) calc(var(--card-transparency-hover) * 100%), transparent);
