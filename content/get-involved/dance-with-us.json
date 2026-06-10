@@ -1,109 +1,135 @@
 {
   "pageTitle": "Dance with Us | Madison Chinese Dance Academy",
   "metaDescription": "Join Madison Chinese Dance Academy as a student, volunteer, or community member. Dance with us and become part of our vibrant community.",
-  "blocks": [
+  "sections": [
     {
-      "type": "hero",
-      "blocks": [
+      "name": "intro",
+      "columns": 1,
+      "items": [
         {
-          "type": "heading1",
-          "id": "dance-with-us-heading",
-          "text": "Dance with Us"
-        },
-        {
-          "type": "body",
-          "text": "Become part of the Madison Chinese Dance Academy community. Whether you are a beginner exploring Chinese dance for the first time, an experienced dancer looking to grow, or a parent searching for a meaningful cultural program for your child, we have a place for you."
+          "heading1": {
+            "text": "Dance with Us",
+            "id": "dance-with-us-heading"
+          },
+          "body": {
+            "text": "Become part of the Madison Chinese Dance Academy community. Whether you are a beginner exploring Chinese dance for the first time, an experienced dancer looking to grow, or a parent searching for a meaningful cultural program for your child, we have a place for you."
+          }
         }
       ]
     },
     {
-      "type": "section",
-      "variant": "dance-community",
-      "blocks": [
+      "name": "dance-community",
+      "columns": 1,
+      "items": [
         {
-          "type": "heading2",
-          "id": "ways-to-join",
-          "text": "Ways to Get Involved"
+          "heading2": {
+            "text": "Ways to Get Involved",
+            "id": "ways-to-join"
+          },
+          "body": {
+            "text": "There are many ways to be part of our academy. We welcome students, families, volunteers, and community partners who share our passion for Chinese dance and cultural exchange."
+          }
+        }
+      ],
+      "className": "page-section-dance-community"
+    },
+    {
+      "name": "dance-pathways",
+      "columns": 3,
+      "items": [
+        {
+          "heading2": {
+            "text": "Enroll as a Student"
+          },
+          "body": {
+            "text": "Join one of our beginner, intermediate, or advanced programs. New students of all ages and experience levels are welcome.",
+            "actions": [
+              {
+                "route": "beginner-dancers",
+                "label": "Start with beginner dancers"
+              }
+            ]
+          }
         },
         {
-          "type": "body",
-          "text": "There are many ways to be part of our academy. We welcome students, families, volunteers, and community partners who share our passion for Chinese dance and cultural exchange."
+          "heading2": {
+            "text": "Volunteer"
+          },
+          "body": {
+            "text": "Help with events, performances, costumes, or backstage support. Volunteers are the heart of our community productions.",
+            "actions": [
+              {
+                "route": "contact",
+                "label": "Reach out to volunteer"
+              }
+            ]
+          }
         },
         {
-          "type": "cards",
-          "columns": 3,
-          "variant": "dance-pathways",
-          "items": [
-            {
-              "heading": "Enroll as a Student",
-              "body": "Join one of our beginner, intermediate, or advanced programs. New students of all ages and experience levels are welcome.",
-              "route": "beginner-dancers",
-              "label": "Start with beginner dancers"
-            },
-            {
-              "heading": "Volunteer",
-              "body": "Help with events, performances, costumes, or backstage support. Volunteers are the heart of our community productions.",
-              "route": "contact",
-              "label": "Reach out to volunteer"
-            },
-            {
-              "heading": "Support Our Mission",
-              "body": "Your donations help fund classes, scholarships, and our annual Splendid China production. Every gift makes a difference.",
-              "route": "donate",
-              "label": "Donate today"
-            }
-          ]
+          "heading2": {
+            "text": "Support Our Mission"
+          },
+          "body": {
+            "text": "Your donations help fund classes, scholarships, and our annual Splendid China production. Every gift makes a difference.",
+            "actions": [
+              {
+                "route": "donate",
+                "label": "Donate today"
+              }
+            ]
+          }
         }
       ]
     },
     {
-      "type": "section",
-      "variant": "dance-growth",
-      "blocks": [
+      "name": "dance-growth",
+      "columns": 1,
+      "items": [
         {
-          "type": "heading2",
-          "id": "how-to-start",
-          "text": "How to Get Started"
-        },
-        {
-          "type": "body",
-          "text": "Starting at Madison Chinese Dance Academy is simple. Reach out to us by email or phone to learn about current class schedules, placement for returning students, and open registration windows. We will match you with the right level and welcome you to our community."
-        },
-        {
-          "type": "body",
-          "text": "For most programs, no prior dance experience is required. Bring comfortable clothing, water, and a willingness to learn. We will guide you through the rest."
+          "heading2": {
+            "text": "How to Get Started",
+            "id": "how-to-start"
+          },
+          "body": {
+            "text": "Starting at Madison Chinese Dance Academy is simple. Reach out to us by email or phone to learn about current class schedules, placement for returning students, and open registration windows. We will match you with the right level and welcome you to our community."
+          },
+          "body_2": {
+            "text": "For most programs, no prior dance experience is required. Bring comfortable clothing, water, and a willingness to learn. We will guide you through the rest."
+          }
         }
-      ]
+      ],
+      "className": "page-section-dance-growth"
     },
     {
-      "type": "section",
-      "variant": "dance-connect",
-      "blocks": [
+      "name": "dance-connect",
+      "columns": 1,
+      "items": [
         {
-          "type": "heading2",
-          "id": "join-contact",
-          "text": "Contact Us to Join"
-        },
-        {
-          "type": "body",
-          "text": "Email us at madison.chinese.dances@gmail.com or call (301)-299-1562 to learn more about joining. We are happy to answer questions about classes, schedules, and what to expect in your first session."
-        },
-        {
-          "type": "body",
-          "actions": [
-            {
-              "route": "contact",
-              "label": "Contact Us",
-              "style": "primary"
-            },
-            {
-              "route": "beginner-dancers",
-              "label": "View Beginner Programs",
-              "style": "secondary"
-            }
-          ]
+          "heading2": {
+            "text": "Contact Us to Join",
+            "id": "join-contact"
+          },
+          "body": {
+            "text": "Email us at madison.chinese.dances@gmail.com or call (301)-299-1562 to learn more about joining. We are happy to answer questions about classes, schedules, and what to expect in your first session."
+          },
+          "body_2": {
+            "text": "",
+            "actions": [
+              {
+                "route": "contact",
+                "label": "Contact Us",
+                "style": "primary"
+              },
+              {
+                "route": "beginner-dancers",
+                "label": "View Beginner Programs",
+                "style": "secondary"
+              }
+            ]
+          }
         }
-      ]
+      ],
+      "className": "page-section-dance-connect"
     }
   ]
 }

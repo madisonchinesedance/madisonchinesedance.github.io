@@ -1,27 +1,28 @@
 {
   "pageTitle": "Splendid China 2010 | Madison Chinese Dance Academy",
   "metaDescription": "Splendid China 2010 performance archive by Madison Chinese Dance Academy.",
-  "blocks": [
-    {
-      "type": "hero",
-      "blocks": [
-        {
-          "type": "heading1",
-          "id": "splendid-2010-heading",
-          "text": "Splendid China 2010"
-        },
-        {
-          "type": "body",
-          "text": "Performance archive details, photos, and program notes can be added here."
-        }
-      ]
-    }
-  ],
   "galleryImages": [
     {
       "src": "https://cdn.madisonchinesedance.org/splendid-china-2010/splendid-china-2010-001.webp",
       "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2010/splendid-china-2010-001.webp",
       "alt": "Splendid China 2010 001"
+    }
+  ],
+  "sections": [
+    {
+      "name": "intro",
+      "columns": 1,
+      "items": [
+        {
+          "heading1": {
+            "text": "Splendid China 2010",
+            "id": "splendid-2010-heading"
+          },
+          "body": {
+            "text": "Performance archive details, photos, and program notes can be added here."
+          }
+        }
+      ]
     }
   ]
 }

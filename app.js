@@ -182,11 +182,13 @@ function blockId(block, fallback) {
 	return block.id ? escapeHtml(block.id) : fallback;
 }
 
-function findBlock(blocks = [], type) {
-	for (const block of blocks) {
-		if (block?.type === type) return block;
-		const nested = Array.isArray(block?.blocks) ? findBlock(block.blocks, type) : null;
-		if (nested) return nested;
+function findSectionComponent(sections = [], key) {
+	for (const section of sections) {
+		for (const item of section?.items || []) {
+			for (const [itemKey, value] of Object.entries(item || {})) {
+				if (itemKey.replace(/_\d+$/, '') === key) return value;
+			}
+		}
 	}
 	return null;
 }
@@ -423,13 +425,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 		const id = blockId(block, '');
 		const idAttr = id ? ` id="${id}"` : '';
+		const fontSize = String(block.fontSize || block.headingSize || '').trim();
+		const cssSizePattern = /^(?:var\(--[a-z0-9-]+\)|clamp\([^;{}]+\)|min\([^;{}]+\)|max\([^;{}]+\)|calc\([^;{}]+\)|[\d.]+(?:rem|em|px|%|vw|vh))$/i;
+		const styleAttr = cssSizePattern.test(fontSize) ? ` style="font-size:${fontSize}"` : '';
 		const classes = [
-			block.className,
-			context.variant === 'home-hero' && safeLevel === 1 ? 'hero-title' : ''
+			block.className
 		].filter(Boolean).map(escapeHtml).join(' ');
 		const classAttr = classes ? ` class="${classes}"` : '';
 
-		return `<h${safeLevel}${idAttr}${classAttr}>${escapeHtml(text)}</h${safeLevel}>`;
+		return `<h${safeLevel}${idAttr}${classAttr}${styleAttr}>${escapeHtml(text)}</h${safeLevel}>`;
 	}
 
 	function renderBodyBlock(block = {}, context = {}) {
@@ -440,47 +444,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 			: '';
 		const classes = [
 			'component-body',
-			context.variant === 'home-hero' ? 'hero-tagline' : '',
 			block.className
 		].filter(Boolean).map(escapeHtml).join(' ');
 
 		return body || actions ? `<div class="${classes}">${body}${actions}</div>` : '';
-	}
-
-	function renderCardsBlock(block = {}) {
-		const cards = Array.isArray(block.items) ? block.items : (Array.isArray(block.cards) ? block.cards : []);
-		if (!cards.length) return '';
-
-		const columns = Math.max(1, Math.min(Number(block.columns || cards.length || 1), 4));
-		const variant = block.variant ? ` component-card-grid-${escapeHtml(block.variant)}` : '';
-		const cardClass = block.variant ? ` component-card-${escapeHtml(block.variant)}` : '';
-		const blockHeadingTag = /^h[1-6]$/.test(block.headingTag || '') ? block.headingTag : 'h3';
-		const cssSizePattern = /^(?:var\(--[a-z0-9-]+\)|clamp\([^;{}]+\)|min\([^;{}]+\)|max\([^;{}]+\)|calc\([^;{}]+\)|[\d.]+(?:rem|em|px|%|vw|vh))$/i;
-
-		return `
-			<div class="component-card-grid${variant}" style="--card-columns:${columns}">
-				${cards.map((card, index) => {
-					const link = resolveContentLink(card, routes);
-					const href = link?.href ? resolveHref(link.href) : '';
-					const label = link?.label || '';
-					const tag = href && href !== '#' ? 'a' : 'article';
-					const hrefAttr = tag === 'a' ? ` href="${href}"` : '';
-					const heading = card.heading || card.value || '';
-					const body = card.body || card.label || '';
-					const headingTag = /^h[1-6]$/.test(card.headingTag || '') ? card.headingTag : blockHeadingTag;
-					const headingSize = String(card.headingSize || block.headingSize || '').trim();
-					const headingSizeStyle = cssSizePattern.test(headingSize) ? ` --card-heading-font-size:${headingSize};` : '';
-
-					return `
-						<${tag} class="component-card${cardClass}" style="--item-index:${index};${headingSizeStyle}"${hrefAttr}>
-							${heading ? `<${headingTag} class="component-card-heading">${escapeHtml(heading)}</${headingTag}>` : ''}
-							${body ? `<p>${escapeHtml(body)}</p>` : ''}
-							${tag === 'a' && label ? `<span class="component-card-link">${escapeHtml(label)}</span>` : ''}
-						</${tag}>
-					`;
-				}).join('')}
-			</div>
-		`;
 	}
 
 	function renderGalleryBlock() {
@@ -513,17 +480,71 @@ document.addEventListener('DOMContentLoaded', async () => {
 		`;
 	}
 
+	function normalizeSectionItem(item = {}) {
+		if (Object.keys(item).some((key) => /^heading[1-6](?:_\d+)?$/.test(key) || /^(body|gallery|zeffyEmbed)(?:_\d+)?$/.test(key))) {
+			return item;
+		}
+
+		const link = resolveContentLink(item, routes);
+		const actions = link?.href && link.href !== '#'
+			? [{
+				href: link.href,
+				label: link.label || item.label || 'Learn more',
+				newTab: item.newTab
+			}]
+			: [];
+
+		return {
+			heading2: {
+				text: item.heading || item.value || '',
+				id: item.id,
+				fontSize: item.headingSize
+			},
+			body: {
+				text: item.body || '',
+				actions
+			}
+		};
+	}
+
+	function renderSectionItem(item = {}, context = {}, index = 0) {
+		const normalizedItem = normalizeSectionItem(item);
+		const itemBlocks = Object.entries(normalizedItem)
+			.flatMap(([key, value]) => {
+				if (!value || ['name', 'className', 'link', 'route', 'href', 'label', 'newTab'].includes(key)) return [];
+				const baseKey = key.replace(/_\d+$/, '');
+				if (/^heading[1-6]$/.test(baseKey)) {
+					return [{ ...value, type: baseKey }];
+				}
+				if (['body', 'gallery', 'zeffyEmbed'].includes(baseKey)) {
+					return [{ ...value, type: baseKey }];
+				}
+				return [];
+			});
+		const link = resolveContentLink(normalizedItem, routes);
+		const href = link?.href ? resolveHref(link.href) : '';
+		const tag = href && href !== '#' ? 'a' : 'article';
+		const hrefAttr = tag === 'a' ? ` href="${href}"` : '';
+		const className = normalizedItem.className ? ` ${escapeHtml(normalizedItem.className)}` : '';
+
+		return `
+			<${tag} class="section-item${className}" style="--item-index:${index};"${hrefAttr}>
+				${renderBlocks(itemBlocks, context)}
+			</${tag}>
+		`;
+	}
+
 	function renderBlock(block = {}, context = {}) {
+		if (!block.type) {
+			return renderSectionBlock(block);
+		}
+
 		const builders = {
 			heading1: () => renderHeadingBlock(block, 1, context),
 			heading2: () => renderHeadingBlock(block, 2, context),
 			body: () => renderBodyBlock(block, context),
-			blocks: () => renderCardsBlock(block),
-			cards: () => renderCardsBlock(block),
 			gallery: () => renderGalleryBlock(block),
-			zeffyEmbed: () => renderZeffyEmbedBlock(block),
-			section: () => renderSectionBlock(block),
-			hero: () => renderHeroBlock(block)
+			zeffyEmbed: () => renderZeffyEmbedBlock(block)
 		};
 
 		const builder = builders[block.type];
@@ -534,42 +555,35 @@ document.addEventListener('DOMContentLoaded', async () => {
 		return blocks.map((block) => renderBlock(block, context)).join('');
 	}
 
-	function renderHeroBlock(block = {}) {
-		const isHomeHero = block.variant === 'home';
-		const sectionClass = isHomeHero ? 'hero' : 'page-hero';
-		const containerClass = isHomeHero ? 'container hero-inner' : 'container page-block-container';
-		const headingBlock = block.blocks?.find((item) => item.type === 'heading1');
-		const labelledBy = headingBlock?.id ? ` aria-labelledby="${escapeHtml(headingBlock.id)}"` : '';
-		const role = isHomeHero ? ' role="region"' : '';
-
-		return `
-			<section class="${sectionClass}"${role}${labelledBy}>
-				<div class="${containerClass}">
-					${renderBlocks(block.blocks || [], { variant: isHomeHero ? 'home-hero' : 'page-hero' })}
-				</div>
-			</section>
-		`;
-	}
-
 	function renderSectionBlock(block = {}) {
+		const items = Array.isArray(block.items) ? block.items : [];
+		const columns = Math.max(1, Math.min(Number(block.columns || items.length || 1), 4));
 		const classes = [
 			'section',
 			'page-section',
-			block.variant === 'home-intro' || block.variant === 'home-pathways' ? 'home-section' : '',
-			block.variant === 'home-intro' ? 'home-intro' : '',
-			block.variant ? `page-section-${block.variant}` : '',
+			columns > 1 ? 'section-columns' : '',
+			block.name ? `section-${block.name}` : '',
 			block.className
 		]
 			.filter(Boolean)
 			.map(escapeHtml)
 			.join(' ');
-		const headingBlock = block.blocks?.find((item) => item.type === 'heading2' || item.type === 'heading1');
-		const labelledBy = headingBlock?.id ? ` aria-labelledby="${escapeHtml(headingBlock.id)}"` : '';
+		const headingBlock = items.flat().find((item) => {
+			if (item?.type === 'heading2' || item?.type === 'heading1') return true;
+			return item?.heading1?.id || item?.heading2?.id;
+		});
+		const headingId = headingBlock?.id || headingBlock?.heading1?.id || headingBlock?.heading2?.id || '';
+		const labelledBy = headingId ? ` aria-labelledby="${escapeHtml(headingId)}"` : '';
 
 		return `
 			<section class="${classes}"${labelledBy}>
 				<div class="container">
-					${renderBlocks(block.blocks || [], { variant: block.variant || '' })}
+					<div class="section-grid" style="--section-columns:${columns}">
+						${items.map((item, index) => Array.isArray(item)
+							? `<article class="section-item" style="--item-index:${index};">${renderBlocks(item)}</article>`
+							: renderSectionItem(item, {}, index)
+						).join('')}
+					</div>
 				</div>
 			</section>
 		`;
@@ -579,9 +593,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const mount = $('[data-page-blocks]') || $('.site-main');
 		if (!mount) return;
 
-		const blocks = Array.isArray(content.blocks) ? content.blocks : [];
-		if (!blocks.length) return;
-		mount.innerHTML = renderBlocks(blocks);
+		const sections = Array.isArray(content.sections) ? content.sections : [];
+		if (!sections.length) return;
+		mount.innerHTML = renderBlocks(sections);
 	}
 
 	function loadZeffyEmbedScript() {
@@ -617,28 +631,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	function renderPageStars() {
-		if (document.body.classList.contains('home-page')) return;
-
 		const main = $('.site-main');
 		if (!main) return;
 
 		main.querySelector('.page-star-field')?.remove();
 		main.insertAdjacentHTML('afterbegin', createStarField('page-star-field', 150));
-	}
-
-	function renderHomePage() {
-		const hero = $('.home-page .hero');
-		if (hero) {
-			hero.querySelector('.home-star-field')?.remove();
-			hero.insertAdjacentHTML('afterbegin', createStarField('home-star-field', 120, 72));
-		}
-
-		const actionMount = $('[data-home-hero-actions]');
-		if (actionMount) {
-			const actions = Array.isArray(content.heroActions) ? content.heroActions : [];
-			actionMount.innerHTML = actions.map(contentAction).join('');
-		}
-
 	}
 
 	function renderChatbot() {
@@ -885,7 +882,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const hasSplendidChinaGallery = !!$('[data-splendid-china-gallery]');
 
 	renderPageBlocks();
-	renderHomePage();
 	loadZeffyEmbedScript();
 	renderPageStars();
 	renderHeader();
@@ -1072,7 +1068,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const lightboxClose = $('.gallery-lightbox-close');
 		const prevButton = galleryContainer.querySelector('.prev');
 		const nextButton = galleryContainer.querySelector('.next');
-		const galleryBlock = findBlock(content.blocks || [], 'gallery') || {};
+		const galleryBlock = findSectionComponent(content.sections || [], 'gallery') || {};
 		const galleryGroups = Array.isArray(galleryBlock.groups)
 			? galleryBlock.groups
 			: (Array.isArray(content.galleryGroups) ? content.galleryGroups : []);

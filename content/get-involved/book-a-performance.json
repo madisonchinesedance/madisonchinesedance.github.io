@@ -1,119 +1,133 @@
 {
   "pageTitle": "Book a Performance | Madison Chinese Dance Academy",
   "metaDescription": "Book Madison Chinese Dance Academy for cultural festivals, school events, and community performances.",
-  "blocks": [
+  "sections": [
     {
-      "type": "hero",
-      "blocks": [
+      "name": "intro",
+      "columns": 1,
+      "items": [
         {
-          "type": "heading1",
-          "id": "book-a-performance-heading",
-          "text": "Book a Performance"
-        },
-        {
-          "type": "body",
-          "text": "Bring the beauty of Chinese dance to your next event. Madison Chinese Dance Academy performs at cultural festivals, school assemblies, community celebrations, corporate functions, and private gatherings throughout the region."
+          "heading1": {
+            "text": "Book a Performance",
+            "id": "book-a-performance-heading"
+          },
+          "body": {
+            "text": "Bring the beauty of Chinese dance to your next event. Madison Chinese Dance Academy performs at cultural festivals, school assemblies, community celebrations, corporate functions, and private gatherings throughout the region."
+          }
         }
       ]
     },
     {
-      "type": "section",
-      "blocks": [
+      "name": "section-2",
+      "columns": 1,
+      "items": [
         {
-          "type": "heading2",
-          "id": "performance-types",
-          "text": "Performance Options"
-        },
-        {
-          "type": "body",
-          "text": "We offer a range of performance styles to fit your event, audience, and venue. Our dancers are trained in both traditional Chinese dance and ballet, allowing us to craft engaging programs for any occasion."
-        },
-        {
-          "type": "cards",
-          "columns": 3,
-          "items": [
-            {
-              "heading": "Cultural Festivals",
-              "body": "Lunar New Year, Mid-Autumn Festival, and community cultural celebrations featuring traditional and contemporary Chinese dance."
-            },
-            {
-              "heading": "School & Educational Events",
-              "body": "Assemblies, classroom visits, and cultural awareness programs that introduce students to Chinese dance and traditions."
-            },
-            {
-              "heading": "Community & Private Events",
-              "body": "Concerts, fundraisers, corporate events, and community celebrations. Performances can be tailored to your theme."
-            }
-          ]
+          "heading2": {
+            "text": "Performance Options",
+            "id": "performance-types"
+          },
+          "body": {
+            "text": "We offer a range of performance styles to fit your event, audience, and venue. Our dancers are trained in both traditional Chinese dance and ballet, allowing us to craft engaging programs for any occasion."
+          }
         }
       ]
     },
     {
-      "type": "section",
-      "blocks": [
+      "name": "section-3",
+      "columns": 3,
+      "items": [
         {
-          "type": "heading2",
-          "id": "how-to-book",
-          "text": "How to Book"
+          "heading2": {
+            "text": "Cultural Festivals"
+          },
+          "body": {
+            "text": "Lunar New Year, Mid-Autumn Festival, and community cultural celebrations featuring traditional and contemporary Chinese dance."
+          }
         },
         {
-          "type": "body",
-          "text": "To request a performance, please email us at madison.chinese.dances@gmail.com with the following details: event name, date and time, venue location, expected audience size, and a short description of the occasion. We will respond within 2-3 business days to discuss availability, performance options, and any fees or technical requirements."
+          "heading2": {
+            "text": "School & Educational Events"
+          },
+          "body": {
+            "text": "Assemblies, classroom visits, and cultural awareness programs that introduce students to Chinese dance and traditions."
+          }
         },
         {
-          "type": "body",
-          "text": "We recommend reaching out at least 4-6 weeks in advance for the best chance of securing your preferred date. We are happy to work with your event timeline whenever possible."
+          "heading2": {
+            "text": "Community & Private Events"
+          },
+          "body": {
+            "text": "Concerts, fundraisers, corporate events, and community celebrations. Performances can be tailored to your theme."
+          }
         }
       ]
     },
     {
-      "type": "section",
-      "blocks": [
+      "name": "section-3",
+      "columns": 1,
+      "items": [
         {
-          "type": "heading2",
-          "id": "performance-faq",
-          "text": "Frequently Asked Questions"
-        },
-        {
-          "type": "body",
-          "text": "<b>How long is a typical performance?</b> Performances can be tailored from 10 minutes to a full one-hour show, depending on your event."
-        },
-        {
-          "type": "body",
-          "text": "<b>What are the space requirements?</b> We need a clear performance area of at least 12 by 12 feet, access to electricity for sound, and a changing area for our dancers."
-        },
-        {
-          "type": "body",
-          "text": "<b>Is there a fee?</b> Fees vary based on performance length, group size, and travel. Some community and educational events may be eligible for reduced rates. Please contact us to discuss."
+          "heading2": {
+            "text": "How to Book",
+            "id": "how-to-book"
+          },
+          "body": {
+            "text": "To request a performance, please email us at madison.chinese.dances@gmail.com with the following details: event name, date and time, venue location, expected audience size, and a short description of the occasion. We will respond within 2-3 business days to discuss availability, performance options, and any fees or technical requirements."
+          },
+          "body_2": {
+            "text": "We recommend reaching out at least 4-6 weeks in advance for the best chance of securing your preferred date. We are happy to work with your event timeline whenever possible."
+          }
         }
       ]
     },
     {
-      "type": "section",
-      "blocks": [
+      "name": "section-4",
+      "columns": 1,
+      "items": [
         {
-          "type": "heading2",
-          "id": "book-contact",
-          "text": "Request a Performance"
-        },
+          "heading2": {
+            "text": "Frequently Asked Questions",
+            "id": "performance-faq"
+          },
+          "body": {
+            "text": "<b>How long is a typical performance?</b> Performances can be tailored from 10 minutes to a full one-hour show, depending on your event."
+          },
+          "body_2": {
+            "text": "<b>What are the space requirements?</b> We need a clear performance area of at least 12 by 12 feet, access to electricity for sound, and a changing area for our dancers."
+          },
+          "body_3": {
+            "text": "<b>Is there a fee?</b> Fees vary based on performance length, group size, and travel. Some community and educational events may be eligible for reduced rates. Please contact us to discuss."
+          }
+        }
+      ]
+    },
+    {
+      "name": "section-5",
+      "columns": 1,
+      "items": [
         {
-          "type": "body",
-          "text": "Ready to bring Chinese dance to your event? Send us the details and we will get back to you with availability and options."
-        },
-        {
-          "type": "body",
-          "actions": [
-            {
-              "route": "contact",
-              "label": "Contact Us",
-              "style": "primary"
-            },
-            {
-              "route": "events",
-              "label": "See Upcoming Events",
-              "style": "secondary"
-            }
-          ]
+          "heading2": {
+            "text": "Request a Performance",
+            "id": "book-contact"
+          },
+          "body": {
+            "text": "Ready to bring Chinese dance to your event? Send us the details and we will get back to you with availability and options."
+          },
+          "body_2": {
+            "text": "",
+            "actions": [
+              {
+                "route": "contact",
+                "label": "Contact Us",
+                "style": "primary"
+              },
+              {
+                "route": "events",
+                "label": "See Upcoming Events",
+                "style": "secondary"
+              }
+            ]
+          }
         }
       ]
     }
