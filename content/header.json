@@ -22,7 +22,7 @@
       "items": [
         {
           "route": "programs",
-          "label": "Our Story"
+          "label": "Programs"
         },
         {
           "route": "meet-the-faculty",
