@@ -77,7 +77,7 @@
       ]
     },
     {
-      "label": "Event",
+      "label": "Events",
       "items": [
         {
           "route": "events",

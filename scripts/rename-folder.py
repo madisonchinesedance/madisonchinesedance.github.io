@@ -13,7 +13,8 @@ This updates:
   1. Moves all files from pages/<old>/ to pages/<new>/
   2. Moves all files from content/<old>/ to content/<new>/
   3. Updates every route in site.json that references files in the folder
-  4. Updates data-route attributes in all affected HTML files
+  4. Updates nav dropdown labels in header.json to match the new folder name
+  5. Updates footer column headings in footer.json to match the new folder name
 """
 
 from __future__ import annotations
@@ -47,6 +48,33 @@ def confirm(message: str) -> bool:
     return answer in {"y", "yes"}
 
 
+# Words that should remain lowercase in title case (unless first word)
+_TITLE_CASE_MINOR_WORDS = {
+    "a", "an", "the", "and", "but", "or", "for", "nor",
+    "on", "at", "to", "from", "by", "in", "of", "vs", "via",
+}
+
+
+def slug_to_title(slug: str) -> str:
+    """Convert a kebab-case or underscore slug to Title Case.
+
+    Examples:
+        "programs"   -> "Programs"
+        "get-involved" -> "Get Involved"
+        "event"      -> "Event"
+    """
+    words = slug.replace("_", "-").split("-")
+    if not words:
+        return slug
+    result = []
+    for i, word in enumerate(words):
+        if i == 0 or i == len(words) - 1 or word.lower() not in _TITLE_CASE_MINOR_WORDS:
+            result.append(word.capitalize())
+        else:
+            result.append(word.lower())
+    return " ".join(result)
+
+
 class RenameResult:
     """Tracks every change made during a folder rename."""
 
@@ -60,6 +88,18 @@ class RenameResult:
 
 
 # ── Core rename logic ────────────────────────────────────────────────────────
+
+def _routes_in_folder(site: dict, folder: str) -> set[str]:
+    """Return the set of route IDs whose page/content paths are in the given folder."""
+    routes = site.get("routes", {})
+    route_ids = set()
+    for route_id, info in routes.items():
+        page = info.get("page", "")
+        content = info.get("content", "")
+        if page.startswith(f"{folder}/") or content.startswith(f"{folder}/"):
+            route_ids.add(route_id)
+    return route_ids
+
 
 def rename_folder(
     old_folder: str,
@@ -90,7 +130,7 @@ def rename_folder(
             print(f"Error: destination folder '{new_folder}' already exists.")
             sys.exit(1)
         else:
-            print(f"Warning: destination folder '{new_folder}' exists – will merge/overwrite.")
+            print(f"Warning: destination folder '{new_folder}' exists -- will merge/overwrite.")
 
     # ── 1. Move pages/ folder ────────────────────────────────────────────
 
@@ -101,7 +141,6 @@ def rename_folder(
                 dest = new_pages_dir / file.name
                 shutil.move(str(file), str(dest))
                 result.log(f"Moved page: {old_folder}/{file.name} -> {new_folder}/{file.name}")
-        # Remove old directory if empty
         try:
             old_pages_dir.rmdir()
         except OSError:
@@ -116,7 +155,6 @@ def rename_folder(
                 dest = new_content_dir / file.name
                 shutil.move(str(file), str(dest))
                 result.log(f"Moved content: {old_folder}/{file.name} -> {new_folder}/{file.name}")
-        # Remove old directory if empty
         try:
             old_content_dir.rmdir()
         except OSError:
@@ -141,28 +179,67 @@ def rename_folder(
         write_json(site_path, site)
         result.log(f"Updated {updated_count} route(s) in site.json")
 
-    # ── 4. Update data-route in moved HTML files ─────────────────────────
+    # ── 4. Update header.json nav dropdown labels ────────────────────────
 
-    if new_pages_dir.is_dir():
-        for html_file in new_pages_dir.glob("*.html"):
-            html = html_file.read_text(encoding="utf-8")
-            # No data-route changes needed here — data-route uses route IDs, not folder names.
-            # But we do update any hardcoded folder references in the HTML content.
-            # (Typically there are none, but we check anyway.)
-
-    # ── 5. Update header.json navigation ─────────────────────────────────
+    # Find which route IDs live in the old folder (use the UPDATED site.json)
+    affected_routes = _routes_in_folder(site, new_folder)
+    new_label = slug_to_title(new_folder)
 
     header_path = content_root / "header.json"
     if header_path.exists():
         header = load_json(header_path)
-        # Nav items don't contain folder paths directly, but route IDs may reference
-        # pages in this folder. The route IDs themselves don't change with a folder rename,
-        # only the file paths in site.json change. So no header changes needed.
+        nav = header.get("nav", [])
+        header_updated = False
+
+        for group in nav:
+            if "items" not in group:
+                continue
+            # Check if this dropdown group contains items whose routes
+            # point to pages in the renamed folder
+            group_routes = {
+                item.get("route") for item in group["items"] if "route" in item
+            }
+            if group_routes and group_routes.issubset(affected_routes):
+                old_label = group.get("label", "")
+                if old_label and old_label != new_label:
+                    group["label"] = new_label
+                    header_updated = True
+                    result.log(
+                        f"Updated nav label in header.json: '{old_label}' -> '{new_label}'"
+                    )
+
+        if header_updated:
+            write_json(header_path, header)
+
+    # ── 5. Update footer.json column headings ────────────────────────────
+
+    footer_path = content_root / "footer.json"
+    if footer_path.exists():
+        footer = load_json(footer_path)
+        columns = footer.get("columns", [])
+        footer_updated = False
+
+        for column in columns:
+            col_links = column.get("links", [])
+            col_routes = {
+                link.get("route") for link in col_links if "route" in link
+            }
+            if col_routes and col_routes.issubset(affected_routes):
+                old_heading = column.get("heading", "")
+                if old_heading and old_heading != new_label:
+                    column["heading"] = new_label
+                    footer_updated = True
+                    result.log(
+                        f"Updated footer heading: '{old_heading}' -> '{new_label}'"
+                    )
+
+        if footer_updated:
+            write_json(footer_path, footer)
 
     # ── Summary ──────────────────────────────────────────────────────────
 
     if not result.changes:
-        result.log("No changes needed — folder content may already be in the target location.")
+        result.log("No changes needed -- folder content may already be in the target location.")
 
     return result
 
@@ -177,7 +254,6 @@ def interactive_menu() -> None:
     print("\nRename Folder\n")
     print("Current folders:")
 
-    # List folders that exist under pages/ or content/
     all_folders = set()
     if pages_root.is_dir():
         all_folders.update(
@@ -198,7 +274,7 @@ def interactive_menu() -> None:
         if content_exists:
             count = len(list((content_root / folder).glob("*.json")))
             status.append(f"content/ ({count} JSON)")
-        print(f"  • {folder}/ — {', '.join(status)}")
+        print(f"  * {folder}/ -- {', '.join(status)}")
 
     old_folder = prompt("\nFolder name to rename")
     if not old_folder:
@@ -214,10 +290,13 @@ def interactive_menu() -> None:
         print("Same name. Nothing to do.")
         return
 
-    print(f"\nRenaming '{old_folder}/' → '{new_folder}/' will:")
-    print(f"  • Move all HTML files from pages/{old_folder}/ → pages/{new_folder}/")
-    print(f"  • Move all JSON files from content/{old_folder}/ → content/{new_folder}/")
-    print(f"  • Update route paths in site.json")
+    new_label = slug_to_title(new_folder)
+    print(f"\nRenaming '{old_folder}/' -> '{new_folder}/' will:")
+    print(f"  * Move all HTML files from pages/{old_folder}/ -> pages/{new_folder}/")
+    print(f"  * Move all JSON files from content/{old_folder}/ -> content/{new_folder}/")
+    print(f"  * Update route paths in site.json")
+    print(f"  * Update nav dropdown labels in header.json to '{new_label}'")
+    print(f"  * Update footer column headings to '{new_label}'")
 
     if not confirm("\nProceed?"):
         print("Aborted.")
