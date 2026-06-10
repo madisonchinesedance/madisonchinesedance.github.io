@@ -7,6 +7,33 @@
 
 /* Utility: select single element */
 const $ = (sel) => document.querySelector(sel);
+/* Simple markdown-to-HTML for chatbot messages.
+   Converts **bold**, *italic*, ## headings, --- hr, and paragraphs. */
+function markdownToHtml(text) {
+	const esc = String(text)
+		.replace(/[&]/g, () => '\x26amp;')
+		.replace(/[<]/g, () => '\x26lt;')
+		.replace(/[>]/g, () => '\x26gt;')
+		.replace(/["]/g, () => '\x26quot;');
+	const md = esc
+		.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+		.replace(/\*(.+?)\*/g, '<em>$1</em>');
+	// Split on blank lines for paragraph/block-level yield
+	return md.split(/\n{2,}/).map(b => {
+		const block = b.trim();
+		if (!block) return '';
+		if (/^#/.test(block)) {
+			const inline = block.replace(/\n/g, ' ');
+			if (/^### /.test(inline)) return '<h3>' + inline.slice(4) + '</h3>';
+			if (/^## /.test(inline)) return '<h2>' + inline.slice(3) + '</h2>';
+			if (/^# /.test(inline)) return '<h1>' + inline.slice(2) + '</h1>';
+		}
+		if (/^---+$/.test(block)) return '<hr>';
+		// Paragraph: replace remaining newlines with spaces
+		return '<p>' + block.replace(/\n/g, ' ') + '</p>';
+	}).filter(Boolean).join('');
+}
+
 /* Utility: select all */
 const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
@@ -27,11 +54,11 @@ function getPageId() {
 
 function escapeHtml(value) {
 	return String(value)
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;')
-		.replace(/'/g, '&#39;');
+		.replace(/[&]/g, () => '\x26amp;')
+		.replace(/[<]/g, () => '\x26lt;')
+		.replace(/[>]/g, () => '\x26gt;')
+		.replace(/["]/g, () => '\x26quot;')
+		.replace(/[']/g, () => '\x26#39;');
 }
 
 async function loadJson(path) {
@@ -1509,6 +1536,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 			chatbotSuggestions.addEventListener('click', (e) => {
 				const btn = e.target.closest('.chatbot-suggestion-btn');
 				if (!btn) return;
+				e.stopPropagation();
 				const text = btn.textContent;
 				chatbotSuggestions.innerHTML = '';
 				sendMessage(text);
@@ -1546,9 +1574,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 					const contentDiv = document.createElement('div');
 					contentDiv.className = 'chatbot-message-content';
-					const p = document.createElement('p');
-					p.textContent = text;
-					contentDiv.appendChild(p);
+					if (isUser) {
+						const p = document.createElement('p');
+						p.textContent = text;
+						contentDiv.appendChild(p);
+					} else {
+						contentDiv.dataset.rawText = text;
+						contentDiv.innerHTML = markdownToHtml(text);
+					}
 
 					messageDiv.appendChild(avatarDiv);
 					messageDiv.appendChild(contentDiv);
@@ -1567,9 +1600,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 			try {
 				const messages = [];
 				chatbotMessages.querySelectorAll('.chatbot-message').forEach((msg) => {
-					const p = msg.querySelector('.chatbot-message-content p');
-					if (p) {
-						messages.push({ text: p.textContent, isUser: msg.classList.contains('user') });
+					const contentEl = msg.querySelector('.chatbot-message-content');
+					if (contentEl) {
+						// For user messages, use the p tag's textContent; for bot messages use rawText
+						const text = msg.classList.contains('user')
+							? (contentEl.querySelector('p')?.textContent || '')
+							: (contentEl.dataset.rawText || '');
+						messages.push({ text, isUser: msg.classList.contains('user') });
 					}
 				});
 				sessionStorage.setItem(CHATBOT_MESSAGES_KEY, JSON.stringify(messages));
@@ -1644,9 +1681,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 			const contentDiv = document.createElement('div');
 			contentDiv.className = 'chatbot-message-content';
-			const p = document.createElement('p');
-			p.textContent = text;
-			contentDiv.appendChild(p);
+			if (isUser) {
+				const p = document.createElement('p');
+				p.textContent = text;
+				contentDiv.appendChild(p);
+			} else {
+				contentDiv.dataset.rawText = text;
+				contentDiv.innerHTML = markdownToHtml(text);
+			}
 
 			messageDiv.appendChild(avatarDiv);
 			messageDiv.appendChild(contentDiv);

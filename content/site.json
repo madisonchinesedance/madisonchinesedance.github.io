@@ -5,40 +5,35 @@
       "page": "index.html",
       "content": "index.json"
     },
-    "about": {
-      "href": "pages/about/about.html",
-      "page": "about/about.html",
-      "content": "about/about.json"
-    },
     "contact": {
-      "href": "pages/about/contact.html",
-      "page": "about/contact.html",
-      "content": "about/contact.json"
+      "href": "pages/programs/contact.html",
+      "page": "programs/contact.html",
+      "content": "programs/contact.json"
     },
     "events": {
-      "href": "pages/community/events.html",
-      "page": "community/events.html",
-      "content": "community/events.json"
+      "href": "pages/events/events.html",
+      "page": "events/events.html",
+      "content": "events/events.json"
     },
     "services": {
-      "href": "pages/community/services.html",
-      "page": "community/services.html",
-      "content": "community/services.json"
+      "href": "pages/events/services.html",
+      "page": "events/services.html",
+      "content": "events/services.json"
     },
     "beginner-dancers": {
-      "href": "pages/programs/beginner-dancers.html",
-      "page": "programs/beginner-dancers.html",
-      "content": "programs/beginner-dancers.json"
+      "href": "pages/classes/beginner-dancers.html",
+      "page": "classes/beginner-dancers.html",
+      "content": "classes/beginner-dancers.json"
     },
     "intermediate-dancers": {
-      "href": "pages/programs/intermediate-dancers.html",
-      "page": "programs/intermediate-dancers.html",
-      "content": "programs/intermediate-dancers.json"
+      "href": "pages/classes/intermediate-dancers.html",
+      "page": "classes/intermediate-dancers.html",
+      "content": "classes/intermediate-dancers.json"
     },
     "advanced-dancers": {
-      "href": "pages/programs/advanced-dancers.html",
-      "page": "programs/advanced-dancers.html",
-      "content": "programs/advanced-dancers.json"
+      "href": "pages/classes/advanced-dancers.html",
+      "page": "classes/advanced-dancers.html",
+      "content": "classes/advanced-dancers.json"
     },
     "gallery": {
       "href": "pages/gallery.html",
@@ -151,19 +146,14 @@
       "content": "get-involved/book-a-performance.json"
     },
     "meet-the-faculty": {
-      "href": "pages/about/meet-the-faculty.html",
-      "page": "about/meet-the-faculty.html",
-      "content": "about/meet-the-faculty.json"
+      "href": "pages/programs/meet-the-faculty.html",
+      "page": "programs/meet-the-faculty.html",
+      "content": "programs/meet-the-faculty.json"
     },
     "success-stories": {
-      "href": "pages/about/success-stories.html",
-      "page": "about/success-stories.html",
-      "content": "about/success-stories.json"
-    },
-    "faq": {
-      "href": "pages/faq.html",
-      "page": "faq.html",
-      "content": "faq.json"
+      "href": "pages/programs/success-stories.html",
+      "page": "programs/success-stories.html",
+      "content": "programs/success-stories.json"
     },
     "see-a-performance": {
       "href": "pages/get-involved/see-a-performance.html",
@@ -174,6 +164,11 @@
       "href": "pages/get-involved/support-our-cause.html",
       "page": "get-involved/support-our-cause.html",
       "content": "get-involved/support-our-cause.json"
+    },
+    "programs": {
+      "href": "pages/programs/programs.html",
+      "page": "programs/programs.html",
+      "content": "programs/programs.json"
     }
   }
 }

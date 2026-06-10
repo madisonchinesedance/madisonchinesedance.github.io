@@ -7,46 +7,98 @@
   },
   "columns": [
     {
-      "heading": "About Us",
-      "links": [
-        { "route": "about", "label": "Our Story" },
-        { "route": "meet-the-faculty", "label": "Meet the Faculty" },
-        { "route": "success-stories", "label": "Success Stories" },
-        { "route": "contact", "label": "Contact" }
-      ]
-    },
-    {
-      "heading": "Community",
-      "links": [
-        { "route": "events", "label": "Events" },
-        { "route": "services", "label": "Services" },
-        { "route": "gallery", "label": "Gallery" },
-        { "route": "faq", "label": "FAQ" }
-      ]
-    },
-    {
       "heading": "Programs",
       "links": [
-        { "route": "beginner-dancers", "label": "Beginner Dancers" },
-        { "route": "intermediate-dancers", "label": "Intermediate Dancers" },
-        { "route": "advanced-dancers", "label": "Advanced Dancers" }
+        {
+          "route": "programs",
+          "label": "Our Story"
+        },
+        {
+          "route": "meet-the-faculty",
+          "label": "Meet the Faculty"
+        },
+        {
+          "route": "success-stories",
+          "label": "Success Stories"
+        },
+        {
+          "route": "contact",
+          "label": "Contact"
+        }
+      ]
+    },
+    {
+      "heading": "Event",
+      "links": [
+        {
+          "route": "events",
+          "label": "Events"
+        },
+        {
+          "route": "services",
+          "label": "Services"
+        },
+        {
+          "route": "gallery",
+          "label": "Gallery"
+        }
+      ]
+    },
+    {
+      "heading": "Classes",
+      "links": [
+        {
+          "route": "beginner-dancers",
+          "label": "Beginner Dancers"
+        },
+        {
+          "route": "intermediate-dancers",
+          "label": "Intermediate Dancers"
+        },
+        {
+          "route": "advanced-dancers",
+          "label": "Advanced Dancers"
+        }
       ]
     },
     {
       "heading": "Get Involved",
       "links": [
-        { "route": "dance-with-us", "label": "Dance With Us" },
-        { "route": "book-a-performance", "label": "Bring Us to Your Event" },
-        { "route": "see-a-performance", "label": "See A Performance" },
-        { "route": "support-our-cause", "label": "Support Our Cause" },
-        { "route": "donate", "label": "Donate" }
+        {
+          "route": "dance-with-us",
+          "label": "Dance With Us"
+        },
+        {
+          "route": "book-a-performance",
+          "label": "Bring Us to Your Event"
+        },
+        {
+          "route": "see-a-performance",
+          "label": "See A Performance"
+        },
+        {
+          "route": "support-our-cause",
+          "label": "Support Our Cause"
+        },
+        {
+          "route": "donate",
+          "label": "Donate"
+        }
       ]
     }
   ],
   "operations": [
-    { "href": "mailto:madison.chinese.dances@gmail.com", "label": "madison.chinese.dances@gmail.com" },
-    { "href": "tel:13012991562", "label": "(301)-299-1562" },
-    { "label": "PO Box 10067 Rockville, MD 20849" }
+    {
+      "href": "mailto:madison.chinese.dances@gmail.com",
+      "label": "madison.chinese.dances@gmail.com"
+    },
+    {
+      "href": "tel:13012991562",
+      "label": "(301)-299-1562"
+    },
+    {
+      "label": "PO Box 10067 Rockville, MD 20849"
+    }
   ],
   "copyright": "© 2026 Madison Chinese Dance Academy. All rights reserved."
 }
