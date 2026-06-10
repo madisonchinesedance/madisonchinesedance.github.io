@@ -862,12 +862,11 @@ a{
 	flex:1 0 auto;
 	overflow:hidden;
 	padding-bottom:clamp(36px, 5vw, 76px);
+	background:
+		radial-gradient(ellipse 130% 38% at 50% 18%, color-mix(in srgb, var(--color-violet) 58%, transparent), transparent 72%),
+		linear-gradient(180deg, var(--color-deep-navy) 0%, color-mix(in srgb, var(--color-violet) 62%, var(--color-deep-navy)) 42%, var(--color-deep-navy) 72%);
 }
 .home-page .site-main{
-	background:
-		radial-gradient(circle at 18% 27%, color-mix(in srgb, var(--color-sunrise) 72%, transparent) 0 8%, transparent 24%),
-		radial-gradient(circle at 72% 12%, color-mix(in srgb, var(--color-violet) 62%, transparent) 0 16%, transparent 35%),
-		linear-gradient(180deg, var(--color-deep-navy) 0%, var(--color-violet) 44%, var(--color-sunrise) 59%, var(--color-deep-navy) 62%);
 	padding-bottom:clamp(52px, 7vw, 96px);
 }
 
@@ -952,11 +951,29 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 .section-grid[style*="--section-columns:2"] .section-item,
 .section-grid[style*="--section-columns:3"] .section-item,
 .section-grid[style*="--section-columns:4"] .section-item{
+	position:relative;
 	padding:var(--card-padding);
 	border-radius:var(--section-radius);
+	overflow:hidden;
 	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency) * 100%), transparent));
 	border:1px solid color-mix(in srgb, var(--section-border) calc(var(--section-transparency) * 100%), transparent);
 	box-shadow:var(--section-shadow);
+}
+.section-grid[style*="--section-columns:2"] .section-item::before,
+.section-grid[style*="--section-columns:3"] .section-item::before,
+.section-grid[style*="--section-columns:4"] .section-item::before{
+	content:"";
+	position:absolute;
+	inset:0;
+	pointer-events:none;
+	background:linear-gradient(135deg, color-mix(in srgb, var(--light-text-color) 8%, transparent), transparent 38%);
+	opacity:0.45;
+}
+.section-grid[style*="--section-columns:2"] .section-item > *,
+.section-grid[style*="--section-columns:3"] .section-item > *,
+.section-grid[style*="--section-columns:4"] .section-item > *{
+	position:relative;
+	z-index:1;
 }
 a.section-item:hover,
 a.section-item:focus-visible{
@@ -969,13 +986,21 @@ a.section-item:focus-visible{
 	padding-top:22px;
 }
 .section-columns > .container{
+	width:min(100% - 32px, 1600px);
 	background:transparent;
 	border:0;
 	box-shadow:none;
-	padding:0 var(--section-padding-x);
+	padding:0;
+}
+.section-columns:has(a, button):hover > .container,
+.section-columns:has(a, button):focus-within > .container{
+	background:transparent !important;
+	border-color:transparent !important;
+	box-shadow:none !important;
 }
 .section-columns .section-grid{
-	max-width:var(--content-width);
+	width:100%;
+	max-width:none;
 	margin:0 auto;
 }
 .home-page .page-star-field{
@@ -1016,7 +1041,7 @@ a.section-item:focus-visible{
 .home-page .section-highlights{
 	margin-top:0;
 	padding-top:8px;
-	padding-bottom:clamp(52px, 7vw, 92px);
+	padding-bottom:clamp(34px, 5vw, 64px);
 }
 .home-page .section-highlights .section-grid{
 	padding-top:28px;
@@ -1025,30 +1050,7 @@ a.section-item:focus-visible{
 .home-page .section-highlights .section-item,
 .home-page .section-academy-links .section-item,
 .home-page .section-get-involved-links .section-item{
-	position:relative;
 	min-height:190px;
-	overflow:hidden;
-	background:
-		linear-gradient(160deg, color-mix(in srgb, var(--color-violet) 78%, transparent), color-mix(in srgb, var(--color-royal-blue) 88%, transparent)),
-		linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency) * 100%), transparent));
-	border-color:color-mix(in srgb, var(--light-text-color) 12%, transparent);
-	box-shadow:0 20px 44px color-mix(in srgb, var(--color-deep-navy) 62%, transparent);
-}
-.home-page .section-highlights .section-item::before,
-.home-page .section-academy-links .section-item::before,
-.home-page .section-get-involved-links .section-item::before{
-	content:"";
-	position:absolute;
-	inset:0;
-	pointer-events:none;
-	background:radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--light-text-color) 18%, transparent), transparent 34%);
-	opacity:0.75;
-}
-.home-page .section-highlights .section-item > *,
-.home-page .section-academy-links .section-item > *,
-.home-page .section-get-involved-links .section-item > *{
-	position:relative;
-	z-index:1;
 }
 .home-page .section-highlights h2{
 	font-size:clamp(2.2rem, 4vw, 4.25rem);
@@ -1056,21 +1058,20 @@ a.section-item:focus-visible{
 }
 .home-page .section-academy{
 	margin-top:0;
-	padding-top:clamp(54px, 7vw, 92px);
+	padding-top:clamp(38px, 5vw, 66px);
 	padding-bottom:24px;
-	background:linear-gradient(180deg, var(--color-deep-navy), color-mix(in srgb, var(--color-deep-navy) 88%, black));
 	border-radius:36px 36px 0 0;
 }
 .home-page .section-academy > .container,
 .home-page .section-story > .container{
-	background:linear-gradient(180deg, color-mix(in srgb, var(--color-violet) 56%, transparent), color-mix(in srgb, var(--color-royal-blue) 62%, transparent));
-	border-color:color-mix(in srgb, var(--light-text-color) 12%, transparent);
+	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency) * 100%), transparent));
+	border-color:color-mix(in srgb, var(--section-border) calc(var(--section-transparency) * 100%), transparent);
 }
 .home-page .section-academy-links,
 .home-page .section-story,
 .home-page .section-get-involved,
 .home-page .section-get-involved-links{
-	background:color-mix(in srgb, var(--color-deep-navy) 92%, black);
+	background:transparent;
 }
 .home-page .section-academy-links{
 	padding-top:8px;
@@ -1217,12 +1218,12 @@ a.section-item:focus-visible{
 }
 .home-page .section-academy.home-intro{
 	margin-top:0;
-	padding-top:clamp(54px, 7vw, 92px);
-	background:linear-gradient(180deg, var(--color-deep-navy), color-mix(in srgb, var(--color-deep-navy) 88%, black));
+	padding-top:clamp(38px, 5vw, 66px);
+	background:transparent;
 }
 .home-page .section-academy.home-intro > .container{
-	background:linear-gradient(180deg, color-mix(in srgb, var(--color-violet) 56%, transparent), color-mix(in srgb, var(--color-royal-blue) 62%, transparent));
-	border:1px solid color-mix(in srgb, var(--light-text-color) 12%, transparent);
+	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency) * 100%), transparent));
+	border:1px solid color-mix(in srgb, var(--section-border) calc(var(--section-transparency) * 100%), transparent);
 	border-radius:var(--section-radius);
 	box-shadow:var(--section-shadow);
 	padding:clamp(18px, 3vw, 40px) var(--section-padding-x);
@@ -1884,10 +1885,13 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	.section .container{
 		padding:24px;
 	}
-	.section-columns > .container,
 	.home-page .section-intro > .container,
 	.home-page .section-get-involved > .container{
 		padding:0 20px;
+	}
+	.section-columns > .container{
+		width:min(100% - 32px, 1600px);
+		padding:0;
 	}
 	.home-section .container{
 		padding:0 20px;
