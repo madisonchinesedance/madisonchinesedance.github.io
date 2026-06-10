@@ -1,0 +1,20 @@
+{
+  "pageTitle": "Beginner Dancers | Madison Chinese Dance Academy",
+  "metaDescription": "Introductory class information for beginner Madison Chinese Dance Academy students.",
+  "blocks": [
+    {
+      "type": "hero",
+      "blocks": [
+        {
+          "type": "heading1",
+          "id": "beginner-dancers-heading",
+          "text": "Beginner Dancers"
+        },
+        {
+          "type": "body",
+          "text": "A welcoming introductory class for beginner students.\n\nThis placeholder page can be updated with age range, schedule, tuition, registration details, and teacher notes when class information is finalized."
+        }
+      ]
+    }
+  ]
+}

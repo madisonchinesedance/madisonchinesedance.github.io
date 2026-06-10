@@ -334,28 +334,6 @@ Performance archive details, photos, and program notes can be added here.
 
 ---
 
-## Splendid China 2020
-
-Splendid China 2020 performance archive by Madison Chinese Dance Academy.
-
-
-# Splendid China 2020
-
-Performance archive details, photos, and program notes can be added here.
-
----
-
-## Splendid China 2021
-
-Splendid China 2021 performance archive by Madison Chinese Dance Academy.
-
-
-# Splendid China 2021
-
-Performance archive details, photos, and program notes can be added here.
-
----
-
 ## Splendid China 2022
 
 Splendid China 2022 performance archive by Madison Chinese Dance Academy.
@@ -706,18 +684,17 @@ Join us in preserving and sharing the art of Chinese dance. Your generosity help
 
 - Home
 - Gallery
-- FAQ
 ### About Us
 - Our Story
 - Meet the Faculty
 - Success Stories
 - Contact
 
-### Community
+### Programs
 - Events
 - Services
 
-### Programs
+### Classes
 - Beginner Dancers
 - Intermediate Dancers
 - Advanced Dancers
@@ -734,8 +711,6 @@ Join us in preserving and sharing the art of Chinese dance. Your generosity help
 - Splendid China 2024
 - Splendid China 2023
 - Splendid China 2022
-- Splendid China 2021
-- Splendid China 2020
 - Splendid China 2019
 - Splendid China 2018
 - Splendid China 2017
