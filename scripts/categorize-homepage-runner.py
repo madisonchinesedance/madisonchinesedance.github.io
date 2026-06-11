@@ -10,15 +10,21 @@ to a sibling folder based on pixel width and height:
 Only files directly inside homepage-runner/ are processed. Images already
 sorted into tall/wide folders are left untouched.
 
+Use --reconcile to delete duplicate files still left in homepage-runner/
+after files were copied into homepage-runner-tall/ or homepage-runner-wide/.
+
 Dependency: pip install Pillow
 
 Usage:
     python scripts/categorize-homepage-runner.py              # dry-run (default)
     python scripts/categorize-homepage-runner.py --apply      # move files
     python scripts/categorize-homepage-runner.py --apply --copy # copy instead
+    python scripts/categorize-homepage-runner.py --reconcile  # remove duplicates
 
 After sorting, push to R2 and sync JSON:
-    rclone copy cloudflare-r2-import r2:mcda-website-cdn -P
+    python scripts/categorize-homepage-runner.py --apply
+    python scripts/categorize-homepage-runner.py --reconcile
+    rclone sync cloudflare-r2-import r2:mcda-website-cdn -P
     python scripts/scan-images.py
 """
 
@@ -72,6 +78,50 @@ def transfer_file(source: Path, destination: Path, *, copy: bool) -> None:
         shutil.move(source, destination)
 
 
+def reconcile_duplicates(
+    dest_root: Path,
+    *,
+    apply: bool,
+) -> int:
+    """Delete files in homepage-runner/ that also exist in tall or wide folders."""
+    standard_dir = dest_root / BUCKET_STANDARD
+    relocated_dirs = [dest_root / BUCKET_TALL, dest_root / BUCKET_WIDE]
+    if not standard_dir.is_dir():
+        print(f"No {BUCKET_STANDARD}/ folder found at {standard_dir}")
+        return 0
+
+    relocated_names: set[str] = set()
+    for folder in relocated_dirs:
+        for path in list_source_images(folder):
+            relocated_names.add(path.name)
+
+    if not relocated_names:
+        print("No tall/wide images found to reconcile against.")
+        return 0
+
+    removed = 0
+    mode = "RECONCILE" if apply else "DRY RUN"
+    print(f"{mode}: checking {standard_dir} for duplicates in tall/wide folders\n")
+
+    for path in list_source_images(standard_dir):
+        if path.name not in relocated_names:
+            continue
+        print(f"  remove duplicate: {path.name}")
+        if apply:
+            path.unlink()
+        removed += 1
+
+    noun = "duplicate" if removed == 1 else "duplicates"
+    if apply:
+        print(f"\nRemoved {removed} {noun} from {BUCKET_STANDARD}/.")
+    else:
+        print(f"\nWould remove {removed} {noun} from {BUCKET_STANDARD}/.")
+        if removed:
+            print("Re-run with --reconcile --apply to delete them.")
+
+    return removed
+
+
 def parse_args() -> argparse.Namespace:
     root = repo_root()
     parser = argparse.ArgumentParser(
@@ -102,14 +152,19 @@ def parse_args() -> argparse.Namespace:
         help="Aspect ratios above this go to homepage-runner-wide (default: 2.1).",
     )
     parser.add_argument(
+        "--reconcile",
+        action="store_true",
+        help="Remove files from homepage-runner/ that also exist in tall/wide folders.",
+    )
+    parser.add_argument(
         "--apply",
         action="store_true",
-        help="Move or copy files. Without this flag, only print the plan.",
+        help="Move/copy files, or delete duplicates when used with --reconcile.",
     )
     parser.add_argument(
         "--copy",
         action="store_true",
-        help="Copy files instead of moving (only with --apply).",
+        help="Copy files instead of moving (only with --apply, not --reconcile).",
     )
     return parser.parse_args()
 
@@ -118,6 +173,10 @@ def main() -> None:
     args = parse_args()
     source_dir = args.source.resolve()
     dest_root = args.dest_root.resolve()
+
+    if args.reconcile:
+        reconcile_duplicates(dest_root, apply=args.apply)
+        return
 
     images = list_source_images(source_dir)
     if not images:

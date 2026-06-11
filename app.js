@@ -1517,21 +1517,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 	];
 
 	HOME_RUNNERS.forEach(({ selector, imagesKey }) => {
-		const section = document.querySelector(selector);
-		if (!section) return;
-
 		const images = Array.isArray(content[imagesKey]) ? content[imagesKey] : [];
-		if (images.length === 0) {
-			section.hidden = true;
-			return;
-		}
 
-		const runner = initGalleryRunner({
-			galleryContainer: section.querySelector('.gallery-container'),
-			galleryDots: section.querySelector('[data-gallery-dots]'),
-			getFallbackImages: () => images,
+		document.querySelectorAll(selector).forEach((host) => {
+			if (images.length === 0) {
+				host.hidden = true;
+				return;
+			}
+
+			const runner = initGalleryRunner({
+				galleryContainer: host.querySelector('.gallery-container'),
+				galleryDots: host.querySelector('[data-gallery-dots]'),
+				getFallbackImages: () => images,
+			});
+			if (runner) galleryRunners.push(runner);
 		});
-		if (runner) galleryRunners.push(runner);
 	});
 
 	const featuredSection = $('[data-gallery-featured]');

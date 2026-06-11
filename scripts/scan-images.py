@@ -28,11 +28,11 @@ Usage:
     python scripts/scan-images.py
     python scripts/scan-images.py --content content/gallery.json
 
-Push changes to cloudflare with: rclone copy "$env:USERPROFILE\Desktop\Coding\madisonchinesedance.github.io\cloudflare-r2-import" r2:mcda-website-cdn -P
+Push changes to cloudflare with: rclone sync cloudflare-r2-import r2:mcda-website-cdn -P
 
-Homepage runner images: rclone copy cloudflare-r2-import r2:mcda-website-cdn -P
-
-Sort images locally first: python scripts/categorize-homepage-runner.py --apply
+Sort homepage runner images locally first:
+    python scripts/categorize-homepage-runner.py --apply
+    python scripts/categorize-homepage-runner.py --reconcile --apply
 """
 
 from __future__ import annotations
@@ -240,12 +240,39 @@ def scan_featured_gallery() -> list[dict[str, str]]:
     return scan_year_images(GALLERY_PREFIX)
 
 
-def scan_homepage_runners() -> dict[str, list[dict[str, str]]]:
-    """Return image metadata for all homepage runner folders in R2."""
+def image_basename(image: dict[str, str]) -> str:
+    return Path(image["src"].rstrip("/")).name
+
+
+def dedupe_homepage_runners(
+    runners: dict[str, list[dict[str, str]]],
+) -> tuple[dict[str, list[dict[str, str]]], int]:
+    """Remove standard-runner images whose filename also exists in tall/wide."""
+    tall_names = {image_basename(image) for image in runners["homepageRunnerTallImages"]}
+    wide_names = {image_basename(image) for image in runners["homepageRunnerWideImages"]}
+    relocated_names = tall_names | wide_names
+
+    standard_images = runners["homepageRunnerImages"]
+    deduped_standard = [
+        image
+        for image in standard_images
+        if image_basename(image) not in relocated_names
+    ]
+    excluded_count = len(standard_images) - len(deduped_standard)
+
     return {
+        **runners,
+        "homepageRunnerImages": deduped_standard,
+    }, excluded_count
+
+
+def scan_homepage_runners() -> tuple[dict[str, list[dict[str, str]]], int]:
+    """Return image metadata for all homepage runner folders in R2."""
+    runners = {
         key: scan_year_images(prefix)
         for key, prefix in HOMEPAGE_RUNNER_KEYS.items()
     }
+    return dedupe_homepage_runners(runners)
 
 
 def scan_year_folders() -> list[dict]:
@@ -390,7 +417,7 @@ def main() -> None:
 
     years = scan_year_folders()
     featured_images = scan_featured_gallery()
-    homepage_runners = scan_homepage_runners()
+    homepage_runners, excluded_homepage_dupes = scan_homepage_runners()
     homepage_image_count = sum(len(images) for images in homepage_runners.values())
     if not years and not featured_images and homepage_image_count == 0:
         print(
@@ -407,6 +434,12 @@ def main() -> None:
         print(
             f"Updated {homepage_path.relative_to(root)} with "
             f"{count} {key} {noun}."
+        )
+    if excluded_homepage_dupes:
+        noun = "duplicate" if excluded_homepage_dupes == 1 else "duplicates"
+        print(
+            f"Excluded {excluded_homepage_dupes} {noun} from homepage-runner/ "
+            f"(also present in homepage-runner-tall/ or homepage-runner-wide/)."
         )
 
     if not args.skip_main:
@@ -437,10 +470,23 @@ def main() -> None:
             f"{len(year_info['images'])} {image_noun}."
         )
 
+    standard_count = homepage_counts.get("homepageRunnerImages", 0)
+    tall_count = homepage_counts.get("homepageRunnerTallImages", 0)
+    wide_count = homepage_counts.get("homepageRunnerWideImages", 0)
+    homepage_total = standard_count + tall_count + wide_count
+    featured_count = len(featured_images) if not args.skip_main else 0
+
     print(
-        f"\nDone. Updated {updated_per_year} per-year JSON file(s) "
-        f"covering {image_count} image(s)."
+        f"\nDone. Homepage runners: {standard_count} standard, "
+        f"{tall_count} tall, {wide_count} wide ({homepage_total} total)."
     )
+    print(
+        f"Splendid China archive: {image_count} image(s) across "
+        f"{updated_per_year} per-year JSON file(s)."
+    )
+    if not args.skip_main:
+        featured_noun = "image" if featured_count == 1 else "images"
+        print(f"Featured gallery: {featured_count} {featured_noun}.")
 
 
 if __name__ == "__main__":

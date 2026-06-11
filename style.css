@@ -1212,10 +1212,29 @@ a.section-item:focus-visible{
 	max-height:800px;
 	border-radius:14px;
 }
-.home-page .home-runner-tall .gallery-container{
+.home-page .home-runner-tall:not(.home-runner-sidebar) .gallery-container{
 	aspect-ratio:4 / 5;
 	max-height:800px;
 	border-radius:14px;
+}
+.home-page .home-academy-with-runner .section-grid{
+	grid-template-columns:minmax(0, 1.4fr) minmax(260px, 0.85fr);
+	align-items:start;
+	gap:clamp(20px, 3vw, 40px);
+}
+.home-page .home-runner-sidebar{
+	padding:0;
+}
+.home-page .home-runner-sidebar .gallery-container{
+	aspect-ratio:4 / 5;
+	max-height:min(72vh, 640px);
+	border-radius:14px;
+}
+.home-page .home-academy-with-runner:hover > .container,
+.home-page .home-academy-with-runner:focus-within > .container{
+	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency) * 100%), transparent)) !important;
+	border-color:color-mix(in srgb, var(--section-border) calc(var(--section-transparency) * 100%), transparent) !important;
+	box-shadow:var(--section-shadow) !important;
 }
 .home-page .home-runner-wide .gallery-container{
 	aspect-ratio:21 / 9;
@@ -2146,6 +2165,15 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 
 	.announcement-actions{
 		flex-wrap:wrap;
+	}
+}
+
+@media (max-width:768px){
+	.home-page .home-academy-with-runner .section-grid{
+		grid-template-columns:minmax(0, 1fr);
+	}
+	.home-page .home-runner-sidebar .gallery-container{
+		max-height:min(60vh, 520px);
 	}
 }
 
