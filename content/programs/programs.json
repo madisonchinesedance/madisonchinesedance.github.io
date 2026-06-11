@@ -1,40 +1,57 @@
 {
   "pageTitle": "Programs | Madison Chinese Dance Academy",
   "metaDescription": "Programs offered by Madison Chinese Dance Academy - cultural enrichment, artist-in-residence, tai chi, and speaking engagements.",
-  "blocks": [
+  "sections": [
     {
-      "type": "hero",
-      "blocks": [
+      "name": "intro",
+      "columns": 1,
+      "items": [
         {
-          "type": "heading1",
-          "id": "programs-heading",
-          "text": "Programs"
-        },
-        {
-          "type": "body",
-          "text": "The Madison Chinese Dance Academy offers a diverse range of cultural and educational programs that enrich communities through the arts."
+          "heading1": {
+            "text": "Programs",
+            "id": "programs-heading"
+          },
+          "body": {
+            "text": "The Madison Chinese Dance Academy offers a diverse range of cultural and educational programs that enrich communities through the arts."
+          }
         }
       ]
     },
     {
-      "type": "cards",
+      "name": "section-2",
       "columns": 2,
       "items": [
         {
-          "heading": "Lunar New Year Celebration Program & Special Events",
-          "body": "A full-spectrum cultural program tailored for all levels of schools, libraries, senior centers, private/public organizations, museums, and conferences.\n\nLion dance, dragon dance, Chinese dance, Chinese music, Yo-yo, calligraphy, lanterns, kite making, arts & crafts, and interactive show-and-tell."
+          "heading2": {
+            "text": "Lunar New Year Celebration Program & Special Events"
+          },
+          "body": {
+            "text": "A full-spectrum cultural program tailored for all levels of schools, libraries, senior centers, private/public organizations, museums, and conferences.\n\nLion dance, dragon dance, Chinese dance, Chinese music, Yo-yo, calligraphy, lanterns, kite making, arts & crafts, and interactive show-and-tell."
+          }
         },
         {
-          "heading": "Chinese Dance & Chinese Ballet Artist-in-Residence",
-          "body": "Brings classical technique, expressive storytelling, and rich cultural heritage to communities through specialized workshops, rehearsals, and live performances. Blending elegant movement, breath-driven expression, and contemporary creativity, the residency applies an Embedded Teaching and Learning approach to offer participants a holistic body-mind-heart experience crossing the performing arts of the East and the West."
+          "heading2": {
+            "text": "Chinese Dance & Chinese Ballet Artist-in-Residence"
+          },
+          "body": {
+            "text": "Brings classical technique, expressive storytelling, and rich cultural heritage to communities through specialized workshops, rehearsals, and live performances. Blending elegant movement, breath-driven expression, and contemporary creativity, the residency applies an Embedded Teaching and Learning approach to offer participants a holistic body-mind-heart experience crossing the performing arts of the East and the West."
+          }
         },
         {
-          "heading": "Holistic Tai Chi Walk",
-          "body": "Learn to live the time-tested, traditional Chinese ways validated by modern scientific research for a better quality of life.\n\nCore Goals: Improve Physical and Mental Health, Enhance Emotional and Behavioral Well-being, Support Mobility and Balance, Sharpen Memory and Cognitive Abilities\n- Boost Strength and Energy (Qi)"
+          "heading2": {
+            "text": "Holistic Tai Chi Walk"
+          },
+          "body": {
+            "text": "Learn to live the time-tested, traditional Chinese ways validated by modern scientific research for a better quality of life.\n\nCore Goals: Improve Physical and Mental Health, Enhance Emotional and Behavioral Well-being, Support Mobility and Balance, Sharpen Memory and Cognitive Abilities\n- Boost Strength and Energy (Qi)"
+          }
         },
         {
-          "heading": "Speaking Engagements",
-          "body": "Educational lectures on useful Chinese cultural wisdom, focusing on traditional ways of healthy living, self-cultivation, thinking, managing, investing, and strategizing. This program explores the core differences between Chinese and Western cultures and philosophies utilizing our unique Cultural Intelligence (CQ) framework."
+          "heading2": {
+            "text": "Speaking Engagements"
+          },
+          "body": {
+            "text": "Educational lectures on useful Chinese cultural wisdom, focusing on traditional ways of healthy living, self-cultivation, thinking, managing, investing, and strategizing. This program explores the core differences between Chinese and Western cultures and philosophies utilizing our unique Cultural Intelligence (CQ) framework."
+          }
         }
       ]
     }

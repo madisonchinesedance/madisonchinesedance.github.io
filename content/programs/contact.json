@@ -1,36 +1,49 @@
 {
   "pageTitle": "Contact | Madison Chinese Dance Academy",
   "metaDescription": "Contact Madison Chinese Dance Academy.",
-  "blocks": [
+  "sections": [
     {
-      "type": "hero",
-      "blocks": [
+      "name": "intro",
+      "columns": 1,
+      "items": [
         {
-          "type": "heading1",
-          "id": "contact-heading",
-          "text": "Contact"
-        },
-        {
-          "type": "body",
-          "text": "For general inquiries, please email us at the address below. For specific questions about classes, events, or donations, please include a clear subject line to help us direct your message to the appropriate team member. We strive to respond to all inquiries within 2-3 business days."
+          "heading1": {
+            "text": "Contact",
+            "id": "contact-heading"
+          },
+          "body": {
+            "text": "For general inquiries, please email us at the address below. For specific questions about classes, events, or donations, please include a clear subject line to help us direct your message to the appropriate team member. We strive to respond to all inquiries within 2-3 business days."
+          }
         }
       ]
     },
     {
-      "type": "cards",
+      "name": "section-2",
       "columns": 3,
       "items": [
         {
-          "heading": "Email",
-          "body": "madison.chinese.dances@gmail.com"
+          "heading2": {
+            "text": "Email"
+          },
+          "body": {
+            "text": "madison.chinese.dances@gmail.com"
+          }
         },
         {
-          "heading": "Phone",
-          "body": "(301)-299-1562"
+          "heading2": {
+            "text": "Phone"
+          },
+          "body": {
+            "text": "(301)-299-1562"
+          }
         },
         {
-          "heading": "Mailing Address",
-          "body": "PO Box 10067 Rockville, MD 20849"
+          "heading2": {
+            "text": "Mailing Address"
+          },
+          "body": {
+            "text": "PO Box 10067 Rockville, MD 20849"
+          }
         }
       ]
     }

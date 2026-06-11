@@ -53,101 +53,76 @@ def extract_actions(actions, routes):
     return lines
 
 
-def extract_text_from_blocks(blocks, routes, depth=0):
-    """Recursively extract text content from a list of blocks."""
+def extract_text_from_sections(sections, routes):
+    """Extract text content from section/item page JSON."""
     lines = []
-    if not blocks:
-        return lines
+    for section in sections or []:
+        items = section.get("items", [])
+        for item in items:
+            for key, value in item.items():
+                base_key = re.sub(r"_\d+$", "", key)
+                if not isinstance(value, dict):
+                    continue
 
-    for block in blocks:
-        block_type = block.get("type", "")
-
-        if block_type in ("heading1", "heading2", "heading3"):
-            level = int(block_type[-1])
-            text = block.get("text", "")
-            if text:
-                lines.append("")
-                lines.append(f"{'#' * level} {text}")
-                lines.append("")
-
-        elif block_type == "body":
-            text = block.get("text", "") or block.get("body", "")
-            text = strip_html(text)
-            if text:
-                # Split on double newlines for paragraphs
-                for para in text.split("\n\n"):
-                    para = para.strip()
-                    if para:
-                        # Split single newlines into separate lines
-                        for line in para.split("\n"):
-                            lines.append(line.strip())
+                if base_key.startswith("heading") and base_key[-1:].isdigit():
+                    level = int(base_key[-1])
+                    text = value.get("text", "")
+                    if text:
+                        lines.append("")
+                        lines.append(f"{'#' * level} {text}")
                         lines.append("")
 
-            # Handle actions
-            actions = block.get("actions", [])
-            if actions:
-                action_lines = extract_actions(actions, routes)
-                for al in action_lines:
-                    lines.append(al)
+                elif base_key == "body":
+                    lines.extend(extract_body_lines(value, routes))
+
+                elif base_key == "gallery":
+                    lines.extend(extract_gallery_lines(value))
+
+                elif base_key == "zeffyEmbed":
+                    form_url = value.get("formUrl", "")
+                    if form_url:
+                        lines.append(f"- Embedded form: {form_url}")
+                        lines.append("")
+    return lines
+
+
+def extract_body_lines(block, routes):
+    """Extract paragraph text and actions from a body object."""
+    lines = []
+    text = block.get("text", "") or block.get("body", "")
+    text = strip_html(text)
+    if text:
+        for para in text.split("\n\n"):
+            para = para.strip()
+            if para:
+                for line in para.split("\n"):
+                    lines.append(line.strip())
                 lines.append("")
 
-        elif block_type == "cards":
-            items = block.get("items", [])
-            for item in items:
-                heading = item.get("heading", "")
-                body = item.get("body", "")
-                label = item.get("label", "")
-                route = item.get("route", "")
-                body = strip_html(body)
-                if heading:
-                    lines.append(f"- **{heading}**: {body}" if body else f"- **{heading}**")
-                elif body:
-                    lines.append(f"- {body}")
+    actions = block.get("actions", [])
+    if actions:
+        lines.extend(extract_actions(actions, routes))
+        lines.append("")
 
-            # Check for nested actions on cards block
-            actions = block.get("actions", [])
-            if actions:
-                action_lines = extract_actions(actions, routes)
-                for al in action_lines:
-                    lines.append(al)
-            lines.append("")
+    return lines
 
-        elif block_type == "section":
-            variant = block.get("variant", "")
-            nested_blocks = block.get("blocks", [])
-            if nested_blocks:
-                extracted = extract_text_from_blocks(nested_blocks, routes, depth + 1)
-                lines.extend(extracted)
 
-        elif block_type == "hero":
-            variant = block.get("variant", "")
-            nested_blocks = block.get("blocks", [])
-            if nested_blocks:
-                extracted = extract_text_from_blocks(nested_blocks, routes, depth + 1)
-                lines.extend(extracted)
-
-        elif block_type == "gallery":
-            groups = block.get("groups", [])
-            images = block.get("images", [])
-            if groups:
-                for group in groups:
-                    year = group.get("year", "")
-                    events = group.get("events", [])
-                    for event in events:
-                        event_name = event.get("event", "")
-                        event_images = event.get("images", [])
-                        lines.append(f"- {year} - {event_name}: {len(event_images)} images")
-            elif images:
-                lines.append(f"- Gallery with {len(images)} images")
-            lines.append("")
-
-        elif block_type == "zeffyEmbed":
-            form_url = block.get("formUrl", "")
-            title = block.get("iframeTitle", "")
-            if form_url:
-                lines.append(f"- Embedded form: {form_url}")
-            lines.append("")
-
+def extract_gallery_lines(block):
+    """Extract summary text from gallery data."""
+    lines = []
+    groups = block.get("groups", [])
+    images = block.get("images", [])
+    if groups:
+        for group in groups:
+            year = group.get("year", "")
+            events = group.get("events", [])
+            for event in events:
+                event_name = event.get("event", "")
+                event_images = event.get("images", [])
+                lines.append(f"- {year} - {event_name}: {len(event_images)} images")
+    elif images:
+        lines.append(f"- Gallery with {len(images)} images")
+    lines.append("")
     return lines
 
 
@@ -239,7 +214,7 @@ def build_context():
 
         title = content.get("pageTitle", get_section_title(route_id))
         meta = content.get("metaDescription", "")
-        blocks = content.get("blocks", [])
+        content_sections = content.get("sections", [])
 
         section_lines = []
 
@@ -248,10 +223,8 @@ def build_context():
             section_lines.append(meta)
             section_lines.append("")
 
-        # Extract text from blocks
-        if blocks:
-            block_lines = extract_text_from_blocks(blocks, routes)
-            section_lines.extend(block_lines)
+        if content_sections:
+            section_lines.extend(extract_text_from_sections(content_sections, routes))
 
         if section_lines:
             # Use a clean section title

@@ -1,22 +1,6 @@
 {
   "pageTitle": "Splendid China 2019 | Madison Chinese Dance Academy",
   "metaDescription": "Splendid China 2019 performance archive by Madison Chinese Dance Academy.",
-  "blocks": [
-    {
-      "type": "hero",
-      "blocks": [
-        {
-          "type": "heading1",
-          "id": "splendid-2019-heading",
-          "text": "Splendid China 2019"
-        },
-        {
-          "type": "body",
-          "text": "Performance archive details, photos, and program notes can be added here."
-        }
-      ]
-    }
-  ],
   "galleryImages": [
     {
       "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-001.webp",
@@ -87,6 +71,23 @@
       "src": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-014.webp",
       "thumb": "https://cdn.madisonchinesedance.org/splendid-china-2019/splendid-china-2019-014.webp",
       "alt": "Splendid China 2019 014"
+    }
+  ],
+  "sections": [
+    {
+      "name": "intro",
+      "columns": 1,
+      "items": [
+        {
+          "heading1": {
+            "text": "Splendid China 2019",
+            "id": "splendid-2019-heading"
+          },
+          "body": {
+            "text": "Performance archive details, photos, and program notes can be added here."
+          }
+        }
+      ]
     }
   ]
 }
