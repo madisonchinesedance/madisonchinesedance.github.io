@@ -615,6 +615,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	function createStarField(className, count = 120, yMax = 100) {
+		const starTints = [
+			'var(--color-violet)',
+			'var(--color-sunrise)',
+			'#c98fd4',
+			'#7eb8cc',
+		];
+
 		const stars = Array.from({ length: count }, () => {
 			const size = (Math.random() * 3.5 + 2).toFixed(2);
 			const opacity = (Math.random() * 0.3 + 0.65).toFixed(2);
@@ -623,8 +630,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 			const duration = (Math.random() * 2.8 + 2.2).toFixed(2);
 			const delay = (Math.random() * -5).toFixed(2);
 			const drift = (Math.random() * 14 - 7).toFixed(2);
+			const tint = Math.random() < 0.12
+				? `--star-tint:${starTints[Math.floor(Math.random() * starTints.length)]};`
+				: '';
 
-			return `<span class="site-star" style="--star-x:${x}%; --star-y:${y}%; --star-size:${size}px; --star-opacity:${opacity}; --star-duration:${duration}s; --star-delay:${delay}s; --star-drift:${drift}px;"></span>`;
+			return `<span class="site-star" style="--star-x:${x}%; --star-y:${y}%; --star-size:${size}px; --star-opacity:${opacity}; --star-duration:${duration}s; --star-delay:${delay}s; --star-drift:${drift}px; ${tint}"></span>`;
 		}).join('');
 
 		return `<div class="${className}" aria-hidden="true">${stars}</div>`;

@@ -151,9 +151,9 @@
       "content": "get-involved/support-our-cause.json"
     },
     "programs": {
-      "href": "pages/programs/programs.html",
-      "page": "programs/programs.html",
-      "content": "programs/programs.json"
+      "href": "pages/programs.html",
+      "page": "programs.html",
+      "content": "programs.json"
     }
   }
 }
