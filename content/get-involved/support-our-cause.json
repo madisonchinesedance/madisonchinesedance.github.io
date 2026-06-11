@@ -41,7 +41,7 @@
             "text": "Make a Donation"
           },
           "body": {
-            "text": "Your tax-deductible donations help fund classes, scholarships, costumes, and our annual Splendid China production.",
+            "text": "Your donations help fund classes, scholarships, costumes, and our annual Splendid China production.",
             "actions": [
               {
                 "route": "donate",

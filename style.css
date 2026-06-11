@@ -1133,7 +1133,7 @@ a.section-item:focus-visible{
 	background:transparent;
 	border:0;
 	box-shadow:none;
-	padding:0 var(--section-padding-x);
+	padding:0;
 }
 .home-page .section-intro .section-grid,
 .home-page .section-get-involved .section-grid{
@@ -1325,7 +1325,7 @@ a.section-item:focus-visible{
 	box-shadow:none;
 	opacity:1;
 	--entrance-end-opacity: 1;
-	padding:0 20px;
+	padding:0;
 }
 .home-section .container:hover,
 .home-section .container:focus-within{
@@ -2015,14 +2015,14 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	}
 	.home-page .section-intro > .container,
 	.home-page .section-get-involved > .container{
-		padding:0 20px;
+		padding:0;
 	}
 	.section-columns > .container{
 		width:min(100% - 32px, 1600px);
 		padding:0;
 	}
 	.home-section .container{
-		padding:0 20px;
+		padding:0;
 	}
 	.logo{
 		font-size:var(--logo-font-size);
