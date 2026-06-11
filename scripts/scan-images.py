@@ -18,6 +18,8 @@ Configuration (in order of precedence):
 Usage:
     python scripts/scan-images.py
     python scripts/scan-images.py --content content/gallery.json
+
+Push changes to cloudflare with: rclone copy "$env:USERPROFILE\Downloads\splendid-china" r2:mcda-website-cdn -P
 """
 
 from __future__ import annotations
