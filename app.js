@@ -450,8 +450,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 		return body || actions ? `<div class="${classes}">${body}${actions}</div>` : '';
 	}
 
-	function renderGalleryBlock() {
-		return `
+	function renderGalleryBlock(block = {}) {
+		const isRunner = block.variant === 'runner';
+		const carousel = `
 			<div class="gallery-container">
 				<div class="gallery-wrapper" data-gallery-carousel></div>
 				<div class="gallery-controls" aria-label="Gallery controls">
@@ -459,6 +460,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 					<button class="next" type="button" aria-label="Next image">&#10095;</button>
 				</div>
 			</div>
+		`;
+		if (isRunner) {
+			return `
+				${carousel}
+				<div class="gallery-dots" data-gallery-dots aria-label="Homepage image selection"></div>
+			`;
+		}
+		return `
+			${carousel}
 			<div class="gallery-grid" data-gallery-grid aria-label="Gallery image thumbnails"></div>
 		`;
 	}
@@ -1348,12 +1358,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 			updateSelectionIndicators();
 		}
 
-		function updateGallery({ focus = false, scroll = true } = {}) {
+		function updateGallery({ focus = false, scroll = true, behavior = 'smooth' } = {}) {
 			const image = images[currentIndex];
 			if (!image) return;
 
 			if (scroll) {
-				image.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+				galleryWrapper.scrollTo({
+					left: currentIndex * galleryWrapper.clientWidth,
+					behavior,
+				});
 			}
 			if (focus) image.focus({ preventScroll: true });
 
@@ -1365,7 +1378,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 			autoScrollInterval = setInterval(() => {
 				currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-				updateGallery({ scroll: false });
+				updateGallery({ scroll: true });
 			}, 5000);
 		}
 
@@ -1487,6 +1500,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 		return runner;
 	}
 
+	const galleryRunners = [];
+	const homeRunnerSection = $('.home-runner');
+	if (homeRunnerSection) {
+		const homepageImages = Array.isArray(content.homepageRunnerImages)
+			? content.homepageRunnerImages
+			: [];
+		if (homepageImages.length === 0) {
+			homeRunnerSection.hidden = true;
+		} else {
+			const homeRunner = initGalleryRunner({
+				galleryContainer: homeRunnerSection.querySelector('.gallery-container'),
+				galleryDots: homeRunnerSection.querySelector('[data-gallery-dots]'),
+				getFallbackImages: () => homepageImages,
+			});
+			if (homeRunner) galleryRunners.push(homeRunner);
+		}
+	}
+
 	const featuredSection = $('[data-gallery-featured]');
 	const archiveSection = $('[data-gallery-archive]');
 	const isDualGalleryPage = !!(featuredSection && archiveSection);
@@ -1495,7 +1526,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 		? galleryBlock.groups
 		: (Array.isArray(content.galleryGroups) ? content.galleryGroups : []);
 	const featuredImages = Array.isArray(content.galleryImages) ? content.galleryImages : [];
-	const galleryRunners = [];
 
 	if (isDualGalleryPage) {
 		if (featuredImages.length === 0) {
@@ -1519,7 +1549,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 		});
 		if (archiveRunner) galleryRunners.push(archiveRunner);
 	} else {
-		const galleryContainer = $('.gallery-container');
+		const galleryContainer = [...document.querySelectorAll('.gallery-container')]
+			.find((container) => !container.closest('.home-runner'));
 		if (galleryContainer) {
 			const galleryDots = $('[data-gallery-dots]');
 			const isSplendidChinaGallery = !!galleryDots;
