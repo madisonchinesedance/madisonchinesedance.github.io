@@ -616,8 +616,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 	function createStarField(className, count = 120, yMax = 100) {
 		const stars = Array.from({ length: count }, () => {
-			const size = (Math.random() * 2.2 + 1).toFixed(2);
-			const opacity = (Math.random() * 0.45 + 0.45).toFixed(2);
+			const size = (Math.random() * 3.5 + 2).toFixed(2);
+			const opacity = (Math.random() * 0.3 + 0.65).toFixed(2);
 			const x = (Math.random() * 100).toFixed(2);
 			const y = (Math.random() * yMax).toFixed(2);
 			const duration = (Math.random() * 2.8 + 2.2).toFixed(2);
