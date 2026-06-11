@@ -614,6 +614,39 @@ document.addEventListener('DOMContentLoaded', async () => {
 		document.body.appendChild(script);
 	}
 
+	function shuffle(items) {
+		const list = items.slice();
+		for (let i = list.length - 1; i > 0; i -= 1) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[list[i], list[j]] = [list[j], list[i]];
+		}
+		return list;
+	}
+
+	function createNebulaLayer(blobCount = 7) {
+		const palette = shuffle([
+			'rgba(77, 212, 232, 0.45)',
+			'rgba(94, 184, 212, 0.42)',
+			'rgba(216, 93, 75, 0.40)',
+			'rgba(107, 91, 218, 0.38)',
+			'rgba(90, 50, 180, 0.38)',
+			'rgba(232, 184, 109, 0.30)',
+			'rgba(184, 111, 212, 0.35)',
+		]).slice(0, blobCount);
+
+		const blobs = palette.map((color) => {
+			const x = (Math.random() * 88 + 6).toFixed(1);
+			const y = (Math.random() * 88 + 6).toFixed(1);
+			const w = (Math.random() * 28 + 28).toFixed(1);
+			const h = (Math.random() * 22 + 22).toFixed(1);
+			const opacity = (Math.random() * 0.18 + 0.52).toFixed(2);
+
+			return `<span class="site-nebula" style="--nebula-x:${x}%;--nebula-y:${y}%;--nebula-w:${w}%;--nebula-h:${h}%;--nebula-color:${color};--nebula-opacity:${opacity};"></span>`;
+		}).join('');
+
+		return `<div class="page-nebula-layer" aria-hidden="true">${blobs}</div>`;
+	}
+
 	function createStarField(className, count = 120, yMax = 100) {
 		const starTints = [
 			'var(--color-violet)',
@@ -637,7 +670,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 			return `<span class="site-star" style="--star-x:${x}%; --star-y:${y}%; --star-size:${size}px; --star-opacity:${opacity}; --star-duration:${duration}s; --star-delay:${delay}s; --star-drift:${drift}px; ${tint}"></span>`;
 		}).join('');
 
-		return `<div class="${className}" aria-hidden="true">${stars}</div>`;
+		return `<div class="${className}" aria-hidden="true">${createNebulaLayer()}${stars}</div>`;
 	}
 
 	function renderPageStars() {

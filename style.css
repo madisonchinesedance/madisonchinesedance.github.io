@@ -24,13 +24,6 @@
 	--color-violet: #2A2361;
 	--color-white: #FFFFFF;
 
-	/* ── Nebula / galaxy accents ── */
-	--nebula-violet: color-mix(in srgb, var(--color-violet) 52%, transparent);
-	--nebula-purple: color-mix(in srgb, var(--color-purple) 48%, transparent);
-	--nebula-coral: color-mix(in srgb, var(--color-sunrise) 44%, transparent);
-	--nebula-magenta: color-mix(in srgb, #b86fd4 42%, transparent);
-	--nebula-teal: color-mix(in srgb, #5eb8d4 38%, transparent);
-
 	/* ── Brand / background colors ── */
 	--bg-color: var(--color-deep-navy);
 	--dark-text-color: var(--color-black);
@@ -1048,38 +1041,29 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	z-index:0;
 	overflow:visible;
 }
-.page-star-field::before,
-.page-star-field::after{
-	content:"";
+.page-nebula-layer{
 	position:absolute;
-	inset:-15%;
+	inset:0;
 	pointer-events:none;
 	z-index:0;
+	overflow:visible;
+}
+.site-nebula{
+	position:absolute;
+	left:var(--nebula-x);
+	top:var(--nebula-y);
+	width:var(--nebula-w);
+	height:var(--nebula-h);
+	transform:translate(-50%, -50%);
+	border-radius:50%;
+	background:radial-gradient(ellipse at center, var(--nebula-color), transparent 68%);
+	filter:blur(38px);
+	opacity:var(--nebula-opacity);
 	mix-blend-mode:screen;
+	pointer-events:none;
 }
-.page-star-field::before{
-	background:
-		radial-gradient(ellipse 46% 38% at 14% 22%, var(--nebula-violet), transparent 72%),
-		radial-gradient(ellipse 40% 34% at 82% 16%, var(--nebula-coral), transparent 70%),
-		radial-gradient(ellipse 52% 42% at 58% 74%, var(--nebula-purple), transparent 74%),
-		radial-gradient(ellipse 36% 44% at 26% 66%, var(--nebula-magenta), transparent 68%);
-	filter:blur(40px);
-	opacity:0.72;
-	animation:nebula-drift 110s ease-in-out infinite alternate;
-}
-.page-star-field::after{
-	background:
-		radial-gradient(ellipse 38% 36% at 72% 58%, var(--nebula-teal), transparent 70%),
-		radial-gradient(ellipse 44% 32% at 38% 38%, var(--nebula-magenta), transparent 72%);
-	filter:blur(46px);
-	opacity:0.58;
-	animation:nebula-drift-reverse 95s ease-in-out infinite alternate;
-}
-.home-page .page-star-field::before{
-	opacity:0.62;
-}
-.home-page .page-star-field::after{
-	opacity:0.5;
+.home-page .site-nebula{
+	opacity:calc(var(--nebula-opacity) * 0.85);
 }
 .section h2{
 	margin:0 0 12px 0;
@@ -2134,22 +2118,6 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 		margin-top:calc(var(--star-drift) * -0.45);
 	}
 }
-@keyframes nebula-drift{
-	from{
-		transform:translate3d(0, 0, 0) scale(1);
-	}
-	to{
-		transform:translate3d(2.5%, -1.8%, 0) scale(1.06);
-	}
-}
-@keyframes nebula-drift-reverse{
-	from{
-		transform:translate3d(0, 0, 0) scale(1.02);
-	}
-	to{
-		transform:translate3d(-2%, 2.2%, 0) scale(0.96);
-	}
-}
 @keyframes announcement-highlight-pulse{
 	0%,
 	100%{
@@ -2189,8 +2157,6 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	.site-footer,
 	.component-card,
 	.site-star,
-	.page-star-field::before,
-	.page-star-field::after,
 	.is-announcement-highlight-pulse,
 	.announcement-scroll-track{
 		transition:none;
