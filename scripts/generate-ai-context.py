@@ -16,7 +16,7 @@ from pathlib import Path
 
 # Project root is one level up from scripts/
 ROOT = Path(__file__).resolve().parent.parent
-CONTENT_DIR = ROOT / "content"
+CONTENT_DIR = ROOT / "docs" / "content"
 OUTPUT_FILE = ROOT / "ai-context.md"
 
 

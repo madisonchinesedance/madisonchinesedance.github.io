@@ -5,155 +5,155 @@
       "page": "index.html",
       "content": "index.json"
     },
-    "events": {
-      "href": "pages/events/events.html",
-      "page": "events/events.html",
-      "content": "events/events.json"
-    },
-    "services": {
-      "href": "pages/events/services.html",
-      "page": "events/services.html",
-      "content": "events/services.json"
+    "advanced-dancers": {
+      "href": "pages/classes/advanced-dancers.html",
+      "page": "classes/advanced-dancers.html",
+      "content": "classes\\advanced-dancers.json"
     },
     "beginner-dancers": {
       "href": "pages/classes/beginner-dancers.html",
       "page": "classes/beginner-dancers.html",
-      "content": "classes/beginner-dancers.json"
+      "content": "classes\\beginner-dancers.json"
     },
     "intermediate-dancers": {
       "href": "pages/classes/intermediate-dancers.html",
       "page": "classes/intermediate-dancers.html",
-      "content": "classes/intermediate-dancers.json"
-    },
-    "advanced-dancers": {
-      "href": "pages/classes/advanced-dancers.html",
-      "page": "classes/advanced-dancers.html",
-      "content": "classes/advanced-dancers.json"
-    },
-    "gallery": {
-      "href": "pages/gallery.html",
-      "page": "gallery.html",
-      "content": "gallery.json"
-    },
-    "tickets": {
-      "href": "pages/tickets.html",
-      "page": "tickets.html",
-      "content": "tickets.json"
+      "content": "classes\\intermediate-dancers.json"
     },
     "donate": {
       "href": "pages/donate.html",
       "page": "donate.html",
       "content": "donate.json"
     },
-    "splendid-china-2008": {
-      "href": "pages/splendid-china/splendid-china-2008.html",
-      "page": "splendid-china/splendid-china-2008.html",
-      "content": "splendid-china/splendid-china-2008.json"
+    "events": {
+      "href": "pages/events/events.html",
+      "page": "events/events.html",
+      "content": "events\\events.json"
     },
-    "splendid-china-2009": {
-      "href": "pages/splendid-china/splendid-china-2009.html",
-      "page": "splendid-china/splendid-china-2009.html",
-      "content": "splendid-china/splendid-china-2009.json"
+    "services": {
+      "href": "pages/events/services.html",
+      "page": "events/services.html",
+      "content": "events\\services.json"
     },
-    "splendid-china-2010": {
-      "href": "pages/splendid-china/splendid-china-2010.html",
-      "page": "splendid-china/splendid-china-2010.html",
-      "content": "splendid-china/splendid-china-2010.json"
-    },
-    "splendid-china-2011": {
-      "href": "pages/splendid-china/splendid-china-2011.html",
-      "page": "splendid-china/splendid-china-2011.html",
-      "content": "splendid-china/splendid-china-2011.json"
-    },
-    "splendid-china-2012": {
-      "href": "pages/splendid-china/splendid-china-2012.html",
-      "page": "splendid-china/splendid-china-2012.html",
-      "content": "splendid-china/splendid-china-2012.json"
-    },
-    "splendid-china-2013": {
-      "href": "pages/splendid-china/splendid-china-2013.html",
-      "page": "splendid-china/splendid-china-2013.html",
-      "content": "splendid-china/splendid-china-2013.json"
-    },
-    "splendid-china-2014": {
-      "href": "pages/splendid-china/splendid-china-2014.html",
-      "page": "splendid-china/splendid-china-2014.html",
-      "content": "splendid-china/splendid-china-2014.json"
-    },
-    "splendid-china-2015": {
-      "href": "pages/splendid-china/splendid-china-2015.html",
-      "page": "splendid-china/splendid-china-2015.html",
-      "content": "splendid-china/splendid-china-2015.json"
-    },
-    "splendid-china-2016": {
-      "href": "pages/splendid-china/splendid-china-2016.html",
-      "page": "splendid-china/splendid-china-2016.html",
-      "content": "splendid-china/splendid-china-2016.json"
-    },
-    "splendid-china-2017": {
-      "href": "pages/splendid-china/splendid-china-2017.html",
-      "page": "splendid-china/splendid-china-2017.html",
-      "content": "splendid-china/splendid-china-2017.json"
-    },
-    "splendid-china-2018": {
-      "href": "pages/splendid-china/splendid-china-2018.html",
-      "page": "splendid-china/splendid-china-2018.html",
-      "content": "splendid-china/splendid-china-2018.json"
-    },
-    "splendid-china-2019": {
-      "href": "pages/splendid-china/splendid-china-2019.html",
-      "page": "splendid-china/splendid-china-2019.html",
-      "content": "splendid-china/splendid-china-2019.json"
-    },
-    "splendid-china-2022": {
-      "href": "pages/splendid-china/splendid-china-2022.html",
-      "page": "splendid-china/splendid-china-2022.html",
-      "content": "splendid-china/splendid-china-2022.json"
-    },
-    "splendid-china-2023": {
-      "href": "pages/splendid-china/splendid-china-2023.html",
-      "page": "splendid-china/splendid-china-2023.html",
-      "content": "splendid-china/splendid-china-2023.json"
-    },
-    "splendid-china-2024": {
-      "href": "pages/splendid-china/splendid-china-2024.html",
-      "page": "splendid-china/splendid-china-2024.html",
-      "content": "splendid-china/splendid-china-2024.json"
-    },
-    "splendid-china-2025": {
-      "href": "pages/splendid-china/splendid-china-2025.html",
-      "page": "splendid-china/splendid-china-2025.html",
-      "content": "splendid-china/splendid-china-2025.json"
-    },
-    "splendid-china-2026": {
-      "href": "pages/splendid-china/splendid-china-2026.html",
-      "page": "splendid-china/splendid-china-2026.html",
-      "content": "splendid-china/splendid-china-2026.json"
-    },
-    "dance-with-us": {
-      "href": "pages/get-involved/dance-with-us.html",
-      "page": "get-involved/dance-with-us.html",
-      "content": "get-involved/dance-with-us.json"
+    "gallery": {
+      "href": "pages/gallery.html",
+      "page": "gallery.html",
+      "content": "gallery.json"
     },
     "book-a-performance": {
       "href": "pages/get-involved/book-a-performance.html",
       "page": "get-involved/book-a-performance.html",
-      "content": "get-involved/book-a-performance.json"
+      "content": "get-involved\\book-a-performance.json"
+    },
+    "dance-with-us": {
+      "href": "pages/get-involved/dance-with-us.html",
+      "page": "get-involved/dance-with-us.html",
+      "content": "get-involved\\dance-with-us.json"
     },
     "see-a-performance": {
       "href": "pages/get-involved/see-a-performance.html",
       "page": "get-involved/see-a-performance.html",
-      "content": "get-involved/see-a-performance.json"
+      "content": "get-involved\\see-a-performance.json"
     },
     "support-our-cause": {
       "href": "pages/get-involved/support-our-cause.html",
       "page": "get-involved/support-our-cause.html",
-      "content": "get-involved/support-our-cause.json"
+      "content": "get-involved\\support-our-cause.json"
     },
     "programs": {
       "href": "pages/programs.html",
       "page": "programs.html",
       "content": "programs.json"
+    },
+    "splendid-china-2008": {
+      "href": "pages/splendid-china/splendid-china-2008.html",
+      "page": "splendid-china/splendid-china-2008.html",
+      "content": "splendid-china\\splendid-china-2008.json"
+    },
+    "splendid-china-2009": {
+      "href": "pages/splendid-china/splendid-china-2009.html",
+      "page": "splendid-china/splendid-china-2009.html",
+      "content": "splendid-china\\splendid-china-2009.json"
+    },
+    "splendid-china-2010": {
+      "href": "pages/splendid-china/splendid-china-2010.html",
+      "page": "splendid-china/splendid-china-2010.html",
+      "content": "splendid-china\\splendid-china-2010.json"
+    },
+    "splendid-china-2011": {
+      "href": "pages/splendid-china/splendid-china-2011.html",
+      "page": "splendid-china/splendid-china-2011.html",
+      "content": "splendid-china\\splendid-china-2011.json"
+    },
+    "splendid-china-2012": {
+      "href": "pages/splendid-china/splendid-china-2012.html",
+      "page": "splendid-china/splendid-china-2012.html",
+      "content": "splendid-china\\splendid-china-2012.json"
+    },
+    "splendid-china-2013": {
+      "href": "pages/splendid-china/splendid-china-2013.html",
+      "page": "splendid-china/splendid-china-2013.html",
+      "content": "splendid-china\\splendid-china-2013.json"
+    },
+    "splendid-china-2014": {
+      "href": "pages/splendid-china/splendid-china-2014.html",
+      "page": "splendid-china/splendid-china-2014.html",
+      "content": "splendid-china\\splendid-china-2014.json"
+    },
+    "splendid-china-2015": {
+      "href": "pages/splendid-china/splendid-china-2015.html",
+      "page": "splendid-china/splendid-china-2015.html",
+      "content": "splendid-china\\splendid-china-2015.json"
+    },
+    "splendid-china-2016": {
+      "href": "pages/splendid-china/splendid-china-2016.html",
+      "page": "splendid-china/splendid-china-2016.html",
+      "content": "splendid-china\\splendid-china-2016.json"
+    },
+    "splendid-china-2017": {
+      "href": "pages/splendid-china/splendid-china-2017.html",
+      "page": "splendid-china/splendid-china-2017.html",
+      "content": "splendid-china\\splendid-china-2017.json"
+    },
+    "splendid-china-2018": {
+      "href": "pages/splendid-china/splendid-china-2018.html",
+      "page": "splendid-china/splendid-china-2018.html",
+      "content": "splendid-china\\splendid-china-2018.json"
+    },
+    "splendid-china-2019": {
+      "href": "pages/splendid-china/splendid-china-2019.html",
+      "page": "splendid-china/splendid-china-2019.html",
+      "content": "splendid-china\\splendid-china-2019.json"
+    },
+    "splendid-china-2022": {
+      "href": "pages/splendid-china/splendid-china-2022.html",
+      "page": "splendid-china/splendid-china-2022.html",
+      "content": "splendid-china\\splendid-china-2022.json"
+    },
+    "splendid-china-2023": {
+      "href": "pages/splendid-china/splendid-china-2023.html",
+      "page": "splendid-china/splendid-china-2023.html",
+      "content": "splendid-china\\splendid-china-2023.json"
+    },
+    "splendid-china-2024": {
+      "href": "pages/splendid-china/splendid-china-2024.html",
+      "page": "splendid-china/splendid-china-2024.html",
+      "content": "splendid-china\\splendid-china-2024.json"
+    },
+    "splendid-china-2025": {
+      "href": "pages/splendid-china/splendid-china-2025.html",
+      "page": "splendid-china/splendid-china-2025.html",
+      "content": "splendid-china\\splendid-china-2025.json"
+    },
+    "splendid-china-2026": {
+      "href": "pages/splendid-china/splendid-china-2026.html",
+      "page": "splendid-china/splendid-china-2026.html",
+      "content": "splendid-china\\splendid-china-2026.json"
+    },
+    "tickets": {
+      "href": "pages/tickets.html",
+      "page": "tickets.html",
+      "content": "tickets.json"
     }
   }
 }

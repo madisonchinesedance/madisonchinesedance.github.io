@@ -11,7 +11,7 @@
   "nav": [
     {
       "route": "home",
-      "label": "Home"
+      "label": "Madison Chinese Dance Academy | Home"
     },
     {
       "route": "gallery",
@@ -25,37 +25,16 @@
       "label": "Classes",
       "items": [
         {
+          "route": "advanced-dancers",
+          "label": "Advanced Dancers"
+        },
+        {
           "route": "beginner-dancers",
           "label": "Beginner Dancers"
         },
         {
           "route": "intermediate-dancers",
           "label": "Intermediate Dancers"
-        },
-        {
-          "route": "advanced-dancers",
-          "label": "Advanced Dancers"
-        }
-      ]
-    },
-    {
-      "label": "Get Involved",
-      "items": [
-        {
-          "route": "dance-with-us",
-          "label": "Dance With Us"
-        },
-        {
-          "route": "book-a-performance",
-          "label": "Bring Us to Your Event"
-        },
-        {
-          "route": "see-a-performance",
-          "label": "See A Performance"
-        },
-        {
-          "route": "support-our-cause",
-          "label": "Support Our Cause"
         }
       ]
     },
@@ -73,11 +52,32 @@
       ]
     },
     {
+      "label": "Get Involved",
+      "items": [
+        {
+          "route": "book-a-performance",
+          "label": "Book a Performance"
+        },
+        {
+          "route": "dance-with-us",
+          "label": "Dance with Us"
+        },
+        {
+          "route": "see-a-performance",
+          "label": "See A Performance"
+        },
+        {
+          "route": "support-our-cause",
+          "label": "Support Our Cause"
+        }
+      ]
+    },
+    {
       "label": "Splendid China",
       "items": [
         {
           "route": "splendid-china-2026",
-          "label": "Splendid China 2026"
+          "label": "Splendid China"
         },
         {
           "route": "splendid-china-2025",

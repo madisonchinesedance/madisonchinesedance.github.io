@@ -389,13 +389,13 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--content",
-        default=root / "content" / "gallery.json",
+        default=root / "docs" / "content" / "gallery.json",
         type=Path,
         help="Path to the main gallery JSON file to update.",
     )
     parser.add_argument(
         "--per-year-dir",
-        default=root / "content" / "splendid-china",
+        default=root / "docs" / "content" / "splendid-china",
         type=Path,
         help="Directory containing the per-year JSON files to update.",
     )
@@ -427,7 +427,7 @@ def main() -> None:
         return
 
     image_count = sum(len(year["images"]) for year in years)
-    homepage_path = root / "content" / "index.json"
+    homepage_path = root / "docs" / "content" / "index.json"
     homepage_counts = update_homepage_json(homepage_path, homepage_runners)
     for key, count in homepage_counts.items():
         noun = "image" if count == 1 else "images"
