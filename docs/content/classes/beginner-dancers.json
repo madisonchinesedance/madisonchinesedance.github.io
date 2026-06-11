@@ -9,9 +9,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "Beginner Dancers",
-              "id": "beginner-dancers-heading"
+              "id": "beginner-dancers-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",

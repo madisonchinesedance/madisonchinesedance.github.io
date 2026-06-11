@@ -9,9 +9,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "Programs",
-              "id": "programs-heading"
+              "id": "programs-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",
@@ -28,8 +28,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Lunar New Year Celebration Program & Special Events"
+              "text": "Lunar New Year Celebration Program & Special Events",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -41,8 +41,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Chinese Dance & Chinese Ballet Artist-in-Residence"
+              "text": "Chinese Dance & Chinese Ballet Artist-in-Residence",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -54,8 +54,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Holistic Tai Chi Walk"
+              "text": "Holistic Tai Chi Walk",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -67,8 +67,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Speaking Engagements"
+              "text": "Speaking Engagements",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",

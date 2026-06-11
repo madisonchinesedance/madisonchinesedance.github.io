@@ -96,9 +96,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "Splendid China 2023",
-              "id": "splendid-2023-heading"
+              "id": "splendid-2023-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",

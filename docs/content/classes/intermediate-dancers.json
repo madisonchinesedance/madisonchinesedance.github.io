@@ -9,9 +9,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "Intermediate Dancers",
-              "id": "intermediate-dancers-heading"
+              "id": "intermediate-dancers-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",

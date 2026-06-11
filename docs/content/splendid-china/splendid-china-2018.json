@@ -91,9 +91,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "Splendid China 2018",
-              "id": "splendid-2018-heading"
+              "id": "splendid-2018-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",

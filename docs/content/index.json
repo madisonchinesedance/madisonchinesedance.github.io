@@ -300,7 +300,6 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "id": "home-heading",
               "text": "Madison Chinese Dance Academy",
               "fontSize": "heading-1"
@@ -333,7 +332,6 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "1987",
               "fontSize": "heading-4"
             },
@@ -347,7 +345,6 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Splendid China",
               "fontSize": "heading-4"
             },
@@ -361,7 +358,6 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Ages 3 to 18+",
               "fontSize": "heading-4"
             },
@@ -388,8 +384,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Classes"
+              "text": "Classes",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -407,8 +403,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Splendid China"
+              "text": "Splendid China",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -426,8 +422,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Gallery"
+              "text": "Gallery",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -450,8 +446,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Our Story"
+              "text": "Our Story",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -463,8 +459,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "我們的故事"
+              "text": "我們的故事",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -494,8 +490,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Attend a performance"
+              "text": "Attend a performance",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -513,8 +509,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Support the academy"
+              "text": "Support the academy",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -532,8 +528,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Get in touch"
+              "text": "Get in touch",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",

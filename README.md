@@ -161,7 +161,6 @@ Content pages use `sections`. A section is the only layout primitive: it can be 
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "id": "example-heading",
               "text": "Welcome",
               "fontSize": "heading-1",
@@ -184,8 +183,8 @@ Content pages use `sections`. A section is the only layout primitive: it can be 
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Classes"
+              "text": "Classes",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -227,14 +226,13 @@ Optional item fields:
 ```json
 {
   "type": "heading",
-  "level": 2,
   "id": "programs-heading",
   "text": "Programs",
   "fontSize": "heading-3",
   "align": "center"
 }
 ```
-`level` can be `1` through `6`.
+`fontSize` sets both visual size and the rendered `<hN>` tag (`heading-1` → `<h1>`, `heading-4` → `<h4>`, etc.).
 
 #### Body blocks
 ```json

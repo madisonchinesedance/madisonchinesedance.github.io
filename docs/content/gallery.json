@@ -9,9 +9,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "id": "gallery-heading",
-              "text": "Gallery"
+              "text": "Gallery",
+              "fontSize": "heading-1"
             }
           ]
         }

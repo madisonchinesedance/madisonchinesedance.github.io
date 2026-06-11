@@ -9,9 +9,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "See A Performance",
-              "id": "see-a-performance-heading"
+              "id": "see-a-performance-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",
@@ -28,9 +28,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Upcoming Performances",
-              "id": "upcoming-performances"
+              "id": "upcoming-performances",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -47,8 +47,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Splendid China"
+              "text": "Splendid China",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -66,8 +66,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Community Events"
+              "text": "Community Events",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -90,9 +90,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Tickets & Admission",
-              "id": "tickets-and-admission"
+              "id": "tickets-and-admission",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -129,9 +129,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Bring a Performance to Your Event",
-              "id": "bring-performance-to-you"
+              "id": "bring-performance-to-you",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",

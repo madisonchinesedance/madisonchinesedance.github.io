@@ -53,13 +53,24 @@ def extract_actions(actions, routes):
     return lines
 
 
+def resolve_heading_level(block):
+    """Derive markdown heading depth from fontSize token."""
+    token = str(block.get("fontSize") or block.get("headingSize") or "").strip()
+    match = re.fullmatch(r"heading-([1-6])", token)
+    if match:
+        return int(match.group(1))
+    if block.get("level"):
+        return max(1, min(int(block["level"]), 6))
+    return 2
+
+
 def extract_block_lines(block, routes):
     """Extract text content from a single content block."""
     lines = []
     block_type = block.get("type", "")
 
     if block_type == "heading":
-        level = int(block.get("level", 2))
+        level = resolve_heading_level(block)
         text = block.get("text", "")
         if text:
             lines.append("")
@@ -87,10 +98,10 @@ def extract_legacy_item_lines(item, routes):
             continue
 
         if base_key.startswith("heading") and base_key[-1:].isdigit():
-            block = {"type": "heading", "level": int(base_key[-1]), **value}
+            block = {"type": "heading", "fontSize": f"heading-{base_key[-1]}", **value}
             lines.extend(extract_block_lines(block, routes))
         elif re.fullmatch(r"statistic\d+", base_key):
-            block = {"type": "heading", "level": 2, **value}
+            block = {"type": "heading", "fontSize": "heading-4", **value}
             lines.extend(extract_block_lines(block, routes))
         elif base_key == "body":
             lines.extend(extract_block_lines({**value, "type": "body"}, routes))

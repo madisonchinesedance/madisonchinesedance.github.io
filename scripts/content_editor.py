@@ -58,9 +58,9 @@ def summarize_block(block: dict, item_idx: int) -> str:
     block_type = block.get("type", "?")
     prefix = f"[item {item_idx + 1} · {block_type}"
     if block_type == "heading":
-        level = block.get("level", 2)
+        font_size = block.get("fontSize", "heading-4")
         text = block.get("text", "")
-        return f"{prefix} h{level}] {truncate_preview(text, 50)}"
+        return f"{prefix} {font_size}] {truncate_preview(text, 50)}"
     if block_type == "body":
         text = block.get("text", "")
         return f"{prefix}] {truncate_preview(text, 50)}"
@@ -85,7 +85,7 @@ def new_section_template(columns: int) -> dict:
     for i in range(columns):
         items.append({
             "blocks": [
-                {"type": "heading", "level": 2, "text": f"New Section{f' {i + 1}' if columns > 1 else ''}"},
+                {"type": "heading", "fontSize": "heading-4", "text": f"New Section{f' {i + 1}' if columns > 1 else ''}"},
                 {"type": "body", "text": ""},
             ],
         })
@@ -119,11 +119,11 @@ def edit_heading_block(block: dict) -> None:
     if new_text:
         block["text"] = new_text
 
-    level_str = prompt("Heading level (1-6)", str(block.get("level", 2)))
-    if level_str.isdigit():
-        level = int(level_str)
-        if 1 <= level <= 6:
-            block["level"] = level
+    presets = [f"heading-{n}" for n in range(1, 7)]
+    current = block.get("fontSize", "heading-4")
+    font_size = prompt(f"Font size ({', '.join(presets)})", current)
+    if font_size:
+        block["fontSize"] = font_size
 
 
 def list_actions(actions: list) -> None:

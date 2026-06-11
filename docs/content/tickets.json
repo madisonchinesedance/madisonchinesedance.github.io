@@ -9,7 +9,6 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "id": "tickets-heading",
               "text": "Splendid China - 2026 Tickets",
               "fontSize": "heading-1"

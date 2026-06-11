@@ -384,7 +384,7 @@ a{
 
 .header-ctas{
 	display:flex;
-	gap:12px;cursor
+	gap:12px;
 	align-items:center;
 }
 
@@ -887,8 +887,7 @@ a{
 }
 /* page-hero / section containers use a dark card now; headings stay light */
 .page-hero h1,
-.section h1,
-.section h2{
+.section :is(h1, h2, h3, h4, h5, h6){
 	color:var(--light-text-color);
 }
 .hero-tagline,
@@ -1081,8 +1080,13 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 .home-page .site-nebula{
 	opacity:calc(var(--nebula-opacity) * 0.85);
 }
+.section :is(h1, h2, h3, h4, h5, h6){
+	margin:0 0 12px;
+}
+.section h1{
+	font-size:var(--heading-1-font-size);
+}
 .section h2{
-	margin:0 0 12px 0;
 	font-size:var(--heading-1-font-size);
 }
 .section p{
@@ -1098,9 +1102,15 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 	grid-template-columns:repeat(var(--section-columns, 1), minmax(0, 1fr));
 	gap:18px;
 }
+.section-grid[style*="--section-columns:2"],
+.section-grid[style*="--section-columns:3"],
+.section-grid[style*="--section-columns:4"]{
+	align-items:start;
+}
 .section-item{
 	display:flex;
 	flex-direction:column;
+	gap:12px;
 	min-width:0;
 	color:var(--light-text-color);
 	text-decoration:none;
@@ -1139,8 +1149,12 @@ a.section-item:focus-visible{
 	outline:none;
 }
 .section-item .component-actions{
+	margin-top:0;
+	padding-top:0;
+}
+a.section-item .component-actions{
 	margin-top:auto;
-	padding-top:22px;
+	padding-top:16px;
 }
 .section-columns > .container{
 	width:min(100% - 32px, 1600px);
@@ -1188,7 +1202,7 @@ a.section-item:focus-visible{
 }
 .home-page .section:has(#home-heading) > .container{
 	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency) * 100%), transparent));
-	border:1px solid color-mix(in srgb, var(--section-border) calc(var(--section-transparency) * 100%), transparent));
+	border:1px solid color-mix(in srgb, var(--section-border) calc(var(--section-transparency) * 100%), transparent);
 	border-radius:var(--section-radius);
 	box-shadow:var(--section-shadow);
 	padding:clamp(18px, 3vw, 40px) var(--section-padding-x);
@@ -1265,14 +1279,14 @@ a.section-item:focus-visible{
 }
 .home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(-n+3) .component-body{
 	flex:1;
-	margin-top:10px;
+	margin-top:0;
 }
 .home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(-n+3) .component-body p{
 	font-size:clamp(1.12rem, 1.4vw, 1.3rem);
 	line-height:1.65;
 }
-.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(-n+3) h2{
-	margin-bottom:0;
+.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(-n+3) :is(h1, h2, h3, h4, h5, h6){
+	margin:0;
 	letter-spacing:0;
 }
 .home-page .section-item:has([data-gallery-variant="runner-tall"]) .gallery-container{
@@ -1288,7 +1302,7 @@ a.section-item:focus-visible{
 	background:transparent;
 }
 .home-page .section:has(a[href*="beginner-dancers"]) .section-item{
-	min-height:190px;
+	min-height:0;
 }
 
 /* Story columns */
@@ -1304,7 +1318,7 @@ a.section-item:focus-visible{
 	background:transparent;
 }
 .home-page .section:has(a[href*="donate"]) .section-item{
-	min-height:190px;
+	min-height:0;
 }
 
 .json-body-text,
@@ -1369,12 +1383,9 @@ a.section-item:focus-visible{
 	justify-content:flex-start;
 	margin-top:26px;
 }
-.home-page .section:not(:has(#home-heading)) h2{
-	margin:0 0 12px;
+.home-page .section:not(:has(#home-heading)) .section-item :is(h1, h2, h3, h4, h5, h6){
+	margin:0;
 	color:var(--light-text-color);
-	font-size:var(--heading-3-font-size);
-	font-weight:var(--heading-3-font-weight);
-	line-height:var(--heading-3-line-height);
 }
 .home-page .section:not(:has(#home-heading)) .component-body p{
 	margin:0;
@@ -1384,14 +1395,14 @@ a.section-item:focus-visible{
 }
 .home-page .section:not(:has(#home-heading)) .component-body{
 	max-width:920px;
-	margin-bottom:24px;
+	margin:0;
 }
 .component-actions{
 	display:flex;
 	align-items:center;
 	flex-wrap:wrap;
 	gap:14px;
-	margin-top:22px;
+	margin-top:14px;
 }
 .component-card-grid{
 	display:grid;

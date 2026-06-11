@@ -81,9 +81,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "Splendid China 2025",
-              "id": "splendid-2025-heading"
+              "id": "splendid-2025-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",

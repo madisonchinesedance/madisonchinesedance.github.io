@@ -449,6 +449,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 		return ['left', 'center', 'right'].includes(align) ? align : '';
 	}
 
+	function resolveHeadingLevel(block = {}, fallback = 2) {
+		const token = String(block.fontSize || block.headingSize || '').trim();
+		const match = /^heading-([1-6])$/.exec(token);
+		if (match) return Number(match[1]);
+		if (block.level) return Math.min(Math.max(Number(block.level), 1), 6);
+		return Math.min(Math.max(Number(fallback), 1), 6);
+	}
+
 	function blockTypographyStyle(block = {}) {
 		const parts = [];
 		const fontSize = resolveFontSize(block.fontSize || block.headingSize);
@@ -477,10 +485,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 	function normalizeLegacyBlockKey(key = '', value = {}) {
 		const baseKey = key.replace(/_\d+$/, '');
 		if (/^heading([1-6])$/.test(baseKey)) {
-			return { type: 'heading', level: Number(baseKey[7]), ...value };
+			return { type: 'heading', fontSize: `heading-${baseKey[7]}`, ...value };
 		}
 		if (/^statistic\d+$/.test(baseKey)) {
-			return { type: 'heading', level: 2, ...value };
+			return { type: 'heading', fontSize: 'heading-4', ...value };
 		}
 		if (baseKey === 'body') {
 			return { type: 'body', ...value };
@@ -519,10 +527,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 				blocks: [
 					{
 						type: 'heading',
-						level: 2,
 						text: item.heading || item.value || '',
 						id: item.id,
-						fontSize: item.headingSize
+						fontSize: item.headingSize || 'heading-4'
 					},
 					{
 						type: 'body',
@@ -542,7 +549,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	function renderHeadingBlock(block = {}, level = 2, context = {}) {
-		const safeLevel = Math.min(Math.max(Number(block.level || level), 1), 6);
+		const safeLevel = resolveHeadingLevel(block, level);
 		const text = block.text || block.heading || '';
 		if (!text) return '';
 
@@ -675,7 +682,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		}
 
 		if (block.type === 'heading') {
-			return renderHeadingBlock(block, block.level || 2, context);
+			return renderHeadingBlock(block, 2, context);
 		}
 
 		const builders = {

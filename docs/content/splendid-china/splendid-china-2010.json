@@ -16,9 +16,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "Splendid China 2010",
-              "id": "splendid-2010-heading"
+              "id": "splendid-2010-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",

@@ -9,9 +9,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "Events",
-              "id": "events-heading"
+              "id": "events-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",

@@ -452,7 +452,7 @@ def create_page(title: str, slug: str) -> tuple[Path, Path]:
                             "blocks": [
                                 {
                                     "type": "heading",
-                                    "level": 1,
+                                    "fontSize": "heading-1",
                                     "id": f"{slug.replace('/', '-')}-heading",
                                     "text": title,
                                 },

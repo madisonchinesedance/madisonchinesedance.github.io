@@ -9,7 +9,6 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "id": "donate-heading",
               "text": "Support Our Work",
               "fontSize": "heading-1"

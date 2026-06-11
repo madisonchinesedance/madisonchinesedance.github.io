@@ -9,9 +9,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "Book a Performance",
-              "id": "book-a-performance-heading"
+              "id": "book-a-performance-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",
@@ -28,9 +28,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Performance Options",
-              "id": "performance-types"
+              "id": "performance-types",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -47,8 +47,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Cultural Festivals"
+              "text": "Cultural Festivals",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -60,8 +60,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "School & Educational Events"
+              "text": "School & Educational Events",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -73,8 +73,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Community & Private Events"
+              "text": "Community & Private Events",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -91,9 +91,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "How to Book",
-              "id": "how-to-book"
+              "id": "how-to-book",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -114,9 +114,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Frequently Asked Questions",
-              "id": "performance-faq"
+              "id": "performance-faq",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -141,9 +141,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Request a Performance",
-              "id": "book-contact"
+              "id": "book-contact",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",

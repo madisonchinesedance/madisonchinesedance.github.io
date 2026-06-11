@@ -9,9 +9,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "Services",
-              "id": "services-heading"
+              "id": "services-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",

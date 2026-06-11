@@ -9,9 +9,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "Dance with Us",
-              "id": "dance-with-us-heading"
+              "id": "dance-with-us-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",
@@ -28,9 +28,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Classes for All Ages and Experience Levels",
-              "id": "classes-for-all-ages-and-experience-levels"
+              "id": "classes-for-all-ages-and-experience-levels",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -47,8 +47,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Beginner Dancers"
+              "text": "Beginner Dancers",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -66,8 +66,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Intermediate Dancers"
+              "text": "Intermediate Dancers",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -85,8 +85,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Advanced Dancers"
+              "text": "Advanced Dancers",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -109,9 +109,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Contact Us to Join",
-              "id": "join-contact"
+              "id": "join-contact",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",

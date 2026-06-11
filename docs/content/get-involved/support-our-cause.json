@@ -9,9 +9,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 1,
               "text": "Support Our Cause",
-              "id": "support-our-cause-heading"
+              "id": "support-our-cause-heading",
+              "fontSize": "heading-1"
             },
             {
               "type": "body",
@@ -28,9 +28,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Ways to Support",
-              "id": "ways-to-support"
+              "id": "ways-to-support",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -47,8 +47,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Make a Donation"
+              "text": "Make a Donation",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -66,8 +66,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Become a Sponsor"
+              "text": "Become a Sponsor",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -85,8 +85,8 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
-              "text": "Volunteer"
+              "text": "Volunteer",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -109,9 +109,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Your Impact",
-              "id": "impact"
+              "id": "impact",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
@@ -132,9 +132,9 @@
           "blocks": [
             {
               "type": "heading",
-              "level": 2,
               "text": "Make a Difference Today",
-              "id": "donate-cta"
+              "id": "donate-cta",
+              "fontSize": "heading-4"
             },
             {
               "type": "body",
