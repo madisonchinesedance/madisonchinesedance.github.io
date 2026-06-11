@@ -11,7 +11,7 @@
   "nav": [
     {
       "route": "home",
-      "label": "Madison Chinese Dance Academy | Home"
+      "label": "Home"
     },
     {
       "route": "gallery",

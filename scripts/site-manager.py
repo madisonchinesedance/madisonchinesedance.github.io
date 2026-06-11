@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unified site management — pages, navigation, and route scanning.
+"""Unified site management — pages, content, navigation, and images.
 
 Run interactively:
 
@@ -12,28 +12,30 @@ import subprocess
 import sys
 from pathlib import Path
 
+from content_editor import edit_page_content, pick_route
+from page_ops import create_page, delete_page, rename_folder, rename_page
 from site_lib import (
+    CONTENT_ROOT,
     HEADER_JSON,
+    PAGES_ROOT,
     REPO_ROOT,
     SITE_JSON,
     confirm,
-    create_page,
-    delete_page,
     find_nav_item,
     list_nav_items,
     list_routes,
     load_json,
     prompt,
     prompt_choice,
-    rename_folder,
-    rename_page,
+    slug_to_title,
     write_json,
 )
 
+SCRIPTS_DIR = Path(__file__).resolve().parent
 
-def run_scan() -> None:
-    script = Path(__file__).resolve().parent / "scan-pages.py"
-    subprocess.run([sys.executable, str(script)], check=False)
+
+def run_script(script_name: str, *args: str) -> None:
+    subprocess.run([sys.executable, str(SCRIPTS_DIR / script_name), *args], check=False)
 
 
 def cmd_list_routes() -> None:
@@ -136,8 +138,6 @@ def cmd_rename_page() -> None:
 
 
 def cmd_rename_folder() -> None:
-    from site_lib import CONTENT_ROOT, PAGES_ROOT, slug_to_title
-
     print("\nRename Folder\n")
     print("Current folders:")
 
@@ -175,9 +175,77 @@ def cmd_rename_folder() -> None:
         return
 
     result = rename_folder(old_folder, new_folder)
-    print(f"\nFolder rename complete:")
+    print("\nFolder rename complete:")
     for change in result.changes:
         print(f"  - {change}")
+
+
+def cmd_change_location() -> None:
+    choice = prompt_choice(
+        "Change page location",
+        ["Rename page (route ID)", "Rename folder"],
+    )
+    if choice == 1:
+        cmd_rename_page()
+    elif choice == 2:
+        cmd_rename_folder()
+
+
+def cmd_edit_page() -> None:
+    route_id = pick_route()
+    if not route_id:
+        return
+
+    while True:
+        print(f"\nEdit page: {route_id}")
+        print("1. Change location (rename page or folder)")
+        print("2. Edit content")
+        print("3. Edit page settings (title & meta description)")
+        print("b. Back")
+
+        choice = prompt("\nChoice").lower()
+        if choice in ("b", "back"):
+            break
+        elif choice == "1":
+            saved_id = route_id
+            cmd_change_location()
+            # Route may have been renamed; re-pick if needed
+            site = load_json(SITE_JSON)
+            if saved_id not in site.get("routes", {}):
+                print("Route was renamed. Returning to page list.")
+                break
+        elif choice == "2":
+            edit_page_content(route_id)
+        elif choice == "3":
+            from content_editor import edit_page_settings, load_page_content
+
+            loaded = load_page_content(route_id)
+            if loaded:
+                path, data = loaded
+                edit_page_settings(data, path)
+        else:
+            print("Invalid choice.")
+
+
+def cmd_manage_pages() -> None:
+    while True:
+        print("\nManage pages")
+        print("1. Create page")
+        print("2. Delete page")
+        print("3. Edit page")
+        print("b. Back to main menu")
+
+        choice = prompt("\nChoice").lower()
+        if choice in ("b", "back"):
+            break
+        elif choice == "1":
+            cmd_create_page()
+        elif choice == "2":
+            cmd_delete_page()
+        elif choice == "3":
+            cmd_edit_page()
+        else:
+            print("Invalid choice.")
 
 
 def cmd_edit_nav() -> None:
@@ -191,7 +259,7 @@ def cmd_edit_nav() -> None:
         print("3. Move a nav item (top-level ↔ dropdown)")
         print("4. Reorder a dropdown menu")
         print("5. Remove a nav item")
-        print("b. Back to main menu")
+        print("b. Back")
 
         choice = prompt("\nChoice").lower()
         if choice in ("b", "back"):
@@ -283,18 +351,64 @@ def cmd_edit_nav() -> None:
             print("Invalid choice.")
 
 
+def cmd_update_images() -> None:
+    while True:
+        print("\nUpdate images")
+        print("1. Categorize homepage runners (dry-run)")
+        print("2. Categorize homepage runners (apply)")
+        print("3. Reconcile homepage-runner duplicates (dry-run)")
+        print("4. Reconcile homepage-runner duplicates (apply)")
+        print("5. Sync images from R2 → JSON")
+        print("b. Back")
+
+        choice = prompt("\nChoice").lower()
+        if choice in ("b", "back"):
+            break
+        elif choice == "1":
+            run_script("scan-images.py", "categorize")
+        elif choice == "2":
+            run_script("scan-images.py", "categorize", "--apply")
+        elif choice == "3":
+            run_script("scan-images.py", "categorize", "--reconcile")
+        elif choice == "4":
+            run_script("scan-images.py", "categorize", "--reconcile", "--apply")
+        elif choice == "5":
+            run_script("scan-images.py", "sync")
+        else:
+            print("Invalid choice.")
+
+
+def cmd_site_tools() -> None:
+    while True:
+        print("\nSite tools")
+        print("1. Edit navigation")
+        print("2. Scan pages (rebuild site.json + nav)")
+        print("3. Update images")
+        print("4. List routes")
+        print("b. Back to main menu")
+
+        choice = prompt("\nChoice").lower()
+        if choice in ("b", "back"):
+            break
+        elif choice == "1":
+            cmd_edit_nav()
+        elif choice == "2":
+            run_script("scan-pages.py")
+        elif choice == "3":
+            cmd_update_images()
+        elif choice == "4":
+            cmd_list_routes()
+        else:
+            print("Invalid choice.")
+
+
 def main() -> None:
     print("\nSite Manager\n")
 
     while True:
         print("\nOptions:")
-        print("1. List routes")
-        print("2. Create page")
-        print("3. Delete page")
-        print("4. Rename page")
-        print("5. Rename folder")
-        print("6. Edit navigation")
-        print("7. Scan pages (rebuild site.json + nav)")
+        print("1. Manage pages")
+        print("2. Site tools")
         print("q. Quit")
 
         choice = prompt("\nWhat would you like to do?").lower()
@@ -302,19 +416,9 @@ def main() -> None:
         if choice in ("q", "quit", "exit"):
             break
         elif choice == "1":
-            cmd_list_routes()
+            cmd_manage_pages()
         elif choice == "2":
-            cmd_create_page()
-        elif choice == "3":
-            cmd_delete_page()
-        elif choice == "4":
-            cmd_rename_page()
-        elif choice == "5":
-            cmd_rename_folder()
-        elif choice == "6":
-            cmd_edit_nav()
-        elif choice == "7":
-            run_scan()
+            cmd_site_tools()
         else:
             print("Invalid choice.")
 

@@ -32,7 +32,8 @@ The site is a lightweight, JSON-driven static website built with plain HTML, CSS
    Then open http://localhost:8000 in your browser.
 
 3. **Development**
-   - Edit JSON files under `docs/content/` to update page content.
+   - Use `python scripts/site-manager.py` to create, edit, or delete pages interactively.
+   - Or edit JSON files under `docs/content/` directly for advanced changes.
    - Modify HTML templates in `docs/pages/` if you need structural changes.
    - Adjust styling in `docs/style.css`.
 
@@ -49,9 +50,12 @@ The site is a lightweight, JSON-driven static website built with plain HTML, CSS
 │   │   └─ *.json            # Individual page content
 │   └─ pages/                # HTML templates for each route
 ├─ scripts/                  # Python CMS utilities
-│   ├─ site-manager.py       # Unified page & nav management
+│   ├─ site-manager.py       # Interactive CMS entry point (menus)
+│   ├─ site_lib.py           # Shared paths, JSON I/O, prompts
+│   ├─ page_ops.py           # Create, delete, rename pages & folders
+│   ├─ content_editor.py     # Section/block content editing
 │   ├─ scan-pages.py         # Rebuild routes & nav from filesystem
-│   └─ site_lib.py           # Shared helpers
+│   └─ scan-images.py        # Categorize local images & sync from R2
 └─ README.md
 ```
 
@@ -73,14 +77,23 @@ The `scripts/` folder contains Python utilities that act as a lightweight CMS. R
 python scripts/site-manager.py
 ```
 
-Interactive menu:
-1. List routes
-2. Create page
-3. Delete page (removes HTML, JSON, and all nav/footer references)
-4. Rename page (updates cross-references site-wide)
-5. Rename folder
-6. Edit navigation manually
-7. Scan pages (rebuild `site.json` + nav)
+**Manage pages**
+1. Create page
+2. Delete page (removes HTML, JSON, and all nav/footer references)
+3. Edit page
+   - Change location (rename page or folder)
+   - Edit content (sections, headings, body text, action buttons)
+   - Edit page settings (`pageTitle`, `metaDescription`)
+
+**Site tools**
+1. Edit navigation manually
+2. Scan pages (rebuild `site.json` + nav)
+3. Update images (categorize homepage runners, sync from R2)
+4. List routes
+
+The content editor supports `heading` and `body` blocks plus action buttons. `gallery` and `zeffyEmbed` blocks are read-only in the menu — use `scan-images.py` for gallery images or edit JSON manually for Zeffy embeds.
+
+Changing `pageTitle` via the editor updates the page, but **scan-pages overwrites nav labels from `pageTitle`** on the next scan.
 
 ### Scan pages
 ```bash
@@ -95,25 +108,43 @@ Scans `docs/` and regenerates:
 
 Nav labels are taken from each page's `pageTitle` in its content JSON (with fallback to title-case slug). Custom nav labels that differ from `pageTitle` will be overwritten on each scan.
 
+### Scan images
+```bash
+python scripts/scan-images.py                          # sync from R2 (default)
+python scripts/scan-images.py sync                     # explicit sync
+python scripts/scan-images.py categorize               # dry-run local homepage sort
+python scripts/scan-images.py categorize --apply       # move tall/wide images
+python scripts/scan-images.py categorize --reconcile --apply
+```
+
+Homepage runner workflow:
+1. Drop images in `cloudflare-r2-import/homepage-runner/`
+2. `python scripts/scan-images.py categorize --apply`
+3. `python scripts/scan-images.py categorize --reconcile --apply`
+4. `rclone sync cloudflare-r2-import r2:mcda-website-cdn -P`
+5. `python scripts/scan-images.py sync`
+
 ### Other scripts
 ```bash
 python scripts/generate-ai-context.py   # Build ai-context.md from content JSON
-python scripts/scan-images.py           # Sync gallery images from Cloudflare R2
 ```
 
 ## Managing Pages
 Recommended workflow after structural changes:
 
 ```
-python scripts/site-manager.py   # create, delete, or rename
+python scripts/site-manager.py         # Manage pages → create, delete, or edit
 python scripts/scan-pages.py --write   # refresh routes and navigation
 ```
 
 ### Create a new page
-Use site-manager option **2**, or create the HTML/JSON files manually under `docs/pages/` and `docs/content/`, then run `scan-pages.py --write`.
+Use site-manager **Manage pages → Create page**, or create the HTML/JSON files manually under `docs/pages/` and `docs/content/`, then run `scan-pages.py --write`.
 
 ### Delete a page
-Use site-manager option **3**. This removes the route from `site.json`, `header.json`, `footer.json`, and `announcements.json`, then deletes the HTML and JSON files.
+Use site-manager **Manage pages → Delete page**. This removes the route from `site.json`, `header.json`, `footer.json`, and `announcements.json`, then deletes the HTML and JSON files.
+
+### Edit page content
+Use site-manager **Manage pages → Edit page → Edit content** to add, delete, or edit sections and heading/body blocks without hand-editing JSON.
 
 ## Content Authoring
 Content pages use `sections`. A section is the only layout primitive: it can be one column for a page intro or several columns for smaller repeated items.
@@ -266,7 +297,7 @@ Omit `variant` for a simple carousel plus thumbnail grid.
 `align`: `left` (default), `center`, or `right`
 
 ## Updating Performance Images
-Performance images are stored in `docs/content/` (e.g., `docs/content/gallery.json`). Use `python scripts/scan-images.py` to sync from Cloudflare R2, or replace image URLs manually in the JSON files.
+Performance images are stored in `docs/content/` (e.g., `docs/content/gallery.json`). Use site-manager **Site tools → Update images** or `python scripts/scan-images.py` directly. Gallery and homepage runner arrays are populated from Cloudflare R2 — do not edit those image lists by hand unless necessary.
 
 ## Customizing Styles
 All styling lives in `docs/style.css`. Adjust colors, fonts, or layout as needed.
