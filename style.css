@@ -1751,6 +1751,17 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	 Responsive (mobile-first is not used — desktop-first approach)
 	 --------------------------- */
 @media (max-width:992px){
+	.section-grid{
+		grid-template-columns:1fr;
+		gap:22px;
+	}
+
+	.home-page .section-highlights .section-item,
+	.home-page .section-academy-links .section-item,
+	.home-page .section-get-involved-links .section-item{
+		min-height:0;
+	}
+
 	.component-card-grid{
 		grid-template-columns:1fr;
 	}
