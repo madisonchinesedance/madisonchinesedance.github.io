@@ -1178,31 +1178,53 @@ a.section-item:focus-visible{
 .home-page .section-intro .component-body p{
 	font-size:clamp(1rem, 1.25vw, 1.25rem);
 }
-.home-page .home-runner{
+.home-page .home-runner,
+.home-page .home-runner-tall,
+.home-page .home-runner-wide{
 	padding-top:8px;
 	padding-bottom:clamp(20px, 3vw, 36px);
 }
-.home-page .home-runner[hidden]{
+.home-page .home-runner[hidden],
+.home-page .home-runner-tall[hidden],
+.home-page .home-runner-wide[hidden]{
 	display:none;
 }
-.home-page .home-runner > .container{
+.home-page .home-runner > .container,
+.home-page .home-runner-tall > .container,
+.home-page .home-runner-wide > .container{
 	background:transparent;
 	border:0;
 	box-shadow:none;
 	padding:0;
 }
 .home-page .home-runner:hover > .container,
-.home-page .home-runner:focus-within > .container{
+.home-page .home-runner:focus-within > .container,
+.home-page .home-runner-tall:hover > .container,
+.home-page .home-runner-tall:focus-within > .container,
+.home-page .home-runner-wide:hover > .container,
+.home-page .home-runner-wide:focus-within > .container{
 	background:transparent !important;
 	border-color:transparent !important;
 	box-shadow:none !important;
 }
-.home-page .home-runner .gallery-container{
+.home-page .home-runner:not(.home-runner-tall):not(.home-runner-wide) .gallery-container{
 	aspect-ratio:16 / 9;
 	max-height:800px;
 	border-radius:14px;
 }
-.home-page .home-runner .gallery-dots{
+.home-page .home-runner-tall .gallery-container{
+	aspect-ratio:4 / 5;
+	max-height:800px;
+	border-radius:14px;
+}
+.home-page .home-runner-wide .gallery-container{
+	aspect-ratio:21 / 9;
+	max-height:520px;
+	border-radius:14px;
+}
+.home-page .home-runner .gallery-dots,
+.home-page .home-runner-tall .gallery-dots,
+.home-page .home-runner-wide .gallery-dots{
 	padding-top:14px;
 }
 .home-page .section-highlights{

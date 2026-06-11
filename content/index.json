@@ -288,6 +288,115 @@
       "alt": "Homepage Runner 057"
     }
   ],
+  "homepageRunnerTallImages": [
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-001.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-001.webp",
+      "alt": "Homepage Runner 001"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-002.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-002.webp",
+      "alt": "Homepage Runner 002"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-015.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-015.webp",
+      "alt": "Homepage Runner 015"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-039.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-039.webp",
+      "alt": "Homepage Runner 039"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-041.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-041.webp",
+      "alt": "Homepage Runner 041"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-044.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-044.webp",
+      "alt": "Homepage Runner 044"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-053.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-tall/homepage-runner-053.webp",
+      "alt": "Homepage Runner 053"
+    }
+  ],
+  "homepageRunnerWideImages": [
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-005.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-005.webp",
+      "alt": "Homepage Runner 005"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-006.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-006.webp",
+      "alt": "Homepage Runner 006"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-010.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-010.webp",
+      "alt": "Homepage Runner 010"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-011.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-011.webp",
+      "alt": "Homepage Runner 011"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-018.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-018.webp",
+      "alt": "Homepage Runner 018"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-021.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-021.webp",
+      "alt": "Homepage Runner 021"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-023.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-023.webp",
+      "alt": "Homepage Runner 023"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-024.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-024.webp",
+      "alt": "Homepage Runner 024"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-025.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-025.webp",
+      "alt": "Homepage Runner 025"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-026.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-026.webp",
+      "alt": "Homepage Runner 026"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-027.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-027.webp",
+      "alt": "Homepage Runner 027"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-030.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-030.webp",
+      "alt": "Homepage Runner 030"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-033.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-033.webp",
+      "alt": "Homepage Runner 033"
+    },
+    {
+      "src": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-054.webp",
+      "thumb": "https://cdn.madisonchinesedance.org/homepage-runner-wide/homepage-runner-054.webp",
+      "alt": "Homepage Runner 054"
+    }
+  ],
   "sections": [
     {
       "name": "intro",
@@ -346,6 +455,18 @@
           },
           "body": {
             "text": "Classes for beginner dancers through advanced students and beyond."
+          }
+        }
+      ]
+    },
+    {
+      "name": "runner-tall",
+      "columns": 1,
+      "className": "home-section home-runner home-runner-tall",
+      "items": [
+        {
+          "gallery": {
+            "variant": "runner-tall"
           }
         }
       ]
@@ -410,6 +531,18 @@
                 "label": "Open gallery"
               }
             ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "runner-wide",
+      "columns": 1,
+      "className": "home-section home-runner home-runner-wide",
+      "items": [
+        {
+          "gallery": {
+            "variant": "runner-wide"
           }
         }
       ]

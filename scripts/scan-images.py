@@ -13,8 +13,11 @@ year appears first.
 Images in the top-level ``gallery/`` folder populate ``galleryImages`` in
 content/gallery.json for the curated featured carousel on the main Gallery page.
 
-Images in the top-level ``homepage-runner/`` folder populate
-``homepageRunnerImages`` in content/index.json for the homepage image carousel.
+Homepage runner folders populate image arrays in content/index.json:
+
+  * ``homepage-runner/``       → ``homepageRunnerImages`` (16:9 carousel)
+  * ``homepage-runner-tall/``  → ``homepageRunnerTallImages`` (4:5 carousel)
+  * ``homepage-runner-wide/``  → ``homepageRunnerWideImages`` (21:9 carousel)
 
 Configuration (in order of precedence):
     1. Environment variables: R2_ACCOUNT_ID, R2_ACCESS_KEY, R2_SECRET_KEY,
@@ -27,7 +30,9 @@ Usage:
 
 Push changes to cloudflare with: rclone copy "$env:USERPROFILE\Desktop\Coding\madisonchinesedance.github.io\cloudflare-r2-import" r2:mcda-website-cdn -P
 
-Homepage runner images: rclone copy ./homepage-runner r2:mcda-website-cdn/homepage-runner -P
+Homepage runner images: rclone copy cloudflare-r2-import r2:mcda-website-cdn -P
+
+Sort images locally first: python scripts/categorize-homepage-runner.py --apply
 """
 
 from __future__ import annotations
@@ -133,8 +138,16 @@ YEAR_FOLDER_PATTERN = re.compile(r"^splendid-china-(\d{4})$")
 # Curated featured images for the top carousel on the main Gallery page.
 GALLERY_PREFIX = "gallery/"
 
-# Homepage image carousel.
+# Homepage image carousels (standard, portrait, panoramic).
 HOMEPAGE_RUNNER_PREFIX = "homepage-runner/"
+HOMEPAGE_RUNNER_TALL_PREFIX = "homepage-runner-tall/"
+HOMEPAGE_RUNNER_WIDE_PREFIX = "homepage-runner-wide/"
+
+HOMEPAGE_RUNNER_KEYS = {
+    "homepageRunnerImages": HOMEPAGE_RUNNER_PREFIX,
+    "homepageRunnerTallImages": HOMEPAGE_RUNNER_TALL_PREFIX,
+    "homepageRunnerWideImages": HOMEPAGE_RUNNER_WIDE_PREFIX,
+}
 
 
 def repo_root() -> Path:
@@ -227,9 +240,12 @@ def scan_featured_gallery() -> list[dict[str, str]]:
     return scan_year_images(GALLERY_PREFIX)
 
 
-def scan_homepage_runner() -> list[dict[str, str]]:
-    """Return image metadata for all images under ``homepage-runner/`` in R2."""
-    return scan_year_images(HOMEPAGE_RUNNER_PREFIX)
+def scan_homepage_runners() -> dict[str, list[dict[str, str]]]:
+    """Return image metadata for all homepage runner folders in R2."""
+    return {
+        key: scan_year_images(prefix)
+        for key, prefix in HOMEPAGE_RUNNER_KEYS.items()
+    }
 
 
 def scan_year_folders() -> list[dict]:
@@ -325,12 +341,18 @@ def update_per_year_json(content_path: Path, year_info: dict) -> int:
     return len(year_info["images"])
 
 
-def update_homepage_json(content_path: Path, images: list[dict[str, str]]) -> int:
-    """Update content/index.json with its ``homepageRunnerImages`` array."""
+def update_homepage_json(
+    content_path: Path,
+    runner_images: dict[str, list[dict[str, str]]],
+) -> dict[str, int]:
+    """Update content/index.json with homepage runner image arrays."""
     existing = read_existing_content(content_path)
-    existing["homepageRunnerImages"] = images
+    counts = {}
+    for key, images in runner_images.items():
+        existing[key] = images
+        counts[key] = len(images)
     write_json(content_path, existing)
-    return len(images)
+    return counts
 
 
 def parse_args() -> argparse.Namespace:
@@ -368,22 +390,24 @@ def main() -> None:
 
     years = scan_year_folders()
     featured_images = scan_featured_gallery()
-    homepage_images = scan_homepage_runner()
-    if not years and not featured_images and not homepage_images:
+    homepage_runners = scan_homepage_runners()
+    homepage_image_count = sum(len(images) for images in homepage_runners.values())
+    if not years and not featured_images and homepage_image_count == 0:
         print(
-            "No splendid-china-YYYY, gallery/, or homepage-runner/ "
+            "No splendid-china-YYYY, gallery/, or homepage-runner* "
             "image folders found in R2 bucket."
         )
         return
 
     image_count = sum(len(year["images"]) for year in years)
     homepage_path = root / "content" / "index.json"
-    homepage_count = update_homepage_json(homepage_path, homepage_images)
-    homepage_noun = "image" if homepage_count == 1 else "images"
-    print(
-        f"Updated {homepage_path.relative_to(root)} with "
-        f"{homepage_count} homepage runner {homepage_noun}."
-    )
+    homepage_counts = update_homepage_json(homepage_path, homepage_runners)
+    for key, count in homepage_counts.items():
+        noun = "image" if count == 1 else "images"
+        print(
+            f"Updated {homepage_path.relative_to(root)} with "
+            f"{count} {key} {noun}."
+        )
 
     if not args.skip_main:
         existing = read_existing_content(content_path)

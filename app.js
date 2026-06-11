@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	function renderGalleryBlock(block = {}) {
-		const isRunner = block.variant === 'runner';
+		const isRunner = /^runner(?:-tall|-wide)?$/.test(block.variant || '');
 		const carousel = `
 			<div class="gallery-container">
 				<div class="gallery-wrapper" data-gallery-carousel></div>
@@ -1501,22 +1501,38 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	const galleryRunners = [];
-	const homeRunnerSection = $('.home-runner');
-	if (homeRunnerSection) {
-		const homepageImages = Array.isArray(content.homepageRunnerImages)
-			? content.homepageRunnerImages
-			: [];
-		if (homepageImages.length === 0) {
-			homeRunnerSection.hidden = true;
-		} else {
-			const homeRunner = initGalleryRunner({
-				galleryContainer: homeRunnerSection.querySelector('.gallery-container'),
-				galleryDots: homeRunnerSection.querySelector('[data-gallery-dots]'),
-				getFallbackImages: () => homepageImages,
-			});
-			if (homeRunner) galleryRunners.push(homeRunner);
+	const HOME_RUNNERS = [
+		{
+			selector: '.home-runner:not(.home-runner-tall):not(.home-runner-wide)',
+			imagesKey: 'homepageRunnerImages',
+		},
+		{
+			selector: '.home-runner-tall',
+			imagesKey: 'homepageRunnerTallImages',
+		},
+		{
+			selector: '.home-runner-wide',
+			imagesKey: 'homepageRunnerWideImages',
+		},
+	];
+
+	HOME_RUNNERS.forEach(({ selector, imagesKey }) => {
+		const section = document.querySelector(selector);
+		if (!section) return;
+
+		const images = Array.isArray(content[imagesKey]) ? content[imagesKey] : [];
+		if (images.length === 0) {
+			section.hidden = true;
+			return;
 		}
-	}
+
+		const runner = initGalleryRunner({
+			galleryContainer: section.querySelector('.gallery-container'),
+			galleryDots: section.querySelector('[data-gallery-dots]'),
+			getFallbackImages: () => images,
+		});
+		if (runner) galleryRunners.push(runner);
+	});
 
 	const featuredSection = $('[data-gallery-featured]');
 	const archiveSection = $('[data-gallery-archive]');
