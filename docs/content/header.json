@@ -149,15 +149,15 @@
   "actions": [
     {
       "route": "tickets",
-      "label": "Purchase Ticket",
+      "label": "Purchase Tickets",
       "style": "primary",
-      "ariaLabel": "Purchase Ticket"
+      "ariaLabel": "Purchase Tickets"
     },
     {
       "route": "donate",
-      "label": "Donation",
-      "style": "secondary",
-      "ariaLabel": "Donation"
+      "label": "Donate",
+      "style": "primary",
+      "ariaLabel": "Donate"
     }
   ]
 }
