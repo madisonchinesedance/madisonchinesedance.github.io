@@ -294,8 +294,9 @@
   ],
   "sections": [
     {
-      "name": "intro",
+      "name": "academy",
       "columns": 1,
+      "className": "home-section home-intro home-hero page-section-home-intro",
       "items": [
         {
           "heading1": {
@@ -323,49 +324,34 @@
     },
     {
       "name": "highlights",
-      "columns": 3,
+      "columns": 2,
+      "className": "home-section home-highlights-with-runner",
       "items": [
         {
-          "heading2": {
+          "statistic1": {
             "text": "1987",
             "fontSize": "var(--heading-1-font-size)"
           },
           "body": {
-            "text": "Founded as a nonprofit dance academy over 30 years ago."
+            "text": "Founded as a nonprofit dance academy over 30 years ago. Generations of students have trained, performed, and shared Chinese dance with the Madison community."
           }
         },
         {
-          "heading2": {
+          "statistic2": {
             "text": "Splendid China",
             "fontSize": "var(--heading-1-font-size)"
           },
           "body": {
-            "text": "Annual showcase at the Robert E. Parilla Performing Arts Center - where community artistry meets the stage."
+            "text": "Annual showcase at the Robert E. Parilla Performing Arts Center — where community artistry meets the stage. Each year brings new choreography, costumes, and traditions to life."
           }
         },
         {
-          "heading2": {
+          "statistic3": {
             "text": "Ages 3 to 18+",
             "fontSize": "var(--heading-1-font-size)"
           },
           "body": {
-            "text": "Classes for beginner dancers through advanced students and beyond."
-          }
-        }
-      ]
-    },
-    {
-      "name": "academy",
-      "columns": 2,
-      "className": "home-section home-intro home-academy-with-runner page-section-home-intro",
-      "items": [
-        {
-          "heading2": {
-            "id": "home-intro-heading",
-            "text": "A community academy for Chinese dance and culture"
-          },
-          "body": {
-            "text": "Madison Chinese Dance Academy gives students a place to train, perform, and grow through Chinese dance traditions and ballet technique. Our programs connect families and audiences through classes, outreach, and the annual Splendid China performance."
+            "text": "Classes for beginner dancers through advanced students and beyond. Programs grow with each student from first steps to senior choreography projects."
           }
         },
         {
@@ -379,6 +365,7 @@
     {
       "name": "academy-links",
       "columns": 3,
+      "className": "home-section",
       "items": [
         {
           "heading2": {
@@ -425,18 +412,6 @@
       ]
     },
     {
-      "name": "runner-wide",
-      "columns": 1,
-      "className": "home-section home-runner home-runner-wide",
-      "items": [
-        {
-          "gallery": {
-            "variant": "runner-wide"
-          }
-        }
-      ]
-    },
-    {
       "name": "story",
       "columns": 2,
       "className": "home-section home-story page-section-home-story",
@@ -460,14 +435,13 @@
       ]
     },
     {
-      "name": "get-involved",
+      "name": "runner-wide",
       "columns": 1,
-      "className": "home-section home-pathways page-section-home-pathways",
+      "className": "home-section home-runner home-runner-wide",
       "items": [
         {
-          "heading2": {
-            "id": "home-pathways-heading",
-            "text": "Get Involved"
+          "gallery": {
+            "variant": "runner-wide"
           }
         }
       ]
@@ -475,6 +449,7 @@
     {
       "name": "get-involved-links",
       "columns": 3,
+      "className": "home-section",
       "items": [
         {
           "heading2": {
