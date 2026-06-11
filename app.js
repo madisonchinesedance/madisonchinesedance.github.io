@@ -185,6 +185,12 @@ function blockId(block, fallback) {
 function findSectionComponent(sections = [], key) {
 	for (const section of sections) {
 		for (const item of section?.items || []) {
+			const blocks = item?.blocks;
+			if (Array.isArray(blocks)) {
+				for (const block of blocks) {
+					if (block?.type === key) return block;
+				}
+			}
 			for (const [itemKey, value] of Object.entries(item || {})) {
 				if (itemKey.replace(/_\d+$/, '') === key) return value;
 			}
@@ -567,9 +573,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	function renderGalleryBlock(block = {}) {
-		const isRunner = /^runner(?:-tall|-wide)?$/.test(block.variant || '');
 		const galleryVariant = String(block.variant || '').trim();
 		const variantAttr = galleryVariant ? ` data-gallery-variant="${escapeHtml(galleryVariant)}"` : '';
+		const isRunner = /^runner(?:-tall|-wide)?$/.test(galleryVariant);
+		const isFeatured = galleryVariant === 'featured';
+		const isArchive = galleryVariant === 'archive';
 		const carousel = `
 			<div class="gallery-container"${variantAttr}>
 				<div class="gallery-wrapper" data-gallery-carousel></div>
@@ -579,16 +587,50 @@ document.addEventListener('DOMContentLoaded', async () => {
 				</div>
 			</div>
 		`;
+
+		if (isFeatured) {
+			return `
+				<section class="gallery-section gallery-section-featured" aria-label="Featured gallery photos">
+					${carousel}
+					<div class="gallery-dots" data-gallery-dots aria-label="Featured gallery image selection"></div>
+					<div class="gallery-featured-thumbs" data-gallery-featured-thumbs aria-label="Featured gallery thumbnails"></div>
+				</section>
+			`;
+		}
+
+		if (isArchive) {
+			return `
+				<section class="gallery-section gallery-section-archive" aria-label="Splendid China gallery photos">
+					${carousel}
+					<div class="gallery-grid" data-gallery-grid aria-label="Gallery image thumbnails"></div>
+				</section>
+			`;
+		}
+
 		if (isRunner) {
 			return `
 				${carousel}
-				<div class="gallery-dots" data-gallery-dots aria-label="Homepage image selection"></div>
+				<div class="gallery-dots" data-gallery-dots aria-label="Gallery image selection"></div>
 			`;
 		}
+
 		return `
 			${carousel}
 			<div class="gallery-grid" data-gallery-grid aria-label="Gallery image thumbnails"></div>
 		`;
+	}
+
+	function ensureGalleryLightbox() {
+		if ($('[data-gallery-lightbox]') || !$('.gallery-container')) return;
+
+		document.body.insertAdjacentHTML('beforeend', `
+			<div class="gallery-lightbox" data-gallery-lightbox hidden>
+				<div class="gallery-lightbox-window" role="dialog" aria-modal="true" aria-label="Gallery image preview">
+					<button class="gallery-lightbox-close" type="button" aria-label="Close gallery image preview">&times;</button>
+					<img src="" alt="" data-gallery-lightbox-image>
+				</div>
+			</div>
+		`);
 	}
 
 	function renderZeffyEmbedBlock(block = {}) {
@@ -1026,11 +1068,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 	applyJsonContent(content, routes);
 
-	// Save a reference to the splendid china gallery mount point BEFORE
-	// renderPageBlocks() overwrites the <main> contents.
-	const hasSplendidChinaGallery = !!$('[data-splendid-china-gallery]');
-
 	renderPageBlocks();
+	ensureGalleryLightbox();
 	loadZeffyEmbedScript();
 	renderPageStars();
 	renderHeader();
@@ -1195,52 +1234,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 			}
 		});
 	}
-
-	// Splendid China archive pages include a tiny
-	// `<div data-splendid-china-gallery></div>` mount point inside
-	// `<main>`. When that mount point is present, inject the same
-	// gallery markup used by the main Gallery page (plus the matching
-	// lightbox) so the existing gallery runner can populate it with
-	// the page's per-year `content.galleryImages`. This keeps the
-	// splendid china pages in lock-step with the Gallery page without
-	// hand-editing each HTML file.
-	// NOTE: hasSplendidChinaGallery is detected *before* renderPageBlocks()
-	// because renderPageBlocks() overwrites the contents of <main>,
-	// destroying the static mount element.
-	function renderSplendidChinaGallery() {
-		if (!hasSplendidChinaGallery) return;
-
-		const main = $('.site-main');
-		if (!main) return;
-
-		main.insertAdjacentHTML('beforeend', `
-			<section class="page-section page-section-gallery" aria-label="Gallery photos">
-				<div class="container">
-					<div class="gallery-container">
-						<div class="gallery-wrapper" data-gallery-carousel></div>
-						<div class="gallery-controls" aria-label="Gallery controls">
-							<button class="prev" type="button" aria-label="Previous image">&#10094;</button>
-							<button class="next" type="button" aria-label="Next image">&#10095;</button>
-						</div>
-					</div>
-					<div class="gallery-dots" data-gallery-dots aria-label="Gallery image selection"></div>
-				</div>
-			</section>
-		`);
-
-		// Lightbox lives outside <main> so it can overlay the page,
-		// matching the structure used on pages/gallery.html.
-		document.body.insertAdjacentHTML('beforeend', `
-			<div class="gallery-lightbox" data-gallery-lightbox hidden>
-				<div class="gallery-lightbox-window" role="dialog" aria-modal="true" aria-label="Gallery image preview">
-					<button class="gallery-lightbox-close" type="button" aria-label="Close gallery image preview">&times;</button>
-					<img src="" alt="" data-gallery-lightbox-image>
-				</div>
-			</div>
-		`);
-	}
-
-	renderSplendidChinaGallery();
 
 	const lightbox = $('[data-gallery-lightbox]');
 	const lightboxImage = $('[data-gallery-lightbox-image]');
@@ -1597,87 +1590,69 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	const galleryRunners = [];
-	const HOME_RUNNERS = [
-		{
-			selector: '.home-runner:not(.home-runner-tall):not(.home-runner-wide)',
-			imagesKey: 'homepageRunnerImages',
-		},
-		{
-			selector: '.home-runner-tall',
-			imagesKey: 'homepageRunnerTallImages',
-		},
-		{
-			selector: '.home-runner-wide',
-			imagesKey: 'homepageRunnerWideImages',
-		},
-	];
-
-	HOME_RUNNERS.forEach(({ selector, imagesKey }) => {
-		const images = Array.isArray(content[imagesKey]) ? content[imagesKey] : [];
-
-		document.querySelectorAll(selector).forEach((host) => {
-			if (images.length === 0) {
-				host.hidden = true;
-				return;
-			}
-
-			const runner = initGalleryRunner({
-				galleryContainer: host.querySelector('.gallery-container'),
-				galleryDots: host.querySelector('[data-gallery-dots]'),
-				getFallbackImages: () => images,
-			});
-			if (runner) galleryRunners.push(runner);
-		});
-	});
-
-	const featuredSection = $('[data-gallery-featured]');
-	const archiveSection = $('[data-gallery-archive]');
-	const isDualGalleryPage = !!(featuredSection && archiveSection);
 	const galleryBlock = findSectionComponent(content.sections || [], 'gallery') || {};
 	const galleryGroups = Array.isArray(galleryBlock.groups)
 		? galleryBlock.groups
 		: (Array.isArray(content.galleryGroups) ? content.galleryGroups : []);
 	const featuredImages = Array.isArray(content.galleryImages) ? content.galleryImages : [];
 
-	if (isDualGalleryPage) {
-		if (featuredImages.length === 0) {
-			featuredSection.hidden = true;
-		} else {
-			const featuredRunner = initGalleryRunner({
-				galleryContainer: featuredSection.querySelector('.gallery-container'),
-				galleryDots: featuredSection.querySelector('[data-gallery-dots]'),
-				featuredThumbs: featuredSection.querySelector('[data-gallery-featured-thumbs]'),
-				getFallbackImages: () => featuredImages,
-			});
-			if (featuredRunner) galleryRunners.push(featuredRunner);
+	const HOMEPAGE_RUNNER_IMAGES = {
+		runner: 'homepageRunnerImages',
+		'runner-tall': 'homepageRunnerTallImages',
+		'runner-wide': 'homepageRunnerWideImages',
+	};
+
+	function resolveGalleryImages(variant = '') {
+		const homepageKey = HOMEPAGE_RUNNER_IMAGES[variant];
+		if (homepageKey && Array.isArray(content[homepageKey]) && content[homepageKey].length > 0) {
+			return () => content[homepageKey];
+		}
+		return () => (Array.isArray(content.galleryImages) ? content.galleryImages : []);
+	}
+
+	document.querySelectorAll('.gallery-container').forEach((galleryContainer) => {
+		if (galleryContainer.dataset.galleryInitialized === 'true') return;
+
+		const variant = galleryContainer.getAttribute('data-gallery-variant') || '';
+		const galleryHost = galleryContainer.closest('.gallery-section') || galleryContainer.parentElement;
+		const galleryDots = galleryHost?.querySelector('[data-gallery-dots]') || null;
+		const galleryGrid = galleryHost?.querySelector('[data-gallery-grid]') || null;
+		const featuredThumbs = galleryHost?.querySelector('[data-gallery-featured-thumbs]') || null;
+		const homepageKey = HOMEPAGE_RUNNER_IMAGES[variant];
+		const hasHomepageImages = homepageKey && Array.isArray(content[homepageKey]);
+		const homepageImages = hasHomepageImages ? content[homepageKey] : [];
+
+		if (hasHomepageImages && homepageImages.length === 0) {
+			const hideTarget = galleryContainer.closest('.section-item') || galleryContainer;
+			hideTarget.hidden = true;
+			return;
 		}
 
-		const archiveRunner = initGalleryRunner({
-			galleryContainer: archiveSection.querySelector('.gallery-container'),
-			galleryGrid: archiveSection.querySelector('[data-gallery-grid]'),
-			galleryGroups,
-			galleryBlock,
-			useYearTabs: galleryGroups.length > 1,
-		});
-		if (archiveRunner) galleryRunners.push(archiveRunner);
-	} else {
-		const galleryContainer = [...document.querySelectorAll('.gallery-container')]
-			.find((container) => !container.closest('.home-runner'));
-		if (galleryContainer) {
-			const galleryDots = $('[data-gallery-dots]');
-			const isSplendidChinaGallery = !!galleryDots;
-			const runner = initGalleryRunner({
-				galleryContainer,
-				galleryDots,
-				galleryGrid: $('[data-gallery-grid]'),
-				galleryGroups,
-				galleryBlock,
-				useYearTabs: !isSplendidChinaGallery && galleryGroups.length > 1,
-				getFallbackImages: () => (Array.isArray(content.galleryImages) ? content.galleryImages : []),
-			});
-			if (runner) galleryRunners.push(runner);
+		if (variant === 'featured' && featuredImages.length === 0) {
+			galleryHost.hidden = true;
+			return;
 		}
-	}
+
+		const isArchive = variant === 'archive';
+		const isRunner = /^runner(?:-tall|-wide)?$/.test(variant);
+		const runner = initGalleryRunner({
+			galleryContainer,
+			galleryDots,
+			galleryGrid,
+			featuredThumbs,
+			galleryGroups: isArchive ? galleryGroups : [],
+			galleryBlock,
+			useYearTabs: isArchive && galleryGroups.length > 1,
+			getFallbackImages: resolveGalleryImages(variant),
+		});
+
+		if (runner) {
+			galleryContainer.dataset.galleryInitialized = 'true';
+			galleryRunners.push(runner);
+		} else if (isRunner && !homepageKey) {
+			galleryContainer.dataset.galleryInitialized = 'true';
+		}
+	});
 
 	if (lightbox) {
 		lightboxClose?.addEventListener('click', () => {

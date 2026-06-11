@@ -1,7 +1,49 @@
 {
   "pageTitle": "Gallery | Madison Chinese Dance Academy",
   "metaDescription": "Image gallery of the Madison Chinese Dance Academy.",
-  "heading": "Gallery",
+  "sections": [
+    {
+      "columns": 1,
+      "items": [
+        {
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "id": "gallery-heading",
+              "text": "Gallery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "columns": 1,
+      "items": [
+        {
+          "blocks": [
+            {
+              "type": "gallery",
+              "variant": "featured"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "columns": 1,
+      "items": [
+        {
+          "blocks": [
+            {
+              "type": "gallery",
+              "variant": "archive"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "galleryGroups": [
     {
       "year": "2026",

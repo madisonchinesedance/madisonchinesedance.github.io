@@ -132,11 +132,13 @@ Add multiple body blocks in the same item when you need separate paragraphs or a
 
 Gallery `variant` controls carousel type and aspect ratio — not section layout:
 
-- `runner` — standard homepage carousel (16:9)
-- `runner-tall` — tall sidebar carousel (4:5)
-- `runner-wide` — wide carousel (21:9)
+- `runner` — standard carousel with dots (16:9); uses page-level `galleryImages` on archive pages, or `homepageRunnerImages` on the homepage
+- `runner-tall` — tall sidebar carousel (4:5); uses `homepageRunnerTallImages`
+- `runner-wide` — wide carousel (21:9); uses `homepageRunnerWideImages`
+- `featured` — featured carousel with thumbnail strip; uses page-level `galleryImages`
+- `archive` — carousel with year-tabbed thumbnail grid; uses page-level `galleryGroups`
 
-Omit `variant` on gallery pages that use the thumbnail grid.
+Omit `variant` for a simple carousel plus thumbnail grid.
 
 ### Zeffy embed blocks
 

@@ -181,6 +181,11 @@ This placeholder page can be updated with age range, schedule, tuition, registra
 
 Image gallery of the Madison Chinese Dance Academy.
 
+
+# Gallery
+
+
+
 ---
 
 ## Purchase Tickets
@@ -236,6 +241,7 @@ Splendid China 2008 performance archive by Madison Chinese Dance Academy.
 
 Performance archive details, photos, and program notes can be added here.
 
+
 ---
 
 ## Splendid China 2009
@@ -246,6 +252,7 @@ Splendid China 2009 performance archive by Madison Chinese Dance Academy.
 # Splendid China 2009
 
 Performance archive details, photos, and program notes can be added here.
+
 
 ---
 
@@ -258,6 +265,7 @@ Splendid China 2010 performance archive by Madison Chinese Dance Academy.
 
 Performance archive details, photos, and program notes can be added here.
 
+
 ---
 
 ## Splendid China 2011
@@ -268,6 +276,7 @@ Splendid China 2011 performance archive by Madison Chinese Dance Academy.
 # Splendid China 2011
 
 Performance archive details, photos, and program notes can be added here.
+
 
 ---
 
@@ -280,6 +289,7 @@ Splendid China 2012 performance archive by Madison Chinese Dance Academy.
 
 Performance archive details, photos, and program notes can be added here.
 
+
 ---
 
 ## Splendid China 2013
@@ -290,6 +300,7 @@ Splendid China 2013 performance archive by Madison Chinese Dance Academy.
 # Splendid China 2013
 
 Performance archive details, photos, and program notes can be added here.
+
 
 ---
 
@@ -302,6 +313,7 @@ Splendid China 2014 performance archive by Madison Chinese Dance Academy.
 
 Performance archive details, photos, and program notes can be added here.
 
+
 ---
 
 ## Splendid China 2015
@@ -312,6 +324,7 @@ Splendid China 2015 performance archive by Madison Chinese Dance Academy.
 # Splendid China 2015
 
 Performance archive details, photos, and program notes can be added here.
+
 
 ---
 
@@ -324,6 +337,7 @@ Splendid China 2016 performance archive by Madison Chinese Dance Academy.
 
 Performance archive details, photos, and program notes can be added here.
 
+
 ---
 
 ## Splendid China 2017
@@ -334,6 +348,7 @@ Splendid China 2017 performance archive by Madison Chinese Dance Academy.
 # Splendid China 2017
 
 Performance archive details, photos, and program notes can be added here.
+
 
 ---
 
@@ -346,6 +361,7 @@ Splendid China 2018 performance archive by Madison Chinese Dance Academy.
 
 Performance archive details, photos, and program notes can be added here.
 
+
 ---
 
 ## Splendid China 2019
@@ -356,6 +372,7 @@ Splendid China 2019 performance archive by Madison Chinese Dance Academy.
 # Splendid China 2019
 
 Performance archive details, photos, and program notes can be added here.
+
 
 ---
 
@@ -368,6 +385,7 @@ Splendid China 2022 performance archive by Madison Chinese Dance Academy.
 
 Performance archive details, photos, and program notes can be added here.
 
+
 ---
 
 ## Splendid China 2023
@@ -378,6 +396,7 @@ Splendid China 2023 performance archive by Madison Chinese Dance Academy.
 # Splendid China 2023
 
 Performance archive details, photos, and program notes can be added here.
+
 
 ---
 
@@ -390,6 +409,7 @@ Splendid China 2024 performance archive by Madison Chinese Dance Academy.
 
 Performance archive details, photos, and program notes can be added here.
 
+
 ---
 
 ## Splendid China 2025
@@ -400,6 +420,7 @@ Splendid China 2025 performance archive by Madison Chinese Dance Academy.
 # Splendid China 2025
 
 Performance archive details, photos, and program notes can be added here.
+
 
 ---
 
@@ -419,6 +440,7 @@ Montgomery College
 51 Mannakee Street, Rockville, MD
 
 - **Purchase Tickets** (pages/tickets.html)
+
 
 ---
 

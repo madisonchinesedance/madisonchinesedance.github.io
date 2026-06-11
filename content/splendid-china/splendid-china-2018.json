@@ -102,6 +102,19 @@
           ]
         }
       ]
+    },
+    {
+      "columns": 1,
+      "items": [
+        {
+          "blocks": [
+            {
+              "type": "gallery",
+              "variant": "runner"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

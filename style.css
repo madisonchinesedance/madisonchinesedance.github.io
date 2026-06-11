@@ -877,7 +877,8 @@ a{
 	color:var(--light-text-color);
 }
 .hero-title,
-.page-hero h1{
+.page-hero h1,
+.section h1{
 	margin:0 0 14px;
 	font-size:var(--heading-1-font-size);
 	font-weight:var(--heading-1-font-weight);
@@ -886,6 +887,7 @@ a{
 }
 /* page-hero / section containers use a dark card now; headings stay light */
 .page-hero h1,
+.section h1,
 .section h2{
 	color:var(--light-text-color);
 }
@@ -981,6 +983,9 @@ a{
 	 --------------------------- */
 .section{
 	padding:20px 0 36px;
+}
+body:not(.home-page) .site-main > .section:first-child{
+	padding-top:64px;
 }
 .site-main{
 	position:relative;
@@ -1364,11 +1369,6 @@ a.section-item:focus-visible{
 	justify-content:flex-start;
 	margin-top:26px;
 }
-.home-section-heading{
-	max-width:920px;
-	margin-bottom:24px;
-}
-.home-section-heading h2,
 .home-page .section:not(:has(#home-heading)) h2{
 	margin:0 0 12px;
 	color:var(--light-text-color);
@@ -1376,7 +1376,6 @@ a.section-item:focus-visible{
 	font-weight:var(--heading-3-font-weight);
 	line-height:var(--heading-3-line-height);
 }
-.home-section-heading p,
 .home-page .section:not(:has(#home-heading)) .component-body p{
 	margin:0;
 	color:var(--body-font-color);
@@ -1639,6 +1638,9 @@ a.component-card:focus-visible{
 	transform:scale(1);
 }
 
+.section-item .gallery-section{
+	width:100%;
+}
 .gallery-section{
 	margin-bottom:clamp(24px, 4vw, 48px);
 }
