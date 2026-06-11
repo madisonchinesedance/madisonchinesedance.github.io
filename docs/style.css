@@ -9,6 +9,8 @@
 	 CSS variables (theme & scale)
 	 --------------------------- */
 :root{
+	/* Naming: --color-* = raw palette; component prefixes = semantic theme tokens */
+
 	/* ── Core colors ── */
 	--color-alpha-deep-navy: #101b4fcb;
 	--color-alpha-navy-shadow: transparent;
@@ -18,44 +20,85 @@
 	--color-green: #1E7E34;
 	--color-navy-shadow: #030c38;
 	--color-peach: #FFE2CF;
-	--color-peach-dark: #FFAD82;
 	--color-purple: #3a1e8d;
 	--color-sunrise: #D85D4B;
 	--color-violet: #2A2361;
 	--color-white: #FFFFFF;
+	--green-glow: #28A745;
+	--color-green-glow: var(--green-glow);
 
 	/* ── Brand / background colors ── */
 	--bg-color: var(--color-deep-navy);
-	--dark-text-color: var(--color-black);
-	--footer-bg: var(--bg-color);
+	--footer-bg: var(--color-deep-navy);
 	--hero-bg-bottom: var(--color-sunrise);
 	--hero-bg-middle: var(--color-violet);
 	--hero-bg-top: var(--color-deep-navy);
 	--light-text-color: var(--color-white);
 
+	/* ── UI colors ── */
+	--button-hover-bg: var(--color-blue-grey);
+	--edge-contrast: var(--color-blue-grey);
+
+	/* ── Layout sizing ── */
+	--content-width: 1600px;
+	--header-bar-height: 65px;
+	--header-content-width: 1700px;
+	--section-max-width: 1600px;
+	--section-radius: 40px;
+
+	/* ── Spacing (key tokens) ── */
+	--spacing-sm: 12px;
+	--spacing-md: 16px;
+	--spacing-xl: 24px;
+
+	/* ── Opacity (key tokens) ── */
+	--opacity-hover: 0.7;
+	--opacity-full: 1.0;
+
+	/* ── Section ── */
+	--section-bg-top: #3d0597;
+	--section-bg-bottom: #2860da;
+	--section-border: var(--edge-contrast);
+	--section-border-radius-bottom-left: 0px;
+	--section-border-radius-bottom-right: 0px;
+	--section-border-radius-top-left: 36px;
+	--section-border-radius-top-right: 36px;
+	--section-gap: 18px;
+	--content-top-padding: 64px;
+	--section-heading-color: var(--light-text-color);
+	--section-padding-x: clamp(18px, 3vw, 40px);
+	--section-shadow: 0 18px 50px var(--color-navy-shadow);
+	--section-shadow-hover: 0 22px 56px var(--color-navy-shadow);
+	--section-text-color: var(--light-text-color);
+	--section-transparency: 0.5;
+	--section-transparency-hover: 0.5;
+
 	/* ── Cards ── */
-	--card-bg-top: var(--section-bg-top); /* cards use the same gradient as sections */
-	--card-bg-bottom: var(--section-bg-bottom); /* cards use the same gradient as sections */
-	--card-blend-mode: normal;
-	--card-blur: 0px;
+	--card-bg-top: var(--section-bg-top);
+	--card-bg-bottom: var(--section-bg-bottom);
 	--card-border-color: var(--edge-contrast);
 	--card-border-hover: transparent;
 	--card-border-radius: 20px;
+	--card-radius: var(--card-border-radius);
 	--card-gap: 18px;
 	--card-grid-columns: 3;
 	--card-heading-color: var(--light-text-color);
 	--card-link-after-content: " ->";
 	--card-link-font-weight: 800;
 	--card-min-height: 260px;
-	--card-opacity-disabled: 0.5;
 	--card-padding: 24px;
 	--card-padding-sm: 22px;
 	--card-padding-xs: 16px;
 	--card-shadow: 0 14px 34px var(--color-navy-shadow);
 	--card-shadow-hover: 0 22px 42px var(--color-navy-shadow);
 	--card-text-color: var(--light-text-color);
-	--card-transparency: 0.5;             /* resting opacity for cards */
+	--card-transparency: 0.5;
 	--card-transparency-hover: 0.5;
+
+	/* ── Header ── */
+	--header-bg: var(--color-deep-navy);
+	--header-current-shadow: 0 0 0 3px var(--color-blue-grey);
+	--header-shadow: 0 8px 28px var(--color-navy-shadow);
 
 	/* ── Footer ── */
 	--footer-logo-shadow: 0 12px 26px var(--color-navy-shadow);
@@ -74,21 +117,7 @@
 	--gallery-window-bg: var(--color-white);
 
 	/* ── Gradients ── */
-	--footer-bg: var(--color-deep-navy);
-	--home-intro-bg: linear-gradient(180deg, var(--color-deep-navy), var(--color-deep-navy));
 	--zeffy-embed-bg: linear-gradient(180deg, var(--color-deep-navy), var(--color-sunrise));
-
-	/* ── Header ── */
-	--header-bg: var(--color-deep-navy);
-	--header-current-shadow: 0 0 0 3px var(--color-blue-grey);
-	--header-shadow: 0 8px 28px var(--color-navy-shadow);
-
-	/* ── Layout sizing ── */
-	--card-radius: 20px;
-	--content-width: 1600px;
-	--header-bar-height: 65px;
-	--header-content-width: 1700px;
-	--section-radius: 40px;
 
 	/* ── Motion & transitions ── */
 	--entrance-delay-card: 90ms;
@@ -105,31 +134,12 @@
 	--translate-card-hover: -5px;
 	--translate-dropdown-hidden: -6px;
 
-	/* ── Spacing system ── */
-	--spacing-xxs: 4px;
-	--spacing-xs: 8px;
-	--spacing-sm: 12px;
-	--spacing-md: 16px;
-	--spacing-lg: 20px;
-	--spacing-xl: 24px;
-	--spacing-xxl: 32px;
-	--spacing-xxxl: 40px;
-
-	/* ── Opacity levels ── */
-	--opacity-disabled: 0.5;
-	--opacity-hover: 0.7;
-	--opacity-active: 0.8;
-	--opacity-subtle: 0.45;
-	--opacity-faint: 0.72;
-	--opacity-strong: 0.9;
-	--opacity-full: 1.0;
-
 	/* ── Navigation & Dropdown ── */
 	--boxshadow-nav: var(--color-black);
 	--dropdown-bg: var(--color-deep-navy);
 	--dropdown-shadow: 0 18px 42px var(--color-navy-shadow);
 
-	/* ── Nav CTA Buttons (separate from content buttons) ── */
+	/* ── Nav CTA Buttons ── */
 	--nav-button-active-shadow: var(--header-current-shadow);
 	--nav-button-font-size: var(--nav-link-font-size);
 	--nav-button-font-weight: var(--nav-link-font-weight);
@@ -138,9 +148,6 @@
 	--nav-button-padding: 8px 12px;
 	--nav-button-radius: 999px;
 	--nav-button-transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
-
-	/* ── Panel ── */
-	--panel-shadow: var(--section-shadow);
 
 	/* ── Primary Button ── */
 	--primary-button-bg: var(--color-purple);
@@ -154,39 +161,9 @@
 	--primary-button-text: var(--light-text-color);
 	--primary-button-transition: transform var(--transition-fast), filter var(--transition-fast), opacity var(--transition-fast);
 
-	/* ── Section ── */
-	--section-bg-top: #3d0597; /* Top color for gradient */
-	--section-bg-bottom: #2860da; /* Bottom color for gradient */
-	--section-bg-solid: var(--section-bg);
-	--section-blend-mode: normal;
-	--section-blur: 0px;
-	--section-border: var(--edge-contrast);
-	--section-border-radius-bottom-left: 0px;
-	--section-border-radius-bottom-right: 0px;
-	--section-border-radius-top-left: 36px;
-	--section-border-radius-top-right: 36px;
-	--section-gap: 18px;
-	--content-top-padding: 64px;
-	--section-heading-color: var(--light-text-color);
-	--section-margin-top: -34px;           /* home-intro pull-up offset */
-	--section-max-width: 1600px;
-	--section-padding-top: 84px;
-	--section-padding-x: clamp(18px, 3vw, 40px);
-	--section-radius: 40px;
-	--section-shadow: 0 18px 50px var(--color-navy-shadow);
-	--section-shadow-hover: 0 22px 56px var(--color-navy-shadow);
-	--section-text-color: var(--light-text-color);
-	--section-transparency: 0.5;          /* resting opacity for sections like home-intro */
-	--section-transparency-hover: 0.5;         /* hover/focus opacity */
-	--home-intro-shadow: 0 -18px 42px var(--color-navy-shadow);
-
 	/* ── Skip Link ── */
 	--skiplink-bg: var(--color-peach);
 	--skiplink-fg: var(--color-deep-navy);
-
-	/* ── UI colors ── */
-	--button-hover-bg: var(--color-blue-grey);
-	--edge-contrast: var(--color-blue-grey);
 
 	/* ── Typography — heading presets (heading-1 … heading-6), body, small-body ── */
 	--base-font-size: 14px;
@@ -203,27 +180,22 @@
 	--heading-2-font-weight: 700;
 	--heading-2-line-height: 1.12;
 	--heading-3-font-size: clamp(2rem, 3vw, 3.2rem);
-	--heading-3-font-weight: 700;
-	--heading-3-line-height: 1.15;
 	--heading-4-font-size: clamp(1.65rem, 2.5vw, 2.4rem);
-	--heading-4-font-weight: 700;
-	--heading-4-line-height: 1.2;
 	--heading-5-font-size: clamp(1.4rem, 2vw, 1.85rem);
-	--heading-5-font-weight: 700;
-	--heading-5-line-height: 1.25;
 	--heading-6-font-size: clamp(1.25rem, 1.4vw, 1.65rem);
-	--heading-6-font-weight: 700;
-	--heading-6-line-height: 1.25;
 	--logo-font-size: 1.4rem;
 	--nav-link-font-size: 1.05rem;
 	--nav-link-font-weight: 600;
 	--small-body-font-size: 0.95rem;
 
 	/* ── Announcement ── */
+	--peach-highlight: #FFD9C2F2;
 	--announcement-bg: var(--color-alpha-navy-shadow);
 	--announcement-border: var(--peach-highlight);
+	--announcement-border-top: rgba(255, 255, 255, 0.4);
+	--announcement-text-color: var(--light-text-color);
+	--announcement-shadow: 0 8px 18px var(--color-navy-shadow);
 	--announcement-button-bg: var(--primary-button-bg);
-	--announcement-button-border: var(--color-black);
 	--announcement-button-border-color: var(--edge-contrast);
 	--announcement-button-border-hover: transparent;
 	--announcement-button-font-size: var(--small-body-font-size);
@@ -237,21 +209,15 @@
 	--announcement-button-radius: 999px;
 	--announcement-button-shadow-hover: var(--card-shadow-hover);
 	--announcement-button-transition: transform var(--transition-fast), filter var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast), border-color var(--transition-fast);
-	--announcement-shadow: 0 8px 18px var(--color-navy-shadow);
 
-	/* ── Announcement Highlight Colors ── */
+	/* ── Announcement highlight (ring / glow) ── */
 	--blue-glow: #4A90E2;
-	--blue-highlight: #6096FF9E;
 	--blue-ring: #4A90E2;
 	--gold-glow: #FFC440;
-	--gold-highlight: #FFC440A8;
 	--gold-ring: #FFC440;
-	--green-glow: #28A745;
-	--green-highlight: #28A7459E;
 	--green-ring: #28A745;
 	--highlight-shadow: 0 0 0 2px var(--highlight-ring), 0 0 18px var(--highlight-glow);
 	--peach-glow: #FFB37A;
-	--peach-highlight: #FFD9C2F2;
 	--peach-ring: #FFB37A;
 }
 
@@ -287,7 +253,7 @@ a{
 /* Container keeps content centered and constrained.
    Scaled max-width: ~1600px on large screens, fluid down to mobile. */
 .container{
-	width:min(100% - 32px, 1600px);
+	width:min(100% - calc(var(--spacing-md) * 2), var(--section-max-width));
 	margin:0 auto;
 }
 
@@ -332,7 +298,10 @@ a{
 	display:flex;
 	align-items:center;
 	gap:18px;
+	width:min(100% - calc(var(--spacing-md) * 2), var(--header-content-width));
+	max-width:var(--header-content-width);
 	height:var(--header-bar-height);
+	margin:0 auto;
 	justify-content:space-between;
 }
 
@@ -658,10 +627,10 @@ a{
 .site-announcement{
 	position:relative;
 	z-index:30;
-	background:transparent;
-	border-top:1px solid rgba(255,255,255,0.4);
+	background:var(--announcement-bg);
+	border-top:1px solid var(--announcement-border-top);
 	border-bottom:1px solid var(--announcement-border);
-	box-shadow:none;
+	box-shadow:var(--announcement-shadow);
 }
 .site-announcement.has-scroll-text{
 	overflow:hidden;
@@ -669,10 +638,10 @@ a{
 .announcement-inner{
 	display:flex;
 	align-items:center;
-	gap:12px;
+	gap:var(--spacing-sm);
 	min-height:42px;
 	padding:6px 0;
-	color:var(--dark-text-color);
+	color:var(--announcement-text-color);
 }
 .announcement-copy{
 	display:flex;
@@ -709,7 +678,7 @@ a{
 .announcement-label,
 .announcement-body{
 	margin:0;
-	color:var(--light-text-color);
+	color:var(--announcement-text-color);
 	line-height:var(--body-line-height);
 }
 .announcement-label{
@@ -730,7 +699,7 @@ a{
 .announcement-actions{
 	display:flex;
 	align-items:center;
-	gap:8px;
+	gap:var(--spacing-sm);
 	flex:0 0 auto;
 }
 .announcement-btn{
@@ -759,19 +728,19 @@ a{
 	border:none;
 	border-radius:0;
 	background:transparent;
-	color:var(--light-text-color);
+	color:var(--announcement-text-color);
 	font:inherit;
 	font-size:1.2rem;
 	font-weight:400;
 	line-height:1;
 	cursor:pointer;
 	padding:4px 8px;
-	opacity:0.7;
+	opacity:var(--opacity-hover);
 	transition:opacity var(--transition-fast);
 }
 .announcement-dismiss:hover,
 .announcement-dismiss:focus-visible{
-	opacity:1;
+	opacity:var(--opacity-full);
 	outline:none;
 }
 .announcement-btn:hover,
@@ -901,7 +870,7 @@ a{
 .page-hero p,
 .section p,
 .section li{
-	color:var(--light-text-color);
+	color:var(--section-text-color);
 }
 .page-hero p + p,
 .page-hero .btn + p{
@@ -1083,6 +1052,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 }
 .section :is(h1, h2, h3, h4, h5, h6){
 	margin:0 0 12px;
+	color:var(--section-heading-color);
 }
 .section h1{
 	font-size:var(--heading-1-font-size);
@@ -1092,16 +1062,21 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 }
 .section p{
 	margin:0 0 1rem;
-	color:var(--body-font-color);
+	color:var(--section-text-color);
 	font-size:var(--body-font-size);
 	line-height:var(--body-line-height);
 	max-width:var(--content-width);
+}
+.section li{
+	color:var(--section-text-color);
+	font-size:var(--body-font-size);
+	line-height:var(--body-line-height);
 }
 .section p:last-child{ margin-bottom:0; }
 .section-grid{
 	display:grid;
 	grid-template-columns:repeat(var(--section-columns, 1), minmax(0, 1fr));
-	gap:18px;
+	gap:var(--section-gap);
 }
 .section-grid[style*="--section-columns:2"],
 .section-grid[style*="--section-columns:3"],
@@ -1200,7 +1175,7 @@ a.section-item .component-actions{
 	margin-top:0;
 	padding-top:var(--content-top-padding);
 	padding-bottom:12px;
-	border-radius:36px 36px 0 0;
+	border-radius:var(--section-border-radius-top-left) var(--section-border-radius-top-right) var(--section-border-radius-bottom-right) var(--section-border-radius-bottom-left);
 }
 .home-page .section:has(#home-heading) > .container{
 	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency) * 100%), transparent));
@@ -1408,11 +1383,11 @@ a.section-item .component-actions{
 }
 .component-card-grid{
 	display:grid;
-	grid-template-columns:repeat(var(--card-columns, 3), minmax(0, 1fr));
-	gap:18px;
+	grid-template-columns:repeat(var(--card-columns, var(--card-grid-columns)), minmax(0, 1fr));
+	gap:var(--card-gap);
 	width:100%;
 	max-width:var(--content-width);
-	margin:24px auto 0;
+	margin:var(--spacing-xl) auto 0;
 }
 .hero-inner .component-card-grid{
 	margin-top:30px;
@@ -1426,7 +1401,7 @@ a.section-item .component-actions{
 .component-card{
 	display:flex;
 	flex-direction:column;
-	min-height:100%;
+	min-height:max(100%, var(--card-min-height));
 	padding:var(--card-padding);
 	--card-heading-font-size: var(--heading-2-font-size);
 	--card-heading-font-weight: var(--heading-2-font-weight);
@@ -1453,26 +1428,26 @@ a.component-card:focus-visible{
 }
 .component-card-heading{
 	margin:0 0 10px;
-	color:var(--light-text-color);
+	color:var(--card-heading-color);
 	font-size:var(--card-heading-font-size);
 	font-weight:var(--card-heading-font-weight);
 	line-height:var(--card-heading-line-height);
 }
 .component-card p{
 	margin:0;
-	color:var(--light-text-color);
+	color:var(--card-text-color);
 	font-size:var(--body-font-size);
 	line-height:var(--body-line-height);
 }
 .component-card-link{
 	margin-top:auto;
 	padding-top:22px;
-	color:var(--light-text-color);
-	font-weight:var(--heading-2-font-weight);
+	color:var(--card-text-color);
+	font-weight:var(--card-link-font-weight);
 	font-size:var(--body-font-size);
 }
 .component-card-link::after{
-	content:" ->";
+	content:var(--card-link-after-content);
 }
 @keyframes home-rise{
 	from{
@@ -1505,7 +1480,7 @@ a.component-card:focus-visible{
 	border-radius:14px;
 	padding:clamp(18px, 3vw, 32px);
 	box-shadow:var(--card-shadow);
-	border:1px solid var(--card-border);
+	border:1px solid var(--card-border-color);
 	overflow:hidden;
 	position:relative;
 	width:100%;
@@ -1836,6 +1811,7 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 .footer-logo:focus-visible{
 	transform:translateY(-2px);
 	opacity:0.8;
+	box-shadow:var(--footer-logo-shadow);
 	outline:none;
 }
 .footer-brand-name{
@@ -2076,8 +2052,15 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 		padding:0;
 	}
 	.section-columns > .container{
-		width:min(100% - 32px, 1600px);
+		width:min(100% - calc(var(--spacing-md) * 2), var(--section-max-width));
 		padding:0;
+	}
+
+	.component-card,
+	.section-grid[style*="--section-columns:2"] .section-item,
+	.section-grid[style*="--section-columns:3"] .section-item,
+	.section-grid[style*="--section-columns:4"] .section-item{
+		padding:var(--card-padding-sm);
 	}
 	.logo{
 		font-size:var(--logo-font-size);
@@ -2140,6 +2123,13 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 
 	.announcement-actions{
 		grid-column:1 / -1;
+	}
+
+	.component-card,
+	.section-grid[style*="--section-columns:2"] .section-item,
+	.section-grid[style*="--section-columns:3"] .section-item,
+	.section-grid[style*="--section-columns:4"] .section-item{
+		padding:var(--card-padding-xs);
 	}
 }
 @keyframes star-twinkle{
