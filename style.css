@@ -1202,8 +1202,7 @@ a.section-item:focus-visible{
 	padding-bottom:24px;
 	border-radius:36px 36px 0 0;
 }
-.home-page .section-academy > .container,
-.home-page .section-story > .container{
+.home-page .section-academy > .container{
 	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency) * 100%), transparent));
 	border-color:color-mix(in srgb, var(--section-border) calc(var(--section-transparency) * 100%), transparent);
 }
@@ -1220,6 +1219,12 @@ a.section-item:focus-visible{
 .home-page .section-story{
 	padding-top:20px;
 	padding-bottom:44px;
+}
+.home-page .section-story > .container{
+	background:transparent;
+	border:0;
+	box-shadow:none;
+	padding:0;
 }
 .home-page .section-get-involved{
 	padding-top:12px;
