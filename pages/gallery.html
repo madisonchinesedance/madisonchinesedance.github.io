@@ -17,14 +17,27 @@
 		<section class="page-hero" aria-labelledby="gallery-heading">
 			<div class="container">
 				<h1 id="gallery-heading" data-json="heading">Gallery</h1>
-				<div class="gallery-container">
-					<div class="gallery-wrapper" data-gallery-carousel></div>
-					<div class="gallery-controls">
-						<button class="prev" type="button" aria-label="Previous gallery image">&lt;</button>
-						<button class="next" type="button" aria-label="Next gallery image">&gt;</button>
+				<section class="gallery-section gallery-section-featured" data-gallery-featured aria-label="Featured gallery photos">
+					<div class="gallery-container">
+						<div class="gallery-wrapper" data-gallery-carousel></div>
+						<div class="gallery-controls">
+							<button class="prev" type="button" aria-label="Previous featured gallery image">&lt;</button>
+							<button class="next" type="button" aria-label="Next featured gallery image">&gt;</button>
+						</div>
 					</div>
-				</div>
-				<div class="gallery-grid" data-gallery-grid aria-label="Gallery image thumbnails"></div>
+					<div class="gallery-dots" data-gallery-dots aria-label="Featured gallery image selection"></div>
+					<div class="gallery-featured-thumbs" data-gallery-featured-thumbs aria-label="Featured gallery thumbnails"></div>
+				</section>
+				<section class="gallery-section gallery-section-archive" data-gallery-archive aria-label="Splendid China gallery photos">
+					<div class="gallery-container">
+						<div class="gallery-wrapper" data-gallery-carousel></div>
+						<div class="gallery-controls">
+							<button class="prev" type="button" aria-label="Previous gallery image">&lt;</button>
+							<button class="next" type="button" aria-label="Next gallery image">&gt;</button>
+						</div>
+					</div>
+					<div class="gallery-grid" data-gallery-grid aria-label="Gallery image thumbnails"></div>
+				</section>
 			</div>
 		</section>
 	</main>

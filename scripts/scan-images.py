@@ -10,6 +10,9 @@ content/gallery.json so the main Gallery page can still display everything
 together. Years are sorted in reverse chronological order so the most recent
 year appears first.
 
+Images in the top-level ``gallery/`` folder populate ``galleryImages`` in
+content/gallery.json for the curated featured carousel on the main Gallery page.
+
 Configuration (in order of precedence):
     1. Environment variables: R2_ACCOUNT_ID, R2_ACCESS_KEY, R2_SECRET_KEY,
        R2_BUCKET, R2_PUBLIC_URL
@@ -19,7 +22,7 @@ Usage:
     python scripts/scan-images.py
     python scripts/scan-images.py --content content/gallery.json
 
-Push changes to cloudflare with: rclone copy "$env:USERPROFILE\Downloads\splendid-china" r2:mcda-website-cdn -P
+Push changes to cloudflare with: rclone copy "$env:USERPROFILE\Desktop\Coding\madisonchinesedance.github.io\cloudflare-r2-import" r2:mcda-website-cdn -P
 """
 
 from __future__ import annotations
@@ -122,6 +125,9 @@ DEFAULT_CONTENT = {
 # pair them up with the matching page + JSON file.
 YEAR_FOLDER_PATTERN = re.compile(r"^splendid-china-(\d{4})$")
 
+# Curated featured images for the top carousel on the main Gallery page.
+GALLERY_PREFIX = "gallery/"
+
 
 def repo_root() -> Path:
     return Path(__file__).resolve().parent.parent
@@ -208,6 +214,11 @@ def scan_year_images(year_prefix: str) -> list[dict[str, str]]:
     ]
 
 
+def scan_featured_gallery() -> list[dict[str, str]]:
+    """Return image metadata for all images under ``gallery/`` in R2."""
+    return scan_year_images(GALLERY_PREFIX)
+
+
 def scan_year_folders() -> list[dict]:
     """Return one entry per ``splendid-china-YYYY`` folder in the R2 bucket.
 
@@ -265,7 +276,12 @@ def write_json(path: Path, data: dict) -> None:
     )
 
 
-def update_main_gallery(content_path: Path, existing: dict, years: list[dict]) -> int:
+def update_main_gallery(
+    content_path: Path,
+    existing: dict,
+    years: list[dict],
+    featured_images: list[dict[str, str]],
+) -> tuple[int, int]:
     gallery_groups = build_gallery_groups(years)
     content = {
         "pageTitle": existing.get("pageTitle")
@@ -278,10 +294,10 @@ def update_main_gallery(content_path: Path, existing: dict, years: list[dict]) -
             or existing.get("galleryHeroHeading")
             or DEFAULT_CONTENT["heading"],
         "galleryGroups": gallery_groups,
-        "galleryImages": DEFAULT_CONTENT["galleryImages"],
+        "galleryImages": featured_images,
     }
     write_json(content_path, content)
-    return len(gallery_groups)
+    return len(gallery_groups), len(featured_images)
 
 
 def update_per_year_json(content_path: Path, year_info: dict) -> int:
@@ -330,20 +346,25 @@ def main() -> None:
     print(f"Connecting to R2 bucket: {R2_BUCKET} ...")
 
     years = scan_year_folders()
-    if not years:
-        print("No splendid-china-YYYY folders found in R2 bucket.")
+    featured_images = scan_featured_gallery()
+    if not years and not featured_images:
+        print("No splendid-china-YYYY or gallery/ image folders found in R2 bucket.")
         return
 
     image_count = sum(len(year["images"]) for year in years)
 
     if not args.skip_main:
         existing = read_existing_content(content_path)
-        group_count = update_main_gallery(content_path, existing, years)
+        group_count, featured_count = update_main_gallery(
+            content_path, existing, years, featured_images
+        )
         group_noun = "group" if group_count == 1 else "groups"
-        image_noun = "image" if image_count == 1 else "images"
+        archive_noun = "image" if image_count == 1 else "images"
+        featured_noun = "image" if featured_count == 1 else "images"
         print(
             f"Updated {content_path.relative_to(root)} with {group_count} {group_noun} "
-            f"({image_count} {image_noun})."
+            f"({image_count} archive {archive_noun}) and {featured_count} featured "
+            f"{featured_noun}."
         )
 
     updated_per_year = 0

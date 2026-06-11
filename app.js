@@ -1136,40 +1136,44 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 	renderSplendidChinaGallery();
 
-	const galleryContainer = $('.gallery-container');
-	if (galleryContainer) {
+	const lightbox = $('[data-gallery-lightbox]');
+	const lightboxImage = $('[data-gallery-lightbox-image]');
+	const lightboxClose = $('.gallery-lightbox-close');
+	let activeGalleryRunner = null;
+
+	function initGalleryRunner({
+		galleryContainer,
+		galleryDots = null,
+		galleryGrid = null,
+		featuredThumbs = null,
+		galleryGroups = [],
+		galleryBlock = {},
+		useYearTabs = false,
+		getFallbackImages = () => [],
+	}) {
+		if (!galleryContainer) return null;
+
 		const galleryWrapper = galleryContainer.querySelector('.gallery-wrapper');
-		const galleryGrid = $('[data-gallery-grid]');
-		const galleryDots = $('[data-gallery-dots]');
-		const isSplendidChinaGallery = !!galleryDots;
-		const lightbox = $('[data-gallery-lightbox]');
-		const lightboxImage = $('[data-gallery-lightbox-image]');
-		const lightboxClose = $('.gallery-lightbox-close');
+		if (!galleryWrapper) return null;
+
+		const useDots = !!galleryDots;
 		const prevButton = galleryContainer.querySelector('.prev');
 		const nextButton = galleryContainer.querySelector('.next');
-		const galleryBlock = findSectionComponent(content.sections || [], 'gallery') || {};
-		const galleryGroups = Array.isArray(galleryBlock.groups)
-			? galleryBlock.groups
-			: (Array.isArray(content.galleryGroups) ? content.galleryGroups : []);
 		const groupedImages = galleryGroups.flatMap((group) => {
 			const events = Array.isArray(group.events) ? group.events : [];
 			return events.flatMap((event) => {
-				const images = Array.isArray(event.images) ? event.images : [];
-				return images.map((image) => ({
+				const eventImages = Array.isArray(event.images) ? event.images : [];
+				return eventImages.map((image) => ({
 					...image,
 					year: group.year,
 					event: event.event
 				}));
 			});
 		});
-		// When the gallery groups the images by year, default to showing
-		// only the most recent year. A tab bar of year buttons sits above
-		// the runner so visitors can pick a year without scrolling past
-		// dozens of thumbnails. Pages with a single year, a flat image
-		// list, or no year grouping (e.g. the splendid-china archive
-		// pages) keep the original full-page render path.
-		const useYearTabs = !isSplendidChinaGallery && galleryGroups.length > 1;
 		let activeYearIndex = 0;
+		let images = [];
+		let currentIndex = 0;
+		let autoScrollInterval;
 
 		function imagesForActiveYear() {
 			if (!useYearTabs) {
@@ -1177,7 +1181,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 					? groupedImages
 					: (Array.isArray(galleryBlock.images)
 						? galleryBlock.images
-						: (Array.isArray(content.galleryImages) ? content.galleryImages : []));
+						: getFallbackImages());
 			}
 			const activeGroup = galleryGroups[activeYearIndex];
 			if (!activeGroup) return [];
@@ -1192,14 +1196,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 			});
 		}
 
-		// Build the year tab bar above the gallery runner. Each tab is a
-		// <button role="tab">; the active tab is tracked by the
-		// `aria-selected` attribute and a CSS class. The tab order
-		// matches `galleryGroups` (already sorted by year desc by
-		// scan-images.py), so the most recent year comes first.
 		function renderYearTabs() {
 			if (!useYearTabs) return;
-			if (galleryContainer.parentElement?.querySelector('.gallery-year-tabs')) return;
+			const tabHost = galleryContainer.parentElement;
+			if (tabHost?.querySelector('.gallery-year-tabs')) return;
 
 			const tabs = document.createElement('div');
 			tabs.className = 'gallery-year-tabs';
@@ -1218,16 +1218,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 					</button>
 				`;
 			}).join('');
-			galleryContainer.parentElement?.insertBefore(tabs, galleryContainer);
+			tabHost?.insertBefore(tabs, galleryContainer);
 		}
 
-		// `images`, `currentIndex`, and `autoScrollInterval` are shared
-		// between the initial render and any year-switch re-render, so
-		// they must live in the outer scope (not be re-declared as
-		// `const`/`let` inside the year-render function).
-		let images = [];
-		let currentIndex = 0;
-		let autoScrollInterval;
+		function updateSelectionIndicators() {
+			if (useDots && galleryDots) {
+				galleryDots.querySelectorAll('.gallery-dot').forEach((dot) => {
+					const dotIndex = Number(dot.getAttribute('data-gallery-dot'));
+					dot.classList.toggle('active', dotIndex === currentIndex);
+				});
+			}
+			if (featuredThumbs) {
+				featuredThumbs.querySelectorAll('.gallery-thumb').forEach((thumb) => {
+					const thumbIndex = Number(thumb.getAttribute('data-gallery-thumb'));
+					thumb.classList.toggle('active', thumbIndex === currentIndex);
+				});
+			}
+		}
 
 		function renderYear() {
 			const activeImages = imagesForActiveYear();
@@ -1237,15 +1244,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 					<img src="${escapeHtml(resolveLink(image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}">
 				`).join('');
 
-				if (isSplendidChinaGallery) {
+				if (useDots && galleryDots) {
 					galleryDots.innerHTML = activeImages.map((image, index) => `
 						<button class="gallery-dot ${index === 0 ? 'active' : ''}" type="button" data-gallery-dot="${index}" aria-label="Go to image ${index + 1}"></button>
 					`).join('');
 				} else if (galleryGrid) {
 					if (useYearTabs) {
-						// Show only the active year's events under the
-						// tab bar. The year heading is already in the
-						// tab list so we skip it here.
 						const activeGroup = galleryGroups[activeYearIndex];
 						const events = Array.isArray(activeGroup?.events) ? activeGroup.events : [];
 						let thumbIndex = 0;
@@ -1274,8 +1278,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 						galleryGrid.innerHTML = galleryGroups.map((group) => {
 							const events = Array.isArray(group.events) ? group.events : [];
 							const eventMarkup = events.map((event) => {
-								const images = Array.isArray(event.images) ? event.images : [];
-								const thumbnails = images.map((image) => {
+								const groupImages = Array.isArray(event.images) ? event.images : [];
+								const thumbnails = groupImages.map((image) => {
 									const index = imageIndex;
 									imageIndex += 1;
 									return `
@@ -1308,6 +1312,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 						`).join('');
 					}
 				}
+
+				if (featuredThumbs) {
+					featuredThumbs.innerHTML = activeImages.map((image, index) => `
+						<button class="gallery-thumb${index === 0 ? ' active' : ''}" type="button" data-gallery-thumb="${index}" aria-label="Open ${escapeHtml(image.alt || `gallery image ${index + 1}`)}">
+							<img src="${escapeHtml(resolveLink(image.thumb || image.src, routes))}" alt="${escapeHtml(image.alt || `Gallery image ${index + 1}`)}" loading="lazy" decoding="async">
+						</button>
+					`).join('');
+				}
 			} else {
 				galleryWrapper.innerHTML = '<div class="gallery-empty-message" role="status">No images to display.</div>';
 				if (galleryGrid) {
@@ -1316,11 +1328,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 				if (galleryDots) {
 					galleryDots.innerHTML = '';
 				}
+				if (featuredThumbs) {
+					featuredThumbs.innerHTML = '';
+				}
 			}
 
-			// Refresh the `images` collection from the new DOM so the
-			// rest of the gallery logic (auto-scroll, prev/next,
-			// lightbox, etc.) operates on the current year's images.
 			images = Array.from(galleryWrapper.querySelectorAll('img'));
 			images.forEach((image, index) => {
 				image.setAttribute('tabindex', '-1');
@@ -1333,33 +1345,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 				});
 			});
 			currentIndex = 0;
-		}
-
-		renderYearTabs();
-		renderYear();
-
-		// Wire up year tab clicks. Tabs are static, so this can run once
-		// after the initial render. Clicking a tab stops the auto-scroll,
-		// re-renders the runner + thumbnails, and restarts the carousel.
-		if (useYearTabs) {
-			$$('.gallery-year-tab').forEach((tab) => {
-				tab.addEventListener('click', () => {
-					const index = Number(tab.getAttribute('data-gallery-year-tab'));
-					if (Number.isNaN(index) || index === activeYearIndex) return;
-
-					stopAutoScroll();
-					activeYearIndex = index;
-					$$('.gallery-year-tab').forEach((t) => {
-						const isActive = Number(t.getAttribute('data-gallery-year-tab')) === activeYearIndex;
-						t.classList.toggle('active', isActive);
-						t.setAttribute('aria-selected', String(isActive));
-						t.setAttribute('tabindex', isActive ? '0' : '-1');
-					});
-					renderYear();
-					// Reset auto-scroll so the new year starts from the top.
-					startAutoScroll();
-				});
-			});
+			updateSelectionIndicators();
 		}
 
 		function updateGallery({ focus = false, scroll = true } = {}) {
@@ -1371,13 +1357,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 			}
 			if (focus) image.focus({ preventScroll: true });
 
-			// Update active dot indicator for splendid china gallery
-			if (isSplendidChinaGallery) {
-				$$('.gallery-dot').forEach((dot) => {
-					const dotIndex = Number(dot.getAttribute('data-gallery-dot'));
-					dot.classList.toggle('active', dotIndex === currentIndex);
-				});
-			}
+			updateSelectionIndicators();
 		}
 
 		function startAutoScroll() {
@@ -1386,7 +1366,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 			autoScrollInterval = setInterval(() => {
 				currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
 				updateGallery({ scroll: false });
-			}, 5000); // 5 seconds interval
+			}, 5000);
 		}
 
 		function stopAutoScroll() {
@@ -1394,16 +1374,43 @@ document.addEventListener('DOMContentLoaded', async () => {
 			autoScrollInterval = null;
 		}
 
-		// Add click event delegation on gallery wrapper for carousel images
-		// (handles first render before renderYear adds individual listeners)
-		images.forEach((image, index) => {
-			image.style.cursor = 'pointer';
-			image.addEventListener('click', () => {
-				stopAutoScroll();
-				currentIndex = index;
-				openLightbox(index);
+		function openLightbox(index) {
+			const image = images[index];
+			if (!lightbox || !lightboxImage || !image) return;
+
+			activeGalleryRunner = runner;
+			stopAutoScroll();
+			lightboxImage.src = image.currentSrc || image.src;
+			lightboxImage.alt = image.alt;
+			lightbox.hidden = false;
+			lightboxClose?.focus();
+		}
+
+		const runner = { startAutoScroll, stopAutoScroll };
+
+		renderYearTabs();
+		renderYear();
+
+		if (useYearTabs) {
+			const tabHost = galleryContainer.parentElement;
+			tabHost?.querySelectorAll('.gallery-year-tab').forEach((tab) => {
+				tab.addEventListener('click', () => {
+					const index = Number(tab.getAttribute('data-gallery-year-tab'));
+					if (Number.isNaN(index) || index === activeYearIndex) return;
+
+					stopAutoScroll();
+					activeYearIndex = index;
+					tabHost.querySelectorAll('.gallery-year-tab').forEach((yearTab) => {
+						const isActive = Number(yearTab.getAttribute('data-gallery-year-tab')) === activeYearIndex;
+						yearTab.classList.toggle('active', isActive);
+						yearTab.setAttribute('aria-selected', String(isActive));
+						yearTab.setAttribute('tabindex', isActive ? '0' : '-1');
+					});
+					renderYear();
+					startAutoScroll();
+				});
 			});
-		});
+		}
 
 		if (prevButton && nextButton) {
 			prevButton.addEventListener('click', () => {
@@ -1429,67 +1436,129 @@ document.addEventListener('DOMContentLoaded', async () => {
 			}, { distance: Infinity, index: currentIndex });
 
 			currentIndex = closestImage.index;
+			updateSelectionIndicators();
 		}, { passive: true });
 
-		function openLightbox(index) {
-			const image = images[index];
-			if (!lightbox || !lightboxImage || !image) return;
-
-			stopAutoScroll();
-			lightboxImage.src = image.currentSrc || image.src;
-			lightboxImage.alt = image.alt;
-			lightbox.hidden = false;
-			lightboxClose?.focus();
-		}
-
-		function closeLightbox() {
-			if (!lightbox || !lightboxImage) return;
-
-			lightbox.hidden = true;
-			lightboxImage.removeAttribute('src');
-			startAutoScroll();
-		}
-
-		// Use event delegation on galleryGrid so thumbnail clicks still
-		// work after a year-tab re-render replaces the grid contents.
 		if (galleryGrid) {
-				galleryGrid.addEventListener('click', (event) => {
-					const button = event.target.closest('[data-gallery-thumb]');
-					if (!button) return;
-					const index = Number(button.getAttribute('data-gallery-thumb'));
-					if (Number.isNaN(index)) return;
+			galleryGrid.addEventListener('click', (event) => {
+				const button = event.target.closest('[data-gallery-thumb]');
+				if (!button) return;
+				const index = Number(button.getAttribute('data-gallery-thumb'));
+				if (Number.isNaN(index)) return;
 
-					stopAutoScroll();
-					currentIndex = index;
-					openLightbox(index);
-				});
+				stopAutoScroll();
+				currentIndex = index;
+				openLightbox(index);
+			});
 		}
 
-		// Dot navigation for splendid china gallery
-		// Only navigates the carousel — does NOT open the lightbox.
-		// Thumbnail clicks on the main Gallery page still open the lightbox.
-		$$('[data-gallery-dot]').forEach((button) => {
-			button.addEventListener('click', () => {
+		if (galleryDots) {
+			galleryDots.addEventListener('click', (event) => {
+				const button = event.target.closest('[data-gallery-dot]');
+				if (!button) return;
 				const index = Number(button.getAttribute('data-gallery-dot'));
 				if (Number.isNaN(index)) return;
 
+				stopAutoScroll();
 				currentIndex = index;
 				updateGallery({ focus: true });
+				startAutoScroll();
 			});
-		});
+		}
 
-		lightboxClose?.addEventListener('click', closeLightbox);
-		lightbox?.addEventListener('click', (event) => {
-			if (event.target === lightbox) closeLightbox();
-		});
-		document.addEventListener('keydown', (event) => {
-			if (event.key === 'Escape' && lightbox && !lightbox.hidden) closeLightbox();
-		});
+		if (featuredThumbs) {
+			featuredThumbs.addEventListener('click', (event) => {
+				const button = event.target.closest('[data-gallery-thumb]');
+				if (!button) return;
+				const index = Number(button.getAttribute('data-gallery-thumb'));
+				if (Number.isNaN(index)) return;
+
+				stopAutoScroll();
+				currentIndex = index;
+				updateGallery({ focus: true });
+				openLightbox(index);
+			});
+		}
 
 		galleryContainer.addEventListener('mouseenter', stopAutoScroll);
 		galleryContainer.addEventListener('mouseleave', startAutoScroll);
 
 		startAutoScroll();
+		return runner;
+	}
+
+	const featuredSection = $('[data-gallery-featured]');
+	const archiveSection = $('[data-gallery-archive]');
+	const isDualGalleryPage = !!(featuredSection && archiveSection);
+	const galleryBlock = findSectionComponent(content.sections || [], 'gallery') || {};
+	const galleryGroups = Array.isArray(galleryBlock.groups)
+		? galleryBlock.groups
+		: (Array.isArray(content.galleryGroups) ? content.galleryGroups : []);
+	const featuredImages = Array.isArray(content.galleryImages) ? content.galleryImages : [];
+	const galleryRunners = [];
+
+	if (isDualGalleryPage) {
+		if (featuredImages.length === 0) {
+			featuredSection.hidden = true;
+		} else {
+			const featuredRunner = initGalleryRunner({
+				galleryContainer: featuredSection.querySelector('.gallery-container'),
+				galleryDots: featuredSection.querySelector('[data-gallery-dots]'),
+				featuredThumbs: featuredSection.querySelector('[data-gallery-featured-thumbs]'),
+				getFallbackImages: () => featuredImages,
+			});
+			if (featuredRunner) galleryRunners.push(featuredRunner);
+		}
+
+		const archiveRunner = initGalleryRunner({
+			galleryContainer: archiveSection.querySelector('.gallery-container'),
+			galleryGrid: archiveSection.querySelector('[data-gallery-grid]'),
+			galleryGroups,
+			galleryBlock,
+			useYearTabs: galleryGroups.length > 1,
+		});
+		if (archiveRunner) galleryRunners.push(archiveRunner);
+	} else {
+		const galleryContainer = $('.gallery-container');
+		if (galleryContainer) {
+			const galleryDots = $('[data-gallery-dots]');
+			const isSplendidChinaGallery = !!galleryDots;
+			const runner = initGalleryRunner({
+				galleryContainer,
+				galleryDots,
+				galleryGrid: $('[data-gallery-grid]'),
+				galleryGroups,
+				galleryBlock,
+				useYearTabs: !isSplendidChinaGallery && galleryGroups.length > 1,
+				getFallbackImages: () => (Array.isArray(content.galleryImages) ? content.galleryImages : []),
+			});
+			if (runner) galleryRunners.push(runner);
+		}
+	}
+
+	if (lightbox) {
+		lightboxClose?.addEventListener('click', () => {
+			if (!lightboxImage) return;
+			lightbox.hidden = true;
+			lightboxImage.removeAttribute('src');
+			activeGalleryRunner?.startAutoScroll();
+			activeGalleryRunner = null;
+		});
+		lightbox.addEventListener('click', (event) => {
+			if (event.target !== lightbox) return;
+			lightbox.hidden = true;
+			lightboxImage?.removeAttribute('src');
+			activeGalleryRunner?.startAutoScroll();
+			activeGalleryRunner = null;
+		});
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && !lightbox.hidden) {
+				lightbox.hidden = true;
+				lightboxImage?.removeAttribute('src');
+				activeGalleryRunner?.startAutoScroll();
+				activeGalleryRunner = null;
+			}
+		});
 	}
 
 	// Chatbot functionality
