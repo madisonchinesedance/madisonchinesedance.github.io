@@ -26,6 +26,6 @@
     "color": "gold",
     "style": "pulse",
     "navRoutes": ["splendid-china-2026"],
-    "actionRoutes": []
+    "actionRoutes": ["tickets"]
   }
 }

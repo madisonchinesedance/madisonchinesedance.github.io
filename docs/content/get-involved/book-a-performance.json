@@ -120,15 +120,11 @@
             },
             {
               "type": "body",
-              "text": "<b>How long is a typical performance?</b> Performances can be tailored from 10 minutes to a full one-hour show, depending on your event."
+              "text": "<b>How long is a typical performance?</b> Performances can be tailored from a few minutes to a full one-hour+ show, depending on your event."
             },
             {
               "type": "body",
-              "text": "<b>What are the space requirements?</b> We need a clear performance area of at least 12 by 12 feet, access to electricity for sound, and a changing area for our dancers."
-            },
-            {
-              "type": "body",
-              "text": "<b>Is there a fee?</b> Fees vary based on performance length, group size, and travel. Some community and educational events may be eligible for reduced rates. Please contact us to discuss."
+              "text": "<b>What are the space requirements?</b> We need a clear performance area, access to electricity for sound, and a changing area for our dancers. The space should be large enough to accommodate the dancers and their equipment."
             }
           ]
         }

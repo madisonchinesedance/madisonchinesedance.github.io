@@ -27,9 +27,7 @@
                 {
                   "route": "tickets",
                   "label": "Purchase Tickets",
-                  "style": "primary",
-                  "className": "header-cta",
-                  "ariaLabel": "Purchase Tickets"
+                  "style": "primary"
                 }
               ]
             }

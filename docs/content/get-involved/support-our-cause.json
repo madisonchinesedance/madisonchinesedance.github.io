@@ -56,7 +56,7 @@
               "actions": [
                 {
                   "route": "donate",
-                  "label": "Donate now"
+                  "label": "Donate"
                 }
               ]
             }
@@ -75,7 +75,7 @@
               "actions": [
                 {
                   "href": "mailto:madison.chinese.dances@gmail.com",
-                  "label": "Contact us about sponsorship"
+                  "label": "Contact us"
                 }
               ]
             }
@@ -94,7 +94,7 @@
               "actions": [
                 {
                   "href": "mailto:madison.chinese.dances@gmail.com",
-                  "label": "Volunteer with us"
+                  "label": "Contact us"
                 }
               ]
             }
@@ -146,7 +146,7 @@
               "actions": [
                 {
                   "route": "donate",
-                  "label": "Donate Now",
+                  "label": "Donate",
                   "style": "primary"
                 },
                 {
