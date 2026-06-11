@@ -18,31 +18,30 @@
       ]
     },
     {
-      "name": "dance-community",
+      "name": "classes-for-all-ages-and-experience-levels",
       "columns": 1,
       "items": [
         {
           "heading2": {
-            "text": "Ways to Get Involved",
-            "id": "ways-to-join"
+            "text": "Classes for All Ages and Experience Levels",
+            "id": "classes-for-all-ages-and-experience-levels"
           },
           "body": {
-            "text": "There are many ways to be part of our academy. We welcome students, families, volunteers, and community partners who share our passion for Chinese dance and cultural exchange."
+            "text": "We offer classes for students of all ages and experience levels. Whether you are a beginner just starting out or an experienced dancer looking to grow, we have a class for you."
           }
         }
-      ],
-      "className": "page-section-dance-community"
+      ]
     },
     {
-      "name": "dance-pathways",
+      "name": "classes-list",
       "columns": 3,
       "items": [
         {
           "heading2": {
-            "text": "Enroll as a Student"
+            "text": "Beginner Dancers"
           },
           "body": {
-            "text": "Join one of our beginner, intermediate, or advanced programs. New students of all ages and experience levels are welcome.",
+            "text": "Our beginner dancers program is designed for students who have no prior dance experience. It focuses on building a strong foundation in dance technique, rhythm, and coordination. Students will learn basic dance steps, patterns, and movements while developing confidence and a love for dance.",
             "actions": [
               {
                 "route": "beginner-dancers",
@@ -53,28 +52,28 @@
         },
         {
           "heading2": {
-            "text": "Volunteer"
+            "text": "Intermediate Dancers"
           },
           "body": {
-            "text": "Help with events, performances, costumes, or backstage support. Volunteers are the heart of our community productions.",
+            "text": "Our intermediate dancers program is designed for students who have some prior dance experience. It builds on the foundation learned in beginner classes, adding more complex patterns, rhythms, and movements. Students will develop greater technical skills and confidence in their dance performance.",
             "actions": [
               {
-                "route": "contact",
-                "label": "Reach out to volunteer"
+                "route": "intermediate-dancers",
+                "label": "Start with intermediate dancers"
               }
             ]
           }
         },
         {
           "heading2": {
-            "text": "Support Our Mission"
+            "text": "Advanced Dancers"
           },
           "body": {
-            "text": "Your donations help fund classes, scholarships, and our annual Splendid China production. Every gift makes a difference.",
+            "text": "Our advanced dancers program is designed for students who have a strong foundation in dance technique and are ready to take their performance skills to the next level. It focuses on refining technical skills, building confidence, and preparing for more advanced choreography and performances.",
             "actions": [
               {
-                "route": "donate",
-                "label": "Donate today"
+                "route": "advanced-dancers",
+                "label": "Start with advanced dancers"
               }
             ]
           }
@@ -82,26 +81,7 @@
       ]
     },
     {
-      "name": "dance-growth",
-      "columns": 1,
-      "items": [
-        {
-          "heading2": {
-            "text": "How to Get Started",
-            "id": "how-to-start"
-          },
-          "body": {
-            "text": "Starting at Madison Chinese Dance Academy is simple. Reach out to us by email or phone to learn about current class schedules, placement for returning students, and open registration windows. We will match you with the right level and welcome you to our community."
-          },
-          "body_2": {
-            "text": "For most programs, no prior dance experience is required. Bring comfortable clothing, water, and a willingness to learn. We will guide you through the rest."
-          }
-        }
-      ],
-      "className": "page-section-dance-growth"
-    },
-    {
-      "name": "dance-connect",
+      "name": "join-contact",
       "columns": 1,
       "items": [
         {
@@ -116,7 +96,7 @@
             "text": "",
             "actions": [
               {
-                "route": "contact",
+                "href": "mailto:madison.chinese.dances@gmail.com",
                 "label": "Contact Us",
                 "style": "primary"
               },
@@ -128,8 +108,7 @@
             ]
           }
         }
-      ],
-      "className": "page-section-dance-connect"
+      ]
     }
   ]
 }

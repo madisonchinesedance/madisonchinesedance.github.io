@@ -960,6 +960,42 @@ document.addEventListener('DOMContentLoaded', async () => {
 		});
 	}
 
+	function updateNavCollapse() {
+		const siteHeader = $('.site-header');
+		const headerInner = $('.header-inner');
+		if (!siteHeader || !headerInner) return;
+
+		siteHeader.classList.remove('is-nav-collapsed');
+		const overflows = headerInner.scrollWidth > headerInner.clientWidth + 1;
+		const shouldCollapse = overflows || window.matchMedia('(max-width: 992px)').matches;
+		siteHeader.classList.toggle('is-nav-collapsed', shouldCollapse);
+
+		if (!shouldCollapse && primaryNav?.classList.contains('open')) {
+			primaryNav.classList.remove('open');
+			navToggle?.setAttribute('aria-expanded', 'false');
+			navToggle?.setAttribute('aria-label', header.menuToggleOpenLabel || 'Open navigation');
+			closeDropdowns();
+		}
+	}
+
+	updateNavCollapse();
+
+	let navCollapseResizeTimer;
+	window.addEventListener('resize', () => {
+		clearTimeout(navCollapseResizeTimer);
+		navCollapseResizeTimer = setTimeout(updateNavCollapse, 100);
+	});
+
+	const headerInner = $('.header-inner');
+	if (headerInner && typeof ResizeObserver !== 'undefined') {
+		const navCollapseObserver = new ResizeObserver(() => updateNavCollapse());
+		navCollapseObserver.observe(headerInner);
+	}
+
+	if (document.fonts?.ready) {
+		document.fonts.ready.then(updateNavCollapse);
+	}
+
 	dropdownToggles.forEach((toggle) => {
 		toggle.addEventListener('click', () => {
 			const expanded = toggle.getAttribute('aria-expanded') === 'true';
@@ -1491,16 +1527,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 			'What community services do you provide?',
 			'How can I request a cultural workshop?',
 			'Do you offer virtual programs?'
-		],
-		'meet-the-faculty': [
-			'Who are the instructors?',
-			'What are their qualifications?',
-			'Can I schedule a meeting?'
-		],
-		'success-stories': [
-			'Can I read alumni stories?',
-			'How has MCDA impacted students?',
-			'Can I share my own story?'
 		],
 		faq: [
 			'What is the class schedule?',

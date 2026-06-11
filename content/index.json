@@ -183,7 +183,7 @@
             "text": "Ask about classes, performances, donations, or community programs.",
             "actions": [
               {
-                "route": "contact",
+                "href": "mailto:madison.chinese.dances@gmail.com",
                 "label": "Contact us"
               }
             ]

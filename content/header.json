@@ -18,25 +18,8 @@
       "label": "Gallery"
     },
     {
-      "label": "Programs",
-      "items": [
-        {
-          "route": "programs",
-          "label": "Programs"
-        },
-        {
-          "route": "meet-the-faculty",
-          "label": "Meet the Faculty"
-        },
-        {
-          "route": "success-stories",
-          "label": "Success Stories"
-        },
-        {
-          "route": "contact",
-          "label": "Contact"
-        }
-      ]
+      "route": "programs",
+      "label": "Programs"
     },
     {
       "label": "Classes",

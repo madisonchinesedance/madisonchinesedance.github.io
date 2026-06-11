@@ -58,7 +58,7 @@
             "text": "Corporate and individual sponsorships support our performances, outreach programs, and community events. Partner with us to make an impact.",
             "actions": [
               {
-                "route": "contact",
+                "href": "mailto:madison.chinese.dances@gmail.com",
                 "label": "Contact us about sponsorship"
               }
             ]
@@ -72,7 +72,7 @@
             "text": "Volunteers are essential to our productions and events. Help with costumes, backstage, ushering, and more.",
             "actions": [
               {
-                "route": "contact",
+                "href": "mailto:madison.chinese.dances@gmail.com",
                 "label": "Volunteer with us"
               }
             ]
@@ -119,7 +119,7 @@
                 "style": "primary"
               },
               {
-                "route": "contact",
+                "href": "mailto:madison.chinese.dances@gmail.com",
                 "label": "Get in Touch",
                 "style": "secondary"
               }

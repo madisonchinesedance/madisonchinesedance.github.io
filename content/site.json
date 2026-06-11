@@ -5,11 +5,6 @@
       "page": "index.html",
       "content": "index.json"
     },
-    "contact": {
-      "href": "pages/programs/contact.html",
-      "page": "programs/contact.html",
-      "content": "programs/contact.json"
-    },
     "events": {
       "href": "pages/events/events.html",
       "page": "events/events.html",
@@ -144,16 +139,6 @@
       "href": "pages/get-involved/book-a-performance.html",
       "page": "get-involved/book-a-performance.html",
       "content": "get-involved/book-a-performance.json"
-    },
-    "meet-the-faculty": {
-      "href": "pages/programs/meet-the-faculty.html",
-      "page": "programs/meet-the-faculty.html",
-      "content": "programs/meet-the-faculty.json"
-    },
-    "success-stories": {
-      "href": "pages/programs/success-stories.html",
-      "page": "programs/success-stories.html",
-      "content": "programs/success-stories.json"
     },
     "see-a-performance": {
       "href": "pages/get-involved/see-a-performance.html",
