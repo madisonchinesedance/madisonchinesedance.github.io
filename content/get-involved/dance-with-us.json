@@ -3,110 +3,137 @@
   "metaDescription": "Join Madison Chinese Dance Academy as a student, volunteer, or community member. Dance with us and become part of our vibrant community.",
   "sections": [
     {
-      "name": "intro",
       "columns": 1,
       "items": [
         {
-          "heading1": {
-            "text": "Dance with Us",
-            "id": "dance-with-us-heading"
-          },
-          "body": {
-            "text": "Become part of the Madison Chinese Dance Academy community. Whether you are a beginner exploring Chinese dance for the first time, an experienced dancer looking to grow, or a parent searching for a meaningful cultural program for your child, we have a place for you."
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Dance with Us",
+              "id": "dance-with-us-heading"
+            },
+            {
+              "type": "body",
+              "text": "Become part of the Madison Chinese Dance Academy community. Whether you are a beginner exploring Chinese dance for the first time, an experienced dancer looking to grow, or a parent searching for a meaningful cultural program for your child, we have a place for you."
+            }
+          ]
         }
       ]
     },
     {
-      "name": "classes-for-all-ages-and-experience-levels",
       "columns": 1,
       "items": [
         {
-          "heading2": {
-            "text": "Classes for All Ages and Experience Levels",
-            "id": "classes-for-all-ages-and-experience-levels"
-          },
-          "body": {
-            "text": "We offer classes for students of all ages and experience levels. Whether you are a beginner just starting out or an experienced dancer looking to grow, we have a class for you."
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Classes for All Ages and Experience Levels",
+              "id": "classes-for-all-ages-and-experience-levels"
+            },
+            {
+              "type": "body",
+              "text": "We offer classes for students of all ages and experience levels. Whether you are a beginner just starting out or an experienced dancer looking to grow, we have a class for you."
+            }
+          ]
         }
       ]
     },
     {
-      "name": "classes-list",
       "columns": 3,
       "items": [
         {
-          "heading2": {
-            "text": "Beginner Dancers"
-          },
-          "body": {
-            "text": "Our beginner dancers program is designed for students who have no prior dance experience. It focuses on building a strong foundation in dance technique, rhythm, and coordination. Students will learn basic dance steps, patterns, and movements while developing confidence and a love for dance.",
-            "actions": [
-              {
-                "route": "beginner-dancers",
-                "label": "Start with beginner dancers"
-              }
-            ]
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Beginner Dancers"
+            },
+            {
+              "type": "body",
+              "text": "Our beginner dancers program is designed for students who have no prior dance experience. It focuses on building a strong foundation in dance technique, rhythm, and coordination. Students will learn basic dance steps, patterns, and movements while developing confidence and a love for dance.",
+              "actions": [
+                {
+                  "route": "beginner-dancers",
+                  "label": "Start with beginner dancers"
+                }
+              ]
+            }
+          ]
         },
         {
-          "heading2": {
-            "text": "Intermediate Dancers"
-          },
-          "body": {
-            "text": "Our intermediate dancers program is designed for students who have some prior dance experience. It builds on the foundation learned in beginner classes, adding more complex patterns, rhythms, and movements. Students will develop greater technical skills and confidence in their dance performance.",
-            "actions": [
-              {
-                "route": "intermediate-dancers",
-                "label": "Start with intermediate dancers"
-              }
-            ]
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Intermediate Dancers"
+            },
+            {
+              "type": "body",
+              "text": "Our intermediate dancers program is designed for students who have some prior dance experience. It builds on the foundation learned in beginner classes, adding more complex patterns, rhythms, and movements. Students will develop greater technical skills and confidence in their dance performance.",
+              "actions": [
+                {
+                  "route": "intermediate-dancers",
+                  "label": "Start with intermediate dancers"
+                }
+              ]
+            }
+          ]
         },
         {
-          "heading2": {
-            "text": "Advanced Dancers"
-          },
-          "body": {
-            "text": "Our advanced dancers program is designed for students who have a strong foundation in dance technique and are ready to take their performance skills to the next level. It focuses on refining technical skills, building confidence, and preparing for more advanced choreography and performances.",
-            "actions": [
-              {
-                "route": "advanced-dancers",
-                "label": "Start with advanced dancers"
-              }
-            ]
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Advanced Dancers"
+            },
+            {
+              "type": "body",
+              "text": "Our advanced dancers program is designed for students who have a strong foundation in dance technique and are ready to take their performance skills to the next level. It focuses on refining technical skills, building confidence, and preparing for more advanced choreography and performances.",
+              "actions": [
+                {
+                  "route": "advanced-dancers",
+                  "label": "Start with advanced dancers"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     {
-      "name": "join-contact",
       "columns": 1,
       "items": [
         {
-          "heading2": {
-            "text": "Contact Us to Join",
-            "id": "join-contact"
-          },
-          "body": {
-            "text": "Email us at madison.chinese.dances@gmail.com or call (301)-299-1562 to learn more about joining. We are happy to answer questions about classes, schedules, and what to expect in your first session."
-          },
-          "body_2": {
-            "text": "",
-            "actions": [
-              {
-                "href": "mailto:madison.chinese.dances@gmail.com",
-                "label": "Contact Us",
-                "style": "primary"
-              },
-              {
-                "route": "beginner-dancers",
-                "label": "View Beginner Programs",
-                "style": "secondary"
-              }
-            ]
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Contact Us to Join",
+              "id": "join-contact"
+            },
+            {
+              "type": "body",
+              "text": "Email us at madison.chinese.dances@gmail.com or call (301)-299-1562 to learn more about joining. We are happy to answer questions about classes, schedules, and what to expect in your first session."
+            },
+            {
+              "type": "body",
+              "text": "",
+              "actions": [
+                {
+                  "href": "mailto:madison.chinese.dances@gmail.com",
+                  "label": "Contact Us",
+                  "style": "primary"
+                },
+                {
+                  "route": "beginner-dancers",
+                  "label": "View Beginner Programs",
+                  "style": "secondary"
+                }
+              ]
+            }
+          ]
         }
       ]
     }

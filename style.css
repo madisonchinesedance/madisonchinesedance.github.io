@@ -187,11 +187,7 @@
 	--button-hover-bg: var(--color-blue-grey);
 	--edge-contrast: var(--color-blue-grey);
 
-	/* ── Typography — 4-tier system:
-	     heading-1 = page titles
-	     heading-2 = section headings (slightly smaller than h1)
-	     body      = normal page text
-	     small-body = captions, footer, announcement bar, etc. ── */
+	/* ── Typography — heading presets (heading-1 … heading-6), body, small-body ── */
 	--base-font-size: 14px;
 	--base-line-height: 1.45;
 	--body-font-color: var(--light-text-color);
@@ -199,12 +195,24 @@
 	--body-font-weight: 400;
 	--body-line-height: 1.65;
 	--font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-	--heading-1-font-size: clamp(2rem, 2vw, 3.2rem);
+	--heading-1-font-size: clamp(2.8rem, 5.5vw, 5rem);
 	--heading-1-font-weight: 700;
 	--heading-1-line-height: 1.08;
-	--heading-2-font-size: clamp(1.25rem, 1.4vw, 1.65rem);
+	--heading-2-font-size: clamp(2.2rem, 4vw, 4.25rem);
 	--heading-2-font-weight: 700;
-	--heading-2-line-height: 1.25;
+	--heading-2-line-height: 1.12;
+	--heading-3-font-size: clamp(2rem, 3vw, 3.2rem);
+	--heading-3-font-weight: 700;
+	--heading-3-line-height: 1.15;
+	--heading-4-font-size: clamp(1.65rem, 2.5vw, 2.4rem);
+	--heading-4-font-weight: 700;
+	--heading-4-line-height: 1.2;
+	--heading-5-font-size: clamp(1.4rem, 2vw, 1.85rem);
+	--heading-5-font-weight: 700;
+	--heading-5-line-height: 1.25;
+	--heading-6-font-size: clamp(1.25rem, 1.4vw, 1.65rem);
+	--heading-6-font-weight: 700;
+	--heading-6-line-height: 1.25;
 	--logo-font-size: 1.4rem;
 	--nav-link-font-size: 1.05rem;
 	--nav-link-font-weight: 600;
@@ -999,10 +1007,10 @@ body:has(.site-header.has-visible-announcement) .page-hero{
    Each section's container card slides up + fades in, with a
    cascading delay so the page "unfolds" top to bottom.
    All values use CSS variables for consistent behavior.
-   Home sections (home-intro, home-pathways) are excluded — they
-   render statically to avoid exposing the hero gradient boundary. */
+   Hero section is excluded — it renders statically to avoid
+   exposing the gradient boundary. */
 .site-main > .page-hero,
-.site-main > .section:not(.home-intro):not(.home-pathways),
+.site-main > .section:not(:has(#home-heading)),
 .site-footer,
 .site-main > .component-card-grid,
 .site-main > .component-body,
@@ -1016,12 +1024,12 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 .site-main > .donate-section,
 .site-main > .tickets-section,
 .site-main > .faq-section,
-.site-main > .page-section:not(.home-intro):not(.home-pathways){
+.site-main > .page-section:not(:has(#home-heading)){
 	animation:home-rise var(--entrance-duration) ease both;
 }
 .site-main > .page-hero{ animation-delay: var(--entrance-delay-hero); }
-.site-main > .section:not(.home-intro):not(.home-pathways),
-.site-main > .page-section:not(.home-intro):not(.home-pathways){ animation-delay: var(--entrance-delay-section); }
+.site-main > .section:not(:has(#home-heading)),
+.site-main > .page-section:not(:has(#home-heading)){ animation-delay: var(--entrance-delay-section); }
 .site-main > .component-card-grid{ animation-delay: var(--entrance-delay-card-group); }
 .site-main > .gallery-container,
 .site-main > .gallery-grid{ animation-delay: calc(var(--entrance-delay-section) + var(--entrance-delay-card)); }
@@ -1033,6 +1041,9 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 }
 .site-main > .section .container{
 	animation-delay: var(--entrance-delay-section);
+}
+.site-main > .section:has(#home-heading) .container{
+	animation:none;
 }
 .page-star-field{
 	position:absolute;
@@ -1147,201 +1158,148 @@ a.section-item:focus-visible{
 .home-page .page-star-field{
 	opacity:1;
 }
-.home-page .section-intro{
-	padding-top:clamp(84px, 10vw, 150px);
-	padding-bottom:16px;
-}
-.home-page .section-intro > .container,
-.home-page .section-get-involved > .container{
+/* Homepage layout — inferred from blocks via :has() (no section variant in JSON) */
+.home-page .section > .container{
+	max-width:var(--content-width);
 	background:transparent;
 	border:0;
+	border-radius:0;
 	box-shadow:none;
 	padding:0;
 }
-.home-page .section-intro .section-grid,
-.home-page .section-get-involved .section-grid{
+.home-page .section > .container:hover,
+.home-page .section > .container:focus-within{
+	background:transparent;
+	border-color:transparent;
+	box-shadow:none;
+}
+
+/* Hero */
+.home-page .section:has(#home-heading){
+	margin-top:0;
+	padding-top:calc(var(--header-bar-height) + clamp(12px, 2vw, 20px));
+	padding-bottom:12px;
+	border-radius:36px 36px 0 0;
+}
+.home-page .section:has(#home-heading) > .container{
+	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency) * 100%), transparent));
+	border:1px solid color-mix(in srgb, var(--section-border) calc(var(--section-transparency) * 100%), transparent));
+	border-radius:var(--section-radius);
+	box-shadow:var(--section-shadow);
+	padding:clamp(18px, 3vw, 40px) var(--section-padding-x);
+}
+.home-page .section:has(#home-heading) .section-grid{
 	max-width:var(--content-width);
 	margin:0 auto;
 }
-.home-page .section-intro .section-item,
-.home-page .section-get-involved .section-item{
+.home-page .section:has(#home-heading) .section-item{
 	max-width:780px;
 }
-.home-page .section-intro h1{
-	margin-bottom:16px;
-	text-wrap:balance;
-	text-shadow:0 10px 32px color-mix(in srgb, var(--color-deep-navy) 72%, transparent);
-}
-.home-page .section-intro .component-body{
-	max-width:760px;
-}
-.home-page .section-intro .component-body p{
-	font-size:clamp(1rem, 1.25vw, 1.25rem);
-}
-.home-page .home-runner,
-.home-page .home-runner-tall,
-.home-page .home-runner-wide{
-	padding-top:8px;
-	padding-bottom:clamp(20px, 3vw, 36px);
-}
-.home-page .home-runner[hidden],
-.home-page .home-runner-tall[hidden],
-.home-page .home-runner-wide[hidden]{
-	display:none;
-}
-.home-page .home-runner > .container,
-.home-page .home-runner-tall > .container,
-.home-page .home-runner-wide > .container{
-	background:transparent;
-	border:0;
-	box-shadow:none;
-	padding:0;
-}
-.home-page .home-runner:hover > .container,
-.home-page .home-runner:focus-within > .container,
-.home-page .home-runner-tall:hover > .container,
-.home-page .home-runner-tall:focus-within > .container,
-.home-page .home-runner-wide:hover > .container,
-.home-page .home-runner-wide:focus-within > .container{
-	background:transparent !important;
-	border-color:transparent !important;
-	box-shadow:none !important;
-}
-.home-page .home-runner:not(.home-runner-tall):not(.home-runner-wide) .gallery-container{
-	aspect-ratio:16 / 9;
-	max-height:800px;
-	border-radius:14px;
-}
-.home-page .home-runner-tall:not(.home-runner-sidebar) .gallery-container{
-	aspect-ratio:4 / 5;
-	max-height:800px;
-	border-radius:14px;
-}
-.home-page .home-highlights-with-runner .section-grid{
-	grid-template-columns:minmax(0, 1.2fr) minmax(260px, 0.85fr);
-	align-items:start;
-	gap:clamp(20px, 3vw, 40px);
-	padding-top:28px;
-	border-top:1px solid color-mix(in srgb, var(--light-text-color) 18%, transparent);
-}
-.home-page .home-highlights-with-runner .section-item:nth-child(1),
-.home-page .home-highlights-with-runner .section-item:nth-child(2),
-.home-page .home-highlights-with-runner .section-item:nth-child(3){
-	grid-column:1;
-	min-height:auto;
-}
-.home-page .home-highlights-with-runner .section-item:nth-child(4){
-	grid-column:2;
-	grid-row:1 / span 3;
-	align-self:start;
-	min-height:auto;
-}
-.home-page .home-runner-sidebar{
-	padding:0;
-}
-.home-page .home-runner-sidebar .gallery-container{
-	aspect-ratio:4 / 5;
-	max-height:min(72vh, 640px);
-	border-radius:14px;
-}
-.home-page .home-highlights-with-runner:hover > .container,
-.home-page .home-highlights-with-runner:focus-within > .container{
-	background:transparent !important;
-	border-color:transparent !important;
-	box-shadow:none !important;
-}
-.home-page .home-highlights-with-runner > .container{
-	background:transparent;
-	border:0;
-	box-shadow:none;
-	padding:0;
-}
-.home-page .home-runner-wide .gallery-container{
-	aspect-ratio:21 / 9;
-	max-height:520px;
-	border-radius:14px;
-}
-.home-page .home-runner .gallery-dots,
-.home-page .home-runner-tall .gallery-dots,
-.home-page .home-runner-wide .gallery-dots{
-	padding-top:14px;
-}
-.home-page .section-highlights,
-.home-page .home-highlights-with-runner{
-	margin-top:0;
-	padding-top:8px;
-	padding-bottom:clamp(34px, 5vw, 64px);
-}
-.home-page .section-highlights .section-item,
-.home-page .section-academy-links .section-item,
-.home-page .section-get-involved-links .section-item{
-	min-height:190px;
-}
-.home-page .section-highlights h2{
-	font-size:clamp(2.2rem, 4vw, 4.25rem);
-	letter-spacing:0;
-}
-.home-page .home-highlights-with-runner .section-item:nth-child(-n+3){
-	min-height:auto;
-	padding:clamp(20px, 2.5vw, 28px);
-}
-.home-page .home-highlights-with-runner .section-item:nth-child(-n+3) .component-body{
-	flex:1;
-	margin-top:10px;
-}
-.home-page .home-highlights-with-runner .section-item:nth-child(-n+3) .component-body p{
-	font-size:clamp(1.12rem, 1.4vw, 1.3rem);
-	line-height:1.65;
-}
-.home-page .home-highlights-with-runner .section-item:nth-child(-n+3) h2{
-	margin-bottom:0;
-}
-.home-page .section-academy{
-	margin-top:0;
-	padding-top:clamp(38px, 5vw, 66px);
-	padding-bottom:24px;
-	border-radius:36px 36px 0 0;
-}
-.home-page .section-academy.home-hero h1{
+.home-page .section:has(#home-heading) h1{
 	margin:0 0 18px;
 	padding-bottom:18px;
 	text-wrap:balance;
 	text-shadow:0 10px 32px color-mix(in srgb, var(--color-deep-navy) 72%, transparent);
 	border-bottom:1px solid color-mix(in srgb, var(--light-text-color) 22%, transparent);
 }
-.home-page .section-academy > .container{
-	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency) * 100%), transparent));
-	border-color:color-mix(in srgb, var(--section-border) calc(var(--section-transparency) * 100%), transparent);
+.home-page .section:has(#home-heading) .component-body{
+	max-width:760px;
 }
-.home-page .section-academy-links,
-.home-page .section-story,
-.home-page .section-get-involved,
-.home-page .section-get-involved-links{
-	background:transparent;
+.home-page .section:has(#home-heading) .component-body p{
+	font-size:clamp(1rem, 1.25vw, 1.25rem);
 }
-.home-page .section-academy-links{
+
+/* Gallery runner sections */
+.home-page .section:has(> .container > .section-grid > .section-item:only-child [data-gallery-variant="runner"]),
+.home-page .section:has(> .container > .section-grid > .section-item:only-child [data-gallery-variant="runner-wide"]){
 	padding-top:8px;
-	padding-bottom:48px;
+	padding-bottom:clamp(20px, 3vw, 36px);
 }
-.home-page .section-story{
-	padding-top:20px;
-	padding-bottom:44px;
+.home-page .section:has([data-gallery-variant="runner"]) .gallery-dots,
+.home-page .section:has([data-gallery-variant="runner-tall"]) .gallery-dots,
+.home-page .section:has([data-gallery-variant="runner-wide"]) .gallery-dots{
+	padding-top:14px;
 }
-.home-page .section-story > .container{
-	background:transparent;
-	border:0;
-	box-shadow:none;
+.home-page .section:has(> .container > .section-grid > .section-item:only-child [data-gallery-variant="runner"]) .gallery-container{
+	aspect-ratio:16 / 9;
+	max-height:800px;
+	border-radius:14px;
+}
+.home-page .section:has(> .container > .section-grid > .section-item:only-child [data-gallery-variant="runner-wide"]) .gallery-container{
+	aspect-ratio:21 / 9;
+	max-height:520px;
+	border-radius:14px;
+}
+
+/* Highlights grid (stats + sidebar gallery) */
+.home-page .section:has([data-gallery-variant="runner-tall"]){
+	margin-top:0;
+	padding-top:8px;
+	padding-bottom:clamp(34px, 5vw, 64px);
+}
+.home-page .section:has([data-gallery-variant="runner-tall"]) .section-grid{
+	grid-template-columns:minmax(0, 1.2fr) minmax(260px, 0.85fr);
+	align-items:start;
+	gap:clamp(20px, 3vw, 40px);
+	padding-top:28px;
+	border-top:1px solid color-mix(in srgb, var(--light-text-color) 18%, transparent);
+}
+.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(1),
+.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(2),
+.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(3){
+	grid-column:1;
+	min-height:auto;
+	padding:clamp(20px, 2.5vw, 28px);
+}
+.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(4){
+	grid-column:2;
+	grid-row:1 / span 3;
+	align-self:start;
+	min-height:auto;
 	padding:0;
 }
-.home-page .section-get-involved{
-	padding-top:12px;
-	padding-bottom:4px;
+.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(-n+3) .component-body{
+	flex:1;
+	margin-top:10px;
 }
-.home-page .section-get-involved h2{
-	font-size:clamp(2rem, 3vw, 3.2rem);
+.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(-n+3) .component-body p{
+	font-size:clamp(1.12rem, 1.4vw, 1.3rem);
+	line-height:1.65;
 }
-.home-page .section-get-involved-links{
+.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(-n+3) h2{
+	margin-bottom:0;
+	letter-spacing:0;
+}
+.home-page .section-item:has([data-gallery-variant="runner-tall"]) .gallery-container{
+	aspect-ratio:4 / 5;
+	max-height:min(72vh, 640px);
+	border-radius:14px;
+}
+
+/* Academy link cards */
+.home-page .section:has(a[href*="beginner-dancers"]){
 	padding-top:8px;
+	padding-bottom:48px;
+	background:transparent;
+}
+.home-page .section:has(a[href*="beginner-dancers"]) .section-item{
+	min-height:190px;
+}
+
+/* Story columns */
+.home-page .section:has(.section-grid[style*="--section-columns:2"]):not(:has([data-gallery-variant])){
+	padding-top:20px;
+	padding-bottom:44px;
+	background:transparent;
+}
+
+/* Get-involved link cards */
+.home-page .section:has(a[href*="donate"]){
+	padding-top:8px;
+	background:transparent;
+}
+.home-page .section:has(a[href*="donate"]) .section-item{
+	min-height:190px;
 }
 
 .json-body-text,
@@ -1406,102 +1364,26 @@ a.section-item:focus-visible{
 	justify-content:flex-start;
 	margin-top:26px;
 }
-.home-section{
-	padding:20px 0 44px;
-}
-.home-intro{
-	position:relative;
-	z-index:2;
-	margin-top:-34px;
-	padding-top:84px;
-	background:var(--home-intro-bg);
-	border-radius:36px 36px 0 0;
-}
-/* Both star fields on the home-intro were removed per feedback
-   (the radial-gradient tile didn't render nicely, the stars
-   couldn't twinkle since there are no DOM elements to keyframe). */
-.home-intro::before,
-.home-intro::after{
-	content:none;
-}
-.home-intro .container{
-	position:relative;
-	z-index:1;
-}
-/* The home-pathways ("Get Involved") section used to have a pure-CSS
-   star field here, but it was removed per feedback: the small
-   repeating tile didn't render nicely, the stars couldn't twinkle
-   (no DOM elements for keyframes), and they weren't essential. */
-.home-pathways{
-	position:relative;
-	margin-top:-1px;
-	padding-top:21px;
-}
-.home-pathways::before{
-	content:none;
-}
-.home-pathways > .container{
-	position:relative;
-	z-index:1;
-}
-.home-section .container{
-	max-width:var(--content-width);
-}
-.home-section .container{
-	background:transparent;
-	border:0;
-	border-radius:0;
-	box-shadow:none;
-	opacity:1;
-	--entrance-end-opacity: 1;
-	padding:0;
-}
-.home-section .container:hover,
-.home-section .container:focus-within{
-	background:transparent;
-	border-color:transparent;
-	box-shadow:none;
-}
-.home-page .section-academy.home-intro{
-	margin-top:0;
-	padding-top:clamp(38px, 5vw, 66px);
-	background:transparent;
-}
-.home-page .section-academy.home-intro.home-hero{
-	padding-top:clamp(84px, 10vw, 132px);
-	padding-bottom:12px;
-}
-.home-page .section-academy.home-intro > .container{
-	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency) * 100%), transparent));
-	border:1px solid color-mix(in srgb, var(--section-border) calc(var(--section-transparency) * 100%), transparent);
-	border-radius:var(--section-radius);
-	box-shadow:var(--section-shadow);
-	padding:clamp(18px, 3vw, 40px) var(--section-padding-x);
-}
-.home-page .section-get-involved.home-pathways{
-	margin-top:0;
-	padding-top:12px;
-}
 .home-section-heading{
 	max-width:920px;
 	margin-bottom:24px;
 }
 .home-section-heading h2,
-.home-section h2{
+.home-page .section:not(:has(#home-heading)) h2{
 	margin:0 0 12px;
 	color:var(--light-text-color);
-	font-size:var(--heading-1-font-size);
-	font-weight:var(--heading-1-font-weight);
-	line-height:var(--heading-1-line-height);
+	font-size:var(--heading-3-font-size);
+	font-weight:var(--heading-3-font-weight);
+	line-height:var(--heading-3-line-height);
 }
 .home-section-heading p,
-.home-section .component-body p{
+.home-page .section:not(:has(#home-heading)) .component-body p{
 	margin:0;
 	color:var(--body-font-color);
 	font-size:var(--body-font-size);
 	line-height:var(--body-line-height);
 }
-.home-section .component-body{
+.home-page .section:not(:has(#home-heading)) .component-body{
 	max-width:920px;
 	margin-bottom:24px;
 }
@@ -2033,9 +1915,8 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 		gap:22px;
 	}
 
-	.home-page .section-highlights .section-item,
-	.home-page .section-academy-links .section-item,
-	.home-page .section-get-involved-links .section-item{
+	.home-page .section:has(a[href*="beginner-dancers"]) .section-item,
+	.home-page .section:has(a[href*="donate"]) .section-item{
 		min-height:0;
 	}
 
@@ -2173,15 +2054,14 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	.section .container{
 		padding:24px;
 	}
-	.home-page .section-intro > .container,
-	.home-page .section-get-involved > .container{
+	.home-page .section:has(#home-heading) > .container{
+		padding:clamp(18px, 3vw, 40px) var(--section-padding-x);
+	}
+	.home-page .section:not(:has(#home-heading)) > .container{
 		padding:0;
 	}
 	.section-columns > .container{
 		width:min(100% - 32px, 1600px);
-		padding:0;
-	}
-	.home-section .container{
 		padding:0;
 	}
 	.logo{
@@ -2212,17 +2092,17 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 }
 
 @media (max-width:768px){
-	.home-page .home-highlights-with-runner .section-grid{
+	.home-page .section:has([data-gallery-variant="runner-tall"]) .section-grid{
 		grid-template-columns:minmax(0, 1fr);
 	}
-	.home-page .home-highlights-with-runner .section-item:nth-child(1),
-	.home-page .home-highlights-with-runner .section-item:nth-child(2),
-	.home-page .home-highlights-with-runner .section-item:nth-child(3),
-	.home-page .home-highlights-with-runner .section-item:nth-child(4){
+	.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(1),
+	.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(2),
+	.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(3),
+	.home-page .section:has([data-gallery-variant="runner-tall"]) .section-item:nth-child(4){
 		grid-column:1;
 		grid-row:auto;
 	}
-	.home-page .home-runner-sidebar .gallery-container{
+	.home-page .section-item:has([data-gallery-variant="runner-tall"]) .gallery-container{
 		max-height:min(60vh, 520px);
 	}
 }
@@ -2233,14 +2113,9 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 		grid-template-columns:1fr;
 	}
 
-	.home-intro{
-		margin-top:-22px;
-		padding-top:62px;
+	.home-page .section:has(#home-heading){
+		padding-top:calc(var(--header-bar-height) + 12px);
 		border-radius:24px 24px 0 0;
-	}
-
-	.home-intro::before{
-		top:20px;
 	}
 
 	.announcement-inner{
@@ -2300,9 +2175,6 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	.site-main > .page-hero .container,
 	.site-main > .section,
 	.site-main > .section .container,
-	.site-main > .home-section,
-	.site-main > .home-intro,
-	.site-main > .home-pathways,
 	.site-main > .component-card-grid,
 	.site-main > .ticket-embed,
 	.site-main > .gallery-container,

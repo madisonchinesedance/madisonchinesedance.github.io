@@ -294,204 +294,258 @@
   ],
   "sections": [
     {
-      "name": "academy",
       "columns": 1,
-      "className": "home-section home-intro home-hero page-section-home-intro",
       "items": [
         {
-          "heading1": {
-            "id": "home-heading",
-            "text": "Madison Chinese Dance Academy",
-            "fontSize": "var(--heading-1-font-size)"
-          },
-          "body": {
-            "text": "We dance to integrate Eastern and Western arts and cultures for a more harmonious world."
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "id": "home-heading",
+              "text": "Madison Chinese Dance Academy",
+              "fontSize": "heading-1"
+            },
+            {
+              "type": "body",
+              "text": "We dance to integrate Eastern and Western arts and cultures for a more harmonious world."
+            }
+          ]
         }
       ]
     },
     {
-      "name": "runner",
       "columns": 1,
-      "className": "home-section home-runner",
       "items": [
         {
-          "gallery": {
-            "variant": "runner"
-          }
+          "blocks": [
+            {
+              "type": "gallery",
+              "variant": "runner"
+            }
+          ]
         }
       ]
     },
     {
-      "name": "highlights",
       "columns": 2,
-      "className": "home-section home-highlights-with-runner",
       "items": [
         {
-          "statistic1": {
-            "text": "1987",
-            "fontSize": "var(--heading-1-font-size)"
-          },
-          "body": {
-            "text": "Founded as a nonprofit dance academy over 30 years ago. Generations of students have trained, performed, and shared Chinese dance with the Madison community."
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "1987",
+              "fontSize": "heading-2"
+            },
+            {
+              "type": "body",
+              "text": "Founded as a nonprofit dance academy over 30 years ago. Generations of students have trained, performed, and shared Chinese dance with the Madison community."
+            }
+          ]
         },
         {
-          "statistic2": {
-            "text": "Splendid China",
-            "fontSize": "var(--heading-1-font-size)"
-          },
-          "body": {
-            "text": "Annual showcase at the Robert E. Parilla Performing Arts Center — where community artistry meets the stage. Each year brings new choreography, costumes, and traditions to life."
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Splendid China",
+              "fontSize": "heading-2"
+            },
+            {
+              "type": "body",
+              "text": "Annual showcase at the Robert E. Parilla Performing Arts Center — where community artistry meets the stage. Each year brings new choreography, costumes, and traditions to life."
+            }
+          ]
         },
         {
-          "statistic3": {
-            "text": "Ages 3 to 18+",
-            "fontSize": "var(--heading-1-font-size)"
-          },
-          "body": {
-            "text": "Classes for beginner dancers through advanced students and beyond. Programs grow with each student from first steps to senior choreography projects."
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Ages 3 to 18+",
+              "fontSize": "heading-2"
+            },
+            {
+              "type": "body",
+              "text": "Classes for beginner dancers through advanced students and beyond. Programs grow with each student from first steps to senior choreography projects."
+            }
+          ]
         },
         {
-          "className": "home-runner home-runner-tall home-runner-sidebar",
-          "gallery": {
-            "variant": "runner-tall"
-          }
+          "blocks": [
+            {
+              "type": "gallery",
+              "variant": "runner-tall"
+            }
+          ]
         }
       ]
     },
     {
-      "name": "academy-links",
       "columns": 3,
-      "className": "home-section",
       "items": [
         {
-          "heading2": {
-            "text": "Classes"
-          },
-          "body": {
-            "text": "Beginner through advanced dance instruction for students of all ages.",
-            "actions": [
-              {
-                "route": "beginner-dancers",
-                "label": "Start with beginner dancers"
-              }
-            ]
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Classes"
+            },
+            {
+              "type": "body",
+              "text": "Beginner through advanced dance instruction for students of all ages.",
+              "actions": [
+                {
+                  "route": "beginner-dancers",
+                  "label": "Start with beginner dancers"
+                }
+              ]
+            }
+          ]
         },
         {
-          "heading2": {
-            "text": "Splendid China"
-          },
-          "body": {
-            "text": "Our annual concert brings traditional and contemporary Chinese dance to the stage.",
-            "actions": [
-              {
-                "route": "splendid-china-2026",
-                "label": "See Splendid China 2026"
-              }
-            ]
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Splendid China"
+            },
+            {
+              "type": "body",
+              "text": "Our annual concert brings traditional and contemporary Chinese dance to the stage.",
+              "actions": [
+                {
+                  "route": "splendid-china-2026",
+                  "label": "See Splendid China 2026"
+                }
+              ]
+            }
+          ]
         },
         {
-          "heading2": {
-            "text": "Gallery"
-          },
-          "body": {
-            "text": "Browse moments from performances, community programs, and academy events.",
-            "actions": [
-              {
-                "route": "gallery",
-                "label": "Open gallery"
-              }
-            ]
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Gallery"
+            },
+            {
+              "type": "body",
+              "text": "Browse moments from performances, community programs, and academy events.",
+              "actions": [
+                {
+                  "route": "gallery",
+                  "label": "Open gallery"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     {
-      "name": "story",
       "columns": 2,
-      "className": "home-section home-story page-section-home-story",
       "items": [
         {
-          "heading2": {
-            "text": "Our Story"
-          },
-          "body": {
-            "text": "The Madison Chinese Dance Academy was founded as a nonprofit organization in 1987. It is a teaching institution that emphasizes cultural enrichment through the art of Chinese dance and ballet. The Academy holds weekly classes year-round for students to learn traditional and modern Chinese dances, ballet, and Chinese ballet. It further cultivates students' appreciation of Eastern and Western arts and cultures through dance reviews and senior choreography projects.\n\nIn addition to its annual Splendid China dance concert at the Robert E. Parilla Performing Arts Center, the Academy presents more than twenty dance performances, workshops, and speeches at various occasions yearly. It has been invited to perform across the country at venues including the White House Music Festival, Smithsonian museums, conventions, and universities nationwide, as well as Disney Epcot Center. It is also one of the few arts groups invited to perform at the World New Millennium Music and Dance Festival held at the Giza Pyramids in Cairo.\n\nThe Academy welcomes individuals and groups of all racial and cultural backgrounds to join their pursuit of a more civilized, harmonious, and enjoyable world."
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Our Story"
+            },
+            {
+              "type": "body",
+              "text": "The Madison Chinese Dance Academy was founded as a nonprofit organization in 1987. It is a teaching institution that emphasizes cultural enrichment through the art of Chinese dance and ballet. The Academy holds weekly classes year-round for students to learn traditional and modern Chinese dances, ballet, and Chinese ballet. It further cultivates students' appreciation of Eastern and Western arts and cultures through dance reviews and senior choreography projects.\n\nIn addition to its annual Splendid China dance concert at the Robert E. Parilla Performing Arts Center, the Academy presents more than twenty dance performances, workshops, and speeches at various occasions yearly. It has been invited to perform across the country at venues including the White House Music Festival, Smithsonian museums, conventions, and universities nationwide, as well as Disney Epcot Center. It is also one of the few arts groups invited to perform at the World New Millennium Music and Dance Festival held at the Giza Pyramids in Cairo.\n\nThe Academy welcomes individuals and groups of all racial and cultural backgrounds to join their pursuit of a more civilized, harmonious, and enjoyable world."
+            }
+          ]
         },
         {
-          "heading2": {
-            "text": "我們的故事"
-          },
-          "body": {
-            "text": "取名「陌地生」是希望優美的中華文化能夠在世界上任何「陌」生的「地」方，落地「生」根，發揚光大。\n\n「陌地生舞蹈學院」教導學員溶匯傳統中國舞蹈及古典芭蕾的基本技巧和舞台前後的表演藝術，更以中華文化的精神做為教材的重心。學員們由學習不同地區的舞蹈而了解到中國的廣大，和漢、滿、蒙、回、藏、苗各族音樂及文化的精粹。由學習古典宮廷舞而至近代的民俗舞，領會到歷史文化的演進。盛唐雅韻的金壁輝煌，到台灣農村的樸實活潑，舞者行雲流水的彩姿描繪出時光的腳步。塞北的豪放雄風，江南的婉約細膩，也由舞者舉手投足間，反映出地大物博的浩浩中華。\n\n以忠孝節義為主題的舞，學生因重演歷史而體會傳統的道德思想；以年節慶典為素材的舞，學生親歷中國的習俗及鄉土民情。學生除了本身受惠於享受習舞的樂趣外，並肩負傳播文化的責任。多年來，我們活躍於各種文化活動中，到過美國財政部，國會圖書館，華盛頓區各大學，蒙郡各中小學，圖書館。也應邀在白宮音樂會, 史密斯松尼恩國家博物館演出，獲得柯林頓總統頒發獎狀。更曾應邀參加在埃及金字塔前舉辦的千禧年世界音樂舞蹈大展。\n\n我們參與文化藝術活動外，更以中國人「老吾老以及人之老，幼吾幼以及人之幼」的精神，把中華舞蹈文化帶給老人院及育幼院。希望有更多朋友不論老少, 族裔, 或文化背景, 踴躍參加我們的行列，一起為融匯東西方藝術文化締造更和諧歡樂的社會而努力。"
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "我們的故事"
+            },
+            {
+              "type": "body",
+              "text": "取名「陌地生」是希望優美的中華文化能夠在世界上任何「陌」生的「地」方，落地「生」根，發揚光大。\n\n「陌地生舞蹈學院」教導學員溶匯傳統中國舞蹈及古典芭蕾的基本技巧和舞台前後的表演藝術，更以中華文化的精神做為教材的重心。學員們由學習不同地區的舞蹈而了解到中國的廣大，和漢、滿、蒙、回、藏、苗各族音樂及文化的精粹。由學習古典宮廷舞而至近代的民俗舞，領會到歷史文化的演進。盛唐雅韻的金壁輝煌，到台灣農村的樸實活潑，舞者行雲流水的彩姿描繪出時光的腳步。塞北的豪放雄風，江南的婉約細膩，也由舞者舉手投足間，反映出地大物博的浩浩中華。\n\n以忠孝節義為主題的舞，學生因重演歷史而體會傳統的道德思想；以年節慶典為素材的舞，學生親歷中國的習俗及鄉土民情。學生除了本身受惠於享受習舞的樂趣外，並肩負傳播文化的責任。多年來，我們活躍於各種文化活動中，到過美國財政部，國會圖書館，華盛頓區各大學，蒙郡各中小學，圖書館。也應邀在白宮音樂會, 史密斯松尼恩國家博物館演出，獲得柯林頓總統頒發獎狀。更曾應邀參加在埃及金字塔前舉辦的千禧年世界音樂舞蹈大展。\n\n我們參與文化藝術活動外，更以中國人「老吾老以及人之老，幼吾幼以及人之幼」的精神，把中華舞蹈文化帶給老人院及育幼院。希望有更多朋友不論老少, 族裔, 或文化背景, 踴躍參加我們的行列，一起為融匯東西方藝術文化締造更和諧歡樂的社會而努力。"
+            }
+          ]
         }
       ]
     },
     {
-      "name": "runner-wide",
       "columns": 1,
-      "className": "home-section home-runner home-runner-wide",
       "items": [
         {
-          "gallery": {
-            "variant": "runner-wide"
-          }
+          "blocks": [
+            {
+              "type": "gallery",
+              "variant": "runner-wide"
+            }
+          ]
         }
       ]
     },
     {
-      "name": "get-involved-links",
       "columns": 3,
-      "className": "home-section",
       "items": [
         {
-          "heading2": {
-            "text": "Attend a performance"
-          },
-          "body": {
-            "text": "Get details for Splendid China 2026 and purchase tickets online.",
-            "actions": [
-              {
-                "route": "tickets",
-                "label": "Purchase tickets"
-              }
-            ]
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Attend a performance"
+            },
+            {
+              "type": "body",
+              "text": "Get details for Splendid China 2026 and purchase tickets online.",
+              "actions": [
+                {
+                  "route": "tickets",
+                  "label": "Purchase tickets"
+                }
+              ]
+            }
+          ]
         },
         {
-          "heading2": {
-            "text": "Support the academy"
-          },
-          "body": {
-            "text": "Help fund classes, costumes, rehearsal space, and community outreach.",
-            "actions": [
-              {
-                "route": "donate",
-                "label": "Donate"
-              }
-            ]
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Support the academy"
+            },
+            {
+              "type": "body",
+              "text": "Help fund classes, costumes, rehearsal space, and community outreach.",
+              "actions": [
+                {
+                  "route": "donate",
+                  "label": "Donate"
+                }
+              ]
+            }
+          ]
         },
         {
-          "heading2": {
-            "text": "Get in touch"
-          },
-          "body": {
-            "text": "Ask about classes, performances, donations, or community programs.",
-            "actions": [
-              {
-                "href": "mailto:madison.chinese.dances@gmail.com",
-                "label": "Contact us"
-              }
-            ]
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Get in touch"
+            },
+            {
+              "type": "body",
+              "text": "Ask about classes, performances, donations, or community programs.",
+              "actions": [
+                {
+                  "href": "mailto:madison.chinese.dances@gmail.com",
+                  "label": "Contact us"
+                }
+              ]
+            }
+          ]
         }
       ]
     }

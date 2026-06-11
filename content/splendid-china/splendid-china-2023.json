@@ -90,17 +90,21 @@
   ],
   "sections": [
     {
-      "name": "intro",
       "columns": 1,
       "items": [
         {
-          "heading1": {
-            "text": "Splendid China 2023",
-            "id": "splendid-2023-heading"
-          },
-          "body": {
-            "text": "Performance archive details, photos, and program notes can be added here."
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Splendid China 2023",
+              "id": "splendid-2023-heading"
+            },
+            {
+              "type": "body",
+              "text": "Performance archive details, photos, and program notes can be added here."
+            }
+          ]
         }
       ]
     }

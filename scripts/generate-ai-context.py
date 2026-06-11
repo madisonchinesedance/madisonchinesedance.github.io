@@ -53,36 +53,68 @@ def extract_actions(actions, routes):
     return lines
 
 
+def extract_block_lines(block, routes):
+    """Extract text content from a single content block."""
+    lines = []
+    block_type = block.get("type", "")
+
+    if block_type == "heading":
+        level = int(block.get("level", 2))
+        text = block.get("text", "")
+        if text:
+            lines.append("")
+            lines.append(f"{'#' * level} {text}")
+            lines.append("")
+    elif block_type == "body":
+        lines.extend(extract_body_lines(block, routes))
+    elif block_type == "gallery":
+        lines.extend(extract_gallery_lines(block))
+    elif block_type == "zeffyEmbed":
+        form_url = block.get("formUrl", "")
+        if form_url:
+            lines.append(f"- Embedded form: {form_url}")
+            lines.append("")
+
+    return lines
+
+
+def extract_legacy_item_lines(item, routes):
+    """Extract text content from legacy keyed item objects."""
+    lines = []
+    for key, value in item.items():
+        base_key = re.sub(r"_\d+$", "", key)
+        if not isinstance(value, dict):
+            continue
+
+        if base_key.startswith("heading") and base_key[-1:].isdigit():
+            block = {"type": "heading", "level": int(base_key[-1]), **value}
+            lines.extend(extract_block_lines(block, routes))
+        elif re.fullmatch(r"statistic\d+", base_key):
+            block = {"type": "heading", "level": 2, **value}
+            lines.extend(extract_block_lines(block, routes))
+        elif base_key == "body":
+            lines.extend(extract_block_lines({**value, "type": "body"}, routes))
+        elif base_key == "gallery":
+            lines.extend(extract_block_lines({**value, "type": "gallery"}, routes))
+        elif base_key == "zeffyEmbed":
+            lines.extend(extract_block_lines({**value, "type": "zeffyEmbed"}, routes))
+
+    return lines
+
+
 def extract_text_from_sections(sections, routes):
     """Extract text content from section/item page JSON."""
     lines = []
     for section in sections or []:
         items = section.get("items", [])
         for item in items:
-            for key, value in item.items():
-                base_key = re.sub(r"_\d+$", "", key)
-                if not isinstance(value, dict):
-                    continue
-
-                if base_key.startswith("heading") and base_key[-1:].isdigit():
-                    level = int(base_key[-1])
-                    text = value.get("text", "")
-                    if text:
-                        lines.append("")
-                        lines.append(f"{'#' * level} {text}")
-                        lines.append("")
-
-                elif base_key == "body":
-                    lines.extend(extract_body_lines(value, routes))
-
-                elif base_key == "gallery":
-                    lines.extend(extract_gallery_lines(value))
-
-                elif base_key == "zeffyEmbed":
-                    form_url = value.get("formUrl", "")
-                    if form_url:
-                        lines.append(f"- Embedded form: {form_url}")
-                        lines.append("")
+            blocks = item.get("blocks")
+            if isinstance(blocks, list):
+                for block in blocks:
+                    if isinstance(block, dict):
+                        lines.extend(extract_block_lines(block, routes))
+            else:
+                lines.extend(extract_legacy_item_lines(item, routes))
     return lines
 
 

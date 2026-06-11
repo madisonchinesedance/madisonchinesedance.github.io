@@ -15,17 +15,21 @@
   ],
   "sections": [
     {
-      "name": "intro",
       "columns": 1,
       "items": [
         {
-          "heading1": {
-            "text": "Splendid China 2008",
-            "id": "splendid-2008-heading"
-          },
-          "body": {
-            "text": "Performance archive details, photos, and program notes can be added here."
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Splendid China 2008",
+              "id": "splendid-2008-heading"
+            },
+            {
+              "type": "body",
+              "text": "Performance archive details, photos, and program notes can be added here."
+            }
+          ]
         }
       ]
     }

@@ -35,24 +35,21 @@ Madison Chinese Dance Academy - community classes, performances, and outreach. P
 We dance to integrate Eastern and Western arts and cultures for a more harmonious world.
 
 
+
 ## 1987
 
-Founded as a nonprofit danceacademy over 30 years ago.
+Founded as a nonprofit dance academy over 30 years ago. Generations of students have trained, performed, and shared Chinese dance with the Madison community.
 
 
 ## Splendid China
 
-Annual showcase at the Robert E. Parilla Performing Arts Center - where community artistry meets the stage.
+Annual showcase at the Robert E. Parilla Performing Arts Center — where community artistry meets the stage. Each year brings new choreography, costumes, and traditions to life.
 
 
 ## Ages 3 to 18+
 
-Classes for beginner dancers through advanced students and beyond.
+Classes for beginner dancers through advanced students and beyond. Programs grow with each student from first steps to senior choreography projects.
 
-
-## A community academy for Chinese dance and culture
-
-Madison Chinese Dance Academy gives students a place to train, perform, and grow through Chinese dance traditions and ballet technique. Our programs connect both families and audiences through classes, outreach, and the annual Splendid China performance.
 
 
 ## Classes
@@ -85,7 +82,16 @@ In addition to its annual Splendid China dance concert at the Robert E. Parilla 
 The Academy welcomes individuals and groups of all racial and cultural backgrounds to join their pursuit of a more civilized, harmonious, and enjoyable world.
 
 
-## Get Involved
+## 我們的故事
+
+取名「陌地生」是希望優美的中華文化能夠在世界上任何「陌」生的「地」方，落地「生」根，發揚光大。
+
+「陌地生舞蹈學院」教導學員溶匯傳統中國舞蹈及古典芭蕾的基本技巧和舞台前後的表演藝術，更以中華文化的精神做為教材的重心。學員們由學習不同地區的舞蹈而了解到中國的廣大，和漢、滿、蒙、回、藏、苗各族音樂及文化的精粹。由學習古典宮廷舞而至近代的民俗舞，領會到歷史文化的演進。盛唐雅韻的金壁輝煌，到台灣農村的樸實活潑，舞者行雲流水的彩姿描繪出時光的腳步。塞北的豪放雄風，江南的婉約細膩，也由舞者舉手投足間，反映出地大物博的浩浩中華。
+
+以忠孝節義為主題的舞，學生因重演歷史而體會傳統的道德思想；以年節慶典為素材的舞，學生親歷中國的習俗及鄉土民情。學生除了本身受惠於享受習舞的樂趣外，並肩負傳播文化的責任。多年來，我們活躍於各種文化活動中，到過美國財政部，國會圖書館，華盛頓區各大學，蒙郡各中小學，圖書館。也應邀在白宮音樂會, 史密斯松尼恩國家博物館演出，獲得柯林頓總統頒發獎狀。更曾應邀參加在埃及金字塔前舉辦的千禧年世界音樂舞蹈大展。
+
+我們參與文化藝術活動外，更以中國人「老吾老以及人之老，幼吾幼以及人之幼」的精神，把中華舞蹈文化帶給老人院及育幼院。希望有更多朋友不論老少, 族裔, 或文化背景, 踴躍參加我們的行列，一起為融匯東西方藝術文化締造更和諧歡樂的社會而努力。
+
 
 
 ## Attend a performance
@@ -106,33 +112,7 @@ Help fund classes, costumes, rehearsal space, and community outreach.
 
 Ask about classes, performances, donations, or community programs.
 
-- **Contact us** (pages/programs/contact.html)
-
----
-
-## Contact (2)
-
-Contact Madison Chinese Dance Academy.
-
-
-# Contact
-
-For general inquiries, please email us at the address below. For specific questions about classes, events, or donations, please include a clear subject line to help us direct your message to the appropriate team member. We strive to respond to all inquiries within 2-3 business days.
-
-
-## Email
-
-madison.chinese.dances@gmail.com
-
-
-## Phone
-
-(301)-299-1562
-
-
-## Mailing Address
-
-PO Box 10067 Rockville, MD 20849
+- **Contact us** (mailto:madison.chinese.dances@gmail.com)
 
 ---
 
@@ -452,44 +432,37 @@ Join Madison Chinese Dance Academy as a student, volunteer, or community member.
 Become part of the Madison Chinese Dance Academy community. Whether you are a beginner exploring Chinese dance for the first time, an experienced dancer looking to grow, or a parent searching for a meaningful cultural program for your child, we have a place for you.
 
 
-## Ways to Get Involved
+## Classes for All Ages and Experience Levels
 
-There are many ways to be part of our academy. We welcome students, families, volunteers, and community partners who share our passion for Chinese dance and cultural exchange.
+We offer classes for students of all ages and experience levels. Whether you are a beginner just starting out or an experienced dancer looking to grow, we have a class for you.
 
 
-## Enroll as a Student
+## Beginner Dancers
 
-Join one of our beginner, intermediate, or advanced programs. New students of all ages and experience levels are welcome.
+Our beginner dancers program is designed for students who have no prior dance experience. It focuses on building a strong foundation in dance technique, rhythm, and coordination. Students will learn basic dance steps, patterns, and movements while developing confidence and a love for dance.
 
 - **Start with beginner dancers** (pages/classes/beginner-dancers.html)
 
 
-## Volunteer
+## Intermediate Dancers
 
-Help with events, performances, costumes, or backstage support. Volunteers are the heart of our community productions.
+Our intermediate dancers program is designed for students who have some prior dance experience. It builds on the foundation learned in beginner classes, adding more complex patterns, rhythms, and movements. Students will develop greater technical skills and confidence in their dance performance.
 
-- **Reach out to volunteer** (pages/programs/contact.html)
-
-
-## Support Our Mission
-
-Your donations help fund classes, scholarships, and our annual Splendid China production. Every gift makes a difference.
-
-- **Donate today** (pages/donate.html)
+- **Start with intermediate dancers** (pages/classes/intermediate-dancers.html)
 
 
-## How to Get Started
+## Advanced Dancers
 
-Starting at Madison Chinese Dance Academy is simple. Reach out to us by email or phone to learn about current class schedules, placement for returning students, and open registration windows. We will match you with the right level and welcome you to our community.
+Our advanced dancers program is designed for students who have a strong foundation in dance technique and are ready to take their performance skills to the next level. It focuses on refining technical skills, building confidence, and preparing for more advanced choreography and performances.
 
-For most programs, no prior dance experience is required. Bring comfortable clothing, water, and a willingness to learn. We will guide you through the rest.
+- **Start with advanced dancers** (pages/classes/advanced-dancers.html)
 
 
 ## Contact Us to Join
 
 Email us at madison.chinese.dances@gmail.com or call (301)-299-1562 to learn more about joining. We are happy to answer questions about classes, schedules, and what to expect in your first session.
 
-- **Contact Us** (pages/programs/contact.html)
+- **Contact Us** (mailto:madison.chinese.dances@gmail.com)
 - **View Beginner Programs** (pages/classes/beginner-dancers.html)
 
 ---
@@ -544,110 +517,8 @@ We recommend reaching out at least 4-6 weeks in advance for the best chance of s
 
 Ready to bring Chinese dance to your event? Send us the details and we will get back to you with availability and options.
 
-- **Contact Us** (pages/programs/contact.html)
+- **Contact Us** (mailto:madison.chinese.dances@gmail.com)
 - **See Upcoming Events** (pages/events/events.html)
-
----
-
-## Meet the Faculty
-
-Meet the faculty and instructors at Madison Chinese Dance Academy.
-
-
-# Meet the Faculty
-
-Our faculty brings together experienced dancers, choreographers, and educators who are passionate about Chinese dance, ballet, and cultural exchange. They guide students at every level with care, expertise, and encouragement.
-
-
-## Our Teaching Approach
-
-At Madison Chinese Dance Academy, we believe strong technique and meaningful artistry go hand in hand. Our faculty emphasizes proper foundation, individual attention, and a welcoming environment where every student can grow.
-
-Instructors draw on both Eastern and Western dance traditions, blending classical Chinese forms with ballet training. This dual foundation helps dancers develop versatility, expressiveness, and a deeper understanding of the art form.
-
-
-## Faculty Members
-
-Our faculty includes founding instructors, guest artists, and program directors who collectively shape the Madison Chinese Dance Academy experience. Detailed biographies and credentials for each instructor will be shared on this page soon.
-
-
-## Founding Director
-
-Leads the academy's artistic vision and oversees curriculum development, faculty training, and the annual Splendid China production.
-
-
-## Chinese Dance Instructors
-
-Specialists in traditional and contemporary Chinese dance forms who guide students through technique, choreography, and performance.
-
-
-## Ballet Faculty
-
-Trained in classical ballet pedagogy, supporting dancers in building a strong technical foundation alongside their Chinese dance studies.
-
-
-## Join Our Teaching Team
-
-We occasionally welcome new instructors, teaching assistants, and guest artists who share our commitment to excellence in Chinese dance education. If you are interested in working with us, please reach out with a short introduction, your training background, and areas of expertise.
-
-- **Contact Us** (pages/programs/contact.html)
-- **Learn About the Academy** (pages/programs/programs.html)
-
----
-
-## Success Stories
-
-Read success stories from Madison Chinese Dance Academy students, families, and community members.
-
-
-# Success Stories
-
-Madison Chinese Dance Academy has shaped the lives of students, families, and performers for decades. These are some of their stories.
-
-
-## Student Stories
-
-Our students come to the academy with different backgrounds, ages, and goals. Some join looking for a creative outlet. Others come seeking connection to their cultural heritage. Many stay for years, growing into confident performers and thoughtful artists.
-
-
-## From Beginner to Performer
-
-Many of our dancers start in beginner programs with no prior experience. Through years of training, they progress to advanced classes and take the stage at our annual Splendid China production.
-
-
-## Confidence Through Dance
-
-Students often share that the academy helped them build confidence, discipline, and friendships. Performing on stage teaches lessons that reach far beyond the studio.
-
-
-## Family Stories
-
-Families are an important part of the Madison Chinese Dance Academy community. Parents, siblings, and extended family support dancers throughout the year, attending classes, helping with costumes, and cheering from the audience at performances.
-
-
-## A Multi-Generational Community
-
-Sisters, cousins, and friends often train together. For some families, the academy has been a multi-generational home where parents who once performed now watch their own children take the stage.
-
-
-## Cultural Connection
-
-Families value the academy as a place to share Chinese language, history, and artistry with the next generation, building identity and pride through movement.
-
-
-## Community Impact
-
-Beyond the studio, Madison Chinese Dance Academy brings Chinese dance to schools, festivals, and community events throughout the region. Our performances introduce new audiences to Chinese culture and create opportunities for dialogue, learning, and celebration.
-
-Each year, hundreds of community members attend our Splendid China production, making it one of the most anticipated cultural events in the area. We are proud to share our art form and to keep these traditions alive for future generations.
-
-
-## Share Your Story
-
-Are you a current or former student, family member, or audience member with a story to share? We would love to hear from you. Your experience helps illustrate the impact of the academy and welcomes new members into our community.
-
-- **Contact Us** (pages/programs/contact.html)
-- **Dance With Us** (pages/get-involved/dance-with-us.html)
 
 ---
 
@@ -715,7 +586,7 @@ Every contribution, whether big or small, helps us fulfill our mission of promot
 
 ## Make a Donation
 
-Your tax-deductible donations help fund classes, scholarships, costumes, and our annual Splendid China production.
+Your donations help fund classes, scholarships, costumes, and our annual Splendid China production.
 
 - **Donate now** (pages/donate.html)
 
@@ -724,14 +595,14 @@ Your tax-deductible donations help fund classes, scholarships, costumes, and our
 
 Corporate and individual sponsorships support our performances, outreach programs, and community events. Partner with us to make an impact.
 
-- **Contact us about sponsorship** (pages/programs/contact.html)
+- **Contact us about sponsorship** (mailto:madison.chinese.dances@gmail.com)
 
 
 ## Volunteer
 
 Volunteers are essential to our productions and events. Help with costumes, backstage, ushering, and more.
 
-- **Volunteer with us** (pages/programs/contact.html)
+- **Volunteer with us** (mailto:madison.chinese.dances@gmail.com)
 
 
 ## Your Impact
@@ -746,7 +617,7 @@ We are deeply grateful to our donors, sponsors, and volunteers who make our work
 Join us in preserving and sharing the art of Chinese dance. Your generosity helps us inspire the next generation of dancers and bring the joy of Chinese culture to our community.
 
 - **Donate Now** (pages/donate.html)
-- **Get in Touch** (pages/programs/contact.html)
+- **Get in Touch** (mailto:madison.chinese.dances@gmail.com)
 
 ---
 
@@ -791,12 +662,7 @@ Educational lectures on useful Chinese cultural wisdom, focusing on traditional 
 
 - Home
 - Gallery
-### Programs
 - Programs
-- Meet the Faculty
-- Success Stories
-- Contact
-
 ### Classes
 - Beginner Dancers
 - Intermediate Dancers

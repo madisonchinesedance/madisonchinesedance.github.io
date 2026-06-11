@@ -418,6 +418,123 @@ document.addEventListener('DOMContentLoaded', async () => {
 		return `<a href="${resolveHref(link.href)}" class="btn btn-${style}${className}" role="button"${targetAttr}${ariaLabel}>${escapeHtml(link.label)}</a>`;
 	}
 
+	const FONT_SIZE_PRESETS = {
+		'heading-1': 'var(--heading-1-font-size)',
+		'heading-2': 'var(--heading-2-font-size)',
+		'heading-3': 'var(--heading-3-font-size)',
+		'heading-4': 'var(--heading-4-font-size)',
+		'heading-5': 'var(--heading-5-font-size)',
+		'heading-6': 'var(--heading-6-font-size)',
+		body: 'var(--body-font-size)',
+		lg: 'clamp(1.12rem, 1.4vw, 1.3rem)'
+	};
+
+	const CSS_SIZE_PATTERN = /^(?:var\(--[a-z0-9-]+\)|clamp\([^;{}]+\)|min\([^;{}]+\)|max\([^;{}]+\)|calc\([^;{}]+\)|[\d.]+(?:rem|em|px|%|vw|vh))$/i;
+
+	function resolveFontSize(value = '') {
+		const token = String(value || '').trim();
+		if (!token) return '';
+		if (FONT_SIZE_PRESETS[token]) return FONT_SIZE_PRESETS[token];
+		return CSS_SIZE_PATTERN.test(token) ? token : '';
+	}
+
+	function normalizeAlign(value = '') {
+		const align = String(value || '').trim().toLowerCase();
+		return ['left', 'center', 'right'].includes(align) ? align : '';
+	}
+
+	function blockTypographyStyle(block = {}) {
+		const parts = [];
+		const fontSize = resolveFontSize(block.fontSize || block.headingSize);
+		if (fontSize) parts.push(`font-size:${fontSize}`);
+		const align = normalizeAlign(block.align);
+		if (align && align !== 'left') parts.push(`text-align:${align}`);
+		return parts.length ? ` style="${parts.join(';')}"` : '';
+	}
+
+	function itemAlignStyle(item = {}) {
+		const align = normalizeAlign(item.align);
+		return align && align !== 'left' ? `text-align:${align};` : '';
+	}
+
+	function resolveSectionClasses(section = {}) {
+		return [
+			section.name ? `section-${section.name}` : '',
+			section.className || ''
+		].filter(Boolean).join(' ');
+	}
+
+	function resolveItemClasses(item = {}) {
+		return item.className || '';
+	}
+
+	function normalizeLegacyBlockKey(key = '', value = {}) {
+		const baseKey = key.replace(/_\d+$/, '');
+		if (/^heading([1-6])$/.test(baseKey)) {
+			return { type: 'heading', level: Number(baseKey[7]), ...value };
+		}
+		if (/^statistic\d+$/.test(baseKey)) {
+			return { type: 'heading', level: 2, ...value };
+		}
+		if (baseKey === 'body') {
+			return { type: 'body', ...value };
+		}
+		if (baseKey === 'gallery') {
+			return { type: 'gallery', ...value };
+		}
+		if (baseKey === 'zeffyEmbed') {
+			return { type: 'zeffyEmbed', ...value };
+		}
+		return null;
+	}
+
+	function normalizeItem(item = {}) {
+		if (Array.isArray(item.blocks)) {
+			return item;
+		}
+
+		if (!Object.keys(item).some((key) => {
+			const baseKey = key.replace(/_\d+$/, '');
+			return /^heading[1-6]$/.test(baseKey)
+				|| /^statistic\d+$/.test(baseKey)
+				|| ['body', 'gallery', 'zeffyEmbed'].includes(baseKey);
+		})) {
+			const link = resolveContentLink(item, routes);
+			const actions = link?.href && link.href !== '#'
+				? [{
+					href: link.href,
+					label: link.label || item.label || 'Learn more',
+					newTab: item.newTab
+				}]
+				: [];
+
+			return {
+				...item,
+				blocks: [
+					{
+						type: 'heading',
+						level: 2,
+						text: item.heading || item.value || '',
+						id: item.id,
+						fontSize: item.headingSize
+					},
+					{
+						type: 'body',
+						text: item.body || '',
+						actions
+					}
+				]
+			};
+		}
+
+		const legacyOrder = Object.keys(item).filter((key) => !['name', 'className', 'variant', 'align', 'link', 'route', 'href', 'label', 'newTab', 'heading', 'value', 'body', 'id', 'headingSize'].includes(key));
+		const blocks = legacyOrder
+			.map((key) => normalizeLegacyBlockKey(key, item[key]))
+			.filter(Boolean);
+
+		return { ...item, blocks };
+	}
+
 	function renderHeadingBlock(block = {}, level = 2, context = {}) {
 		const safeLevel = Math.min(Math.max(Number(block.level || level), 1), 6);
 		const text = block.text || block.heading || '';
@@ -425,9 +542,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 		const id = blockId(block, '');
 		const idAttr = id ? ` id="${id}"` : '';
-		const fontSize = String(block.fontSize || block.headingSize || '').trim();
-		const cssSizePattern = /^(?:var\(--[a-z0-9-]+\)|clamp\([^;{}]+\)|min\([^;{}]+\)|max\([^;{}]+\)|calc\([^;{}]+\)|[\d.]+(?:rem|em|px|%|vw|vh))$/i;
-		const styleAttr = cssSizePattern.test(fontSize) ? ` style="font-size:${fontSize}"` : '';
+		const styleAttr = blockTypographyStyle(block);
 		const classes = [
 			block.className
 		].filter(Boolean).map(escapeHtml).join(' ');
@@ -442,18 +557,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const actions = Array.isArray(block.actions) && block.actions.length
 			? `<div class="component-actions">${block.actions.map(contentAction).join('')}</div>`
 			: '';
+		const styleAttr = blockTypographyStyle(block);
 		const classes = [
 			'component-body',
 			block.className
 		].filter(Boolean).map(escapeHtml).join(' ');
 
-		return body || actions ? `<div class="${classes}">${body}${actions}</div>` : '';
+		return body || actions ? `<div class="${classes}"${styleAttr}>${body}${actions}</div>` : '';
 	}
 
 	function renderGalleryBlock(block = {}) {
 		const isRunner = /^runner(?:-tall|-wide)?$/.test(block.variant || '');
+		const galleryVariant = String(block.variant || '').trim();
+		const variantAttr = galleryVariant ? ` data-gallery-variant="${escapeHtml(galleryVariant)}"` : '';
 		const carousel = `
-			<div class="gallery-container">
+			<div class="gallery-container"${variantAttr}>
 				<div class="gallery-wrapper" data-gallery-carousel></div>
 				<div class="gallery-controls" aria-label="Gallery controls">
 					<button class="prev" type="button" aria-label="Previous image">&#10094;</button>
@@ -490,55 +608,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 		`;
 	}
 
-	function normalizeSectionItem(item = {}) {
-		if (Object.keys(item).some((key) => /^heading[1-6](?:_\d+)?$/.test(key) || /^(body|gallery|zeffyEmbed)(?:_\d+)?$/.test(key))) {
-			return item;
-		}
-
-		const link = resolveContentLink(item, routes);
-		const actions = link?.href && link.href !== '#'
-			? [{
-				href: link.href,
-				label: link.label || item.label || 'Learn more',
-				newTab: item.newTab
-			}]
-			: [];
-
-		return {
-			heading2: {
-				text: item.heading || item.value || '',
-				id: item.id,
-				fontSize: item.headingSize
-			},
-			body: {
-				text: item.body || '',
-				actions
-			}
-		};
-	}
-
 	function renderSectionItem(item = {}, context = {}, index = 0) {
-		const normalizedItem = normalizeSectionItem(item);
-		const itemBlocks = Object.entries(normalizedItem)
-			.flatMap(([key, value]) => {
-				if (!value || ['name', 'className', 'link', 'route', 'href', 'label', 'newTab'].includes(key)) return [];
-				const baseKey = key.replace(/_\d+$/, '');
-				if (/^heading[1-6]$/.test(baseKey)) {
-					return [{ ...value, type: baseKey }];
-				}
-				if (['body', 'gallery', 'zeffyEmbed'].includes(baseKey)) {
-					return [{ ...value, type: baseKey }];
-				}
-				return [];
-			});
+		const normalizedItem = normalizeItem(item);
+		const itemBlocks = Array.isArray(normalizedItem.blocks) ? normalizedItem.blocks : [];
 		const link = resolveContentLink(normalizedItem, routes);
 		const href = link?.href ? resolveHref(link.href) : '';
 		const tag = href && href !== '#' ? 'a' : 'article';
 		const hrefAttr = tag === 'a' ? ` href="${href}"` : '';
-		const className = normalizedItem.className ? ` ${escapeHtml(normalizedItem.className)}` : '';
+		const itemClass = resolveItemClasses(normalizedItem);
+		const className = itemClass ? ` ${escapeHtml(itemClass)}` : '';
+		const alignStyle = itemAlignStyle(normalizedItem);
+		const styleAttr = `--item-index:${index};${alignStyle}`;
 
 		return `
-			<${tag} class="section-item${className}" style="--item-index:${index};"${hrefAttr}>
+			<${tag} class="section-item${className}" style="${styleAttr}"${hrefAttr}>
 				${renderBlocks(itemBlocks, context)}
 			</${tag}>
 		`;
@@ -547,6 +630,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 	function renderBlock(block = {}, context = {}) {
 		if (!block.type) {
 			return renderSectionBlock(block);
+		}
+
+		if (block.type === 'heading') {
+			return renderHeadingBlock(block, block.level || 2, context);
 		}
 
 		const builders = {
@@ -565,6 +652,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 		return blocks.map((block) => renderBlock(block, context)).join('');
 	}
 
+	function findSectionHeadingId(items = []) {
+		for (const item of items) {
+			if (Array.isArray(item)) {
+				const nestedId = findSectionHeadingId(item);
+				if (nestedId) return nestedId;
+				continue;
+			}
+			const normalized = normalizeItem(item);
+			const heading = (normalized.blocks || []).find((entry) => entry.type === 'heading' && entry.id);
+			if (heading?.id) return heading.id;
+		}
+		return '';
+	}
+
 	function renderSectionBlock(block = {}) {
 		const items = Array.isArray(block.items) ? block.items : [];
 		const columns = Math.max(1, Math.min(Number(block.columns || items.length || 1), 4));
@@ -572,17 +673,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 			'section',
 			'page-section',
 			columns > 1 ? 'section-columns' : '',
-			block.name ? `section-${block.name}` : '',
-			block.className
+			resolveSectionClasses(block)
 		]
 			.filter(Boolean)
 			.map(escapeHtml)
 			.join(' ');
-		const headingBlock = items.flat().find((item) => {
-			if (item?.type === 'heading2' || item?.type === 'heading1') return true;
-			return item?.heading1?.id || item?.heading2?.id;
-		});
-		const headingId = headingBlock?.id || headingBlock?.heading1?.id || headingBlock?.heading2?.id || '';
+		const headingId = findSectionHeadingId(items);
 		const labelledBy = headingId ? ` aria-labelledby="${escapeHtml(headingId)}"` : '';
 
 		return `

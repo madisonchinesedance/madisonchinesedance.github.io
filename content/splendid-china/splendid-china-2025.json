@@ -75,17 +75,21 @@
   ],
   "sections": [
     {
-      "name": "intro",
       "columns": 1,
       "items": [
         {
-          "heading1": {
-            "text": "Splendid China 2025",
-            "id": "splendid-2025-heading"
-          },
-          "body": {
-            "text": "Performance archive details, photos, and program notes can be added here."
-          }
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 1,
+              "text": "Splendid China 2025",
+              "id": "splendid-2025-heading"
+            },
+            {
+              "type": "body",
+              "text": "Performance archive details, photos, and program notes can be added here."
+            }
+          ]
         }
       ]
     }
