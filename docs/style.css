@@ -166,6 +166,7 @@
 	--section-border-radius-top-left: 36px;
 	--section-border-radius-top-right: 36px;
 	--section-gap: 18px;
+	--content-top-padding: 64px;
 	--section-heading-color: var(--light-text-color);
 	--section-margin-top: -34px;           /* home-intro pull-up offset */
 	--section-max-width: 1600px;
@@ -843,10 +844,10 @@ a{
 /* Only section containers that contain interactive elements (links, buttons) and do not contain cards
    should change their shadow/background on hover. Static sections remain unchanged.
    Sections containing cards should not have a section-level hover effect. */
-.page-hero:has(a, button):not(:has(.component-card)):hover .container,
-.page-hero:has(a, button):not(:has(.component-card)):focus-within .container,
-.section:has(a, button):not(:has(.component-card)):hover .container,
-.section:has(a, button):not(:has(.component-card)):focus-within .container{
+.page-hero:has(a, button):not(:has(.component-card)):not(:has(.gallery-container)):hover .container,
+.page-hero:has(a, button):not(:has(.component-card)):not(:has(.gallery-container)):focus-within .container,
+.section:has(a, button):not(:has(.component-card)):not(:has(.gallery-container)):hover .container,
+.section:has(a, button):not(:has(.component-card)):not(:has(.gallery-container)):focus-within .container{
 	background:linear-gradient(180deg, color-mix(in srgb, var(--section-bg-top) calc(var(--section-transparency-hover) * 100%), transparent), color-mix(in srgb, var(--section-bg-bottom) calc(var(--section-transparency-hover) * 100%), transparent));
 	border-color:color-mix(in srgb, var(--section-border) calc(var(--section-transparency-hover) * 100%), transparent);
 	box-shadow:var(--section-shadow-hover);
@@ -984,7 +985,7 @@ a{
 	padding:20px 0 36px;
 }
 body:not(.home-page) .site-main > .section:first-child{
-	padding-top:64px;
+	padding-top:var(--content-top-padding);
 }
 .site-main{
 	position:relative;
@@ -1105,7 +1106,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 .section-grid[style*="--section-columns:2"],
 .section-grid[style*="--section-columns:3"],
 .section-grid[style*="--section-columns:4"]{
-	align-items:start;
+	align-items:stretch;
 }
 .section-item{
 	display:flex;
@@ -1119,6 +1120,7 @@ body:has(.site-header.has-visible-announcement) .page-hero{
 .section-grid[style*="--section-columns:3"] .section-item,
 .section-grid[style*="--section-columns:4"] .section-item{
 	position:relative;
+	height:100%;
 	padding:var(--card-padding);
 	border-radius:var(--section-radius);
 	overflow:hidden;
@@ -1196,7 +1198,7 @@ a.section-item .component-actions{
 /* Hero */
 .home-page .section:has(#home-heading){
 	margin-top:0;
-	padding-top:calc(var(--header-bar-height) + clamp(12px, 2vw, 20px));
+	padding-top:var(--content-top-padding);
 	padding-bottom:12px;
 	border-radius:36px 36px 0 0;
 }
@@ -2127,7 +2129,7 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	}
 
 	.home-page .section:has(#home-heading){
-		padding-top:calc(var(--header-bar-height) + 12px);
+		padding-top:var(--content-top-padding);
 		border-radius:24px 24px 0 0;
 	}
 
