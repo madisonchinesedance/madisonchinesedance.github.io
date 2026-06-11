@@ -7,16 +7,49 @@
   },
   "columns": [
     {
-      "heading": "Programs",
+      "heading": "Explore",
       "links": [
+        {
+          "route": "home",
+          "label": "Home"
+        },
+        {
+          "route": "gallery",
+          "label": "Gallery"
+        },
         {
           "route": "programs",
           "label": "Programs"
+        },
+        {
+          "route": "tickets",
+          "label": "Purchase Tickets"
+        },
+        {
+          "route": "donate",
+          "label": "Donate"
         }
       ]
     },
     {
-      "heading": "Event",
+      "heading": "Classes",
+      "links": [
+        {
+          "route": "advanced-dancers",
+          "label": "Advanced Dancers"
+        },
+        {
+          "route": "beginner-dancers",
+          "label": "Beginner Dancers"
+        },
+        {
+          "route": "intermediate-dancers",
+          "label": "Intermediate Dancers"
+        }
+      ]
+    },
+    {
+      "heading": "Events",
       "links": [
         {
           "route": "events",
@@ -25,27 +58,6 @@
         {
           "route": "services",
           "label": "Services"
-        },
-        {
-          "route": "gallery",
-          "label": "Gallery"
-        }
-      ]
-    },
-    {
-      "heading": "Classes",
-      "links": [
-        {
-          "route": "beginner-dancers",
-          "label": "Beginner Dancers"
-        },
-        {
-          "route": "intermediate-dancers",
-          "label": "Intermediate Dancers"
-        },
-        {
-          "route": "advanced-dancers",
-          "label": "Advanced Dancers"
         }
       ]
     },
@@ -53,12 +65,12 @@
       "heading": "Get Involved",
       "links": [
         {
-          "route": "dance-with-us",
-          "label": "Dance With Us"
+          "route": "book-a-performance",
+          "label": "Book a Performance"
         },
         {
-          "route": "book-a-performance",
-          "label": "Bring Us to Your Event"
+          "route": "dance-with-us",
+          "label": "Dance with Us"
         },
         {
           "route": "see-a-performance",
@@ -67,10 +79,35 @@
         {
           "route": "support-our-cause",
           "label": "Support Our Cause"
+        }
+      ]
+    },
+    {
+      "heading": "Splendid China",
+      "links": [
+        {
+          "route": "splendid-china-2026",
+          "label": "Splendid China 2026"
         },
         {
-          "route": "donate",
-          "label": "Donate"
+          "route": "splendid-china-2025",
+          "label": "Splendid China 2025"
+        },
+        {
+          "route": "splendid-china-2024",
+          "label": "Splendid China 2024"
+        },
+        {
+          "route": "splendid-china-2023",
+          "label": "Splendid China 2023"
+        },
+        {
+          "route": "splendid-china-2022",
+          "label": "Splendid China 2022"
+        },
+        {
+          "route": "splendid-china-2019",
+          "label": "Splendid China 2019"
         }
       ]
     }

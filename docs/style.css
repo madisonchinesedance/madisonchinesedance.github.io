@@ -1189,17 +1189,24 @@ a.section-item .component-actions{
 	margin:0 auto;
 }
 .home-page .section:has(#home-heading) .section-item{
-	max-width:780px;
+	width:100%;
 }
 .home-page .section:has(#home-heading) h1{
 	margin:0 0 18px;
-	padding-bottom:18px;
+	padding-bottom:0;
 	text-wrap:balance;
 	text-shadow:0 10px 32px color-mix(in srgb, var(--color-deep-navy) 72%, transparent);
+	border-bottom:none;
+}
+.home-page .section:has(#home-heading) h1::after{
+	content:"";
+	display:block;
+	width:100%;
+	padding-bottom:18px;
 	border-bottom:1px solid color-mix(in srgb, var(--light-text-color) 22%, transparent);
 }
 .home-page .section:has(#home-heading) .component-body{
-	max-width:760px;
+	max-width:none;
 }
 .home-page .section:has(#home-heading) .component-body p{
 	font-size:clamp(1rem, 1.25vw, 1.25rem);
@@ -1851,7 +1858,7 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 }
 .footer-directory{
 	display:grid;
-	grid-template-columns:repeat(4, minmax(140px, 1fr));
+	grid-template-columns:repeat(5, minmax(120px, 1fr));
 	gap:clamp(22px, 4vw, 46px);
 }
 .footer-column h2{
