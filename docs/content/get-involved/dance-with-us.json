@@ -115,14 +115,14 @@
             },
             {
               "type": "body",
-              "text": "Email us at madison.chinese.dances@gmail.com or call (301)-299-1562 to learn more about joining. We are happy to answer questions about classes, schedules, and what to expect in your first session."
+              "text": "Email us at contact@madisonchinesedance.org or call (301)-299-1562 to learn more about joining. We are happy to answer questions about classes, schedules, and what to expect in your first session."
             },
             {
               "type": "body",
               "text": "",
               "actions": [
                 {
-                  "href": "mailto:madison.chinese.dances@gmail.com",
+                  "href": "mailto:contact@madisonchinesedance.org",
                   "label": "Contact Us",
                   "style": "primary"
                 },

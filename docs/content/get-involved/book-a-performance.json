@@ -97,7 +97,7 @@
             },
             {
               "type": "body",
-              "text": "To request a performance, please email us at madison.chinese.dances@gmail.com with the following details: event name, date and time, venue location, expected audience size, and a short description of the occasion. We will respond within 2-3 business days to discuss availability, performance options, and any fees or technical requirements."
+              "text": "To request a performance, please email us at contact@madisonchinesedance.org with the following details: event name, date and time, venue location, expected audience size, and a short description of the occasion. We will respond within 2-3 business days to discuss availability, performance options, and any fees or technical requirements."
             },
             {
               "type": "body",
@@ -150,7 +150,7 @@
               "text": "",
               "actions": [
                 {
-                  "href": "mailto:madison.chinese.dances@gmail.com",
+                  "href": "mailto:contact@madisonchinesedance.org",
                   "label": "Contact Us",
                   "style": "primary"
                 },

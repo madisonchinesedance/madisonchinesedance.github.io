@@ -15,7 +15,7 @@ Madison Chinese Dance Academy teaches Chinese dance and ballet while cultivating
 ## Contact
 
 **Contact:**
-- madison.chinese.dances@gmail.com
+- contact@madisonchinesedance.org
 - (301)-299-1562
 - PO Box 10067 Rockville, MD 20849
 ---
@@ -112,7 +112,7 @@ Help fund classes, costumes, rehearsal space, and community outreach.
 
 Ask about classes, performances, donations, or community programs.
 
-- **Contact us** (mailto:madison.chinese.dances@gmail.com)
+- **Contact us** (mailto:contact@madisonchinesedance.org)
 
 ---
 
@@ -166,7 +166,7 @@ Your support helps sustain community classes, performances, and cultural outreac
 
 Madison Chinese Dance Academy relies on community support to keep classes affordable, fund costumes and props, rent rehearsal and performance space, and provide outreach programs that celebrate and teach Chinese dance traditions. Your gift helps sustain instruction for students of all ages and enables us to present public performances that connect culture and community.
 
-We welcome one-time donations and recurring gifts. Donations are processed securely through Zeffy. For questions about giving or gifts of stock or in-kind support, please email us at madison.chinese.dances@gmail.com.
+We welcome one-time donations and recurring gifts. Donations are processed securely through Zeffy. For questions about giving or gifts of stock or in-kind support, please email us at contact@madisonchinesedance.org.
 
 **Zeffy donations are optional, please select 'other' if you wish to skip.**
 
@@ -241,7 +241,7 @@ Concerts, fundraisers, corporate events, and community celebrations. Performance
 
 #### How to Book
 
-To request a performance, please email us at madison.chinese.dances@gmail.com with the following details: event name, date and time, venue location, expected audience size, and a short description of the occasion. We will respond within 2-3 business days to discuss availability, performance options, and any fees or technical requirements.
+To request a performance, please email us at contact@madisonchinesedance.org with the following details: event name, date and time, venue location, expected audience size, and a short description of the occasion. We will respond within 2-3 business days to discuss availability, performance options, and any fees or technical requirements.
 
 We recommend reaching out at least 4-6 weeks in advance for the best chance of securing your preferred date. We are happy to work with your event timeline whenever possible.
 
@@ -259,7 +259,7 @@ We recommend reaching out at least 4-6 weeks in advance for the best chance of s
 
 Ready to bring Chinese dance to your event? Send us the details and we will get back to you with availability and options.
 
-- **Contact Us** (mailto:madison.chinese.dances@gmail.com)
+- **Contact Us** (mailto:contact@madisonchinesedance.org)
 - **See Upcoming Events** (pages/events/events.html)
 
 ---
@@ -302,9 +302,9 @@ Our advanced dancers program is designed for students who have a strong foundati
 
 #### Contact Us to Join
 
-Email us at madison.chinese.dances@gmail.com or call (301)-299-1562 to learn more about joining. We are happy to answer questions about classes, schedules, and what to expect in your first session.
+Email us at contact@madisonchinesedance.org or call (301)-299-1562 to learn more about joining. We are happy to answer questions about classes, schedules, and what to expect in your first session.
 
-- **Contact Us** (mailto:madison.chinese.dances@gmail.com)
+- **Contact Us** (mailto:contact@madisonchinesedance.org)
 - **View Beginner Programs** (pages/classes/beginner-dancers.html)
 
 ---
@@ -382,14 +382,14 @@ Your donations help fund classes, scholarships, costumes, and our annual Splendi
 
 Corporate and individual sponsorships support our performances, outreach programs, and community events. Partner with us to make an impact.
 
-- **Contact us about sponsorship** (mailto:madison.chinese.dances@gmail.com)
+- **Contact us about sponsorship** (mailto:contact@madisonchinesedance.org)
 
 
 #### Volunteer
 
 Volunteers are essential to our productions and events. Help with costumes, backstage, ushering, and more.
 
-- **Volunteer with us** (mailto:madison.chinese.dances@gmail.com)
+- **Volunteer with us** (mailto:contact@madisonchinesedance.org)
 
 
 #### Your Impact
@@ -404,7 +404,7 @@ We are deeply grateful to our donors, sponsors, and volunteers who make our work
 Join us in preserving and sharing the art of Chinese dance. Your generosity helps us inspire the next generation of dancers and bring the joy of Chinese culture to our community.
 
 - **Donate Now** (pages/donate.html)
-- **Get in Touch** (mailto:madison.chinese.dances@gmail.com)
+- **Get in Touch** (mailto:contact@madisonchinesedance.org)
 
 ---
 
@@ -669,7 +669,7 @@ Seats are limited. Please purchase tickets in advance by June 19th through our s
 
 Tickets also available at the door.
 
-If you have accessibility needs or questions about group sales, email us at madison.chinese.dances@gmail.com.
+If you have accessibility needs or questions about group sales, email us at contact@madisonchinesedance.org.
 
 **Ticket prices are all-inclusive - no extra fees will be added at checkout. Zeffy donations are optional, please select 'other' if you wish to skip.**
 
