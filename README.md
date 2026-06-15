@@ -1,51 +1,47 @@
 # Madison Chinese Dance Academy Website
 
-Static site for [madisonchinesedance.org](https://madisonchinesedance.org), built with [Eleventy](https://www.11ty.dev/) and editable through [Pages CMS](https://pagescms.org).
-
-## Quick start (developers)
-
-```bash
-npm install
-npm run build      # outputs to _site/
-npm run serve      # local preview with live reload
-```
+Static site for [madisonchinesedance.org](https://madisonchinesedance.org), served from the `docs/` folder on GitHub Pages and editable through [Pages CMS](https://pagescms.org).
 
 ## Editing content (volunteers)
 
 1. Go to [pagescms.org](https://pagescms.org) and sign in with GitHub
-2. Open this repository
-3. Edit pages, announcements, navigation, or gallery images
-4. Save — GitHub Actions rebuilds and deploys the site automatically
+2. Open the `madisonchinesedance/madisonchinesedance.github.io` repository
+3. Edit pages, announcements, navigation, footer, or gallery settings
+4. Save — changes go live on the next GitHub Pages deploy (usually within a minute)
 
-No command line or JSON editing required.
+No command line, npm, or JSON file editing required.
+
+## How the site works
+
+- **HTML shells** in `docs/pages/` and `docs/index.html`
+- **Content** in `docs/content/*.json`
+- **`docs/app.js`** loads JSON and renders the page in the browser
+- **No build step** — push to `main` and GitHub Pages serves `docs/` directly
 
 ## Project structure
 
 ```
-src/
-  _data/              # Site settings (nav, footer, homepage, gallery, announcements)
-  _includes/          # HTML layouts and partials
-  assets/             # CSS, JavaScript, uploads
-  content/pages/      # Markdown pages
-  splendid-china/     # Annual performance archive (collection)
-  index.md            # Homepage entry
+docs/
+  app.js, style.css, index.html
+  pages/              # HTML shells (one per route)
+  content/            # JSON content (edited via Pages CMS)
+    header.json       # Navigation
+    footer.json
+    announcements.json
+    index.json        # Homepage
+    gallery.json
+    classes/, events/, get-involved/, splendid-china/
 scripts/
-  migrate-content.py  # One-time JSON → Markdown migration (legacy)
-  generate-ai-context.py
-  scan-images.py      # Sync performance images from Cloudflare R2
-.github/workflows/
-  deploy.yml          # Build + deploy to GitHub Pages
-.pages.yml            # Pages CMS configuration
+  generate-ai-context.py   # Chatbot knowledge base
+  scan-images.py           # Sync performance photos from Cloudflare R2
+.pages.yml                 # Pages CMS field definitions
 ```
 
 ## Deployment
 
-The site deploys via **GitHub Actions** on push to `main` (and the feature branch during development).
+GitHub → **Settings** → **Pages** → Source: **Deploy from branch** → `main` → **`/docs`**
 
-**One-time setup after merge:**
-1. GitHub → Settings → Pages → Source: **GitHub Actions**
-2. Install the [Pages CMS GitHub App](https://github.com/marketplace/pages-cms) on the org repo
-3. Invite editor accounts at pagescms.org
+No GitHub Actions or npm required.
 
 ## Images (Cloudflare R2)
 
@@ -55,12 +51,22 @@ Performance photos live on R2 (`cdn.madisonchinesedance.org`). To sync from R2:
 python scripts/scan-images.py sync
 ```
 
-Homepage runner workflow is unchanged — see `scripts/scan-images.py --help`.
+See `python scripts/scan-images.py --help` for homepage runner categorization.
 
 ## Chatbot
 
-The MCDA Assistant uses a Cloudflare Worker (`mcda-ai-bot`). After content changes, CI runs `generate-ai-context.py` to refresh `ai-context.md` for the worker.
+The MCDA Assistant uses a Cloudflare Worker. After content changes, regenerate context:
 
-## Legacy
+```bash
+python scripts/generate-ai-context.py
+```
 
-The previous JSON + `docs/app.js` system is retired. Old content remains in git history under `docs/content/` until removed from this branch.
+Then deploy the worker with the updated `ai-context.md` if needed.
+
+## Route registry
+
+`docs/content/site.json` maps route IDs to pages. **Do not edit via Pages CMS** — it is maintained in the repo only. Adding a new page requires a new HTML shell, JSON file, and route entry.
+
+## Legacy Eleventy migration
+
+An experimental Eleventy + GitHub Actions setup was tried and reverted. It remains on branch `feature/pages-cms-11ty` in git history if you ever want to revisit pre-rendered HTML.
