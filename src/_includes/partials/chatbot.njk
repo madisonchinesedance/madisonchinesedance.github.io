@@ -1,0 +1,72 @@
+<div class="chatbot" id="chatbot" role="region" aria-label="Chat assistant">
+  <button class="chatbot-toggle" id="chatbot-toggle" type="button" aria-expanded="false" aria-controls="chatbot-panel" aria-label="Open chat assistant">
+    <svg class="chatbot-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+    <svg class="chatbot-icon-close" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+    <span class="chatbot-toggle-label">MCDA ASSISTANT</span>
+  </button>
+
+  <div class="chatbot-panel" id="chatbot-panel" role="dialog" aria-modal="true" aria-label="Chat assistant" hidden>
+    <div class="chatbot-header">
+      <div class="chatbot-header-info">
+        <div class="chatbot-avatar" aria-hidden="true">
+          <span class="chatbot-logo">MCDA</span>
+        </div>
+        <div>
+          <h3 class="chatbot-title">MCDA ASSISTANT</h3>
+          <span class="chatbot-status">BETA</span>
+        </div>
+      </div>
+      <div class="chatbot-header-actions">
+        <button class="chatbot-clear" id="chatbot-clear" type="button" aria-label="Clear chat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+        </button>
+        <button class="chatbot-minimize" id="chatbot-minimize" type="button" aria-label="Minimize chat">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="chatbot-messages" id="chatbot-messages" role="log" aria-live="polite" aria-label="Conversation">
+      <div class="chatbot-message bot">
+        <div class="chatbot-message-avatar" aria-hidden="true">
+          <span class="chatbot-logo">MCDA</span>
+        </div>
+        <div class="chatbot-message-content">
+          <p>Hello! I'm the MCDA Assistant. How can I help you today?</p>
+        </div>
+      </div>
+      <div class="chatbot-message bot chatbot-notice">
+        <div class="chatbot-message-avatar" aria-hidden="true">
+          <span class="chatbot-logo">MCDA</span>
+        </div>
+        <div class="chatbot-message-content">
+          <p><strong>Note:</strong> This chatbot is in testing stage and may not work properly. For urgent inquiries, please contact the academy directly.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chatbot-suggestions" id="chatbot-suggestions"></div>
+    <div class="chatbot-input-area">
+      <form class="chatbot-form" id="chatbot-form">
+        <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Type your message..." autocomplete="off" aria-label="Chat message" required>
+        <button type="submit" class="chatbot-send" id="chatbot-send" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+      <p class="chatbot-disclaimer">AI assistant. Responses may not be accurate.</p>
+    </div>
+  </div>
+</div>

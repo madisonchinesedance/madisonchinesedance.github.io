@@ -1,0 +1,85 @@
+media: src/assets/uploads
+
+settings:
+  content:
+    merge: false
+
+content:
+  - name: pages
+    label: Pages
+    type: collection
+    path: src/content/pages
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    view:
+      fields: [title]
+    fields:
+      - name: title
+        label: Page title
+        type: string
+        required: true
+      - name: description
+        label: Meta description
+        type: text
+      - name: body
+        label: Content
+        type: rich-text
+
+  - name: splendid-china
+    label: Splendid China
+    type: collection
+    path: src/splendid-china
+    format: yaml-frontmatter
+    filename: "{year}.md"
+    view:
+      fields: [title, year]
+    fields:
+      - name: year
+        label: Year
+        type: string
+        required: true
+      - name: title
+        label: Page title
+        type: string
+        required: true
+      - name: description
+        label: Meta description
+        type: text
+      - name: body
+        label: Event details
+        type: rich-text
+      - name: galleryImages
+        label: Gallery images
+        type: list
+        fields:
+          - name: src
+            label: Image URL
+            type: string
+          - name: alt
+            label: Alt text
+            type: string
+
+  - name: mcdaNav
+    label: Navigation
+    type: file
+    path: src/_data/mcdaNav.json
+
+  - name: footer
+    label: Footer
+    type: file
+    path: src/_data/footer.json
+
+  - name: announcements
+    label: Announcements
+    type: file
+    path: src/_data/announcements.json
+
+  - name: homepage
+    label: Homepage settings
+    type: file
+    path: src/_data/homepage.json
+
+  - name: gallery-data
+    label: Gallery images
+    type: file
+    path: src/_data/gallery.json

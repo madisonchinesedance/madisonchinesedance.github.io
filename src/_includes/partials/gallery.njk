@@ -1,0 +1,51 @@
+{% macro runner(variant, images) %}
+{% if images and images.length %}
+<div class="gallery-container" data-gallery-variant="{{ variant }}" data-gallery-images='{{ images | json | safe }}'>
+  <div class="gallery-wrapper" data-gallery-carousel>
+    {% for image in images %}
+      <img src="{{ image.src }}" alt="{{ image.alt | default('Gallery image') }}" loading="lazy" decoding="async">
+    {% endfor %}
+  </div>
+  <div class="gallery-controls" aria-label="Gallery controls">
+    <button class="prev" type="button" aria-label="Previous image">&#10094;</button>
+    <button class="next" type="button" aria-label="Next image">&#10095;</button>
+  </div>
+</div>
+<div class="gallery-dots" data-gallery-dots aria-label="Gallery image selection"></div>
+{% endif %}
+{% endmacro %}
+
+{% macro featured(images) %}
+{% if images and images.length %}
+<section class="gallery-section gallery-section-featured" aria-label="Featured gallery photos">
+  <div class="gallery-container" data-gallery-variant="featured" data-gallery-images='{{ images | json | safe }}'>
+    <div class="gallery-wrapper" data-gallery-carousel>
+      {% for image in images %}
+        <img src="{{ image.src }}" alt="{{ image.alt | default('Gallery image') }}" loading="lazy" decoding="async">
+      {% endfor %}
+    </div>
+    <div class="gallery-controls" aria-label="Gallery controls">
+      <button class="prev" type="button" aria-label="Previous image">&#10094;</button>
+      <button class="next" type="button" aria-label="Next image">&#10095;</button>
+    </div>
+  </div>
+  <div class="gallery-dots" data-gallery-dots aria-label="Featured gallery image selection"></div>
+  <div class="gallery-featured-thumbs" data-gallery-featured-thumbs aria-label="Featured gallery thumbnails"></div>
+</section>
+{% endif %}
+{% endmacro %}
+
+{% macro archive(groups) %}
+{% if groups and groups.length %}
+<section class="gallery-section gallery-section-archive" aria-label="Splendid China gallery photos" data-gallery-groups='{{ groups | json | safe }}'>
+  <div class="gallery-container" data-gallery-variant="archive">
+    <div class="gallery-wrapper" data-gallery-carousel></div>
+    <div class="gallery-controls" aria-label="Gallery controls">
+      <button class="prev" type="button" aria-label="Previous image">&#10094;</button>
+      <button class="next" type="button" aria-label="Next image">&#10095;</button>
+    </div>
+  </div>
+  <div class="gallery-grid" data-gallery-grid aria-label="Gallery image thumbnails"></div>
+</section>
+{% endif %}
+{% endmacro %}

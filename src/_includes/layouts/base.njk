@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% if title %}{{ title }}{% elif homepage.title %}{{ homepage.title }}{% else %}Madison Chinese Dance Academy{% endif %}</title>
+  {% if description %}<meta name="description" content="{{ description }}">{% elif homepage.description %}<meta name="description" content="{{ homepage.description }}">{% endif %}
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script defer src="/assets/js/site.js"></script>
+</head>
+<body data-route="{{ routeId | default('') }}" data-page-url="{{ page.url }}">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  {% include "partials/header.njk" %}
+  <main id="main" tabindex="-1" class="site-main">
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+  {% include "partials/chatbot.njk" %}
+  {% include "partials/gallery-lightbox.njk" %}
+</body>
+</html>

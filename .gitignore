@@ -6,3 +6,5 @@ __pycache__/
 issues.md
 cloudflare-r2-import
 .vscode/
+node_modules/
+_site/

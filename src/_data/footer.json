@@ -1,0 +1,130 @@
+{
+  "brand": {
+    "route": "home",
+    "text": "Madison Chinese Dance Academy",
+    "shortText": "MCDA",
+    "mission": "Madison Chinese Dance Academy teaches Chinese dance and ballet while cultivating appreciation for Eastern and Western arts. We welcome students and families into performances, classes, and community programs that celebrate culture through movement.",
+    "href": "/index.html"
+  },
+  "columns": [
+    {
+      "heading": "Explore",
+      "links": [
+        {
+          "label": "Home",
+          "href": "/index.html"
+        },
+        {
+          "label": "Gallery",
+          "href": "/pages/gallery.html"
+        },
+        {
+          "label": "Programs",
+          "href": "/pages/programs.html"
+        },
+        {
+          "label": "Purchase Tickets",
+          "href": "/pages/tickets.html"
+        },
+        {
+          "label": "Donate",
+          "href": "/pages/donate.html"
+        }
+      ]
+    },
+    {
+      "heading": "Classes",
+      "links": [
+        {
+          "label": "Advanced Dancers",
+          "href": "/pages/classes/advanced-dancers.html"
+        },
+        {
+          "label": "Beginner Dancers",
+          "href": "/pages/classes/beginner-dancers.html"
+        },
+        {
+          "label": "Intermediate Dancers",
+          "href": "/pages/classes/intermediate-dancers.html"
+        }
+      ]
+    },
+    {
+      "heading": "Events",
+      "links": [
+        {
+          "label": "Events",
+          "href": "/pages/events/events.html"
+        },
+        {
+          "label": "Services",
+          "href": "/pages/events/services.html"
+        }
+      ]
+    },
+    {
+      "heading": "Get Involved",
+      "links": [
+        {
+          "label": "Book a Performance",
+          "href": "/pages/get-involved/book-a-performance.html"
+        },
+        {
+          "label": "Dance with Us",
+          "href": "/pages/get-involved/dance-with-us.html"
+        },
+        {
+          "label": "See A Performance",
+          "href": "/pages/get-involved/see-a-performance.html"
+        },
+        {
+          "label": "Support Our Cause",
+          "href": "/pages/get-involved/support-our-cause.html"
+        }
+      ]
+    },
+    {
+      "heading": "Splendid China",
+      "links": [
+        {
+          "label": "Splendid China 2026",
+          "href": "/pages/splendid-china/splendid-china-2026.html"
+        },
+        {
+          "label": "Splendid China 2025",
+          "href": "/pages/splendid-china/splendid-china-2025.html"
+        },
+        {
+          "label": "Splendid China 2024",
+          "href": "/pages/splendid-china/splendid-china-2024.html"
+        },
+        {
+          "label": "Splendid China 2023",
+          "href": "/pages/splendid-china/splendid-china-2023.html"
+        },
+        {
+          "label": "Splendid China 2022",
+          "href": "/pages/splendid-china/splendid-china-2022.html"
+        },
+        {
+          "label": "Splendid China 2019",
+          "href": "/pages/splendid-china/splendid-china-2019.html"
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "href": "mailto:contact@madisonchinesedance.org",
+      "label": "contact@madisonchinesedance.org"
+    },
+    {
+      "href": "tel:13012991562",
+      "label": "(301)-299-1562"
+    },
+    {
+      "label": "PO Box 10067 Rockville, MD 20849"
+    }
+  ],
+  "copyright": "© 2026 Madison Chinese Dance Academy. All rights reserved."
+}

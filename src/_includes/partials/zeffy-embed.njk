@@ -1,0 +1,12 @@
+{% from "partials/gallery.njk" import runner, featured, archive %}
+
+<div class="ticket-embed">
+  {% if zeffyFormUrl %}
+    <div data-zeffy-embed data-form-url="{{ zeffyFormUrl }}"></div>
+  {% endif %}
+  <div data-zeffy-embed-fallback>
+    <div class="zeffy-fallback-frame">
+      <iframe title="{{ zeffyIframeTitle | default('Embedded form powered by Zeffy') }}" src="https://www.zeffy.com{{ zeffyFormUrl }}" allowpaymentrequest allowTransparency="true"></iframe>
+    </div>
+  </div>
+</div>

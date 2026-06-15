@@ -1,0 +1,89 @@
+{% set announcementList = announcements.announcements | default([]) %}
+{% set hasAnnouncements = announcementList | length > 0 %}
+<header class="site-header{% if hasAnnouncements %} has-visible-announcement{% endif %}" role="banner">
+  <div class="container header-inner">
+    <div class="header-left">
+      <a href="{{ mcdaNav.logo.href | default('/index.html') }}" class="logo" aria-label="{{ mcdaNav.logo.ariaLabel | default('Madison Chinese Dance Academy home') }}">
+        <span class="logo-icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="14.5" stroke="currentColor" stroke-width="1.5"/>
+            <text x="16" y="14" text-anchor="middle" fill="currentColor" font-size="9" font-weight="800" font-family="inherit" letter-spacing="0.5">MC</text>
+            <text x="16" y="24" text-anchor="middle" fill="currentColor" font-size="9" font-weight="800" font-family="inherit" letter-spacing="0.5">DA</text>
+          </svg>
+        </span>
+        <span class="logo-full-text">{{ mcdaNav.logo.text }}</span>
+        <span class="logo-short-text">{{ mcdaNav.logo.shortText }}</span>
+      </a>
+    </div>
+
+    <nav id="primary-navigation" class="primary-nav" aria-label="{{ mcdaNav.navigationLabel }}">
+      <ul class="nav-list">
+        {% for item in mcdaNav.nav %}
+          {% if item.items %}
+            <li class="nav-item nav-item-dropdown">
+              <button class="nav-link nav-menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu-{{ loop.index }}">
+                {{ item.label }}
+                <svg class="nav-caret" width="14" height="14" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                  <path d="M5.5 7.5 10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </button>
+              <ul id="nav-menu-{{ loop.index }}" class="nav-dropdown" aria-label="{{ item.label }} submenu">
+                {% for child in item.items %}
+                  <li class="nav-item">
+                    <a href="{{ child.href }}" class="nav-link{% if child.href == page.url %} active{% endif %}{{ child.href | highlightNav(announcements) }}"{% if child.href == page.url %} aria-current="page"{% endif %}>{{ child.label }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a href="{{ item.href }}" class="nav-link{% if item.href == page.url %} active{% endif %}{{ item.href | highlightNav(announcements) }}"{% if item.href == page.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        <li class="nav-cta-list">
+          {% for action in mcdaNav.actions %}
+            <a href="{{ action.href }}" class="btn btn-primary header-cta{{ action.href | highlightAction(announcements) }}" role="button" aria-label="{{ action.ariaLabel }}">{{ action.label }}</a>
+          {% endfor %}
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-controls">
+      <button id="nav-toggle" class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="{{ mcdaNav.menuToggleOpenLabel }}">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <rect width="24" height="2" y="3" rx="1"></rect>
+          <rect width="24" height="2" y="11" rx="1"></rect>
+          <rect width="24" height="2" y="19" rx="1"></rect>
+        </svg>
+      </button>
+    </div>
+
+    <div class="header-ctas">
+      {% for action in mcdaNav.actions %}
+        <a href="{{ action.href }}" class="btn btn-primary header-cta{{ action.href | highlightAction(announcements) }}" role="button" aria-label="{{ action.ariaLabel }}">{{ action.label }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% for announcement in announcementList %}
+    {% if announcement.enabled != false %}
+      <section class="site-announcement" data-announcement-id="{{ announcement.id }}" aria-label="{{ announcement.label | default('Site announcement') }}">
+        <div class="container announcement-inner">
+          <div class="announcement-copy">
+            {% if announcement.label %}<span class="announcement-label">{{ announcement.label }}</span>{% endif %}
+            {% if announcement.body %}<span class="announcement-body">{{ announcement.body }}</span>{% endif %}
+          </div>
+          <div class="announcement-actions">
+            {% for action in announcement.actions | default([]) %}
+              <a class="announcement-btn announcement-btn-{{ action.style | default('primary') }}" href="{{ action.href }}" aria-label="{{ action.ariaLabel | default(action.label) }}">{{ action.label }}</a>
+            {% endfor %}
+            <button class="announcement-dismiss" type="button" aria-label="Dismiss announcement" title="Dismiss">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  {% endfor %}
+</header>

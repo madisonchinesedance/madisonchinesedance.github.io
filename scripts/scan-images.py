@@ -52,6 +52,12 @@ HOMEPAGE_RUNNER_KEYS = {
     "homepageRunnerWideImages": HOMEPAGE_RUNNER_WIDE_PREFIX,
 }
 
+HOMEPAGE_RUNNER_FIELD_MAP = {
+    "homepageRunnerImages": "runnerImages",
+    "homepageRunnerTallImages": "runnerTallImages",
+    "homepageRunnerWideImages": "runnerWideImages",
+}
+
 RCLONE_REMINDER = (
     "\nNext: upload to R2 with:\n"
     "  rclone sync cloudflare-r2-import r2:mcda-website-cdn -P\n"
@@ -286,6 +292,21 @@ def read_existing_content(path: Path) -> dict:
     if not path.exists():
         return {}
 
+    if path.suffix.lower() == ".md":
+        import yaml
+
+        text = path.read_text(encoding="utf-8")
+        if not text.startswith("---"):
+            return {}
+        parts = text.split("---", 2)
+        if len(parts) < 3:
+            return {}
+        data = yaml.safe_load(parts[1]) or {}
+        if not isinstance(data, dict):
+            raise SystemExit(f"{path} frontmatter must be a mapping.")
+        data["_body"] = parts[2].lstrip("\n")
+        return data
+
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as error:
@@ -295,6 +316,18 @@ def read_existing_content(path: Path) -> dict:
         raise SystemExit(f"{path} must contain a JSON object.")
 
     return data
+
+
+def write_content_file(path: Path, data: dict) -> None:
+    body = data.pop("_body", "")
+    if path.suffix.lower() == ".md":
+        import yaml
+
+        frontmatter = yaml.dump(data, default_flow_style=False, allow_unicode=True, sort_keys=False)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(f"---\n{frontmatter}---\n\n{body}", encoding="utf-8")
+        return
+    write_json(path, data)
 
 
 def write_json(path: Path, data: dict) -> None:
@@ -426,17 +459,9 @@ def update_main_gallery(
 ) -> tuple[int, int]:
     gallery_groups = build_gallery_groups(years)
     content = {
-        "pageTitle": existing.get("pageTitle")
-            or existing.get("galleryPageTitle")
-            or DEFAULT_CONTENT["pageTitle"],
-        "metaDescription": existing.get("metaDescription")
-            or existing.get("galleryMetaDescription")
-            or DEFAULT_CONTENT["metaDescription"],
-        "heading": existing.get("heading")
-            or existing.get("galleryHeroHeading")
-            or DEFAULT_CONTENT["heading"],
-        "galleryGroups": gallery_groups,
-        "galleryImages": featured_images,
+        **existing,
+        "featuredImages": featured_images,
+        "groups": gallery_groups,
     }
     write_json(content_path, content)
     return len(gallery_groups), len(featured_images)
@@ -445,7 +470,7 @@ def update_main_gallery(
 def update_per_year_json(content_path: Path, year_info: dict) -> int:
     existing = read_existing_content(content_path)
     existing["galleryImages"] = year_info["images"]
-    write_json(content_path, existing)
+    write_content_file(content_path, existing)
     return len(year_info["images"])
 
 
@@ -456,7 +481,8 @@ def update_homepage_json(
     existing = read_existing_content(content_path)
     counts = {}
     for key, images in runner_images.items():
-        existing[key] = images
+        field = HOMEPAGE_RUNNER_FIELD_MAP.get(key, key)
+        existing[field] = images
         counts[key] = len(images)
     write_json(content_path, existing)
     return counts
@@ -483,7 +509,7 @@ def cmd_sync(args: argparse.Namespace) -> int:
         return 0
 
     image_count = sum(len(year["images"]) for year in years)
-    homepage_path = root / "docs" / "content" / "index.json"
+    homepage_path = root / "src" / "_data" / "homepage.json"
     homepage_counts = update_homepage_json(homepage_path, homepage_runners)
     for key, count in homepage_counts.items():
         noun = "image" if count == 1 else "images"
@@ -514,7 +540,7 @@ def cmd_sync(args: argparse.Namespace) -> int:
 
     updated_per_year = 0
     for year_info in years:
-        per_year_path = per_year_dir / f"splendid-china-{year_info['year']}.json"
+        per_year_path = per_year_dir / f"{year_info['year']}.md"
         if not per_year_path.exists():
             print(f"Skipping {per_year_path.relative_to(root)}: file not found")
             continue
@@ -560,13 +586,13 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sync_parser.add_argument(
         "--content",
-        default=root / "docs" / "content" / "gallery.json",
+        default=root / "src" / "_data" / "gallery.json",
         type=Path,
         help="Path to the main gallery JSON file to update.",
     )
     sync_parser.add_argument(
         "--per-year-dir",
-        default=root / "docs" / "content" / "splendid-china",
+        default=root / "src" / "splendid-china",
         type=Path,
         help="Directory containing the per-year JSON files to update.",
     )
