@@ -6,10 +6,15 @@ Static site for [madisonchinesedance.org](https://madisonchinesedance.org), serv
 
 1. Go to [pagescms.org](https://pagescms.org) and sign in with GitHub
 2. Open the `madisonchinesedance/madisonchinesedance.github.io` repository
-3. Edit pages, announcements, navigation, footer, or gallery settings
+3. Edit pages, announcements, footer, or event details under **Site**, **Pages**, or **Archive**
 4. Save — changes go live on the next GitHub Pages deploy (usually within a minute)
 
 No command line, npm, or JSON file editing required.
+
+**Not edited in Pages CMS** (repo only):
+- **Performance photos** — synced from Cloudflare R2 via `python scripts/scan-images.py sync`
+
+**Navigation:** volunteers can rename menu labels under **Site → Navigation**. Do not delete or reorder menu items.
 
 ## How the site works
 

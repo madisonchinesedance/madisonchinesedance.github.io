@@ -4,400 +4,299 @@ settings:
   content:
     merge: true
 
-content:
-  # --- Site settings ---
-
-  - name: announcements
-    label: Announcements
-    type: file
-    path: docs/content/announcements.json
-    format: json
-    fields:
-      - name: announcements
-        label: Announcement bars
-        type: object
-        list:
-          collapsible: true
-          summary: "{label} ({id})"
+components:
+  contentBlock:
+    type: block
+    list: true
+    blockKey: type
+    blocks:
+      - name: heading
+        label: Heading
         fields:
-          - { name: id, label: ID, type: string, required: true }
-          - { name: enabled, label: Enabled, type: boolean }
-          - { name: label, label: Label, type: string }
-          - { name: body, label: Message, type: text }
+          - { name: text, label: Heading, type: text }
+          - { name: id, hidden: true }
+          - { name: fontSize, hidden: true }
+      - name: body
+        label: Paragraph
+        fields:
+          - { name: text, label: Content, type: text }
           - name: actions
             label: Buttons
             type: object
             list: true
             fields:
-              - { name: route, label: Route ID, type: string }
-              - { name: href, label: URL (optional), type: string }
               - { name: label, label: Button text, type: string }
-              - { name: style, label: Style (primary/secondary), type: string }
-              - { name: ariaLabel, label: Aria label, type: string }
-      - name: highlights
-        label: Nav highlights
-        type: object
+              - { name: href, hidden: true }
+              - { name: route, hidden: true }
+              - { name: style, hidden: true }
+              - { name: ariaLabel, hidden: true }
+              - { name: className, hidden: true }
+              - { name: newTab, hidden: true }
+          - { name: id, hidden: true }
+      - name: gallery
+        label: Photo carousel
         fields:
-          - { name: enabled, label: Enabled, type: boolean }
-          - { name: color, label: Color, type: string }
-          - { name: style, label: Style, type: string }
-          - name: navRoutes
-            label: Highlighted nav routes
-            type: string
-            list: true
-          - name: actionRoutes
-            label: Highlighted header buttons
-            type: string
-            list: true
+          - { name: variant, hidden: true }
+      - name: zeffyEmbed
+        label: Embedded form
+        fields:
+          - { name: formUrl, hidden: true }
+          - { name: iframeTitle, hidden: true }
+          - { name: iframeSrc, hidden: true }
 
-  - name: navigation
-    label: Navigation
-    type: file
-    path: docs/content/header.json
-    format: json
+  pageSections:
+    type: object
+    list:
+      collapsible:
+        collapsed: true
+        summary: "Section {index}"
+    description: "Do not delete Photo carousel or Embedded form blocks — they control galleries and ticket forms."
     fields:
-      - name: logo
-        label: Logo
-        type: object
-        fields:
-          - { name: route, label: Route ID, type: string }
-          - { name: text, label: Full name, type: string }
-          - { name: shortText, label: Short name, type: string }
-          - { name: ariaLabel, label: Aria label, type: string }
-      - { name: navigationLabel, label: Nav aria label, type: string }
-      - { name: menuToggleOpenLabel, label: Open menu label, type: string }
-      - { name: menuToggleCloseLabel, label: Close menu label, type: string }
-      - name: nav
-        label: Menu items
-        type: object
-        list:
-          collapsible: true
-          summary: "{label}"
-        fields:
-          - { name: route, label: Route ID (top-level link), type: string }
-          - { name: label, label: Label, type: string, required: true }
-          - name: items
-            label: Dropdown links
-            type: object
-            list: true
-            fields:
-              - { name: route, label: Route ID, type: string, required: true }
-              - { name: label, label: Label, type: string, required: true }
-      - name: actions
-        label: Header buttons
+      - { name: columns, hidden: true }
+      - name: items
+        label: Content
         type: object
         list: true
         fields:
-          - { name: route, label: Route ID, type: string }
-          - { name: label, label: Label, type: string }
-          - { name: style, label: Style, type: string }
-          - { name: ariaLabel, label: Aria label, type: string }
+          - { name: className, hidden: true }
+          - { name: align, hidden: true }
+          - name: blocks
+            label: Blocks
+            component: contentBlock
 
-  - name: footer
-    label: Footer
-    type: file
-    path: docs/content/footer.json
-    format: json
-    fields:
-      - name: brand
-        label: Brand
-        type: object
+content:
+  - name: site
+    label: Site
+    type: group
+    items:
+      - name: announcements
+        label: Announcement bar
+        type: file
+        path: docs/content/announcements.json
+        format: json
         fields:
-          - { name: route, label: Route ID, type: string }
-          - { name: text, label: Name, type: string }
-          - { name: shortText, label: Short name, type: string }
-          - { name: mission, label: Mission statement, type: text }
-      - name: columns
-        label: Link columns
-        type: object
-        list:
-          collapsible: true
-          summary: "{heading}"
-        fields:
-          - { name: heading, label: Column heading, type: string }
-          - name: links
-            label: Links
+          - name: announcements
+            label: Announcements
             type: object
-            list: true
+            list:
+              collapsible: true
+              summary: "{label}"
             fields:
-              - { name: route, label: Route ID, type: string }
-              - { name: href, label: URL (optional), type: string }
-              - { name: label, label: Link text, type: string }
-      - name: operations
-        label: Contact info
-        type: object
-        list: true
-        fields:
-          - { name: href, label: URL, type: string }
-          - { name: label, label: Display text, type: string }
-      - { name: copyright, label: Copyright line, type: string }
-
-  # --- Page collections (shared section/block schema) ---
-
-  - name: classes
-    label: Classes
-    type: collection
-    path: docs/content/classes
-    format: json
-    filename: "{primary}.json"
-    view:
-      fields: [pageTitle]
-    fields: &page_fields
-      - { name: pageTitle, label: Page title, type: string, required: true }
-      - { name: metaDescription, label: Meta description, type: text }
-      - name: sections
-        label: Page sections
-        type: object
-        list:
-          collapsible: true
-          summary: "Section ({columns} col)"
-        fields:
-          - { name: columns, label: Columns, type: number }
-          - name: items
-            label: Column items
-            type: object
-            list: true
-            fields:
-              - { name: className, label: CSS class, type: string }
-              - { name: align, label: Alignment, type: string }
-              - name: blocks
-                label: Content blocks
+              - { name: id, hidden: true }
+              - { name: enabled, label: Show on site, type: boolean }
+              - { name: label, label: Label, type: string }
+              - { name: body, label: Message, type: text }
+              - name: actions
+                label: Buttons
                 type: object
-                list:
-                  collapsible: true
-                  summary: "{type}"
-                fields: &block_fields
-                  - name: type
-                    label: Block type
-                    type: select
-                    options:
-                      values:
-                        - heading
-                        - body
-                        - gallery
-                        - zeffyEmbed
-                    required: true
-                  - { name: text, label: Text, type: text }
-                  - { name: id, label: HTML id, type: string }
-                  - { name: fontSize, label: Font size token, type: string }
-                  - { name: variant, label: Gallery variant, type: string }
-                  - { name: formUrl, label: Zeffy form path, type: string }
-                  - { name: iframeTitle, label: Iframe title, type: string }
-                  - { name: iframeSrc, label: Iframe URL, type: string }
-                  - name: actions
-                    label: Buttons
-                    type: object
-                    list: true
-                    fields:
-                      - { name: route, label: Route ID, type: string }
-                      - { name: href, label: URL, type: string }
-                      - { name: label, label: Button text, type: string }
-                      - { name: style, label: Style, type: string }
-                      - { name: ariaLabel, label: Aria label, type: string }
-                      - { name: className, label: CSS class, type: string }
-                      - { name: newTab, label: Open in new tab, type: boolean }
-
-  - name: events
-    label: Events
-    type: collection
-    path: docs/content/events
-    format: json
-    filename: "{primary}.json"
-    view:
-      fields: [pageTitle]
-    fields: *page_fields
-
-  - name: get-involved
-    label: Get Involved
-    type: collection
-    path: docs/content/get-involved
-    format: json
-    filename: "{primary}.json"
-    view:
-      fields: [pageTitle]
-    fields: *page_fields
-
-  - name: splendid-china
-    label: Splendid China
-    type: collection
-    path: docs/content/splendid-china
-    format: json
-    filename: "{primary}.json"
-    view:
-      fields: [pageTitle]
-    fields:
-      - { name: pageTitle, label: Page title, type: string, required: true }
-      - { name: metaDescription, label: Meta description, type: text }
-      - name: galleryImages
-        label: Performance photos
-        type: object
-        list:
-          collapsible: true
-          summary: "{alt}"
-        fields:
-          - { name: src, label: Image URL, type: string }
-          - { name: thumb, label: Thumbnail URL, type: string }
-          - { name: alt, label: Alt text, type: string }
-      - name: sections
-        label: Page sections
-        type: object
-        list:
-          collapsible: true
-          summary: "Section ({columns} col)"
-        fields:
-          - { name: columns, label: Columns, type: number }
-          - name: items
-            label: Column items
-            type: object
-            list: true
-            fields:
-              - name: blocks
-                label: Content blocks
-                type: object
-                list:
-                  collapsible: true
-                  summary: "{type}"
-                fields: *block_fields
-
-  - name: programs
-    label: Programs
-    type: file
-    path: docs/content/programs.json
-    format: json
-    fields: *page_fields
-
-  - name: tickets
-    label: Tickets
-    type: file
-    path: docs/content/tickets.json
-    format: json
-    fields: *page_fields
-
-  - name: donate
-    label: Donate
-    type: file
-    path: docs/content/donate.json
-    format: json
-    fields: *page_fields
-
-  - name: homepage
-    label: Homepage
-    type: file
-    path: docs/content/index.json
-    format: json
-    fields:
-      - { name: pageTitle, label: Page title, type: string, required: true }
-      - { name: metaDescription, label: Meta description, type: text }
-      - name: homepageRunnerImages
-        label: Runner images (standard)
-        type: object
-        list:
-          collapsible: true
-          summary: "{alt}"
-        fields:
-          - { name: src, label: Image URL, type: string }
-          - { name: thumb, label: Thumbnail URL, type: string }
-          - { name: alt, label: Alt text, type: string }
-      - name: homepageRunnerTallImages
-        label: Runner images (tall)
-        type: object
-        list:
-          collapsible: true
-          summary: "{alt}"
-        fields:
-          - { name: src, label: Image URL, type: string }
-          - { name: thumb, label: Thumbnail URL, type: string }
-          - { name: alt, label: Alt text, type: string }
-      - name: homepageRunnerWideImages
-        label: Runner images (wide)
-        type: object
-        list:
-          collapsible: true
-          summary: "{alt}"
-        fields:
-          - { name: src, label: Image URL, type: string }
-          - { name: thumb, label: Thumbnail URL, type: string }
-          - { name: alt, label: Alt text, type: string }
-      - name: sections
-        label: Page sections
-        type: object
-        list:
-          collapsible: true
-          summary: "Section ({columns} col)"
-        fields:
-          - { name: columns, label: Columns, type: number }
-          - name: items
-            label: Column items
-            type: object
-            list: true
-            fields:
-              - name: blocks
-                label: Content blocks
-                type: object
-                list:
-                  collapsible: true
-                  summary: "{type}"
-                fields: *block_fields
-
-  - name: gallery
-    label: Gallery
-    type: file
-    path: docs/content/gallery.json
-    format: json
-    fields:
-      - { name: pageTitle, label: Page title, type: string, required: true }
-      - { name: metaDescription, label: Meta description, type: text }
-      - name: sections
-        label: Page sections
-        type: object
-        list:
-          collapsible: true
-          summary: "Section ({columns} col)"
-        fields:
-          - { name: columns, label: Columns, type: number }
-          - name: items
-            label: Column items
-            type: object
-            list: true
-            fields:
-              - name: blocks
-                label: Content blocks
-                type: object
-                list:
-                  collapsible: true
-                  summary: "{type}"
-                fields: *block_fields
-      - name: galleryImages
-        label: Featured gallery images
-        type: object
-        list:
-          collapsible: true
-          summary: "{alt}"
-        fields:
-          - { name: src, label: Image URL, type: string }
-          - { name: thumb, label: Thumbnail URL, type: string }
-          - { name: alt, label: Alt text, type: string }
-      - name: galleryGroups
-        label: Archive by year
-        type: object
-        list:
-          collapsible: true
-          summary: "{year}"
-        fields:
-          - { name: year, label: Year, type: string }
-          - name: events
-            label: Events
-            type: object
-            list: true
-            fields:
-              - { name: event, label: Event name, type: string }
-              - name: images
-                label: Images
-                type: object
-                list:
-                  collapsible: true
-                  summary: "{alt}"
+                list: true
                 fields:
-                  - { name: src, label: Image URL, type: string }
-                  - { name: thumb, label: Thumbnail URL, type: string }
-                  - { name: alt, label: Alt text, type: string }
+                  - { name: label, label: Button text, type: string }
+                  - { name: route, hidden: true }
+                  - { name: href, hidden: true }
+                  - { name: style, hidden: true }
+                  - { name: ariaLabel, hidden: true }
+
+      - name: navigation
+        label: Navigation
+        type: file
+        path: docs/content/header.json
+        format: json
+        description: "Edit menu link names only. Do not reorder or delete items — links are wired in the background."
+        fields:
+          - name: logo
+            label: Site name
+            type: object
+            fields:
+              - { name: text, label: Full name, type: string }
+              - { name: shortText, label: Short name (mobile), type: string }
+              - { name: route, hidden: true }
+              - { name: ariaLabel, hidden: true }
+          - { name: navigationLabel, hidden: true }
+          - { name: menuToggleOpenLabel, hidden: true }
+          - { name: menuToggleCloseLabel, hidden: true }
+          - name: nav
+            label: Menu
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{label}"
+            fields:
+              - { name: route, hidden: true }
+              - { name: label, label: Menu label, type: string, required: true }
+              - name: items
+                label: Dropdown links
+                type: object
+                list:
+                  collapsible: true
+                  summary: "{label}"
+                fields:
+                  - { name: route, hidden: true }
+                  - { name: label, label: Link name, type: string, required: true }
+          - name: actions
+            label: Header buttons
+            type: object
+            list: true
+            fields:
+              - { name: label, label: Button text, type: string }
+              - { name: route, hidden: true }
+              - { name: style, hidden: true }
+              - { name: ariaLabel, hidden: true }
+
+      - name: homepage
+        label: Homepage
+        type: file
+        path: docs/content/index.json
+        format: json
+        fields:
+          - { name: pageTitle, label: Page title, type: string, required: true }
+          - { name: metaDescription, hidden: true }
+          - name: sections
+            label: Page content
+            component: pageSections
+
+      - name: footer
+        label: Footer
+        type: file
+        path: docs/content/footer.json
+        format: json
+        fields:
+          - name: brand
+            label: About
+            type: object
+            fields:
+              - { name: mission, label: Mission statement, type: text }
+              - { name: route, hidden: true }
+              - { name: text, hidden: true }
+              - { name: shortText, hidden: true }
+          - name: operations
+            label: Contact info
+            type: object
+            list: true
+            fields:
+              - { name: label, label: Display text, type: string }
+              - { name: href, label: Link (optional), type: string }
+          - { name: copyright, label: Copyright line, type: string }
+
+  - name: pages
+    label: Pages
+    type: group
+    items:
+      - name: programs
+        label: Programs
+        type: file
+        path: docs/content/programs.json
+        format: json
+        fields:
+          - { name: pageTitle, label: Page title, type: string, required: true }
+          - { name: metaDescription, hidden: true }
+          - name: sections
+            label: Page content
+            component: pageSections
+
+      - name: classes
+        label: Classes
+        type: collection
+        path: docs/content/classes
+        format: json
+        filename: "{primary}.json"
+        view:
+          fields: [pageTitle]
+          primary: pageTitle
+        fields:
+          - { name: pageTitle, label: Page title, type: string, required: true }
+          - { name: metaDescription, hidden: true }
+          - name: sections
+            label: Page content
+            component: pageSections
+
+      - name: get-involved
+        label: Get Involved
+        type: collection
+        path: docs/content/get-involved
+        format: json
+        filename: "{primary}.json"
+        view:
+          fields: [pageTitle]
+          primary: pageTitle
+        fields:
+          - { name: pageTitle, label: Page title, type: string, required: true }
+          - { name: metaDescription, hidden: true }
+          - name: sections
+            label: Page content
+            component: pageSections
+
+      - name: events
+        label: Events
+        type: collection
+        path: docs/content/events
+        format: json
+        filename: "{primary}.json"
+        view:
+          fields: [pageTitle]
+          primary: pageTitle
+        fields:
+          - { name: pageTitle, label: Page title, type: string, required: true }
+          - { name: metaDescription, hidden: true }
+          - name: sections
+            label: Page content
+            component: pageSections
+
+      - name: tickets
+        label: Tickets
+        type: file
+        path: docs/content/tickets.json
+        format: json
+        fields:
+          - { name: pageTitle, label: Page title, type: string, required: true }
+          - { name: metaDescription, hidden: true }
+          - name: sections
+            label: Page content
+            component: pageSections
+
+      - name: donate
+        label: Donate
+        type: file
+        path: docs/content/donate.json
+        format: json
+        fields:
+          - { name: pageTitle, label: Page title, type: string, required: true }
+          - { name: metaDescription, hidden: true }
+          - name: sections
+            label: Page content
+            component: pageSections
+
+  - name: archive
+    label: Archive
+    type: group
+    items:
+      - name: splendid-china
+        label: Splendid China
+        type: collection
+        path: docs/content/splendid-china
+        format: json
+        filename: "{primary}.json"
+        view:
+          fields: [pageTitle]
+          primary: pageTitle
+          sort: [pageTitle]
+          order: desc
+        fields:
+          - { name: pageTitle, label: Page title, type: string, required: true }
+          - { name: metaDescription, hidden: true }
+          - name: sections
+            label: Event details
+            component: pageSections
+
+      - name: gallery
+        label: Gallery
+        type: file
+        path: docs/content/gallery.json
+        format: json
+        fields:
+          - { name: pageTitle, label: Page title, type: string, required: true }
+          - { name: metaDescription, hidden: true }
+          - name: sections
+            label: Intro text
+            component: pageSections
