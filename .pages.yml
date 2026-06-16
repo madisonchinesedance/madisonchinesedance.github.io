@@ -267,10 +267,6 @@ content:
             label: Page content
             component: pageSections
 
-  - name: archive
-    label: Archive
-    type: group
-    items:
       - name: splendid-china
         label: Splendid China
         type: collection
