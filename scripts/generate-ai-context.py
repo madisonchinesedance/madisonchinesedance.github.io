@@ -113,6 +113,44 @@ def extract_legacy_item_lines(item, routes):
     return lines
 
 
+def extract_text_from_content(page_content, routes):
+    """Extract text content from simplified content[] blocks."""
+    lines = []
+    for block in page_content or []:
+        block_type = block.get("type", "")
+
+        if block_type in ("hero", "text"):
+            heading = block.get("heading", "")
+            if heading:
+                level = 1 if block_type == "hero" else 4
+                lines.append("")
+                lines.append(f"{'#' * level} {heading}")
+                lines.append("")
+            lines.extend(extract_body_lines({"text": block.get("body", ""), "actions": block.get("buttons", [])}, routes))
+
+        elif block_type == "grid":
+            for card in block.get("cards", []):
+                if card.get("type") == "gallery":
+                    continue
+                heading = card.get("heading", "")
+                if heading:
+                    lines.append("")
+                    lines.append(f"#### {heading}")
+                    lines.append("")
+                lines.extend(extract_body_lines({"text": card.get("body", ""), "actions": card.get("buttons", [])}, routes))
+
+        elif block_type == "gallery":
+            lines.extend(extract_gallery_lines(block))
+
+        elif block_type == "zeffy":
+            form_url = block.get("formUrl", "")
+            if form_url:
+                lines.append(f"- Embedded form: {form_url}")
+                lines.append("")
+
+    return lines
+
+
 def extract_text_from_sections(sections, routes):
     """Extract text content from section/item page JSON."""
     lines = []
@@ -257,6 +295,7 @@ def build_context():
 
         title = content.get("pageTitle", get_section_title(route_id))
         meta = content.get("metaDescription", "")
+        page_content = content.get("content", [])
         content_sections = content.get("sections", [])
 
         section_lines = []
@@ -266,7 +305,9 @@ def build_context():
             section_lines.append(meta)
             section_lines.append("")
 
-        if content_sections:
+        if page_content:
+            section_lines.extend(extract_text_from_content(page_content, routes))
+        elif content_sections:
             section_lines.extend(extract_text_from_sections(content_sections, routes))
 
         if section_lines:
@@ -339,7 +380,7 @@ def generate_markdown(sections):
     lines.append("")
     lines.append("---")
     lines.append("")
-    lines.append("© 2026 Madison Chinese Dance Academy. All rights reserved.")
+    lines.append("(c) 2026 Madison Chinese Dance Academy. All rights reserved.")
 
     return "\n".join(lines)
 

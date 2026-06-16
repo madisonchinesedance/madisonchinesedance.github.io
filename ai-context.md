@@ -51,7 +51,6 @@ Annual showcase at the Robert E. Parilla Performing Arts Center — where commun
 Classes for beginner dancers through advanced students and beyond. Programs grow with each student from first steps to senior choreography projects.
 
 
-
 #### Classes
 
 Beginner through advanced dance instruction for students of all ages.
@@ -722,4 +721,4 @@ If you have accessibility needs or questions about group sales, email us at cont
 
 ---
 
-© 2026 Madison Chinese Dance Academy. All rights reserved.
+(c) 2026 Madison Chinese Dance Academy. All rights reserved.

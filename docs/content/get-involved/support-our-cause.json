@@ -1,162 +1,82 @@
 {
   "pageTitle": "Support Our Cause | Madison Chinese Dance Academy",
   "metaDescription": "Support Madison Chinese Dance Academy through donations, sponsorships, and volunteering. Help us preserve and share Chinese dance and culture.",
-  "sections": [
+  "content": [
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Support Our Cause",
-              "id": "support-our-cause-heading",
-              "fontSize": "heading-1"
-            },
-            {
-              "type": "body",
-              "text": "Your support makes it possible for Madison Chinese Dance Academy to preserve and share the beauty of Chinese dance, provide scholarships to students, and bring cultural performances to the community. There are many ways to make a difference."
-            }
-          ]
-        }
-      ]
+      "type": "hero",
+      "heading": "Support Our Cause",
+      "body": "Your support makes it possible for Madison Chinese Dance Academy to preserve and share the beauty of Chinese dance, provide scholarships to students, and bring cultural performances to the community. There are many ways to make a difference."
     },
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Ways to Support",
-              "id": "ways-to-support",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Every contribution, whether big or small, helps us fulfill our mission of promoting Chinese dance and cultural exchange. Here are some ways you can support our academy."
-            }
-          ]
-        }
-      ]
+      "type": "text",
+      "heading": "Ways to Support",
+      "body": "Every contribution, whether big or small, helps us fulfill our mission of promoting Chinese dance and cultural exchange. Here are some ways you can support our academy."
     },
     {
+      "type": "grid",
       "columns": 3,
-      "items": [
+      "cards": [
         {
-          "blocks": [
+          "heading": "Make a Donation",
+          "body": "Your donations help fund classes, scholarships, costumes, and our annual Splendid China production.",
+          "buttons": [
             {
-              "type": "heading",
-              "text": "Make a Donation",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Your donations help fund classes, scholarships, costumes, and our annual Splendid China production.",
-              "actions": [
-                {
-                  "route": "donate",
-                  "label": "Donate"
-                }
-              ]
+              "label": "Donate",
+              "route": "donate"
             }
           ]
         },
         {
-          "blocks": [
+          "heading": "Become a Sponsor",
+          "body": "Corporate and individual sponsorships support our performances, outreach programs, and community events. Partner with us to make an impact.",
+          "buttons": [
             {
-              "type": "heading",
-              "text": "Become a Sponsor",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Corporate and individual sponsorships support our performances, outreach programs, and community events. Partner with us to make an impact.",
-              "actions": [
-                {
-                  "href": "mailto:contact@madisonchinesedance.org",
-                  "label": "Contact us"
-                }
-              ]
+              "label": "Contact us",
+              "href": "mailto:contact@madisonchinesedance.org"
             }
           ]
         },
         {
-          "blocks": [
+          "heading": "Volunteer",
+          "body": "Volunteers are essential to our productions and events. Help with costumes, backstage, ushering, and more.",
+          "buttons": [
             {
-              "type": "heading",
-              "text": "Volunteer",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Volunteers are essential to our productions and events. Help with costumes, backstage, ushering, and more.",
-              "actions": [
-                {
-                  "href": "mailto:contact@madisonchinesedance.org",
-                  "label": "Contact us"
-                }
-              ]
+              "label": "Contact us",
+              "href": "mailto:contact@madisonchinesedance.org"
             }
           ]
         }
       ]
     },
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Your Impact",
-              "id": "impact",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Your support directly impacts our students and community. Donations help us offer need-based scholarships so that every child who wants to learn Chinese dance can do so, regardless of financial circumstances. Sponsorships enable us to perform at community events and share Chinese culture with wider audiences."
-            },
-            {
-              "type": "body",
-              "text": "We are deeply grateful to our donors, sponsors, and volunteers who make our work possible. Together, we are building a vibrant community around Chinese dance and cultural appreciation."
-            }
-          ]
-        }
-      ]
+      "type": "text",
+      "heading": "Your Impact",
+      "body": "Your support directly impacts our students and community. Donations help us offer need-based scholarships so that every child who wants to learn Chinese dance can do so, regardless of financial circumstances. Sponsorships enable us to perform at community events and share Chinese culture with wider audiences."
     },
     {
-      "columns": 1,
-      "items": [
+      "type": "text",
+      "heading": "",
+      "body": "We are deeply grateful to our donors, sponsors, and volunteers who make our work possible. Together, we are building a vibrant community around Chinese dance and cultural appreciation."
+    },
+    {
+      "type": "text",
+      "heading": "Make a Difference Today",
+      "body": "Join us in preserving and sharing the art of Chinese dance. Your generosity helps us inspire the next generation of dancers and bring the joy of Chinese culture to our community."
+    },
+    {
+      "type": "text",
+      "heading": "",
+      "body": "",
+      "buttons": [
         {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Make a Difference Today",
-              "id": "donate-cta",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Join us in preserving and sharing the art of Chinese dance. Your generosity helps us inspire the next generation of dancers and bring the joy of Chinese culture to our community."
-            },
-            {
-              "type": "body",
-              "text": "",
-              "actions": [
-                {
-                  "route": "donate",
-                  "label": "Donate",
-                  "style": "primary"
-                },
-                {
-                  "href": "mailto:contact@madisonchinesedance.org",
-                  "label": "Get in Touch",
-                  "style": "secondary"
-                }
-              ]
-            }
-          ]
+          "label": "Donate",
+          "route": "donate",
+          "style": "primary"
+        },
+        {
+          "label": "Get in Touch",
+          "href": "mailto:contact@madisonchinesedance.org",
+          "style": "secondary"
         }
       ]
     }

@@ -1,25 +1,11 @@
 {
   "pageTitle": "Events | Madison Chinese Dance Academy",
   "metaDescription": "Current events of the Madison Chinese Dance Academy.",
-  "sections": [
+  "content": [
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Events",
-              "id": "events-heading",
-              "fontSize": "heading-1"
-            },
-            {
-              "type": "body",
-              "text": "Coming soon!"
-            }
-          ]
-        }
-      ]
+      "type": "hero",
+      "heading": "Events",
+      "body": "Coming soon!"
     }
   ]
 }

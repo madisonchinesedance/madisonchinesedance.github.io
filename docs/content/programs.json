@@ -1,106 +1,39 @@
 {
   "pageTitle": "Programs | Madison Chinese Dance Academy",
   "metaDescription": "Programs offered by Madison Chinese Dance Academy - cultural enrichment, artist-in-residence, tai chi, and speaking engagements.",
-  "sections": [
+  "content": [
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Programs",
-              "id": "programs-heading",
-              "fontSize": "heading-1"
-            },
-            {
-              "type": "body",
-              "text": "The Madison Chinese Dance Academy offers a diverse range of cultural and educational programs that enrich communities."
-            }
-          ]
-        }
-      ]
+      "type": "hero",
+      "heading": "Programs",
+      "body": "The Madison Chinese Dance Academy offers a diverse range of cultural and educational programs that enrich communities."
     },
     {
+      "type": "grid",
       "columns": 2,
-      "items": [
+      "cards": [
         {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Dance Lessons",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Dance lessons for Chinese dances, ballet, lyrical, Jazz, and Hip-Hop with associated cultural backgrounds."
-            }
-          ]
+          "heading": "Dance Lessons",
+          "body": "Dance lessons for Chinese dances, ballet, lyrical, Jazz, and Hip-Hop with associated cultural backgrounds."
         },
         {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Dance and Chinese Art/Folk Art Performances/Demonstrations",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Performances/demonstrations for public and private events."
-            }
-          ]
+          "heading": "Dance and Chinese Art/Folk Art Performances/Demonstrations",
+          "body": "Performances/demonstrations for public and private events."
         },
         {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Lunar New Year Celebration Program & Special Events",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Full-spectrum program for all levels of schools, libraries, senior centers, private/public organizations, museums, and conferences.Lion dance, dragon dance, Chinese dance, Chinese music, Yo-yo, calligraphy, lanterns, kite, arts & crafts, show and tell"
-            }
-          ]
+          "heading": "Lunar New Year Celebration Program & Special Events",
+          "body": "Full-spectrum program for all levels of schools, libraries, senior centers, private/public organizations, museums, and conferences.Lion dance, dragon dance, Chinese dance, Chinese music, Yo-yo, calligraphy, lanterns, kite, arts & crafts, show and tell"
         },
         {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Chinese Dance & Chinese Ballet Artist-in-Residence",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "It brings classical technique, expressive storytelling, and cultural heritage to a community through workshops, rehearsals, and performances. Blending elegant movement, breath‑driven expression, and contemporary creativity, the residency, by applying the Embedded Teaching and Learning approach, offers participants a holistic body-mind-heart experience across the performing arts of the East and the West."
-            }
-          ]
+          "heading": "Chinese Dance & Chinese Ballet Artist-in-Residence",
+          "body": "It brings classical technique, expressive storytelling, and cultural heritage to a community through workshops, rehearsals, and performances. Blending elegant movement, breath‑driven expression, and contemporary creativity, the residency, by applying the Embedded Teaching and Learning approach, offers participants a holistic body-mind-heart experience across the performing arts of the East and the West."
         },
         {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Holistic Tai Chi Walk",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Learn to live the time-tested traditional Chinese ways that have been validated by scientific research for a better quality of life. The goals are to maintain or improve physical and mental health, emotional and behavioral well-being, mobility and balance, memory and cognitive abilities, as well as strength and energy (Qi)."
-            }
-          ]
+          "heading": "Holistic Tai Chi Walk",
+          "body": "Learn to live the time-tested traditional Chinese ways that have been validated by scientific research for a better quality of life. The goals are to maintain or improve physical and mental health, emotional and behavioral well-being, mobility and balance, memory and cognitive abilities, as well as strength and energy (Qi)."
         },
         {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Speaking Engagements (Cultural Quotient, CQ, Enhancement)",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "On useful Chinese cultural wisdom, such as Chinese ways of healthy living, self-cultivation, thinking, managing, investing, strategizing, and the differences between Chinese and Western cultures and philosophies (CQ framework)."
-            }
-          ]
+          "heading": "Speaking Engagements (Cultural Quotient, CQ, Enhancement)",
+          "body": "On useful Chinese cultural wisdom, such as Chinese ways of healthy living, self-cultivation, thinking, managing, investing, strategizing, and the differences between Chinese and Western cultures and philosophies (CQ framework)."
         }
       ]
     }

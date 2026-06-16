@@ -1,154 +1,84 @@
 {
   "pageTitle": "See A Performance | Madison Chinese Dance Academy",
   "metaDescription": "Attend a Madison Chinese Dance Academy performance. View upcoming shows, including our annual Splendid China production and community events.",
-  "sections": [
+  "content": [
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "See A Performance",
-              "id": "see-a-performance-heading",
-              "fontSize": "heading-1"
-            },
-            {
-              "type": "body",
-              "text": "Experience the beauty and grace of Chinese dance at one of our upcoming performances. From our annual Splendid China production to community festivals and school events, there are many opportunities to watch our dancers shine."
-            }
-          ]
-        }
-      ]
+      "type": "hero",
+      "heading": "See A Performance",
+      "body": "Experience the beauty and grace of Chinese dance at one of our upcoming performances. From our annual Splendid China production to community festivals and school events, there are many opportunities to watch our dancers shine."
     },
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Upcoming Performances",
-              "id": "upcoming-performances",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Our dancers perform throughout the year at a variety of venues and events. Check back often for updated performance dates and locations."
-            }
-          ]
-        }
-      ]
+      "type": "text",
+      "heading": "Upcoming Performances",
+      "body": "Our dancers perform throughout the year at a variety of venues and events. Check back often for updated performance dates and locations."
     },
     {
+      "type": "grid",
       "columns": 2,
-      "items": [
+      "cards": [
         {
-          "blocks": [
+          "heading": "Splendid China",
+          "body": "Our annual signature production featuring traditional and contemporary Chinese dance, music, and storytelling. A celebration of Chinese culture not to be missed.",
+          "buttons": [
             {
-              "type": "heading",
-              "text": "Splendid China",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Our annual signature production featuring traditional and contemporary Chinese dance, music, and storytelling. A celebration of Chinese culture not to be missed.",
-              "actions": [
-                {
-                  "route": "splendid-china-2026",
-                  "label": "Learn about Splendid China"
-                }
-              ]
+              "label": "Learn about Splendid China",
+              "route": "splendid-china-2026"
             }
           ]
         },
         {
-          "blocks": [
+          "heading": "Community Events",
+          "body": "Throughout the year, our dancers perform at cultural festivals, parades, and community gatherings across the region.",
+          "buttons": [
             {
-              "type": "heading",
-              "text": "Community Events",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Throughout the year, our dancers perform at cultural festivals, parades, and community gatherings across the region.",
-              "actions": [
-                {
-                  "route": "events",
-                  "label": "View community events"
-                }
-              ]
+              "label": "View community events",
+              "route": "events"
             }
           ]
         }
       ]
     },
     {
-      "columns": 1,
-      "items": [
+      "type": "text",
+      "heading": "Tickets & Admission",
+      "body": "Tickets for our major productions, including Splendid China, can be purchased online in advance. Most of our community performances are free and open to the public."
+    },
+    {
+      "type": "text",
+      "heading": "",
+      "body": "For ticketed events, early purchase is recommended both for discounted tickets and to secure your seat. Group discounts are available for schools, community organizations, and other groups."
+    },
+    {
+      "type": "text",
+      "heading": "",
+      "body": "",
+      "buttons": [
         {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Tickets & Admission",
-              "id": "tickets-and-admission",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Tickets for our major productions, including Splendid China, can be purchased online in advance. Most of our community performances are free and open to the public."
-            },
-            {
-              "type": "body",
-              "text": "For ticketed events, early purchase is recommended both for discounted tickets and to secure your seat. Group discounts are available for schools, community organizations, and other groups."
-            },
-            {
-              "type": "body",
-              "text": "",
-              "actions": [
-                {
-                  "route": "tickets",
-                  "label": "Purchase Tickets",
-                  "style": "primary"
-                },
-                {
-                  "route": "events",
-                  "label": "View All Events",
-                  "style": "secondary"
-                }
-              ]
-            }
-          ]
+          "label": "Purchase Tickets",
+          "route": "tickets",
+          "style": "primary"
+        },
+        {
+          "label": "View All Events",
+          "route": "events",
+          "style": "secondary"
         }
       ]
     },
     {
-      "columns": 1,
-      "items": [
+      "type": "text",
+      "heading": "Bring a Performance to Your Event",
+      "body": "Would you like our dancers to perform at your school, festival, or private event? We offer a range of performance options that can be tailored to your audience and occasion."
+    },
+    {
+      "type": "text",
+      "heading": "",
+      "body": "",
+      "buttons": [
         {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Bring a Performance to Your Event",
-              "id": "bring-performance-to-you",
-              "fontSize": "heading-4"
-            },
-            {
-              "type": "body",
-              "text": "Would you like our dancers to perform at your school, festival, or private event? We offer a range of performance options that can be tailored to your audience and occasion."
-            },
-            {
-              "type": "body",
-              "text": "",
-              "actions": [
-                {
-                  "route": "book-a-performance",
-                  "label": "Request a Performance",
-                  "style": "primary"
-                }
-              ]
-            }
-          ]
+          "label": "Request a Performance",
+          "route": "book-a-performance",
+          "style": "primary"
         }
       ]
     }

@@ -1,25 +1,11 @@
 {
   "pageTitle": "Services | Madison Chinese Dance Academy",
   "metaDescription": "Services offered by the Madison Chinese Dance Academy.",
-  "sections": [
+  "content": [
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Services",
-              "id": "services-heading",
-              "fontSize": "heading-1"
-            },
-            {
-              "type": "body",
-              "text": "Coming soon!"
-            }
-          ]
-        }
-      ]
+      "type": "hero",
+      "heading": "Services",
+      "body": "Coming soon!"
     }
   ]
 }

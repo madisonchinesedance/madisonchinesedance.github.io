@@ -5,64 +5,71 @@ settings:
     merge: true
 
 components:
-  contentBlock:
+  pageButtons:
+    type: object
+    list: true
+    fields:
+      - { name: label, label: Button text, type: string }
+      - { name: href, hidden: true }
+      - { name: route, hidden: true }
+      - { name: style, hidden: true }
+      - { name: ariaLabel, hidden: true }
+      - { name: className, hidden: true }
+      - { name: newTab, hidden: true }
+
+  gridCards:
+    type: object
+    list:
+      collapsible: true
+      summary: "{heading}"
+    fields:
+      - { name: type, hidden: true }
+      - { name: variant, hidden: true }
+      - { name: heading, label: Card heading, type: string }
+      - { name: body, label: Card text, type: text }
+      - name: buttons
+        label: Buttons
+        component: pageButtons
+
+  pageContent:
     type: block
     list: true
     blockKey: type
+    description: "Do not delete Photo carousel or Embedded form blocks — they control galleries and ticket forms."
     blocks:
-      - name: heading
-        label: Heading
+      - name: hero
+        label: Page intro
         fields:
-          - { name: text, label: Heading, type: text }
-          - { name: id, hidden: true }
-          - { name: fontSize, hidden: true }
-      - name: body
-        label: Paragraph
-        fields:
-          - { name: text, label: Content, type: text }
-          - name: actions
+          - { name: heading, label: Heading, type: string, required: true }
+          - { name: body, label: Content, type: text }
+          - name: buttons
             label: Buttons
-            type: object
-            list: true
-            fields:
-              - { name: label, label: Button text, type: string }
-              - { name: href, hidden: true }
-              - { name: route, hidden: true }
-              - { name: style, hidden: true }
-              - { name: ariaLabel, hidden: true }
-              - { name: className, hidden: true }
-              - { name: newTab, hidden: true }
-          - { name: id, hidden: true }
+            component: pageButtons
+      - name: text
+        label: Section
+        fields:
+          - { name: heading, label: Heading, type: string }
+          - { name: body, label: Content, type: text }
+          - name: buttons
+            label: Buttons
+            component: pageButtons
+      - name: grid
+        label: Card grid
+        fields:
+          - { name: columns, label: Columns, type: number }
+          - name: cards
+            label: Cards
+            component: gridCards
       - name: gallery
-        label: Photo carousel
+        label: Photo carousel (do not delete)
         fields:
           - { name: variant, hidden: true }
-      - name: zeffyEmbed
-        label: Embedded form
+      - name: zeffy
+        label: Embedded form (do not delete)
         fields:
           - { name: formUrl, hidden: true }
           - { name: iframeTitle, hidden: true }
           - { name: iframeSrc, hidden: true }
-
-  pageSections:
-    type: object
-    list:
-      collapsible:
-        collapsed: true
-        summary: "Section {index}"
-    description: "Do not delete Photo carousel or Embedded form blocks — they control galleries and ticket forms."
-    fields:
-      - { name: columns, hidden: true }
-      - name: items
-        label: Content
-        type: object
-        list: true
-        fields:
-          - { name: className, hidden: true }
-          - { name: align, hidden: true }
-          - name: blocks
-            label: Blocks
-            component: contentBlock
 
 content:
   - name: site
@@ -102,7 +109,7 @@ content:
         type: file
         path: docs/content/header.json
         format: json
-        description: "Edit menu link names only. Do not reorder or delete items — links are wired in the background."
+        description: "Edit menu link names only. Do not reorder or delete items."
         fields:
           - name: logo
             label: Site name
@@ -152,9 +159,9 @@ content:
         fields:
           - { name: pageTitle, label: Page title, type: string, required: true }
           - { name: metaDescription, hidden: true }
-          - name: sections
+          - name: content
             label: Page content
-            component: pageSections
+            component: pageContent
 
       - name: footer
         label: Footer
@@ -191,9 +198,9 @@ content:
         fields:
           - { name: pageTitle, label: Page title, type: string, required: true }
           - { name: metaDescription, hidden: true }
-          - name: sections
+          - name: content
             label: Page content
-            component: pageSections
+            component: pageContent
 
       - name: classes
         label: Classes
@@ -207,9 +214,9 @@ content:
         fields:
           - { name: pageTitle, label: Page title, type: string, required: true }
           - { name: metaDescription, hidden: true }
-          - name: sections
+          - name: content
             label: Page content
-            component: pageSections
+            component: pageContent
 
       - name: get-involved
         label: Get Involved
@@ -223,9 +230,9 @@ content:
         fields:
           - { name: pageTitle, label: Page title, type: string, required: true }
           - { name: metaDescription, hidden: true }
-          - name: sections
+          - name: content
             label: Page content
-            component: pageSections
+            component: pageContent
 
       - name: events
         label: Events
@@ -239,9 +246,9 @@ content:
         fields:
           - { name: pageTitle, label: Page title, type: string, required: true }
           - { name: metaDescription, hidden: true }
-          - name: sections
+          - name: content
             label: Page content
-            component: pageSections
+            component: pageContent
 
       - name: tickets
         label: Tickets
@@ -251,9 +258,9 @@ content:
         fields:
           - { name: pageTitle, label: Page title, type: string, required: true }
           - { name: metaDescription, hidden: true }
-          - name: sections
+          - name: content
             label: Page content
-            component: pageSections
+            component: pageContent
 
       - name: donate
         label: Donate
@@ -263,10 +270,14 @@ content:
         fields:
           - { name: pageTitle, label: Page title, type: string, required: true }
           - { name: metaDescription, hidden: true }
-          - name: sections
+          - name: content
             label: Page content
-            component: pageSections
+            component: pageContent
 
+  - name: archive
+    label: Archive
+    type: group
+    items:
       - name: splendid-china
         label: Splendid China
         type: collection
@@ -281,9 +292,9 @@ content:
         fields:
           - { name: pageTitle, label: Page title, type: string, required: true }
           - { name: metaDescription, hidden: true }
-          - name: sections
+          - name: content
             label: Event details
-            component: pageSections
+            component: pageContent
 
       - name: gallery
         label: Gallery
@@ -293,6 +304,6 @@ content:
         fields:
           - { name: pageTitle, label: Page title, type: string, required: true }
           - { name: metaDescription, hidden: true }
-          - name: sections
+          - name: content
             label: Intro text
-            component: pageSections
+            component: pageContent

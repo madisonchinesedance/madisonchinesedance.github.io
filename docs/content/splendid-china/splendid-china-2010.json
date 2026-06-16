@@ -8,38 +8,15 @@
       "alt": "Splendid China 2010 001"
     }
   ],
-  "sections": [
+  "content": [
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Splendid China 2010",
-              "id": "splendid-2010-heading",
-              "fontSize": "heading-1"
-            },
-            {
-              "type": "body",
-              "text": "Performance archive details, photos, and program notes will be added here."
-            }
-          ]
-        }
-      ]
+      "type": "hero",
+      "heading": "Splendid China 2010",
+      "body": "Performance archive details, photos, and program notes will be added here."
     },
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "gallery",
-              "variant": "runner"
-            }
-          ]
-        }
-      ]
+      "type": "gallery",
+      "variant": "runner"
     }
   ]
 }

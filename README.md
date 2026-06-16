@@ -23,6 +23,20 @@ No command line, npm, or JSON file editing required.
 - **`docs/app.js`** loads JSON and renders the page in the browser
 - **No build step** — push to `main` and GitHub Pages serves `docs/` directly
 
+### Page content JSON shape
+
+Each page JSON file uses a flat `content[]` array of typed blocks:
+
+| Block type | Purpose |
+|---|---|
+| `hero` | Page title area (`heading`, `body`, optional `buttons`) |
+| `text` | Subsection paragraph |
+| `grid` | Multi-column cards (`columns`, `cards[]`) |
+| `gallery` | Photo carousel placeholder (managed by `scan-images.py`) |
+| `zeffy` | Embedded ticketing/donation form |
+
+Page-level image keys (`galleryImages`, `homepageRunnerImages*`, etc.) stay at the JSON root and are updated by `scan-images.py`, not Pages CMS.
+
 ## Project structure
 
 ```
@@ -33,11 +47,12 @@ docs/
     header.json       # Navigation
     footer.json
     announcements.json
-    index.json        # Homepage
+    index.json        # Homepage (content[] blocks)
     gallery.json
     classes/, events/, get-involved/, splendid-china/
 scripts/
-  generate-ai-context.py   # Chatbot knowledge base
+  migrate-json-schema.py   # One-time sections → content[] migration
+  generate-ai-context.py
   scan-images.py           # Sync performance photos from Cloudflare R2
 .pages.yml                 # Pages CMS field definitions
 ```

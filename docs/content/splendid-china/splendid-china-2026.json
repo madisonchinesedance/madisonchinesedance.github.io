@@ -8,45 +8,22 @@
       "alt": "Splendid China 2026 001"
     }
   ],
-  "sections": [
+  "content": [
     {
-      "columns": 1,
-      "items": [
+      "type": "hero",
+      "heading": "Splendid China 2026",
+      "body": "A Concert of Chinese Dance and Ballet\n\nSaturday, June 20, 2026 at 8:00pm\n\nRobert E. Parilla Performing Arts Center\nMontgomery College\n51 Mannakee Street, Rockville, MD",
+      "buttons": [
         {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Splendid China 2026",
-              "id": "splendid-heading",
-              "fontSize": "heading-1"
-            },
-            {
-              "type": "body",
-              "text": "A Concert of Chinese Dance and Ballet\n\nSaturday, June 20, 2026 at 8:00pm\n\nRobert E. Parilla Performing Arts Center\nMontgomery College\n51 Mannakee Street, Rockville, MD",
-              "actions": [
-                {
-                  "route": "tickets",
-                  "label": "Purchase Tickets",
-                  "style": "primary"
-                }
-              ]
-            }
-          ]
+          "label": "Purchase Tickets",
+          "route": "tickets",
+          "style": "primary"
         }
       ]
     },
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "gallery",
-              "variant": "runner"
-            }
-          ]
-        }
-      ]
+      "type": "gallery",
+      "variant": "runner"
     }
   ]
 }

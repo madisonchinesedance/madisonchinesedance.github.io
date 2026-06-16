@@ -73,38 +73,15 @@
       "alt": "Splendid China 2019 014"
     }
   ],
-  "sections": [
+  "content": [
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "heading",
-              "text": "Splendid China 2019",
-              "id": "splendid-2019-heading",
-              "fontSize": "heading-1"
-            },
-            {
-              "type": "body",
-              "text": "Performance archive details, photos, and program notes will be added here."
-            }
-          ]
-        }
-      ]
+      "type": "hero",
+      "heading": "Splendid China 2019",
+      "body": "Performance archive details, photos, and program notes will be added here."
     },
     {
-      "columns": 1,
-      "items": [
-        {
-          "blocks": [
-            {
-              "type": "gallery",
-              "variant": "runner"
-            }
-          ]
-        }
-      ]
+      "type": "gallery",
+      "variant": "runner"
     }
   ]
 }

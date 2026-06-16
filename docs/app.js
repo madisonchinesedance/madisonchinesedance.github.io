@@ -183,6 +183,18 @@ function blockId(block, fallback) {
 }
 
 function findSectionComponent(sections = [], key) {
+	if (Array.isArray(sections) && sections.length && sections[0]?.type) {
+		for (const block of sections) {
+			if (block?.type === key) return block;
+			if (block?.type === 'grid') {
+				for (const card of block.cards || []) {
+					if (card?.type === key) return card;
+				}
+			}
+		}
+		return null;
+	}
+
 	for (const section of sections) {
 		for (const item of section?.items || []) {
 			const blocks = item?.blocks;
@@ -744,9 +756,118 @@ document.addEventListener('DOMContentLoaded', async () => {
 		`;
 	}
 
+	function slugifyHeadingId(text = '') {
+		const slug = String(text)
+			.toLowerCase()
+			.replace(/[^a-z0-9]+/g, '-')
+			.replace(/^-+|-+$/g, '');
+		return slug ? `${slug}-heading` : '';
+	}
+
+	function buttonsToActions(buttons = []) {
+		return buttons.map((button) => ({
+			label: button.label,
+			href: button.href,
+			route: button.route,
+			style: button.style,
+			ariaLabel: button.ariaLabel,
+			className: button.className,
+			newTab: button.newTab
+		}));
+	}
+
+	function renderContentTextSection(block = {}, level = 1) {
+		const heading = block.heading || '';
+		const body = block.body || '';
+		const buttons = Array.isArray(block.buttons) ? block.buttons : [];
+		const blocks = [];
+
+		if (heading) {
+			const headingId = level === 1
+				? slugifyHeadingId(heading)
+				: String(heading).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+			blocks.push({
+				type: 'heading',
+				text: heading,
+				fontSize: level === 1 ? 'heading-1' : 'heading-4',
+				id: headingId
+			});
+		}
+
+		if (body || buttons.length) {
+			blocks.push({
+				type: 'body',
+				text: body,
+				actions: buttonsToActions(buttons)
+			});
+		}
+
+		return renderSectionBlock({
+			columns: 1,
+			items: [{ blocks }]
+		});
+	}
+
+	function renderGridContentBlock(block = {}) {
+		const columns = Math.max(1, Math.min(Number(block.columns || 1), 4));
+		const items = (block.cards || []).map((card) => {
+			if (card?.type === 'gallery') {
+				return { blocks: [{ type: 'gallery', variant: card.variant || '' }] };
+			}
+
+			const itemBlocks = [];
+			if (card?.heading) {
+				itemBlocks.push({
+					type: 'heading',
+					text: card.heading,
+					fontSize: 'heading-4'
+				});
+			}
+			if (card?.body || card?.buttons?.length) {
+				itemBlocks.push({
+					type: 'body',
+					text: card.body || '',
+					actions: buttonsToActions(card.buttons)
+				});
+			}
+			return { blocks: itemBlocks };
+		});
+
+		return renderSectionBlock({ columns, items });
+	}
+
+	function renderContentBlock(block = {}) {
+		switch (block.type) {
+			case 'hero':
+				return renderContentTextSection(block, 1);
+			case 'text':
+				return renderContentTextSection(block, 4);
+			case 'grid':
+				return renderGridContentBlock(block);
+			case 'gallery':
+				return renderSectionBlock({
+					columns: 1,
+					items: [{ blocks: [{ type: 'gallery', variant: block.variant || '' }] }]
+				});
+			case 'zeffy':
+				return renderSectionBlock({
+					columns: 1,
+					items: [{ blocks: [{ type: 'zeffyEmbed', formUrl: block.formUrl, iframeTitle: block.iframeTitle, iframeSrc: block.iframeSrc }] }]
+				});
+			default:
+				return '';
+		}
+	}
+
 	function renderPageBlocks() {
 		const mount = $('[data-page-blocks]') || $('.site-main');
 		if (!mount) return;
+
+		const pageContent = Array.isArray(content.content) ? content.content : [];
+		if (pageContent.length) {
+			mount.innerHTML = pageContent.map((block) => renderContentBlock(block)).join('');
+			return;
+		}
 
 		const sections = Array.isArray(content.sections) ? content.sections : [];
 		if (!sections.length) return;
@@ -1597,7 +1718,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	const galleryRunners = [];
-	const galleryBlock = findSectionComponent(content.sections || [], 'gallery') || {};
+	const galleryBlock = findSectionComponent(content.content || content.sections || [], 'gallery') || {};
 	const galleryGroups = Array.isArray(galleryBlock.groups)
 		? galleryBlock.groups
 		: (Array.isArray(content.galleryGroups) ? content.galleryGroups : []);
