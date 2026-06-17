@@ -2102,7 +2102,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 		// Cloudflare Worker endpoint (deploy your worker and update this URL)
 		// The worker will call Cloudflare Workers AI with your API key stored securely
-		const CHATBOT_API_ENDPOINT = 'https://mcda-ai-bot.joshuacheng-dev.workers.dev/'; // UPDATE THIS
+		const CHATBOT_API_ENDPOINT = 'https://assistant.madisonchinesedance.org'; // UPDATE THIS
 
 		async function sendMessage(message) {
 			// Add user message
@@ -2121,7 +2121,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 				});
 
 				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
+					let errorDetail = '';
+					try {
+						const errBody = await response.json();
+						errorDetail = errBody.error || errBody.message || JSON.stringify(errBody);
+					} catch {
+						errorDetail = await response.text().catch(() => '');
+					}
+					throw new Error(`HTTP ${response.status}: ${errorDetail}`);
 				}
 
 				const data = await response.json();
@@ -2131,7 +2138,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 				addMessage(botResponse, false);
 			} catch (error) {
 				removeTypingIndicator(typingIndicator);
-				addMessage('Sorry, there was an error processing your request. Please try again.', false);
+				addMessage(`Error: ${error.message}`, false);
 				console.error('Chatbot error:', error);
 			} finally {
 				chatbotSend.disabled = false;

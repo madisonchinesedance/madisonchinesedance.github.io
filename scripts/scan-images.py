@@ -425,19 +425,32 @@ def update_main_gallery(
     featured_images: list[dict[str, str]],
 ) -> tuple[int, int]:
     gallery_groups = build_gallery_groups(years)
-    content = {
-        "pageTitle": existing.get("pageTitle")
-            or existing.get("galleryPageTitle")
-            or DEFAULT_CONTENT["pageTitle"],
-        "metaDescription": existing.get("metaDescription")
-            or existing.get("galleryMetaDescription")
-            or DEFAULT_CONTENT["metaDescription"],
-        "heading": existing.get("heading")
-            or existing.get("galleryHeroHeading")
-            or DEFAULT_CONTENT["heading"],
-        "galleryGroups": gallery_groups,
-        "galleryImages": featured_images,
-    }
+    # Start with existing content to preserve non-managed fields
+    # (e.g., the "content" layout array with hero/gallery/archive blocks)
+    content = dict(existing)
+    # Update only the fields this script manages
+    content["pageTitle"] = (
+        existing.get("pageTitle")
+        or existing.get("galleryPageTitle")
+        or DEFAULT_CONTENT["pageTitle"]
+    )
+    content["metaDescription"] = (
+        existing.get("metaDescription")
+        or existing.get("galleryMetaDescription")
+        or DEFAULT_CONTENT["metaDescription"]
+    )
+    # Preserve heading only if it was explicitly set in the existing file;
+    # remove it otherwise — the actual page heading lives in the content[] blocks.
+    if "heading" in existing:
+        content["heading"] = existing["heading"]
+    else:
+        content.pop("heading", None)
+    content["galleryGroups"] = gallery_groups
+    content["galleryImages"] = featured_images
+    # Remove any legacy keys that shouldn't persist
+    content.pop("galleryPageTitle", None)
+    content.pop("galleryMetaDescription", None)
+    content.pop("galleryHeroHeading", None)
     write_json(content_path, content)
     return len(gallery_groups), len(featured_images)
 
