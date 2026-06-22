@@ -2,7 +2,7 @@
   "announcements": [
     {
       "id": "splendid-china-2026",
-      "enabled": true,
+      "enabled": false,
       "label": "Upcoming Event",
       "body": "Splendid China 2026 is coming up on June 20th! Join us for an evening of culture presented by community performers. Experience the beauty of China through music and dance. Tickets available for purchase now; don't miss out on this unforgettable event!",
       "actions": [
@@ -22,7 +22,7 @@
     }
   ],
   "highlights": {
-    "enabled": true,
+    "enabled": false,
     "color": "gold",
     "style": "pulse",
     "navRoutes": [

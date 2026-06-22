@@ -333,18 +333,18 @@
           "body": "Beginner through advanced dance instruction for students of all ages.",
           "buttons": [
             {
-              "label": "Start with beginner dancers",
+              "label": "Sign Up",
               "route": "beginner-dancers"
             }
           ]
         },
         {
-          "heading": "Splendid China",
-          "body": "Our annual concert brings traditional and contemporary Chinese dance to the stage.",
+          "heading": "Attend an Event",
+          "body": "Join us for our upcoming events and experience the joy of Chinese dance.",
           "buttons": [
             {
-              "label": "See Splendid China 2026",
-              "route": "splendid-china-2026"
+              "label": "Events",
+              "route": "events"
             }
           ]
         },
@@ -383,12 +383,12 @@
       "columns": 3,
       "cards": [
         {
-          "heading": "Attend a performance",
-          "body": "Get details for Splendid China 2026 and purchase tickets online.",
+          "heading": "Try A Class",
+          "body": "Experience the joy of Chinese dance with our beginner-friendly classes.",
           "buttons": [
             {
-              "label": "Purchase tickets",
-              "route": "tickets"
+              "label": "Sign Up",
+              "route": "beginner-dancers"
             }
           ]
         },

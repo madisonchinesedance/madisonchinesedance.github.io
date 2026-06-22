@@ -5,21 +5,43 @@
     {
       "type": "hero",
       "heading": "Splendid China - 2026 Tickets",
-      "body": "Join us for Splendid China 2026 - an evening of traditional and contemporary Chinese dance presented by community performers. Tickets support production costs, venue rental, and scholarships for student participants.\n\nSeats are limited. Please purchase tickets in advance by June 19th through our secure ticketing partner.\n\nTickets also available at the door.\n\nIf you have accessibility needs or questions about group sales, email us at contact@madisonchinesedance.org.\n\n<b>Ticket prices are all-inclusive - no extra fees will be added at checkout. Zeffy donations are optional, please select 'other' if you wish to skip.</b>",
-      "buttons": [
-        {
-          "label": "Open in Zeffy",
-          "href": "https://www.zeffy.com/en-US/ticketing/splendid-china--2026",
-          "newTab": true,
-          "className": "ticket-cta",
-          "style": "primary"
-        }
-      ]
+      "body": "Ticket sales are closed for Splendid China 2026, but there are still many ways to get involved and support the Madison Chinese Dance Academy. "
     },
     {
-      "type": "zeffy",
-      "formUrl": "/embed/ticketing/splendid-china--2026",
-      "iframeTitle": "Ticketing form powered by Zeffy"
+      "type": "grid",
+      "columns": 3,
+      "cards": [
+        {
+          "heading": "Upcoming Events",
+          "body": "Check out our dashboard for upcoming events, including Splendid China 2027!",
+          "buttons": [
+            {
+              "label": "View Events",
+              "route": "events"
+            }
+          ]
+        },
+        {
+          "heading": "Make A Donation",
+          "body": "Support our mission by making a donation to the Madison Chinese Dance Academy.",
+          "buttons": [
+            {
+              "label": "Donate Now",
+              "route": "donate"
+            }
+          ]
+        },
+        {
+          "heading": "Volunteer",
+          "body": "Join our team of volunteers and help make a difference in the lives of our students.",
+          "buttons": [
+            {
+              "label": "Volunteer Now",
+              "route": "volunteer"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
