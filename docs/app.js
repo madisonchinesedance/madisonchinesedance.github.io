@@ -1283,7 +1283,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 		siteHeader.classList.remove('is-nav-collapsed');
 		const overflows = headerInner.scrollWidth > headerInner.clientWidth + 1;
-		const shouldCollapse = overflows || window.matchMedia('(max-width: 992px)').matches;
+		const shouldCollapse = window.matchMedia('(max-width: 1370px)').matches;
 		siteHeader.classList.toggle('is-nav-collapsed', shouldCollapse);
 
 		if (!shouldCollapse && primaryNav?.classList.contains('open')) {
