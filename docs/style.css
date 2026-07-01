@@ -1907,6 +1907,15 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 /* ---------------------------
 	 Responsive (mobile-first is not used — desktop-first approach)
 	 --------------------------- */
+
+/* Tablet/Large Mobile Breakpoint (992px)
+   - Collapses multi-column grids to single column
+   - Switches to hamburger navigation menu
+   - Adjusts footer layout
+   - Reduces card and container padding
+   - Shows short logo text, hides full text
+   - Adjusts announcement spacing
+ */
 @media (max-width:992px){
 	.section-grid{
 		grid-template-columns:1fr;
@@ -2096,6 +2105,10 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	}
 }
 
+/* Small Tablet Breakpoint (768px)
+   - Adjusts homepage gallery runner-tall layout to stack vertically
+   - Limits gallery container height on smaller screens
+ */
 @media (max-width:768px){
 	.home-page .section:has([data-gallery-variant="runner-tall"]) .section-grid{
 		grid-template-columns:minmax(0, 1fr);
@@ -2112,6 +2125,15 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	}
 }
 
+/* Mobile Breakpoint (640px) - PRIMARY BUTTON CRAMPING FIX
+   - Fixes button cramping by stacking hero CTA buttons vertically in a grid
+   - Adjusts homepage hero section layout
+   - Changes announcement layout to grid
+   - Reduces card padding for tighter mobile layout
+   - Adjusts gallery container aspect ratio to 4/3 for mobile
+   - Modifies gallery grids to 4-column layout with reduced gaps
+   - Adjusts gallery year tabs for mobile spacing
+ */
 @media (max-width:640px){
 	.home-page .hero-ctas{
 		display:grid;
@@ -2137,6 +2159,28 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	.section-grid[style*="--section-columns:3"] .section-item,
 	.section-grid[style*="--section-columns:4"] .section-item{
 		padding:var(--card-padding-xs);
+	}
+
+	/* Gallery mobile adjustments */
+	.gallery-container{
+		aspect-ratio:4 / 3;
+	}
+
+	.gallery-grid,
+	.gallery-event-grid{
+		grid-template-columns:repeat(4, 1fr);
+		gap:8px;
+	}
+
+	/* Gallery year tabs mobile adjustments */
+	.gallery-year-tabs{
+		gap:6px;
+		padding-bottom:12px;
+	}
+	.gallery-year-tab{
+		padding:6px 12px;
+		min-height:32px;
+		font-size:0.85rem;
 	}
 }
 @keyframes star-twinkle{
@@ -2174,6 +2218,10 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	}
 }
 
+/* Accessibility: Prefers Reduced Motion
+   - Disables all animations and transitions for users who prefer reduced motion
+   - Improves accessibility for users with vestibular disorders
+ */
 @media (prefers-reduced-motion: reduce){
 	.btn,
 	.nav-list,
@@ -2568,7 +2616,11 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	text-align:center;
 }
 
-/* Mobile responsive */
+/* Chatbot Mobile Breakpoint (480px)
+   - Adjusts chatbot position and sizing for very small screens
+   - Makes chatbot toggle circular and removes label
+   - Full-width chatbot panel with reduced height
+ */
 @media (max-width:480px){
 	.chatbot{
 		right:16px;
@@ -2591,17 +2643,6 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 	}
 }
 
-@media (max-width: 640px) {
-	.gallery-container{
-		aspect-ratio:4 / 3;
-	}
-
-	.gallery-grid,
-	.gallery-event-grid{
-		grid-template-columns:repeat(4, 1fr);
-		gap:8px;
-	}
-}
 /* Gallery year tab bar (filters the runner + thumbnails by year) */
 .gallery-year-tabs{
 	display:flex;
@@ -2656,15 +2697,4 @@ body:has(.site-header.has-visible-announcement) .gallery-lightbox-window img{
 }
 .gallery-year-tab.active .gallery-year-tab-count{
 	background:color-mix(in srgb,var(--color-deep-navy) 35%,transparent);
-}
-@media (max-width: 640px) {
-	.gallery-year-tabs{
-		gap:6px;
-		padding-bottom:12px;
-	}
-	.gallery-year-tab{
-		padding:6px 12px;
-		min-height:32px;
-		font-size:0.85rem;
-	}
 }
